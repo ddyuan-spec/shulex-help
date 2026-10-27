@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>cxclaw工单助手 · 工单工作台原型</title>
+  <link rel="icon" href="assets/solvea-logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="annotations.css">
+</head>
+<body>
+  <header class="topbar">
+    <img class="logo" src="assets/solvea-logo.png" alt="solvea.">
+    <span class="top-divider" data-icon="panel"></span><span>工单</span>
+    <div class="top-actions"><button class="top-bell icon-button" aria-label="通知" disabled data-icon="bell"></button><button id="global-partner" class="top-partner"><span data-icon="partner"></span>cxclaw工单助手</button></div>
+  </header>
+  <aside class="app-sidebar">
+    <div class="workspace-select"><span data-icon="desk"></span><b>智能工作台</b><span class="tiny-menu">≡</span></div>
+    <nav class="app-nav" aria-label="应用导航">
+      <div class="app-nav-item selected"><span data-icon="ticket"></span>工单</div>
+      <div class="app-nav-item" aria-disabled="true"><span data-icon="users"></span>联系人</div>
+      <div class="app-nav-item" aria-disabled="true"><span data-icon="chart"></span>报表</div>
+      <div class="app-nav-item" aria-disabled="true"><span data-icon="outreach"></span>主动触达</div>
+      <div class="app-nav-item" aria-disabled="true"><span data-icon="settings"></span>设置</div>
+    </nav>
+    <div class="app-bottom"><div class="utility-icons"><span data-icon="globe"></span><span data-icon="book"></span><span data-icon="ticket"></span></div><div class="profile"><span class="profile-avatar">r<small></small></span><span>rick.yuan</span><span class="profile-chevron">›</span></div></div>
+  </aside>
+  <main id="mainArea">
+    <div class="account-alert"><span data-icon="alert"></span><span>1个店铺授权异常</span><span class="alert-link">去处理</span><button id="dismiss-alert" class="icon-button" aria-label="关闭授权提醒" data-icon="close"></button></div>
+    <div class="desk-body">
+      <aside class="queue-sidebar"><div class="queue-heading"><h1>工单</h1><span>＋</span></div><div id="queue-items"></div><div class="view-heading">个人视图<span>⌄</span><i>＋</i></div><div class="view-heading public-heading">公共视图<span>⌄</span><i>＋</i></div><div id="channel-items"></div></aside>
+      <section class="ticket-list panel" id="viewTickets" aria-label="工单列表">
+        <div class="list-toolbar"><span data-icon="panel"></span><div id="search-wrap"><span data-icon="search"></span><input id="ticket-search" aria-label="搜索工单" placeholder="搜索工单"></div><button id="sort-tickets" class="icon-button" aria-label="切换工单排序" data-icon="sort"></button><span data-icon="settings"></span></div>
+        <div id="table-filters"><span class="filter-chip"><span data-icon="mail"></span>售后邮箱<span data-icon="chevron"></span></span><span class="filter-chip"><span data-icon="user"></span>处理人<span data-icon="chevron"></span></span></div>
+        <div id="ticket-list-content"></div>
+        <div class="layout-switch" role="group" aria-label="工单布局"><button id="card-layout" aria-label="卡片布局" title="卡片布局" data-icon="cards"></button><button id="table-layout" aria-label="表格布局" title="表格布局" data-icon="rows"></button></div>
+      </section>
+      <section id="ticket-workbench" class="workbench panel" aria-label="工单工作台">
+        <div class="conversation-column">
+          <header class="conversation-header"><div class="conversation-top"><h2 id="ticket-title"></h2><div class="conversation-actions"><button id="ticket-more" aria-label="工单操作" class="icon-button" data-icon="dots"></button><button id="ticket-events" aria-label="事件" class="icon-button" title="事件" data-icon="history"></button><button id="ticket-snooze" aria-label="稍后处理" class="icon-button" title="稍后处理" data-icon="snooze"></button><button id="ticket-assign" class="assign-button">分配<span data-icon="chevron"></span></button></div></div><div class="conversation-meta" id="ticket-meta"></div></header>
+          <div id="conversation-messages" class="conversation-messages"></div>
+          <div id="events-panel" class="events-panel" hidden><div class="events-heading"><b>事件</b><button id="close-events" aria-label="关闭事件" class="icon-button" data-icon="close"></button></div><div class="event-item"><span></span>工单已创建<small>昨天 15:22</small></div><div class="event-item"><span></span>工单转入待处理<small>昨天 15:22</small></div></div>
+          <div id="composer" class="composer">
+            <div class="composer-channels" id="composer-channels"></div>
+            <textarea id="reply-editor" placeholder="请输入" aria-label="回复内容"></textarea>
+            <div class="composer-footer"><div class="editor-tools"><label class="icon-button attachment-button" title="附件"><input id="attach-file" type="file" hidden><span data-icon="attach"></span></label><button id="format-reply" class="icon-button" aria-label="文本格式" data-icon="format"></button><button id="paste-reply" class="paste-button"><span data-icon="copy"></span>粘贴<span data-icon="chevron"></span></button><button id="quick-reply" class="icon-button" aria-label="快捷回复" data-icon="bolt"></button><button id="insert-link" class="icon-button" aria-label="插入链接" data-icon="link"></button></div><div class="send-group"><button id="send-reply" disabled>发送</button><button id="send-options" disabled aria-label="发送选项" data-icon="chevron"></button></div></div>
+            <div id="attachment-name" hidden></div>
+          </div>
+          <div id="agent-transfer-bar" hidden><button id="agent-transfer">转人工</button></div>
+        </div>
+        <aside class="context-column">
+          <div class="context-tabs" role="tablist" aria-label="工单侧栏"><button id="details-tab" role="tab" aria-controls="details-panel" aria-selected="true">详情</button><button id="partner-tab" role="tab" aria-controls="partner-panel" aria-selected="false">cxclaw工单助手</button><button id="context-toggle" class="icon-button" aria-label="收起工单详情" data-icon="panel"></button></div>
+          <div id="details-panel" role="tabpanel" aria-labelledby="details-tab" class="details-panel"></div>
+          <div id="partner-panel" role="tabpanel" aria-labelledby="partner-tab" class="partner-panel" hidden>
+            <div class="partner-heading"><span class="partner-avatar" data-icon="partner"></span><div><b>cxclaw工单助手</b><small>CXClaw</small></div><button id="new-ai-chat" class="icon-button" aria-label="新建工单问答" title="新建工单问答" data-icon="edit"></button></div>
+            <div class="partner-context"><span id="ai-ticket-context"></span><span class="advice-label">AI 仅提供建议，发送与否由你决定。</span></div>
+            <div class="ticket-tools"><div class="tool-section-title">工单工具</div><div class="tool-grid"><button data-tool="summary"><span data-icon="summary"></span>总结工单</button><button data-tool="draft"><span data-icon="draft"></span>草拟回复</button><button data-tool="polish"><span data-icon="wand"></span>AI润色</button><button data-tool="orders"><span data-icon="box"></span>订单物流</button></div></div>
+            <div id="ai-conversation" class="ai-conversation" aria-live="polite"></div>
+            <form id="ai-form" class="ai-form"><textarea id="ai-input" aria-label="向cxclaw工单助手提问" placeholder="随便问点关于这张工单的事…" rows="2"></textarea><div class="ai-input-footer"><span id="ai-context-caption"></span><button id="ask-ai" type="submit" aria-label="发送给cxclaw工单助手" disabled data-icon="arrow-up"></button></div></form>
+          </div>
+        </aside>
+      </section>
+    </div>
+    <div id="action-menu" class="action-menu" hidden></div>
+    <dialog id="snooze-dialog"><form method="dialog"><div class="dialog-heading"><b>稍后处理</b><button value="cancel" class="icon-button" aria-label="关闭稍后处理" data-icon="close"></button></div><div class="snooze-options"><button type="button" data-snooze="30分钟后">30分钟后</button><button type="button" data-snooze="1小时后">1小时后</button><button type="button" data-snooze="明天">明天</button></div><label class="snooze-date">选择时间<input type="datetime-local" id="snooze-date"></label><div class="dialog-footer"><button value="cancel">取消</button><button type="button" id="confirm-snooze" class="primary-button">确认</button></div></form></dialog>
+    <dialog id="clear-chat-dialog"><form method="dialog"><b>清空当前工单问答？</b><p id="clear-chat-description"></p><div class="dialog-footer"><button value="cancel">取消</button><button value="confirm" class="primary-button">确认</button></div></form></dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+  </main>
+  <script src="app.js"></script>
+  <script src="annotations.js"></script>
+</body>
+</html>
