@@ -1,0 +1,22 @@
+/* Optional review layer, deliberately separate from product styles. */
+.review-changes-link{color:#80602c;text-decoration:underline;text-underline-offset:3px;display:inline-block;margin-bottom:6px}
+.review-toggle{position:fixed;left:330px;top:12px;z-index:60;border:1px solid #b99c65;border-radius:6px;background:#fff8e9;color:#72501d;padding:5px 10px;font-size:12px;white-space:nowrap;line-height:20px}
+.review-toggle:hover{background:#ffedc5;color:#593c13!important}
+.review-reader{position:fixed;left:12px;top:119px;bottom:16px;width:320px;z-index:35;border:1px solid #dfc78c;border-radius:12px;background:#fffefb;box-shadow:0 5px 25px #18263d22;display:flex;flex-direction:column;overflow:auto;font-size:13px;color:#2f3540;scrollbar-width:thin;scrollbar-color:#d8c9ab transparent}
+.review-header{display:flex;justify-content:space-between;align-items:center;padding:16px 17px 12px;border-bottom:1px solid #f0e6d0;flex-shrink:0}
+.review-eyebrow{font-size:11px;letter-spacing:1px;color:#977335}.review-header h2{font-size:18px;margin:5px 0 0;color:#57411d;line-height:24px}
+.review-header>button{border:1px solid #eadbc0;border-radius:6px;width:27px;height:27px;color:#92703e;font-size:20px;background:#fffcf5;line-height:24px}
+.review-intro{font-size:12px;line-height:20px;padding:12px 17px 8px;color:#7b7160}.review-topic-label{font-size:11px;color:#9a8a70;padding:4px 17px 6px}
+#review-topic{margin:0 17px 3px;width:calc(100% - 34px);border:1px solid #e1d3b5;border-radius:6px;background:white;font:inherit;font-size:12px;height:35px;padding:5px 7px;color:#574c36;flex-shrink:0;min-height:35px}
+#review-note-body{padding:6px 17px 10px;line-height:23px}#review-note-body h3{font-size:15px;line-height:23px;color:#503e20;margin:10px 0 12px;display:flex;gap:8px;align-items:flex-start}
+#review-note-body h3>span{border-radius:50%;background:#a57221;color:white;font-size:11px;min-width:21px;height:21px;display:grid;place-items:center;margin-top:1px;flex-shrink:0}
+.review-flow{border:1px solid #eddfbd;background:#fff8e9;padding:10px 11px;border-radius:7px;color:#7c5b27;line-height:23px;font-size:12px}
+#review-note-body ol{padding-left:20px;margin:12px 0}#review-note-body li{padding-left:1px;margin:0 0 10px;line-height:23px}
+.review-try{background:#f5f6f8;border-radius:7px;padding:10px 11px;line-height:21px;font-size:12px;color:#637187}.review-try b{font-size:12px;font-weight:600;color:#445367}.review-try p{margin:5px 0 0}
+.review-navigation{display:flex;align-items:center;justify-content:space-between;gap:7px;padding:4px 17px 14px;font-size:12px;flex-shrink:0}.review-navigation>button{padding:6px 12px;border:1px solid #dfcfab;border-radius:6px;background:#fffaf0;color:#7d602d}.review-navigation>button:disabled{opacity:.35}.review-navigation>span{color:#a8997c;font-size:11px}
+.review-boundary{margin:0 17px 12px;border-top:1px solid #eee4d1;padding-top:11px;font-size:12px;color:#81745e;flex-shrink:0}.review-boundary summary{cursor:pointer;color:#85672f;font-weight:600}.review-boundary p{line-height:21px;margin:10px 0}.review-boundary a{color:#80602c;text-decoration:underline}
+.review-current-context{font-size:10px;line-height:18px;padding:10px 17px;border-top:1px solid #f0e6d0;color:#a18c68;margin-top:auto;flex-shrink:0}
+#review-pins{position:fixed;inset:0;z-index:32;pointer-events:none}.review-pin{position:fixed;width:23px;height:23px;border-radius:50%;background:#fff8e8;color:#895b11;border:1.5px solid #bb872e;box-shadow:0 1px 4px #442b1420;font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:700;display:grid;place-items:center;pointer-events:auto;line-height:1;z-index:1}
+.review-pin:hover,.review-pin.selected{background:#a77320;color:white!important;border-color:#895b11}.review-highlight{outline:2px dashed #bf8d38!important;outline-offset:4px}
+@media(max-width:1400px){.review-reader{width:294px;left:10px;top:118px;bottom:12px}.review-toggle{font-size:11px;padding:3px 7px}.review-pin{width:21px;height:21px;font-size:10px}}
+@media(max-height:760px){.review-reader{top:112px}.review-header{padding-top:11px;padding-bottom:9px}#review-note-body li{margin-bottom:7px}.review-intro{padding-top:8px}}
