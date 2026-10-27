@@ -1,0 +1,11 @@
+# Keep authenticated staging captures and local generation tools on this machine.
+review/*
+!review/tenant-isolation.test.cjs
+!review/tenant-isolation-verification.md
+tools/
+系统自学习逻辑核验.md
+node_modules/
+body.json
+_push_*
+b64.txt
+sha*.txt
