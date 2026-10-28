@@ -59,4 +59,16 @@ document.addEventListener('change',e=>{if(e.target.id==='assign-ticket'){const v
 document.addEventListener('submit',e=>{if(e.target.id!=='reply-form')return;e.preventDefault();const t=current(),body=$('#reply-text').value.trim();if(body.length<5){toast('回复至少填写 5 个有效字符');return;}delete ui.drafts[t.id];ui.queue='processing';try{W.updateTicket(t.id,t=>{t.messages.push({id:'M-'+Date.now().toString(36),role:'support',body,time:W.now()});t.status='processing';t.assignee='我';W.event(t,'林悦回复客户（本地演示，未发送邮件）');return t;});toast('回复已保存到本地，未向客户发送');}catch{ui.drafts[t.id]=body;toast('本地保存失败，回复未发送，请重试');}});
 document.addEventListener('click',e=>{const queue=e.target.closest('[data-queue]');if(queue){ui.queue=queue.dataset.queue;ui.query='';$('#ticket-search').value='';render();}const ticket=e.target.closest('[data-ticket]');if(ticket){ui.selected=ticket.dataset.ticket;history.replaceState(null,'','workspace.html?ticket='+encodeURIComponent(ui.selected));render();}const placeholder=e.target.closest('[data-static]');if(placeholder)toast(placeholder.dataset.static+'仅复刻导航样式，本轮没有实现此模块');const close=e.target.closest('[data-close]');if(close)$('#'+close.dataset.close).close();const action=e.target.closest('[data-action]');if(!action)return;switch(action.dataset.action){case'take':take();break;case'resolve':resolve();break;case'reopen':reopen();break;case'details':openInspector();break;case'close-details':ui.inspectorOpen=false;$('#ticket-inspector').classList.remove('is-open');break;case'history':openInspector();$('#audit-section')?.scrollIntoView({block:'nearest'});break;case'save-note':{const note=$('#customer-note').value;if(!mutate(t=>{t.internalNote=note;W.event(t,'林悦更新内部备注（仅本地）');return t;}))return;toast('内部备注已保存，不对客户展示');break;}}});
 window.addEventListener('shulex-workflow-change',render);window.addEventListener('storage',e=>{if(e.key===W.keys.tickets)render();});
+window.prepareAnnotation=id=>{
+ const general=['account','queue','ticket-list','assistant','tenant-scope','tenant-acceptance'];
+ if(!general.includes(id)&&(!current()||id==='reply'&&current().status==='resolved')){
+  const target=W.tickets().find(t=>id!=='reply'||t.status!=='resolved');
+  if(target){ui.selected=target.id;ui.queue='all';ui.query='';$('#ticket-search').value='';render();}
+ }
+ if(['customer-note','order','erp','satisfaction','audit'].includes(id))openInspector();
+ if(id==='attachments'&&!document.querySelector('[data-note="attachments"]'))return {selector:'.message-column',message:'当前工单未提交附件；附件信息显示在客户消息下方。'};
+ if(!general.includes(id)&&!current())return {selector:'#ticket-detail',message:'当前没有工单数据，字段所在位置为工单详情区。'};
+ if(id==='reply'&&current()?.status==='resolved')return {selector:'.resolved-banner',message:'当前工单已解决，回复框在重新打开后展示；定位不会更改工单状态。'};
+ return {};
+};
 W.seed();if(ui.selected)ui.queue=W.tickets().find(t=>t.id===ui.selected)?.status||'all';if(location.hash.startsWith('#knowledge'))history.replaceState(null,'','workspace.html');render();

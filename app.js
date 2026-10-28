@@ -224,6 +224,26 @@ for(const dialog of $$('dialog')){
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('dialog[open]')){toggleChat(false);$('#demo-menu').hidden=true;$('#demo-toggle').setAttribute('aria-expanded','false');}});
 
 updateChatStatus();
+// Review navigation opens UI only; it never submits a ticket or feedback.
+window.prepareAnnotation=async id=>{
+  let message='';
+  const resultIds=['summary','faq','sources','feedback','support','ticket-context'];
+  const directSnapshot=id==='ticket-context'&&$('#ticket-dialog').open&&!state.hasAsked;
+  const needsSample=!directSnapshot&&resultIds.includes(id)&&(!state.hasAsked||id==='faq'&&!currentScenario().faqs.length||id==='sources'&&!currentScenario().sources.length);
+  if(needsSample){await search(scenarios.damage.question,'damage');message='为展示字段，已切换到完整召回示例。';}
+  else if(!$('#loading').hidden){await search(state.question,state.scenario);}
+  if(id.startsWith('ticket-')){
+    if(!$('#ticket-dialog').open)openTicket();
+    if(id==='ticket-context'){
+      if(directSnapshot){$('.ticket-context').hidden=false;$('#ticket-context').textContent='未搜索：直接联系支持，本次没有问答快照。';message='当前为直接联系支持场景，问答快照为空；仅展示字段位置。';}
+      $('.ticket-context').open=true;
+    }
+    if(id==='ticket-submit'&& !$('#ticket-success').hidden)return {selector:'#ticket-success',message:'当前显示已提交回执。'};
+    if(id==='ticket-submit')message='提交按钮位于高亮区域；定位不会创建工单，提交后的权限边界请查看说明。';
+  }
+  if(id==='livechat')return {selector:'#chat-launcher',message:'点击高亮入口可展开在线客服。'};
+  return {message};
+};
 const entryParams=new URL(location.href).searchParams;
 const incomingQuery=entryParams.get('q')||(entryParams.has('resume')?storage.read('shulex-last-search',null)?.question:'');
 if(incomingQuery)search(incomingQuery);
