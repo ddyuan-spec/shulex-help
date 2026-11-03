@@ -1932,15 +1932,14 @@ html&gt;body{padding:0}&lt;/style&gt;
 #ticket-email-subject-demo .subject-row{padding:4px 16px;gap:8px}
 #ticket-email-subject-demo .subject-row input{border-radius:0;padding:0!important}
 #ticket-email-subject-demo .scope{padding:5px 16px;display:flex;gap:4px 11px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);font-size:12px}
-#ticket-email-subject-demo .scope label,#ticket-email-subject-demo .sync{display:inline-flex;align-items:center;gap:4px}
-#ticket-email-subject-demo .scope input,#ticket-email-subject-demo .sync input{accent-color:var(--btn);margin:0}
-#ticket-email-subject-demo .long-options{padding:7px 16px;background:var(--soft);border-bottom:1px solid var(--line);display:grid;gap:7px}
-#ticket-email-subject-demo .long-options .row{justify-content:space-between;gap:7px}
+#ticket-email-subject-demo .scope label{display:inline-flex;align-items:center;gap:4px}
+#ticket-email-subject-demo .scope input{accent-color:var(--btn);margin:0}
+#ticket-email-subject-demo .prototype-note{margin:8px 0;color:light-dark(#394657,#dae3f3);font:13px/1.6 system-ui,&quot;Microsoft YaHei&quot;,sans-serif}
+#ticket-email-subject-demo .prototype-note p{margin:5px 0}
 #ticket-email-subject-demo .title-control{font-size:16px;font-weight:700;line-height:28px;border-radius:8px;padding:2px 8px;text-decoration:none}
 #ticket-email-subject-demo .title-control:hover{background:var(--soft);text-decoration:none}
 #ticket-email-subject-demo .head-line input[data-el=&quot;titleOnly&quot;]{font-size:16px;font-weight:700;line-height:28px;border:2px solid var(--btn);border-radius:8px;padding:0 6px}
 #ticket-email-subject-demo .title-help{padding:1px 8px 4px}
-#ticket-email-subject-demo .footer .help{margin-left:auto}
 @media(max-width:850px){#ticket-email-subject-demo .workspace{grid-template-columns:74px 112px minmax(0,1fr) 112px}#ticket-email-subject-demo .rail{display:none}}
 @media(max-width:670px){#ticket-email-subject-demo .workspace{grid-template-columns:100px minmax(0,1fr)}#ticket-email-subject-demo .views,#ticket-email-subject-demo .side{display:none}}
 @media(max-width:460px){#ticket-email-subject-demo .workspace{grid-template-columns:minmax(0,1fr)}#ticket-email-subject-demo .tickets,#ticket-email-subject-demo .compose-top .off{display:none}#ticket-email-subject-demo .thread{min-height:145px}#ticket-email-subject-demo .head-actions .assignee{display:none}}
@@ -1995,24 +1994,24 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;label for=&quot;demo-ticket-subject-${i}&quot;&gt;主题：&lt;/label&gt;&lt;input id=&quot;demo-ticket-subject-${i}&quot; maxlength=&quot;150&quot; data-el=&quot;subject&quot; autocomplete=&quot;off&quot;&gt;
               &lt;button type=&quot;button&quot; class=&quot;link&quot; data-el=&quot;restore&quot; hidden&gt;恢复默认&lt;/button&gt;
             &lt;/div&gt;
-            &lt;div class=&quot;scope&quot; role=&quot;radiogroup&quot; aria-label=&quot;主题生效范围&quot;&gt;&lt;span class=&quot;help&quot; aria-hidden=&quot;true&quot;&gt;生效范围：&lt;/span&gt;
+            &lt;div class=&quot;scope&quot; role=&quot;radiogroup&quot; aria-label=&quot;本次主题修改生效范围&quot;&gt;&lt;span class=&quot;help&quot; aria-hidden=&quot;true&quot;&gt;本次主题修改生效范围：&lt;/span&gt;
               &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;email-subject-scope&quot; data-el=&quot;once&quot; checked&gt;仅本封&lt;/label&gt;
               &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;email-subject-scope&quot; data-el=&quot;future&quot;&gt;本封及后续回复&lt;/label&gt;
             &lt;/div&gt;
-            &lt;div class=&quot;long-options&quot; data-el=&quot;longOptions&quot; hidden&gt;
-              &lt;div class=&quot;help&quot;&gt;将上方主题保存为本工单后续回复的默认主题。&lt;/div&gt;
-              &lt;label class=&quot;sync&quot;&gt;&lt;input type=&quot;checkbox&quot; checked disabled&gt;同时更新工单标题&lt;/label&gt;
-              &lt;label&gt;工单标题&lt;input data-el=&quot;newTitle&quot; maxlength=&quot;150&quot;&gt;&lt;/label&gt;
-              &lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;help&quot;&gt;保存后同时更新默认主题和工单标题。&lt;/span&gt;&lt;button class=&quot;primary&quot; type=&quot;button&quot; data-el=&quot;save&quot;&gt;保存为默认&lt;/button&gt;&lt;/div&gt;
-            &lt;/div&gt;
           &lt;/div&gt;
           &lt;textarea aria-label=&quot;回复正文&quot; placeholder=&quot;请输入&quot; data-el=&quot;body&quot;&gt;&lt;/textarea&gt;
-          &lt;div class=&quot;footer&quot;&gt;&lt;div class=&quot;tools&quot; aria-hidden=&quot;true&quot;&gt;&lt;i data-lucide=&quot;paperclip&quot;&gt;&lt;/i&gt;&lt;i data-lucide=&quot;type&quot;&gt;&lt;/i&gt; 粘贴 ﹀ &lt;i data-lucide=&quot;link-2&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;span class=&quot;help&quot; data-el=&quot;sendHint&quot; hidden&gt;请先保存默认主题&lt;/span&gt;&lt;button class=&quot;primary&quot; data-el=&quot;send&quot; type=&quot;button&quot; aria-label=&quot;模拟发送&quot;&gt;发 送 ﹀&lt;/button&gt;&lt;/div&gt;
+          &lt;div class=&quot;footer&quot;&gt;&lt;div class=&quot;tools&quot; aria-hidden=&quot;true&quot;&gt;&lt;i data-lucide=&quot;paperclip&quot;&gt;&lt;/i&gt;&lt;i data-lucide=&quot;type&quot;&gt;&lt;/i&gt; 粘贴 ﹀ &lt;i data-lucide=&quot;link-2&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;button class=&quot;primary&quot; data-el=&quot;send&quot; type=&quot;button&quot; aria-label=&quot;模拟发送&quot;&gt;发 送 ﹀&lt;/button&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class=&quot;status&quot; data-el=&quot;status&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
       &lt;aside class=&quot;side&quot;&gt;&lt;strong&gt;详情&lt;/strong&gt;&lt;section&gt;&lt;strong&gt;客户信息&lt;/strong&gt;&lt;dl&gt;&lt;dt&gt;Lin&lt;/dt&gt;&lt;dd&gt;lin@example.com&lt;/dd&gt;&lt;dt&gt;客户标签　＋ 添加&lt;/dt&gt;&lt;/dl&gt;&lt;/section&gt;&lt;section&gt;&lt;strong&gt;相关工单&lt;/strong&gt;&lt;/section&gt;&lt;section&gt;&lt;strong&gt;电商信息&lt;/strong&gt;&lt;p&gt;暂无内容&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;strong&gt;满意度&lt;/strong&gt;&lt;/section&gt;&lt;section&gt;&lt;strong&gt;操作记录&lt;/strong&gt;&lt;/section&gt;&lt;/aside&gt;
-      &lt;/div&gt;&lt;/div&gt;`;
+      &lt;/div&gt;&lt;/div&gt;
+      &lt;details class=&quot;prototype-note&quot;&gt;
+        &lt;summary&gt;开发批注 · 01 主题修改生效规则&lt;/summary&gt;
+        &lt;p&gt;&lt;strong&gt;01.1 功能交互：&lt;/strong&gt;默认「仅本封」。改好主题、选好范围后直接发送。「仅本封」只用于该邮件；选「本封及后续回复」且发送成功后，将修改后的主题保存为该工单的默认回复主题，并用同一主题更新工单标题。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;01.2 影响范围：&lt;/strong&gt;长期修改影响本工单后续邮件回复的默认主题，以及列表和详情的工单标题。下一封回复的生效范围仍默认「仅本封」。&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;01.3 本期边界：&lt;/strong&gt;发送前或发送失败时不更新默认主题和工单标题。仅修改顶部工单标题不影响邮件主题。历史邮件及引用合单规则保持原样。&lt;/p&gt;
+      &lt;/details&gt;`;
     const el = name =&gt; view.querySelector(`[data-el=&quot;${name}&quot;]`);
     const s = {title:seed,subject:seed,override:null,body:bodySeed,sent:[],sentCount:0};
     snapshots[key] = s;
@@ -2075,32 +2074,16 @@ html&gt;body{padding:0}&lt;/style&gt;
       el(&#x27;toggle&#x27;).hidden = true;
       el(&#x27;subject&#x27;).focus();
     };
-    let customTitle=false;
     const refreshScope = () =&gt; {
-      const future = el(&#x27;future&#x27;).checked;
       const subject = (s.override ?? s.subject).trim();
-      el(&#x27;longOptions&#x27;).hidden = !future;
-      if (!customTitle) el(&#x27;newTitle&#x27;).value=subject;
       el(&#x27;restore&#x27;).hidden = s.override === null;
-      el(&#x27;sendHint&#x27;).hidden = !future;
-      el(&#x27;save&#x27;).disabled = !subject || !el(&#x27;newTitle&#x27;).value.trim();
-      el(&#x27;send&#x27;).disabled = future || !subject || !s.body.trim();
+      el(&#x27;send&#x27;).disabled = !subject || !s.body.trim();
     };
     const updateDraft = () =&gt; {
       refreshScope();
       el(&#x27;status&#x27;).textContent = &#x27;&#x27;;
     };
     el(&#x27;once&#x27;).onchange = el(&#x27;future&#x27;).onchange = updateDraft;
-    el(&#x27;newTitle&#x27;).oninput = () =&gt; {customTitle=true;updateDraft();};
-    el(&#x27;save&#x27;).onclick = () =&gt; {
-      if (el(&#x27;save&#x27;).disabled || !el(&#x27;future&#x27;).checked) return;
-      s.subject=(s.override ?? s.subject).trim();
-      s.override=null;
-      s.title=el(&#x27;newTitle&#x27;).value.trim();
-      el(&#x27;once&#x27;).checked=true;customTitle=false;
-      paint();persist();el(&#x27;subject&#x27;).focus();
-      el(&#x27;status&#x27;).textContent=&#x27;已保存默认主题，并更新工单标题。&#x27;;
-    };
     el(&#x27;subject&#x27;).oninput = event =&gt; {
       s.override = event.target.value === s.subject ? null : event.target.value;
       updateDraft();
@@ -2110,10 +2093,15 @@ html&gt;body{padding:0}&lt;/style&gt;
     el(&#x27;restore&#x27;).onclick = () =&gt; {s.override=null;paint();updateDraft();persist();el(&#x27;subject&#x27;).focus();};
     el(&#x27;send&#x27;).onclick = () =&gt; {
       const subject = (s.override ?? s.subject).trim();
-      if (el(&#x27;future&#x27;).checked || !subject || !s.body.trim()) return;
+      if (!subject || !s.body.trim()) return;
       s.sent = [...s.sent.slice(-2),{subject,body:s.body.trim().slice(0,400)}];
       s.sentCount += 1;
+      if (el(&#x27;future&#x27;).checked &amp;&amp; s.override !== null &amp;&amp; subject !== s.subject) {
+        s.subject=subject;
+        s.title=subject;
+      }
       s.override=null;s.body=&#x27;&#x27;;
+      el(&#x27;once&#x27;).checked=true;
       paint();persist();
       el(&#x27;status&#x27;).textContent = &#x27;已模拟发送。下一封将默认使用「&#x27;+s.subject+&#x27;」。&#x27;;
     };
