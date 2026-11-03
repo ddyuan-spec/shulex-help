@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V127 · 报表导出时区</title>
+<style>
+:root{font:15px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;color:#151f2f;background:#f6f7f9;--accent:#5759eb;--line:#e3e6eb;--muted:#697688}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #8586fa;outline-offset:2px}button:disabled{cursor:default;opacity:.48}button,select,input[type=date]{border:1px solid #d9dde3;border-radius:8px;background:white;padding:7px 11px}button:hover:not(:disabled){background:#f1f2ff}svg{width:19px;height:19px;vertical-align:middle}
+.bar{height:54px;background:#141d2c;color:white;display:flex;align-items:center;padding:0 20px;gap:24px}.brand{font-size:23px;font-weight:750;letter-spacing:-.7px}.bar small{margin-left:auto;color:#c8cede}
+.shell{display:grid;grid-template-columns:205px 170px minmax(0,1fr);min-height:calc(100vh - 54px)}aside{padding:14px 10px;background:#eef0f3;border-right:1px solid #e8eaf0}.sub{background:#f1f2f4;padding:15px 12px}.workspace{border-radius:9px;background:white;padding:11px 12px;font-weight:700;box-shadow:0 2px 7px #19233513;margin-bottom:18px}.nav{padding:10px 11px;margin:3px 0;color:#344256;border-radius:8px}.nav.sel{background:#e1e4e9;color:#151f2f}.sub .sel{background:white;box-shadow:0 1px 3px #18203512;font-weight:650}.sub h2{margin:0 9px 12px;font-size:20px}.switch{display:grid;gap:6px;margin-top:27px;padding-top:12px;border-top:1px solid #dbe0e8}.switch small{color:var(--muted);padding-left:4px}.switch button{text-align:left;font-size:13px}.switch button[aria-pressed=true]{color:#484ad0;border-color:#bcbdf8;background:#f0f0ff}
+main{padding:22px 24px;min-width:0}h1{font-size:24px;line-height:1.2;margin:0 0 5px}.desc{color:var(--muted);margin:0 0 18px}.card{border:1px solid var(--line);border-radius:16px;background:white;margin-bottom:16px;padding:16px 18px}.card header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}.card h2{font-size:17px;margin:0;white-space:nowrap}.card h2 svg{margin-right:8px;color:#344052}.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}.date{display:flex;align-items:center;gap:6px;border:1px solid #d9dde3;border-radius:8px;padding:1px 5px}.date input{padding:6px 3px;border:0}.seg{display:inline-flex;gap:2px;padding:2px;border-radius:8px;background:#f0f1f3}.seg button{border:0;padding:5px 9px;background:transparent}.seg button[aria-pressed=true]{background:white;box-shadow:0 1px 3px #25304415}.download{padding:6px 9px;border-color:transparent;color:#1d283a}.filter{background:#f3f4f6;border-color:transparent}.preview{display:grid;grid-template-columns:140px 1fr 1.25fr;align-items:center;gap:20px;margin-top:18px;color:var(--muted)}.ring{margin:8px auto;width:116px;aspect-ratio:1;display:grid;place-content:center;text-align:center;border:17px solid #5b61ee;border-radius:50%;font-size:12px}.ring b{font-size:21px;color:#161c29}.chart{width:100%;height:116px;display:block}.chart path{vector-effect:non-scaling-stroke}.metrics{display:flex;gap:12px;margin-top:10px}.metrics span{font-size:13px;background:#f5f6f8;padding:6px 10px;border-radius:6px;color:#526077}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px;color:#536078}th,td{padding:9px 10px;border-bottom:1px solid #edf0f3}th{background:#f3f6fa;font-weight:650}.performance{margin-top:16px;overflow:auto}.footnote{color:var(--muted);font-size:13px}
+dialog{width:min(470px,calc(100vw - 30px));border:0;border-radius:15px;padding:0;box-shadow:0 18px 70px #141c4060;color:inherit}dialog::backdrop{background:#10182766}dialog form{padding:22px 24px}dialog h2{margin:0;font-size:20px}.dialog-head{display:flex;justify-content:space-between;align-items:center}.close{border:0;padding:3px 8px;color:var(--muted);font-size:20px}.context{color:var(--muted);margin:4px 0 16px;font-size:13px}.summary{display:grid;gap:4px;background:#f5f6f9;padding:10px 12px;border-radius:8px;font-size:13px;margin-bottom:15px}.summary span{color:var(--muted)}.hint{font-size:12px;color:#5b667a;margin:11px 0 0}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.primary{background:var(--accent);color:white;border-color:var(--accent)}.primary:hover:not(:disabled){background:#4346d6}.notice{position:fixed;bottom:20px;right:20px;max-width:min(420px,calc(100vw - 40px));background:white;border:1px solid var(--line);padding:14px 17px;border-radius:10px;box-shadow:0 8px 25px #121d3a22}.notice p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.zone-field{display:grid;gap:7px}.zone-field label{font-weight:650}.zone-field select{width:100%;min-height:39px;cursor:pointer}
+.zone-annotation{margin:10px 0 0;font-size:13px;color:#493f75}.zone-annotation summary{width:fit-content;cursor:pointer;border:1px solid #d9d0f7;border-radius:6px;background:#f6f2ff;padding:4px 8px;font-weight:650}.zone-annotation summary:focus-visible{outline:3px solid #8586fa;outline-offset:2px}.zone-annotation ul{margin:7px 0 0;padding:9px 12px 9px 28px;border-radius:8px;background:#f6f2ff}.zone-annotation li+li{margin-top:5px}
+@media(max-width:1050px){.shell{grid-template-columns:155px 112px minmax(0,1fr)}main{padding:15px}.preview{gap:10px}}@media(max-width:730px){.shell{display:block}.sub,.workspace,.nav{display:none}aside{padding:8px 12px}.switch{display:flex;align-items:center;flex-wrap:wrap;border:0;padding:0;margin:0}.preview{grid-template-columns:100px 1fr}.chart{display:none}.ring{width:85px;border-width:12px}main{padding:12px}}
+</style>
+<body>
+<div class="bar"><span class="brand">◕ solvea.</span><span id="crumb"></span><small>V127 · 交互原型</small></div>
+<div class="shell">
+  <aside><div class="workspace" id="workspace"></div><div id="menu"></div><div class="switch" aria-label="切换原型页面"><small>切换原型页面</small><button data-page="desk">智能工作台 · 报表</button><button data-page="analytics">数据分析 · 工作台看板</button></div></aside>
+  <aside class="sub"><h2>报表</h2><div class="nav sel">▦　总览</div><div id="subnav"></div></aside>
+  <main id="main"></main>
+</div>
+<dialog aria-labelledby="dialog-title" id="export-dialog">
+  <form method="dialog">
+    <div class="dialog-head"><h2 id="dialog-title">导出报表</h2><button class="close" value="cancel" aria-label="关闭">×</button></div>
+    <p class="context" id="dialog-context"></p>
+    <div class="summary"><div><span>日期范围：</span><b id="range"></b></div><div><span>导出维度：</span><b id="dimension"></b></div></div>
+    <div class="zone-field" data-anno="k1">
+      <label for="export-zone">导出时区</label>
+      <select id="export-zone" name="timezone" aria-describedby="zone-hint"></select>
+    </div>
+    <p class="hint" id="zone-hint"></p>
+    <details class="zone-annotation" id="zone-annotation">
+      <summary>01 开发批注 · 纽约夏令时</summary>
+      <ul>
+        <li>提交 <code>America/New_York</code>；下拉里显示的 GMT 偏移仅作提示。后端用 IANA 规则按导出日期计算，标准时 UTC−05:00，夏令时 UTC−04:00。</li>
+        <li>取数用纽约当地首日零点到末日次日零点（不含）分别转 UTC。按纽约自然日分组，汇总与明细使用同一时区；跨日不能直接平移东八区日报。</li>
+        <li>验收：单日导出 2026-03-08 覆盖 23 小时，2026-11-01 覆盖 25 小时。秋季重复的 01:00 小时段两批记录都应纳入，不能漏计或按本地时间去重。</li>
+      </ul>
+    </details>
+    <div class="actions"><button value="cancel">取消</button><button class="primary" id="confirm" value="export">确认导出</button></div>
+  </form>
+</dialog>
+<div class="notice" id="notice" role="status" hidden><strong>已模拟提交导出任务</strong><p id="notice-body"></p></div>
+<script>
+const $=s=>document.querySelector(s);
+const icon=(d)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d+'"/></svg>';
+const reportIcon=icon('M4 5h16v14H4z M8 15v-3m4 3V8m4 7v-5');
+const dl=icon('M12 3v12m-4-4 4 4 4-4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3');
+const views={
+ desk:{path:'智能工作台 / 报表 / 总览',name:'智能工作台',crumb:'报表',menu:['工单','联系人','报表','主动触达','设置'],sub:['坐席与队列监控'],start:'2026-10-27'},
+ analytics:{path:'数据分析 / 工作台看板 / 总览',name:'数据分析',crumb:'工作台看板',menu:['Agent 看板','工作台看板'],sub:['工单','会话','电话','坐席与队列监控'],start:'2026-11-01'}
+};
+const cards={growth:'工单/消息增长概览',performance:'绩效报表'};
+const end='2026-11-02';
+const options=xs=>xs.map(x=>'<option>'+x+'</option>').join('');
+const segment=(label,xs)=>'<div class="seg" role="group" aria-label="'+label+'">'+xs.map((x,i)=>'<button aria-pressed="'+(i===0)+'">'+x+'</button>').join('')+'</div>';
+const dates=(start)=>'<div class="date"><input type="date" aria-label="开始日期" value="'+start+'"><span>–</span><input type="date" aria-label="结束日期" value="'+end+'"></div>';
+const nav=(xs,sel)=>xs.map(x=>'<div class="nav '+(x===sel?'sel':'')+'">'+x+'</div>').join('');
+const header=(title,tools)=>'<header><h2>'+reportIcon+title+'</h2><div class="tools">'+tools+'</div></header>';
+const growthChart='<div class="preview"><div class="ring">总量<b>3</b></div><table><thead><tr><th>渠道</th><th>增量</th><th>占比</th></tr></thead><tbody><tr><td>● Email</td><td>3</td><td>100%</td></tr></tbody></table><svg class="chart" viewBox="0 0 350 116" preserveAspectRatio="none" aria-label="Email 增长示意"><path d="M25 10V94H337 M25 53H337" fill="none" stroke="#e6e9ee"/><path d="M30 91L158 70L332 22" fill="none" stroke="#5860f0" stroke-width="3"/><text x="25" y="112" font-size="11" fill="#697688">起始日期</text><text x="286" y="112" font-size="11" fill="#697688">结束日期</text></svg></div>';
+const perfTable='<div class="performance"><table><thead><tr><th>指标</th><th>回复消息数量</th><th>平均回复时长 (Min)</th><th>平均首次回复时长 (Min)</th><th>已解决工单量</th></tr></thead><tbody><tr><td>Solvea</td><td>0</td><td>—</td><td>—</td><td>0</td></tr><tr><td>人工客服</td><td>4</td><td>1.2</td><td>2.4</td><td>3</td></tr></tbody></table></div>';
+const card=(id,start)=>{
+ const growth=id==='growth';
+ const controls=dates(start)+'<select aria-label="'+(growth?'分组方式':'统计维度')+'">'+options(growth?['按渠道','按客服人员']:['按客服人员','按客服邮箱'])+'</select>'+(growth?segment('数据类型',['工单','消息']):'');
+ return '<section class="card" data-card="'+id+'">'+header(cards[id],controls+'<button class="download" data-export="'+id+'" aria-label="下载'+cards[id]+'" title="下载">'+dl+'</button>')+(growth?growthChart:perfTable)+'</section>';
+};
+const topCard=(name,content='')=>'<section class="card">'+header(name,'')+content+'</section>';
+for(const [key,v] of Object.entries(views)){
+ const panel=document.createElement('div');panel.dataset.view=key;panel.hidden=true;
+ panel.innerHTML='<h1>报表</h1><p class="desc">统计数据中已自动剔除通知邮件和广告邮件</p>'+
+ (key==='desk'?topCard('数据概览','<div class="metrics"><span>新增工单 3</span><span>待处理 2</span></div>')+topCard('今日工单概览'):'')+
+ card('growth',v.start)+(key==='desk'?topCard('消息回复表现'):'')+card('performance',v.start)+
+ '<p class="footnote">示例数据。确认导出会演示提交到下载中心。</p>';
+ $('#main').append(panel);
+}
+let page, selection, returnFocus, timer;
+function switchPage(key){
+ page=key in views?key:'desk';const v=views[page];
+ $('#workspace').textContent=v.name;$('#crumb').textContent=v.crumb;
+ $('#menu').innerHTML=nav(v.menu,v.crumb);$('#subnav').innerHTML=nav(v.sub);
+ document.querySelectorAll('[data-view]').forEach(el=>el.hidden=el.dataset.view!==page);
+ document.querySelectorAll('[data-page]').forEach(el=>el.setAttribute('aria-pressed',el.dataset.page===page));
+ $('#notice').hidden=true;window.scrollTo(0,0);
+}
+const dialog=$('#export-dialog');
+const zoneSelect=$('#export-zone');
+const exportZones=[
+ {id:'Asia/Shanghai',note:'按东八区（UTC+08:00）的自然日统计。'},
+ {id:'America/New_York',note:'按纽约当地自然日统计：标准时 UTC−05:00，夏令时 UTC−04:00，自动切换。'}
+];
+function zoneLabel(id, now){
+ const offset=new Intl.DateTimeFormat('en-US',{timeZone:id,timeZoneName:'longOffset'}).formatToParts(now).find(part=>part.type==='timeZoneName')?.value;
+ return offset?'('+offset+') '+id:id;
+}
+function showExport(btn){
+ const card=btn.closest('[data-card]'), inputs=card.querySelectorAll('input[type=date]');
+ const type=card.querySelector('.seg button[aria-pressed=true]')?.textContent;
+ selection={page,id:btn.dataset.export,start:inputs[0].value,end:inputs[1].value,dimension:[card.querySelector('select').value,type].filter(Boolean).join(' · ')};
+ returnFocus=btn;$('#notice').hidden=true;
+ $('#dialog-context').textContent=views[page].path+' / '+cards[selection.id];
+ $('#range').textContent=(selection.start||'未选')+' 至 '+(selection.end||'未选');
+ $('#dimension').textContent=selection.dimension;
+ const now=new Date();
+ zoneSelect.replaceChildren(...exportZones.map(({id})=>new Option(zoneLabel(id,now),id)));
+ zoneSelect.value='Asia/Shanghai';
+ $('#zone-annotation').open=false;
+ dialog.returnValue='';updateHint();dialog.showModal();
+}
+function updateHint(){
+ const zone=exportZones.find(({id})=>id===zoneSelect.value);
+ const days=(Date.parse(selection.end)-Date.parse(selection.start))/86400000;
+ const invalid=!Number.isFinite(days)||days<0||days>31;
+ $('#confirm').disabled=invalid;
+ $('#zone-hint').textContent=invalid?'请返回页面，选择有效且跨度不超过 31 天的日期范围。':
+ zone.note+' 页面报表保持原样。';
+}
+document.addEventListener('click',e=>{
+ const btn=e.target.closest('button');if(!btn)return;
+ if(btn.dataset.page){location.hash=btn.dataset.page;return;}
+ if(btn.dataset.export){showExport(btn);return;}
+ if(btn.closest('.seg'))btn.closest('.seg').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===btn));
+});
+zoneSelect.addEventListener('change',updateHint);
+dialog.addEventListener('close',()=>{
+ returnFocus?.focus();
+ if(dialog.returnValue!=='export')return;
+ const zone=zoneSelect.value;
+ $('#notice-body').textContent=cards[selection.id]+' · '+zone+' · '+selection.start+' 至 '+selection.end+'。实际功能将沿用下载中心。';
+ $('#notice').hidden=false;clearTimeout(timer);timer=setTimeout(()=>$('#notice').hidden=true,7000);
+});
+window.addEventListener('hashchange',()=>switchPage(location.hash.slice(1)));
+switchPage(location.hash.slice(1));
+</script>
+</body>
+</html>
