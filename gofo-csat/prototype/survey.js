@@ -1,0 +1,745 @@
+'use strict';
+const $=(q,root=document)=>root.querySelector(q);
+const e=(v='')=>String(v).replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+const copy=x=>JSON.parse(JSON.stringify(x));
+const paths={search:'M21 21l-4.4-4.4m2.4-5.6a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',edit:'m13 6 5 5M4 20l4.5-1 12-12-3.5-3.5-12 12L4 20ZM4 22h16',copy:'M8 4h9a3 3 0 0 1 3 3v9m-5 4H7a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2Z',trash:'M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14m-8 3v7m4-7v7',close:'m6 6 12 12M18 6 6 18',arrow:'M19 12H5m6-6-6 6 6 6'};
+const svg=n=>`<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="${paths[n]}"/></svg>`;
+const icon=(n,l,a,v='')=>`<button class="icon ${n==='trash'?'danger':''}" aria-label="${e(l)}" title="${e(l)}" data-act="${a}" data-v="${e(v)}">${svg(n)}</button>`;
+const b=(l,a,c='',v='')=>`<button class="btn ${c}" data-act="${a}" data-v="${e(v)}">${e(l)}</button>`;
+const sw=(on,a,v='',l='启用',small=false)=>`<button class="switch ${on?'on':''} ${small?'mini':''}" role="switch" aria-checked="${Boolean(on)}" aria-label="${e(l)}" data-act="${a}" data-v="${e(v)}"></button>`;
+const search=(ph,k,v)=>`<label class="search grow">${svg('search')}<input aria-label="${ph}" placeholder="${ph}" data-filter="${k}" value="${e(v)}"></label>`;
+const opts=(items,value)=>items.map(i=>{const [k,l]=Array.isArray(i)?i:[i,i];return `<option value="${e(k)}" ${String(value)===String(k)?'selected':''}>${e(l)}</option>`}).join('');
+const fld=(label,html,required=false)=>`<label class="field"><span class="fieldlabel">${required?'<span class="required">* </span>':''}${e(label)}</span>${html}</label>`;
+const sel=(items,value,attr='')=>`<select ${attr}>${opts(items,value)}</select>`;
+const input=(value,attr='')=>`<input ${attr} value="${e(value)}">`;
+const area=(value,attr='')=>`<textarea ${attr}>${e(value)}</textarea>`;
+const tag=(l,c='')=>`<span class="tag ${c}">${e(l)}</span>`;
+const go=(label,page)=>b(label,'go','flat link',page);
+const langs=['Original','简体中文','English','日本語','Español','Français','Deutsch'];
+const qTypes=[['rating','评分'],['single','单选'],['multiple','多选'],['text','文本']];
+const scales=['1–5','1–6','0–10'];
+const stamp='2026-10-26 09:30';
+const makeQ=(type='rating',title='',required=false,scale='1–5',kpi=false)=>({id:crypto.randomUUID(),type,title,desc:'',required,conditional:false,conditionQ:0,conditionScore:3,scale,kpi,analysisFilter:false,options:['选项 1','选项 2']});
+const baseQs=()=>[makeQ('rating','How satisfied are you with our support?',true),makeQ('text','What can we do better?')];
+const initContent=()=>({subject:'How was your support experience?',body:'Hi,\nThanks for contacting us. Please take a moment to rate your support experience.',signature:false,title:'Customer Satisfaction Survey',desc:"We'd love to hear your feedback.",qs:baseQs()});
+const baseSurvey=(id,name,enabled,num=2,date=stamp)=>{
+ const data=initContent();data.qs.push(makeQ('rating','客服态度好么',false,'0–10',true),makeQ('rating','产品好用么'),makeQ('single','您的问题解决了吗？'));
+ data.qs=data.qs.slice(0,num);return {id,name,enabled,date,expiry:'永不过期',duration:30,versions:{Original:data}};
+};
+const templates=[
+ {name:'test_399_utility',category:'UTILITY',language:'English (US)',status:'—',date:'Sun Jun 07 10:06:16 GMT 2026'},
+ {name:'welcom2',category:'MARKETING',language:'English (US)',status:'—',date:'Sun Jun 07 09:30:08 GMT 2026'},
+ {name:'variable1',category:'AUTHENTICATION',language:'English (US)',status:'—',date:'Sun Jun 07 03:27:44 GMT 2026'},
+ ...['anker_code_copy','anker_code','button_test03','english_1','krystal_send_1'].map((name,i)=>({name,category:i<2?'MARKETING':'UTILITY',language:i<2?'Chinese (CHN)':'English',status:'—',date:'Sun Jun 07 09:39:58 GMT 2026'}))
+];
+const fmeta={supportEmail:'Support 邮箱',event:'工单事件类型',status:'工单状态',category:'工单品类',brand:'品牌',channel:'渠道',platform:'平台',team:'团队',owner:'负责人',handoff:'工单是否转人工',customerMessage:'是否有客户消息',agentMessage:'是否有客服消息',notification:'是否通知邮件',advertising:'是否广告邮件',tags:'标签',subject:'主题',lastCustomer:'最新客户来信',lastAgent:'最新客服回信',intent:'AI意图',email:'客户邮箱',domain:'客户邮箱域名',custom:'自定义字段'};
+const condition=(field,value,op='是')=>({field,value,op});
+const rule=(id,name,enabled,channel='邮件',question='s1',more={})=>({id,name,enabled,channel,question,category:'未分类',once:true,all:[condition('status','已解决'),condition('channel',channel)],any:[],account:'',template:'',lang:'English (US)',message:'感谢联系我们。欢迎花 30 秒评价这次服务：{{问卷链接}}',...more});
+const baseline={
+ surveys:[baseSurvey('s1','Customer Satisfaction Survey',true,4),baseSurvey('s2','QA-V59-20261020-多维问卷验收',false,5,'2026-10-27 18:38'),baseSurvey('s3','Customer Satisfaction Survey Copy',false),...['DESCRIPTION','TITLE edited','EMAIL'].map((s,i)=>baseSurvey('s'+(i+4),'QA-V59-FIX-'+s,false,2,'2026-10-24 14:19'))],
+ rules:[rule('r1','QA-BASIC-20261015-survey',false,'邮件','s1',{category:'E2E Trigger - Managed1',once:false,all:[condition('status','已解决'),condition('email','customer@example.com')],any:[condition('subject','QA-BASIC-20261015-C','IS'),condition('subject','QA-BASIC-20261015-E','IS')]}),rule('r2','livechat关单自动发送满意度问卷',true,'LiveChat','')],
+ conversations:[]
+};
+const proposal=copy(baseline);
+proposal.rules.push(rule('r3','Messenger 工单解决后发送邀评',true,'Messenger','s1',{account:'Solvea Support Page'}),rule('r4','WhatsApp 工单解决后发送邀评',false,'WhatsApp','s1',{account:'GOFO WhatsApp（示例）',template:'support_csat_en'}));
+proposal.conversations=[{id:'c1',name:'Messenger 会话结束邀评',enabled:false,channel:'Messenger',account:'Solvea Support Page',question:'s1',message:'感谢联系我们。欢迎花 30 秒评价这次服务：{{问卷链接}}'}];
+const stashKey=GOFO.KEY;
+let data={current:baseline,proposal};
+try{const old=JSON.parse(localStorage.getItem(stashKey));if(old?.current?.surveys&&old?.proposal?.conversations)data=old}catch{}
+const save=()=>{try{localStorage.setItem(stashKey,JSON.stringify(data));return true}catch{flash('保存失败，请检查浏览器存储空间后重试');return false}};
+const params=new URLSearchParams(location.search);
+let surveySection=params.get('tab')==='questions'?'questions':'channels',channelEditor=false;
+let mode='current',page='surveys';
+if(mode==='current'&&['conversations','result'].includes(page))page='surveys';
+let editing=null,ruleDraft=null,convDraft=null,modal=null,step=1,lang='Original',usage=false,filters={surveys:'',trigger:'',wa:'',conversations:'',ruleStatus:'全部状态',waStatus:'全部状态',waAccount:'test001'},toastTimer;
+let sim=null,invites=[],attempts=[],customer=null,answerState={},customerError='',mobile=false,answerDone=false,uid=Date.now();
+let invitationChannel='';
+const invitationChoices=['邮件','Messenger','WhatsApp','Instagram','LINE','Custom Chat'];
+const nextId=(prefix)=>prefix+(++uid);
+const state=()=>data[mode];
+const isPlan=()=>false;
+const surveyBy=id=>state().surveys.find(s=>s.id===id);
+const selectedName=id=>surveyBy(id)?.name||'未选择';
+const accounts={Messenger:['Solvea Support Page','Solvea Demo Page'],WhatsApp:['GOFO WhatsApp（示例）'],邮件:['默认客服邮箱'],LiveChat:['网站 LiveChat']};
+function mailContent(d){
+ if(!d.mailContent){const initial=initContent();d.mailContent={subject:initial.subject,body:initial.body,signature:initial.signature}}
+ return d.mailContent;
+}
+// Migrate the original demo mail once, then keep shared questionnaires free of delivery text.
+for(const r of data.proposal.rules){
+ if(r.channel!=='邮件'||r.mailContent)continue;
+ const original=data.proposal.surveys.find(s=>s.id===r.question)?.versions.Original||initContent();
+ r.mailContent={subject:original.subject??initContent().subject,body:original.body??initContent().body,signature:original.signature??false};
+}
+function removeMailFields(s){for(const version of Object.values(s.versions)){delete version.subject;delete version.body;delete version.signature}return s}
+data.proposal.surveys.forEach(removeMailFields);
+function flash(message){const t=$('#toast');t.textContent=message;t.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.hidden=true,3200)}
+function syncUrl(){if(location.protocol==='file:')return;const u=new URL(location.href);u.search='';u.searchParams.set('page',editing?'create':page);if(editing){u.searchParams.set('id',editing.id||'new');u.searchParams.set('step',step)}if(params.get('from')==='report')u.searchParams.set('from','report');history.replaceState(null,'',u)}
+function navigate(to){if(to==='report'){location.assign('report.html');return}page=to==='trigger'?'trigger':'surveys';editing=null;ruleDraft=null;convDraft=null;modal=null;customer=null;syncUrl();render()}
+const navItem=(i,label,target,active)=>`<button class="navitem ${active?'active':''}" ${target?'data-act="go" data-v="'+target+'"':'disabled'}><span class="navicon" aria-hidden="true">${i}</span>${e(label)}</button>`;
+function nav(){
+ return `<aside class="primary-nav"><div class="workspace line">▣ 智能工作台 <span class="right mute">≡</span></div>
+ ${navItem('▤','工单')+navItem('♙','联系人')+navItem('▥','报表','report')+navItem('▣','主动触达')+navItem('⚙','设置','surveys',page!=='desk')}
+ <div class="profile"><div class="navitem mute">◎　▣　☷</div><div class="navitem active"><span class="avatar">r</span>演示账号 <span class="right mute">›</span></div></div></aside>
+ ${page==='desk'?`<aside class="settings-nav"><h1>工单</h1><div class="navgroup">常用视图</div>${['全部','AI处理中','待处理','处理中','已解决','我的工单'].map(t=>navItem('▤',t)).join('')}<div class="navgroup">公共视图</div>${['Email','Line','Instagram','Livechat','Custom Chat','Facebook Messenger','WhatsApp'].map(t=>navItem(t==='Facebook Messenger'?'▣':'◉',t,t==='Facebook Messenger'?'desk':undefined,t==='Facebook Messenger')).join('')}</aside>`:`<aside class="settings-nav"><h1>设置</h1><div class="navgroup">效率</div>${navItem('ϟ','自动规则')+navItem('ϟ','触发器','trigger',page==='trigger')+navItem('⚑','Webhook')}
+ <div class="navgroup">工单</div>${navItem('▤','字段与表单')+navItem('⚑','SLA策略')+navItem('▦','队列')+navItem('●',isPlan()?'工单满意度调查':'满意度调查','surveys',page==='surveys')+navItem('◉','WhatsApp模板')+navItem('⚑','工具栏扩展')}
+ ${isPlan()?`<div class="navgroup">会话</div>${navItem('◌','会话邀评','conversations',page==='conversations')}`:''}
+ <div class="navgroup">AI</div>${navItem('ϟ','AI 打标')}<div class="navgroup">坐席配置</div>${navItem('♟','成员')+navItem('♟','团队')+navItem('▣','排班')+navItem('▣','容量')}</aside>`}`;
+}
+function head(title,right='',extra=''){return `<header class="panelhead"><h1>${title}</h1>${extra}<span class="right"></span>${right}</header>`}
+function render(){
+ if(customer){$('#app').innerHTML=customerView();renderOverlay();return}
+ const body=page==='surveys'?(editing?editView():surveyList()):page==='trigger'?triggerList():page==='wa'?waList():page==='result'?resultView():page==='desk'?deskView():conversationList();
+ $('#app').innerHTML=`<header class="top"><div class="brand"><span class="brandmark">◕</span>solvea.</div><span>◫</span><b>${page==='desk'?'工单':'设置'}</b><span class="right top-note">问卷生成原型 · 演示数据</span><span class="top-note">♧　智能伙伴</span></header><div class="layout ${page==='desk'?'desk-layout':''}">${nav()}<main class="panel ${page==='desk'?'desk-panel':''}">${body}</main></div>`;
+ renderOverlay();
+}
+function surveyRows(){
+ const ss=state().surveys.filter(s=>s.name.toLowerCase().includes(filters.surveys.trim().toLowerCase()));
+ return ss.map(s=>`<tr><td><div class="surveyname">${e(s.name)}</div><div class="tiny dim">${s.versions.Original.qs.length} 个问题</div></td>${isPlan()?'':'<td>触发器</td>'}<td>${tag(s.enabled?'启用':'禁用',s.enabled?'ok':'')}</td><td class="date">${s.date}</td><td>${sw(s.enabled,'switchSurvey',s.id,'启用 '+s.name)}</td><td><div class="icons">${icon('edit','编辑','editSurvey',s.id)+icon('copy','复制','copySurvey',s.id)+icon('trash','删除','askDelete',s.id)}</div></td></tr>`).join('')||`<tr><td colspan="6"><div class="empty">没有匹配的问卷</div></td></tr>`;
+}
+function surveyList(){
+ if(isPlan()&&surveySection==='channels')return channelList();
+ return questionList();
+}
+function surveyTabs(){
+ return `<div class="survey-tabs" role="tablist" aria-label="满意度设置"><button role="tab" aria-selected="${surveySection==='channels'}" class="${surveySection==='channels'?'active':''}" data-act="surveySection" data-v="channels">渠道发送设置</button><button role="tab" aria-selected="${surveySection==='questions'}" class="${surveySection==='questions'?'active':''}" data-act="surveySection" data-v="questions">问卷内容</button></div>`;
+}
+const channelType={邮件:{kind:'现有链路 · 配置调整',form:'邮件主题、正文 + 网页问卷链接',detail:'主题、正文和签名只在邮件渠道设置中维护。'},Messenger:{kind:'新增方案',form:'私信文案 + 网页问卷链接',detail:'选 Facebook Page、问卷和私信文案；发送前检查窗口。'},WhatsApp:{kind:'新增方案',form:'已获批模板 +「填写问卷」按钮',detail:'选 WhatsApp 号码、获批模板和语言，动态绑定问卷链接。'},LiveChat:{kind:'现有独立链路',form:'聊天窗口内的满意度弹窗',detail:'沿用 LiveChat 原生评分，不选择这套网页问卷。'}};
+function channelList(){
+ const rows=['邮件','Messenger','WhatsApp','LiveChat'].map(c=>{
+  const rules=state().rules.filter(r=>r.channel===c),meta=channelType[c],r=rules[0];
+  return `<tr><td><strong>${c}</strong><p class="tiny" style="margin-top:6px">${tag(meta.kind,meta.kind==='新增方案'?'design':'')}</p></td><td><strong>${meta.form}</strong><p class="tiny mute">${meta.detail}</p></td><td>${c==='LiveChat'?'<span class="mute">原生评分</span>':e(r?selectedName(r.question):'尚未选择问卷')}</td><td>${tag(r?.enabled?'已开启':'未开启',r?.enabled?'ok':'')}<p class="tiny mute">${rules.length} 条规则</p></td><td>${b('查看 / 设置','channelSetting','outline',c)}</td></tr>`;
+ }).join('');
+ return head('工单满意度调查','',tag('拆分方案','design'))+surveyTabs()+`<div class="pane-scroll"><div class="channel-intro"><h2>按渠道设置：用哪份问卷、从哪个账号、怎样发给客户</h2><p class="mute">同一份网页问卷可以给邮件、Messenger、WhatsApp 使用；各渠道分别配置发送方式和触发规则。</p></div><table class="table channel-table"><thead><tr><th>渠道</th><th>客户收到什么</th><th>当前引用的问卷</th><th>自动邀评</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table><div class="channel-intro tiny mute">这里配置已有工单的邀评。没有工单的服务会话，在${go('会话邀评','conversations')}单独配置。</div></div>`;
+}
+function renderChannelSetting(){
+ const d=ruleDraft,meta=channelType[d.channel],sample=d.channel==='邮件'?mailContent(d):null;
+ const preview=d.channel==='邮件'?`<h3>${e(sample?.subject||'邮件主题')}</h3><p class="emailbody">${e(sample?.body||'选择问卷后显示邮件内容')}</p><button class="btn blue" disabled>Take Survey</button>`:d.channel==='LiveChat'?'<p>请评价这次服务</p><div class="scores" style="margin-top:14px"><button class="score" disabled>1</button><button class="score" disabled>2</button><button class="score" disabled>3</button><button class="score" disabled>4</button><button class="score" disabled>5</button></div>':d.channel==='Messenger'?`<p class="bubble">${e(d.message.replaceAll('{{问卷链接}}','[打开满意度问卷]'))}</p>`:'<p class="bubble">Thanks for contacting our support team.</p><button class="btn outline" disabled>填写问卷 ↗</button>';
+ const body=`<div class="channel-settings-grid"><section><div class="line spaced"><h2>${d.channel} 满意度设置</h2>${tag(meta.kind,meta.kind==='新增方案'?'design':'')}</div><div class="hint" style="margin:16px 0"><strong>发送形式：${meta.form}</strong></div>${deliveryFields(d,'rule')}
+ <section class="rulebox"><div class="line spaced"><h3>什么时候发送</h3>${b('修改触发条件','channelFullRule','flat small link')}</div><p class="tiny">${e(d.all.map(c=>fmeta[c.field]+' '+c.op+' '+c.value).join(' 且 ')||'始终')}</p>${d.any.length?`<p class="tiny mute">并满足任意一项：${e(d.any.map(c=>fmeta[c.field]+' '+c.op+' '+c.value).join('；'))}</p>`:''}<div class="line" style="margin-top:14px"><input type="checkbox" data-rule="enabled" id="channel-enabled" ${d.enabled?'checked':''}><label for="channel-enabled">开启这条自动邀评规则</label></div></section></section>
+ <aside><h3>客户收到的内容</h3><div class="previewcard" id="channel-preview">${preview}</div><p class="tiny mute" style="margin-top:14px">${d.channel==='LiveChat'?'该弹窗是 LiveChat 的独立评分，和网页问卷分开。':'客户打开链接后填写所选问卷，评价回到原工单。'}</p></aside></div>`;
+ return drawer(d.channel+' 满意度设置',body,`${b('查看该渠道全部规则','channelAllRules','flat link',d.channel)}<span class="right"></span>${b('试跑 / 预览','simulateDraft')}${b('取 消','close')}${b('保存设置','saveRule','primary')}`);
+}
+function questionList(){
+ return head('满意度调查',b('＋ 新建问卷','newSurvey','primary'))+'<div class="pane-scroll"><div class="toolbar">'+search('搜索问卷名称','surveys',filters.surveys)+'</div><table class="table"><thead><tr><th>问卷名称</th><th>规则类型</th><th>状态</th><th class="date">更新时间</th><th>启用</th><th>操作</th></tr></thead><tbody id="surveyRows">'+surveyRows()+'</tbody></table></div>';
+}
+function content(){return editing.versions[lang]}
+function basic(){
+ return fld('问卷名称',input(editing.name,'data-s="name" id="survey-name" placeholder="请输入问卷名称"'),true)
+ +(isPlan()?`<div class="hint" style="margin:20px 0">启用问卷仅表示可以使用。工单自动发送由${go('触发器','trigger')}配置。</div>`:fld('规则类型',sel(['触发器'],'触发器'),true))
+ +`<div class="field"><span><span class="required">* </span>链接有效期</span><div class="line" style="max-width:245px">${input(editing.expiry==='永不过期'?0:editing.duration,'type="number" min="1" data-s="duration" aria-label="有效期数值" '+(editing.expiry==='永不过期'?'disabled':''))}${sel(['秒','分钟','小时','天','永不过期'],editing.expiry,'data-s="expiry" aria-label="链接有效期单位"')}</div><div class="tiny dim">从链接生成时开始计算，修改后仅影响新生成的链接。</div></div>`;
+}
+function subhead(title){return `<div class="line spaced splitttl"><h2>${title}</h2><label class="line mute tiny">语言： ◎ ${sel(langs,lang,'data-lang aria-label="语言"')}</label></div>`}
+function safeMailHtml(html){const template=document.createElement('template');template.innerHTML=html||'';for(const el of [...template.content.querySelectorAll('*')]){if(!['P','DIV','BR','B','STRONG','I','EM','U','SPAN','FONT'].includes(el.tagName)){el.replaceWith(document.createTextNode(el.textContent));continue}for(const attr of [...el.attributes])if(!['style','color'].includes(attr.name))el.removeAttribute(attr.name);if(el.hasAttribute('style')){const color=el.style.color,background=el.style.backgroundColor,fontWeight=el.style.fontWeight,fontStyle=el.style.fontStyle,textDecoration=el.style.textDecoration;el.removeAttribute('style');Object.assign(el.style,{color,backgroundColor:background,fontWeight,fontStyle,textDecoration})}}return template.innerHTML}
+function emailForm(){
+ const d=content();
+ return subhead('邮件内容')+fld('邮件主题',area(d.subject,'rows="2" data-content="subject"'),true)
+ +`<div class="field"><span>邮件正文</span><div class="editor"><div contenteditable="true" role="textbox" aria-label="邮件正文" data-content="body">${d.bodyHtml?safeMailHtml(d.bodyHtml):e(d.body).replaceAll('\n','<br>')}</div><div class="editor-tools line">${[['A','文本颜色','foreColor'],['◈','背景色','hiliteColor'],['B','Bold','bold'],['𝑰','Italic','italic'],['U̲','Underline','underline']].map(([label,title,cmd])=>`<button class="icon" title="${title}" aria-label="${title}" data-act="format" data-v="${cmd}">${label}</button>`).join('')}</div></div></div><div class="field"><span>携带邮箱签名 <span class="mute" title="发送时使用发件邮箱签名">ⓘ</span></span>${sw(d.signature,'signature','','携带邮箱签名')}</div>`;
+}
+
+
+// Existing list/detail snapshots are read-only. Demo records are explicitly separated.
+const waLibraryAccounts=[['test001','test001（已核对测试账户）'],['demo','演示账户（用于走通绑定流程）']];
+const surveyUrlPattern='https://survey.example.invalid/form?token={{1}}';
+const waLibrary=[
+ {id:'test001::welcom2::en_US',account:'test001',name:'welcom2',language:'English (US)',status:'状态未返回',category:'MARKETING',body:'Welcome to our event. For details, please contact our official customer service:{{service}},or email to {{email}}',buttons:[],verified:true},
+ {id:'test001::button_test03::sq',account:'test001',name:'button_test03',language:'Albanian',status:'状态未返回',category:'UTILITY',body:'albanian\u00a0 hello\u00a0',buttons:[],verified:true},
+ ...['test_399_utility','variable1','anker_code_copy','anker_code','english_1','krystal_send_1'].map(name=>({id:'test001::'+name,account:'test001',name,language:['anker_code','anker_code_copy'].includes(name)?'Chinese (CHN)':['test_399_utility','variable1'].includes(name)?'English (US)':'English',status:'状态未返回',verified:false,body:'',buttons:[]})),
+ {id:'demo::service_feedback::zh_CN',account:'demo',name:'service_feedback（演示）',language:'简体中文',status:'APPROVED',category:'MARKETING',body:'感谢您联系我们的客服。您的反馈对我们很重要，请点击下方按钮评价本次服务。',verified:true,demo:true,buttons:[{type:'URL',text:'填写满意度问卷',url:surveyUrlPattern},{type:'URL',text:'访问官网',url:'https://www.example.invalid/'}]},
+ {id:'demo::support_review::en_US',account:'demo',name:'support_review（演示）',language:'English (US)',status:'APPROVED',category:'UTILITY',body:'How was your support experience? Please take a moment to share your feedback.',verified:true,demo:true,buttons:[{type:'URL',text:'Visit help center',url:'https://help.example.invalid/ticket/{{1}}'},{type:'URL',text:'Rate our service',url:surveyUrlPattern}]},
+ {id:'demo::order_update::zh_CN',account:'demo',name:'order_update（演示：无网址按钮）',language:'简体中文',status:'APPROVED',category:'UTILITY',body:'您的订单状态已更新，如需帮助，请回复此消息。',verified:true,demo:true,buttons:[{type:'QUICK_REPLY',text:'联系客服'}]}
+];
+const previewStoreKey='gofo-csat-preview-v1';
+let previewRoute=false;
+function waConfig(){return editing.whatsapp||(editing.whatsapp={account:'',templateId:'',buttonIndex:'',variables:{},binding:null})}
+function selectedWaTemplate(){return waLibrary.find(t=>t.id===waConfig().templateId&&t.account===waConfig().account)}
+function buttonProblem(t,button){
+ if(!t.verified)return '模板详情尚未核验';
+ if(t.status!=='APPROVED')return '尚未确认模板已获批';
+ if(button.type!=='URL')return '不是网站 URL 按钮';
+ if(!button.url?.endsWith('{{1}}'))return '固定网址，无法填入专属评价链接';
+ if(button.url!==surveyUrlPattern)return '网址前缀与问卷地址不匹配';
+ return '';
+}
+function pendingWaBinding(){
+ const t=selectedWaTemplate(),w=waConfig(),btn=t?.buttons?.[Number(w.buttonIndex)];
+ if(w.buttonIndex===''||!t||!btn||buttonProblem(t,btn)||!editing.previewRef)return null;
+ return {templateId:t.id,buttonIndex:Number(w.buttonIndex),surveyRef:editing.previewRef};
+}
+function bindingValid(){return !!pendingWaBinding()}
+function previewAddress(){const u=new URL(location.href);u.search='';u.searchParams.set('preview',editing.previewRef||'');u.searchParams.set('language',lang);return u.href}
+function prepareQuestionnaire(){
+ if(!editing.previewRef)editing.previewRef=nextId('preview');
+ editing.contentReady=true;
+ try{const snapshots=JSON.parse(localStorage.getItem(previewStoreKey)||'{}');snapshots[editing.previewRef]={name:editing.name,versions:copy(editing.versions)};localStorage.setItem(previewStoreKey,JSON.stringify(snapshots))}catch{}
+}
+function questionnaireLinkCard(){
+ return '<section class="questionnaire-link-card"><div class="line spaced"><h3>问卷已准备好</h3>'+tag('可预览','ok')+'</div><p class="tiny mute">'+e(editing.name)+' · '+e(content().title)+' · '+content().qs.length+' 道题</p><label class="field"><span class="tiny">问卷预览链接</span>'+input(previewAddress(),'readonly aria-label="问卷预览链接"')+'</label><div class="line" style="margin-top:10px">'+b('预览问卷','preview','outline small')+'<span class="tiny mute">正式发送时生成每位客户的专属评价链接。</span></div></section>';
+}
+function templateVariables(t){return [...new Set((t?.body||'').match(/\{\{[^}]+\}\}/g)||[])]}
+function waBody(t){return (t?.body||'').replace(/\{\{[^}]+\}\}/g,key=>waConfig().variables?.[key]||key)}
+function whatsappInvitationForm(){
+ const w=waConfig(),t=selectedWaTemplate();
+ let form='<h3 class="invitation-section-title">选择 WhatsApp 模板并关联问卷</h3>'+fld('WhatsApp 账户',sel([['','请选择账户'],...waLibraryAccounts],w.account,'data-wa-config="account" aria-label="WhatsApp 账户"'),true);
+ if(!w.account)return form+'<p class="tiny mute invitation-note">先选择账户，加载该账户下已有的 WhatsApp 模板。</p>';
+ form+=fld('WhatsApp 模板',sel([['','请选择已有模板'],...waLibrary.filter(x=>x.account===w.account).map(x=>[x.id,x.name+' · '+x.language])],w.templateId,'data-wa-config="templateId" aria-label="WhatsApp 模板"'),true);
+ form+='<p class="tiny mute invitation-note">'+(w.account==='demo'?'演示账户和模板为合成数据，用于演示关联流程；不代表测试服已有模板。':'模板名称来自现有 test001 列表；welcom2、button_test03 的正文及按钮已只读核对，其他详情未核验。')+'</p>';
+ if(!t)return form;
+ form+='<div class="line wrap template-meta">'+tag(t.language)+tag(t.status==='APPROVED'?'已获批（演示）':t.status,t.status==='APPROVED'?'ok':'wait')+(t.category?tag(t.category):'')+'</div>';
+ if(!t.verified)return form+'<div class="hint warning">尚未读取该模板详情，无法确认正文、按钮或审批状态。请先在现有 WhatsApp 模板管理中核对。</div>';
+ form+=fld('模板正文',area(t.body,'readonly rows="3" aria-label="模板正文"'));
+ if(templateVariables(t).length)form+='<div class="template-vars">'+templateVariables(t).map((v,i)=>fld('正文变量 '+v,input(w.variables?.[v]||'','data-wa-var="'+e(v)+'" aria-label="正文变量 '+e(v)+'" placeholder="填写变量示例值"'),true)).join('')+'</div>';
+ if(!t.buttons.length)return form+'<div class="hint warning" role="status">此模板没有网站 URL 按钮，无法关联问卷。请选择带匹配问卷地址的动态网址按钮的已获批模板。</div>';
+ form+='<div class="field" style="margin-top:22px"><span class="fieldlabel"><span class="required">* </span>关联哪个按钮？</span><div class="wa-button-list">'+t.buttons.map((btn,i)=>{const reason=buttonProblem(t,btn);return '<label class="wa-button-choice '+(String(w.buttonIndex)===String(i)?'selected':'')+' '+(reason?'unavailable':'')+'"><input type="radio" name="wa-button" value="'+i+'" data-wa-config="buttonIndex" '+(String(w.buttonIndex)===String(i)?'checked ':'')+(reason?'disabled':'')+' aria-label="按钮 '+(i+1)+'：'+e(btn.text)+'"><span><strong>按钮 '+(i+1)+' · '+e(btn.text)+'</strong><span class="tiny mute">'+e(btn.url||btn.type)+'</span><span class="tiny '+(reason?'mute':'binding-ok')+'">'+e(reason||'动态网址，可关联本问卷')+'</span></span></label>'}).join('')+'</div></div>';
+ const chosen=w.buttonIndex!==''&&t.buttons[Number(w.buttonIndex)]&&!buttonProblem(t,t.buttons[Number(w.buttonIndex)]);
+ if(chosen)form+='<p class="tiny mute invitation-note">所选按钮将打开「'+e(editing.name)+'」。点击保存时一并保存关联，可先在右侧预览。</p>';
+ return form;
+}
+function validateQuestionnaire(){
+ const invalid=Object.entries(editing.versions).find(([,c])=>!c.title.trim()||!c.qs.length||c.qs.some(q=>!q.title.trim()||(['single','multiple'].includes(q.type)&&q.options.some(o=>!o.trim()))));
+ if(!invalid)return true;
+ step=2;lang=invalid[0];render();flash('请填写问卷标题、题目和选项，至少保留一道题');return false;
+}
+
+function invitationText(){
+ const texts={Original:'Thanks for contacting us. Please rate this service: {{问卷链接}}','简体中文':'感谢您的联系，请评价本次服务：{{问卷链接}}',English:'Thanks for contacting us. Please rate this service: {{问卷链接}}','日本語':'今回のサポートについてご評価ください：{{问卷链接}}','Español':'Valora tu experiencia con nuestro servicio: {{问卷链接}}','Français':'Évaluez votre expérience avec notre service : {{问卷链接}}',Deutsch:'Bewerten Sie unseren Service: {{问卷链接}}'};
+ return texts[lang]||texts.Original;
+}
+function invitationForm(){
+ const choices=fld('邀请渠道',sel([['','请选择渠道（可稍后配置）'],...invitationChoices],invitationChannel,'data-invitation-channel aria-label="邀请渠道"'))+'<p class="tiny mute invitation-note">这里只配置邀请内容。何时发送、发给谁，继续由触发器处理。</p>';
+ let form='';
+ if(!invitationChannel)form='<section class="invitation-placeholder"><h3>选择一个邀请渠道</h3><p>也可以先保存问卷，稍后再配置邀请内容。</p></section>';
+ else if(invitationChannel==='邮件')form='<h3 class="invitation-section-title">邮件邀请</h3>'+emailForm().replace(subhead('邮件内容'),'');
+ else if(invitationChannel==='WhatsApp')form=whatsappInvitationForm();
+ else form='<h3 class="invitation-section-title">'+e(invitationChannel)+' 私信邀请</h3><p class="mute">系统按问卷语言生成简短邀请，并附上本次问卷链接。</p>'+fld('默认邀请文案',area(invitationText(),'rows="3" readonly aria-label="默认邀请文案"'));
+ return subhead('邀请内容')+questionnaireLinkCard()+choices+form;
+}
+function invitationPreview(){
+ if(!invitationChannel)return '<div class="invitation-preview-empty"><span>◌</span><h3>邀请消息预览</h3><p>选择渠道后，查看客户收到的内容。</p></div>';
+ if(invitationChannel==='邮件'){
+  const d=content();return '<article class="previewcard"><h2>'+e(d.subject||'邮件主题')+'</h2><div class="emailbody">'+(d.bodyHtml?safeMailHtml(d.bodyHtml):e(d.body))+'</div>'+b(lang==='简体中文'?'填写问卷':'Take Survey','preview','blue')+(d.signature?'<p class="tiny mute" style="margin-top:20px">Best regards,<br>Support Team</p>':'')+'</article>';
+ }
+ if(invitationChannel==='WhatsApp'){
+  const t=selectedWaTemplate();
+  if(!t)return '<div class="invitation-preview-empty"><h3>选择已有 WhatsApp 模板</h3><p>预览会跟随所选模板及关联按钮更新。</p></div>';
+  if(!t.verified)return '<div class="invitation-preview-empty"><h3>'+e(t.name)+'</h3><p>模板详情尚未核验，暂不能预览。</p></div>';
+  return '<div class="wa-phone"><div class="wa-phone-header"><span class="wa-avatar">W</span><div><strong>WhatsApp</strong><div class="tiny mute">'+e(t.name)+' · '+e(t.language)+'</div></div></div><div class="wa-chat"><div class="wa-bubble">'+e(waBody(t))+'</div>'+t.buttons.map((btn,i)=>bindingValid()&&Number(waConfig().buttonIndex)===i?b('↗ '+btn.text,'preview','wa-preview-button bound'): '<button class="btn wa-preview-button" disabled>'+e(btn.text)+'</button>').join('')+'</div></div><p class="tiny mute invitation-note">'+(bindingValid()?'点击所选按钮可预览第二步的问卷；保存后关联生效。':'选择可用的网址按钮，即可点击按钮预览。')+'</p>'+(t.demo?'<p class="tiny mute">演示模板及网址，不会实际发送消息。</p>':'');
+ }
+ return '<div class="messaging"><strong>'+e(invitationChannel)+'</strong><div class="bubble">'+e(invitationText().replace('{{问卷链接}}',''))+'<br>'+b('打开满意度问卷 ↗','preview','flat link')+'</div></div><p class="tiny mute invitation-note">客户打开链接后，填写第二步配置的问卷。</p>';
+}
+function validateInvitation(){
+ if(invitationChannel==='邮件'){
+  const invalid=Object.entries(editing.versions).find(([,v])=>!String(v.subject||'').trim());
+  if(invalid){step=3;lang=invalid[0];render();flash('请填写 '+lang+' 的邮件主题');return false}
+ }
+ if(invitationChannel==='WhatsApp'){
+  const w=waConfig(),t=selectedWaTemplate();
+  const message=!w.account?'请选择 WhatsApp 账户':!t?'请选择 WhatsApp 模板':!bindingValid()?'请选择可用的网站按钮':templateVariables(t).some(v=>!w.variables?.[v]?.trim())?'请填写模板正文变量':'';
+  if(message){step=3;render();flash(message);return false}
+ }
+ return true;
+}
+function questionEditor(q,i,n){
+ const qAttr=k=>`data-q="${i}:${k}"`;
+ const optEdit=()=>`<div class="field"><span>选项</span>${q.options.map((o,j)=>`<div class="line">${input(o,`data-opt="${i}:${j}" aria-label="选项 ${j+1}"`)}${q.options.length>2?icon('trash','删除选项','delOpt',i+':'+j):''}</div>`).join('')}${b('＋ 添加选项','addOpt','small',i)}</div>`;
+ return `<article class="qb"><div class="qb-head"><div class="line wrap"><span class="qno">${i+1}</span>${sel(qTypes,q.type,qAttr('type')+' aria-label="题型"')}<span>必填</span>${sw(q.required,'qSwitch',i+':required','第 '+(i+1)+' 题必填',true)}</div><div class="line wrap" style="margin-top:10px"><span>条件必填</span>${sw(q.conditional,'qSwitch',i+':conditional','第 '+(i+1)+' 题条件必填',true)}<div class="right icons">${i?b('↑','moveQ','flat small',i+':-1'):''}${i+1<n?b('↓','moveQ','flat small',i+':1'):''}${icon('trash','删除问题','delQ',i)}</div></div></div>
+ <div class="qb-body">
+ ${q.type!=='text'?`<div class="line spaced analysis-purpose"><span>用于分析筛选</span>${sw(q.analysisFilter,'qSwitch',i+':analysisFilter','第 '+(i+1)+' 题用于分析筛选',true)}</div>`:''}
+ ${q.type==='rating'?`<div class="line wrap spaced" style="margin-bottom:12px"><label class="line">评分量表 ${sel(scales,q.scale,qAttr('scale')+' aria-label="评分量表"')}</label><div class="line">纳入客服考核 ${sw(q.kpi,'qSwitch',i+':kpi','纳入客服考核',true)}</div></div>`:''}
+ ${fld('题目标题',input(q.title,qAttr('title')),true)+fld('题目说明',area(q.desc,qAttr('desc')+' rows="2"'))}
+ ${['single','multiple'].includes(q.type)?optEdit():''}
+ ${q.conditional?`<div class="field"><span>条件：指定评分题的分数不高于</span><div class="line">${sel(content().qs.map((x,j)=>[j,'第 '+(j+1)+' 题']).filter(([j])=>j!==i&&content().qs[j].type==='rating'),q.conditionQ,qAttr('conditionQ')+' aria-label="条件评分题"')}${input(q.conditionScore,qAttr('conditionScore')+' type="number" min="0" max="10" aria-label="条件分数"')}</div></div>`:''}
+ </div></article>`;
+}
+function surveyForm(){
+ const d=content();return subhead('问卷问题')
+ +fld('问卷标题',input(d.title,'data-content="title"'),true)+fld('问卷说明',area(d.desc,'rows="2" data-content="desc"'))
+ +`<div class="line spaced" style="margin-top:20px"><div><h2>问题</h2><p class="tiny mute">在这里添加多种题型、配置选项并调整顺序。</p></div>${b('＋ 添加问题','addQ','flat')}</div>${d.qs.map((q,i)=>questionEditor(q,i,d.qs.length)).join('')}`;
+}
+function surveyHTML(d,interactive=false){
+ const qMarkup=(q,i)=>{
+  const current=answerState[i];const dep=answerState[q.conditionQ];const req=q.required||(q.conditional&&typeof dep==='number'&&dep<=q.conditionScore);
+  let html='';
+  if(q.type==='rating'){
+   const [min,max]=q.scale.split('–').map(Number);html=`<div class="scores">${Array.from({length:max-min+1},(_,j)=>j+min).map(n=>`<button class="score ${current===n&&interactive?'selected':''}" ${interactive?'data-act="score" data-v="'+i+':'+n+'" aria-pressed="'+(current===n)+'"':'disabled'}>${n}</button>`).join('')}</div><div class="line spaced scorecaption"><span>非常不满意</span><span>非常满意</span></div>`;
+  }else if(q.type==='text'){html=area(interactive?(current||''):'',`placeholder="请输入你的答案" maxlength="10000" aria-label="${e(q.title||'答案')}" ${interactive?'data-answer="'+i+'"':'disabled'}`)}
+  else html=`<div class="stack">${q.options.map((o,j)=>`<label class="line"><input type="${q.type==='single'?'radio':'checkbox'}" name="answer${i}" data-answer-option="${i}:${j}" ${!interactive?'disabled':''} ${interactive&&(current===j||Array.isArray(current)&&current.includes(j))?'checked':''}>${e(o)}</label>`).join('')}</div>`;
+  return `<div class="question"><div class="qtitle"><span class="qno">${i+1}</span><span>${e(q.title||'未命名问题')} ${req?'<span class="required">*</span>':''}</span></div>${q.desc?`<p class="tiny mute">${e(q.desc)}</p>`:''}${html}</div>`;
+ };
+ return `<section class="questionnaire ${interactive&&mobile&&!customer?'phone':''}"><h2>${e(d.title||'未命名问卷')}</h2><p>${e(d.desc)}</p>${d.qs.map(qMarkup).join('')}${interactive&&customerError?`<p class="danger" role="alert">${e(customerError)}</p>`:''}<button class="btn primary submit" ${interactive?'data-act="submitAnswer"':'disabled'}>提 交</button></section>`;
+}
+function editPreview(){return step===3?invitationPreview():'<div style="margin-top:16px">'+b('预览问卷','preview','wide')+surveyHTML(content())+'</div>'}
+function editView(){
+ const stages=['配置基本信息','问卷内容','邀请内容'];
+ const footer='<div class="footer">'+(step>1?b('上一步','prev'):'')+'<span class="right"></span>'+b('取 消','go','','surveys')+(step===3?b(invitationChannel?'保 存':'保存问卷，稍后配置','saveSurvey','primary'):b(step===2?'生成问卷，配置邀请':'下一步','next','primary'))+'</div>';
+ const previewLabel=step===2?'问卷预览':invitationChannel?invitationChannel+' 邀请预览':'邀请消息预览';
+ return '<header class="panelhead">'+icon('arrow','返回问卷列表','go','surveys')+'<h1>'+(editing.id?'编辑':'新建')+'满意度调查问卷</h1></header><div class="editlayout '+(step===1?'single':'')+'"><section class="editmain"><div class="steps">'+stages.map((s,i)=>(i?'<b></b>':'')+'<span class="'+(step===i+1?'active':'')+'"><i>'+(i+1)+'</i>'+s+'</span>').join('')+'</div><div class="formscroll '+(step===1?'center':'')+'">'+(step===1?basic():step===2?surveyForm():invitationForm())+'</div>'+footer+'</section>'+(step===1?'':'<aside class="emailpreview"><div class="line spaced"><span class="preview-label tiny">◉　'+previewLabel+'</span>'+(step===3&&invitationChannel==='邮件'?b('发送测试邮件','testEmail','outline small'):'')+'</div><div id="editPreview">'+editPreview()+'</div></aside>')+'</div>';
+}
+function triggerRows(){
+ const rules=state().rules.filter(r=>r.name.toLowerCase().includes(filters.trigger.trim().toLowerCase())&&(filters.ruleStatus==='全部状态'||(r.enabled?'启用':'禁用')===filters.ruleStatus));
+ return [...new Set(rules.map(r=>r.category))].map(cat=>{
+  const group=rules.filter(r=>r.category===cat);
+  return `<tr class="sectionrow"><td colspan="4">⌄　${e(cat)}　<span class="tiny mute">${group.length} 条规则，${group.filter(r=>r.enabled).length} 条已启用</span></td></tr>${group.map(r=>`<tr><td><div class="surveyname">${e(r.name)}</div><p class="tiny mute">当 ${e(r.all.map(c=>fmeta[c.field]+' '+c.op+' '+c.value).join(' 且 ')||'始终')+(r.any.length?'；且满足任意：'+e(r.any.map(c=>fmeta[c.field]+' '+c.op+' '+c.value).join(' 或 ')):'')}</p><p class="tiny" style="color:#278065">则 ${ruleActions(r).map(a=>e(a.type)+(a.type==='发送满意度问卷'&&a.question?'：'+e(selectedName(a.question)):'')).join('、')}</p></td><td class="date">${e(r.date||'2026/10/29 08:28')}</td><td>${sw(r.enabled,'switchRule',r.id,'启用 '+r.name,true)}</td><td><div class="icons">${icon('edit','编辑触发器','editRule',r.id)}${isPlan()&&['Messenger','WhatsApp'].includes(r.channel)?b('试跑','simulateRule','flat small',r.id):''}</div></td></tr>`).join('')}`;
+ }).join('')||'<tr><td colspan="4"><div class="empty">没有匹配的触发器</div></td></tr>';
+}
+function triggerList(){
+ return head('触发器','',isPlan()?go('返回工单问卷','surveys'):'')+`<div class="pane-scroll"><p class="subtitle mute">触发器可自动执行固定客服流程，减少重复操作，让工单按标准流程流转。</p>
+ <div class="toolbar">${search('搜索规则名称','trigger',filters.trigger)}${sel(['全部状态','启用','禁用'],filters.ruleStatus,'data-filter="ruleStatus" aria-label="触发器状态" style="width:140px"')}${b('管理分类','categories')}${b('＋ 新建触发器','newRule','primary')}</div>
+ <table class="table"><thead><tr><th>按以下顺序执行触发器</th><th class="date">更新时间</th><th>状态</th><th>操作</th></tr></thead><tbody id="triggerRows">${triggerRows()}</tbody></table></div>`;
+}
+const historicalChannels=()=>isPlan()?['邮件','LiveChat','Messenger','WhatsApp']:['邮件','LiveChat'];
+const channels=()=>['邮件','Messenger','WhatsApp','Instagram','LINE','Custom Chat','LiveChat'];
+const triggerActionTypes=['指派客服','按排班指派客服','设置工单状态','设置工单品类','设置品牌','设置工单标题','添加标签','移除标签','设置自定义字段','添加内部备注','发送满意度问卷','发送 Webhook'];
+const nativeRule=d=>d.all.some(c=>c.field==='channel'&&['是','IS'].includes(c.op)&&c.value==='LiveChat');
+const ruleActions=d=>d.actions||(d.actions=[{type:'发送满意度问卷',question:d.question||''}]);
+function ruleConditions(key,header,tip){
+ return '<section class="rulebox" data-anno="'+(key==='all'?'trigger-all':'trigger-any')+'"><h3>'+header+'</h3><p class="tiny mute">'+tip+'</p>'+ruleDraft[key].map((x,i)=>{
+ const attr=k=>'data-condition="'+key+':'+i+':'+k+'"';
+ const values=x.field==='status'?['待处理','处理中','已解决']:x.field==='channel'?channels():null;
+ const operators=values?['是','不是']:['是','不是','包含','不包含','包含任意一个','无值','有值','IS'];
+ return '<div class="conditions">'+sel([['','字段'],...Object.entries(fmeta)],x.field,attr('field')+' aria-label="'+key+' 条件 '+(i+1)+' 字段"')+sel(operators,x.op,attr('op')+' aria-label="'+key+' 条件 '+(i+1)+' 运算符"')+(values?sel([['','选择值'],...values],x.value,attr('value')+' aria-label="'+key+' 条件 '+(i+1)+' 值"'):input(x.value,attr('value')+' placeholder="输入值" aria-label="'+key+' 条件 '+(i+1)+' 值"'))+icon('trash','删除条件','delCondition',key+':'+i)+'</div>';
+ }).join('')+'<div style="margin-top:10px">'+b('添加条件','addCondition','small',key)+'</div></section>';
+}
+function surveyInvitationChannel(q){return q?.invitationChannel===undefined?'邮件':q.invitationChannel}
+function triggerSurveyProblem(q){
+ if(!q)return '请选择问卷';if(!q.enabled)return '该问卷已禁用，请先在满意度调查中启用';
+ const channel=surveyInvitationChannel(q);if(!channel)return '该问卷尚未配置邀请渠道';
+ if(channel==='WhatsApp'){
+ const w=q.whatsapp,t=waLibrary.find(x=>x.id===w?.templateId&&x.account===w?.account),btn=t?.buttons[Number(w?.buttonIndex)];
+ if(!w?.binding||!t?.verified||t.status!=='APPROVED'||!btn||buttonProblem(t,btn))return 'WhatsApp 模板或网址按钮关联无效，请在问卷中重新配置';
+ }
+ return '';
+}
+function ruleSurveySummary(q){
+ if(!q)return '';const channel=surveyInvitationChannel(q),w=q.whatsapp,t=waLibrary.find(x=>x.id===w?.templateId),problem=triggerSurveyProblem(q);
+ return '<div class="rule-survey-summary" data-anno="trigger-invitation"><dl><dt>邀请渠道</dt><dd>'+e(channel||'尚未配置')+'</dd>'+(channel==='WhatsApp'?'<dt>WhatsApp 账户</dt><dd>'+e(w?.account==='demo'?'演示账户':w?.account||'—')+'</dd><dt>模板 / 语言</dt><dd>'+e(t?.name||'—')+' / '+e(t?.language||'—')+'</dd><dt>问卷按钮</dt><dd>'+e(t?.buttons[Number(w?.buttonIndex)]?.text||'—')+'</dd>':'<dt>邀请内容</dt><dd>'+e(channel==='邮件'?q.versions.Original.subject||'—':'系统邀请文案 + 问卷链接')+'</dd>')+'</dl>'+(problem?'<p class="danger" role="alert">'+e(problem)+'</p>':'')+'</div>';
+}
+function triggerActionRows(d){return ruleActions(d).map((a,i)=>'<div class="trigger-action-block"><div class="trigger-action-row">'+sel(triggerActionTypes,a.type,'data-trigger-action="'+i+':type" aria-label="动作 '+(i+1)+' 类型"')+(a.type==='发送满意度问卷'?(nativeRule(d)?'<div class="tiny mute">向访客发送 LiveChat 满意度弹窗，无需选择问卷</div>':questionsSelect(a.question,'data-trigger-action="'+i+':question" aria-label="动作 '+(i+1)+' 问卷"')):a.type==='设置工单状态'?sel(['待处理','处理中','已解决'],a.value,'data-trigger-action="'+i+':value" aria-label="动作 '+(i+1)+' 值"'):input(a.value||'','data-trigger-action="'+i+':value" aria-label="动作 '+(i+1)+' 值" placeholder="请选择"'))+icon('trash','删除动作','delTriggerAction',i)+'</div>'+(a.type==='发送满意度问卷'&&!nativeRule(d)?ruleSurveySummary(surveyBy(a.question)):'')+'</div>').join('')}
+
+function questionsSelect(value,attr){
+ const enabled=state().surveys.filter(s=>s.enabled||s.id===value);
+ return sel([['','请选择问卷'],...enabled.map(s=>[s.id,s.name+(s.enabled?'':'（已禁用）')])],value,attr);
+}
+function deliveryFields(d,src){
+ if(d.channel==='LiveChat')return '<div class="hint">向访客发送 LiveChat 满意度弹窗，无需选择问卷。</div>';
+ const bind=(k)=>`data-${src}="${k}"`;
+ let out=fld('满意度问卷',questionsSelect(d.question,bind('question')),true);
+ if(!isPlan())return out;
+ if(d.channel==='邮件'){
+  if(!channelEditor)return out+`<p class="tiny mute" style="margin-top:10px">邮件主题、正文与签名在渠道发送设置中维护。</p>${b('编辑邮件渠道内容','editMailChannel','flat link')}`;
+  const mail=mailContent(d);
+  return out+fld('发件邮箱',sel(accounts.邮件,d.account||accounts.邮件[0],bind('account')),true)
+   +fld('邮件主题',input(mail.subject,'data-mail="subject"'),true)
+   +fld('邮件正文',area(mail.body,'data-mail="body" rows="5"'),true)
+   +`<p class="tiny mute" style="margin-top:8px">发送时自动附上所选问卷的填写按钮。</p><div class="field"><span>携带邮箱签名</span>${sw(mail.signature,'mailSignature','','携带邮箱签名')}</div><div style="margin-top:14px">${b('发送测试邮件','testEmail','outline small')}</div>`;
+ }
+ const desc=d.channel==='Messenger'?'从原 Facebook Page 发出。超过发送窗口或无法确认时，跳过并记录原因。':'从原 WhatsApp 号码发出。仅可选择该号码可用、已获批且带动态网址按钮的模板。';
+ out+=fld(d.channel==='Messenger'?'Facebook Page':'WhatsApp 账号',sel([['','请选择接入账号'],...(accounts[d.channel]||[])],d.account,bind('account')),true);
+ if(d.channel==='Messenger'){
+  out+=fld('邀评私信',area(d.message,bind('message')+' rows="3"'),true);
+  out+=`<p class="tiny mute">发送时用本次服务的实际问卷链接替换 <code>{{问卷链接}}</code>。</p>`;
+ }else{
+  out+=fld('已获批模板',sel([['','请选择模板'],['support_csat_en','support_csat_en（演示）']],d.template,bind('template')),true);
+  out+=fld('模板语言',sel(['English (US)'],d.lang,bind('lang')),true);
+ }
+ return out+`<div class="hint" style="margin-top:13px">${desc}</div>`;
+}
+function drawer(title,content,footer){
+ return `<div class="shade mask"><section class="drawer" role="dialog" aria-modal="true" aria-label="${title}"><header class="drawerhead">${icon('close','关闭','close')}<h2>${title}</h2></header><div class="drawerbody">${content}</div><div class="footer">${footer}</div></section></div>`;
+}
+function renderRule(){
+ const d=ruleDraft;
+ const body=fld('规则名称',input(d.name,'data-rule="name" placeholder="输入规则名称" aria-label="规则名称"'),true)+fld('分类',sel([['','选择分类'],'未分类','E2E Trigger - Managed1'],d.category,'data-rule="category"'))
+ +ruleConditions('all','满足以下所有条件','每一项都必须满足；留空表示不限制。')+ruleConditions('any','满足以下任意条件','至少一项满足；留空表示不限制。')
+ +'<section class="rulebox" data-anno="trigger-actions"><h3>执行动作</h3><p class="tiny mute">命中条件后，动作将按顺序执行。</p>'+triggerActionRows(d)+'<div style="margin-top:10px">'+b('添加动作','addTriggerAction','small')+'</div></section>';
+ return drawer(d.id?'编辑触发器':'新建触发器',body,'<label class="line tiny" data-anno="trigger-once"><input type="checkbox" data-rule="once" '+(d.once?'checked':'')+'>同一个工单多次满足条件时仅执行一次</label><span class="right"></span>'+(d.id?b('预览匹配','simulateDraft'):'')+b('取 消','close')+b('保 存','saveRule','primary'));
+}
+
+function waRows(){
+ const use=filters.waAccount==='test001'?templates:[{name:'support_csat_en',category:'MARKETING',language:'English (US)',status:'已批准',date:'2026-11-05 10:00'}];
+ return use.filter(t=>t.name.toLowerCase().includes(filters.wa.toLowerCase())&&(filters.waStatus==='全部状态'||filters.waStatus===t.status)).map(t=>`<tr><td>${e(t.name)}</td><td>${e(t.category)}</td><td>${e(t.language)}</td><td>${t.status==='—'?'—':tag(t.status,'ok')}</td><td class="date">${e(t.date)}</td><td>${b('编辑','waPreview','flat small',t.name)}${b('删除','waReadOnly','flat small danger')}</td></tr>`).join('')||'<tr><td colspan="6"><div class="empty">没有匹配的模板</div></td></tr>';
+}
+function waList(){return head('WhatsApp 模板',b('＋ 添加模板','waReadOnly','primary'))+`<div class="pane-scroll"><div class="toolbar">${sel(isPlan()?['test001','GOFO WhatsApp（示例）']:['test001'],filters.waAccount,'data-filter="waAccount" aria-label="WhatsApp 账号" style="width:180px"')}${search('按模板名称搜索','wa',filters.wa)}${sel(['全部状态','已批准','审核中','已拒绝'],filters.waStatus,'data-filter="waStatus" aria-label="模板状态" style="width:130px"')}</div><table class="table"><thead><tr><th>模板名称</th><th>分类</th><th>语言</th><th>状态</th><th class="date">最近更新</th><th>操作</th></tr></thead><tbody id="waRows">${waRows()}</tbody></table></div>`}
+function convRows(){
+ return state().conversations.filter(r=>r.name.toLowerCase().includes(filters.conversations.trim().toLowerCase())).map(r=>`<tr><td><b>${e(r.name)}</b><p class="tiny mute">会话已结束 · 仅无关联工单</p></td><td>${e(r.channel)}<p class="tiny mute">${e(r.account)}</p></td><td>${e(selectedName(r.question))}</td><td>${sw(r.enabled,'switchConv',r.id,'启用 '+r.name,true)}</td><td><div class="icons">${icon('edit','编辑会话邀评','editConv',r.id)}${b('试跑','simulateConv','flat small',r.id)}</div></td></tr>`).join('')||'<tr><td colspan="5"><div class="empty">没有匹配的会话邀评规则</div></td></tr>';
+}
+function conversationList(){
+ return head('会话邀评',b('＋ 新建规则','newConv','primary'),tag('方案新增','design'))+`<div class="pane-scroll"><div class="usage hint">仅用于<strong>没有关联工单</strong>的服务会话。有工单的服务请在${go('触发器','trigger')}设置；原生 LiveChat 继续使用已有邀评弹窗。</div><div class="toolbar">${search('搜索规则名称','conversations',filters.conversations)}<span class="right"></span>${go('邀评结果（演示）','result')}</div><table class="table"><thead><tr><th>规则名称</th><th>渠道 / 账号</th><th>使用问卷</th><th>启用</th><th>操作</th></tr></thead><tbody id="conversationsRows">${convRows()}</tbody></table></div>`;
+}
+function renderConv(){
+ const d=convDraft;
+ const body=fld('规则名称',input(d.name,'data-conv="name"'),true)
+ +`<section class="rulebox"><h3>发送条件</h3><p class="tiny mute">会话必须有明确的结束事件。转人工、客户暂未回复不触发。</p><div class="line">${sel(['会话结束'],'会话结束','aria-label="触发事件" disabled')}${sel(['仅无关联工单'],'仅无关联工单','aria-label="工单条件" disabled')}</div><p class="tiny mute">同一个会话服务段仅邀评一次。</p></section>
+ <section class="rulebox"><h3>执行动作</h3>${fld('渠道',sel(['Messenger'],d.channel,'aria-label="会话渠道"'),true)}${deliveryFields(d,'conv')}<p class="tiny mute" style="margin-top:9px">问卷复用现有题目、语言与有效期，私信使用本规则的文案。</p></section>`;
+ return drawer(d.id?'编辑会话邀评':'新建会话邀评',body,`<span class="right"></span>${b('试跑规则','simulateConvDraft')}${b('取 消','close')}${b('保 存','saveConv','primary')}`);
+}
+function beginSim(d,scope,draft=false){
+ sim={d:copy(d),scope,draft,window:'in',event:'end',duplicate:'no',hasTicket:'no',account:'yes',delivery:'sent',result:null};
+ modal='simulate';renderOverlay();
+}
+function validateRule(d,scope,focus=false){
+ let msg='';if(!d.name.trim())msg='请填写规则名称';
+ else if([...d.all,...d.any].some(c=>!c.field||!c.op||(!['有值','无值'].includes(c.op)&&!String(c.value).trim())))msg='请补全条件字段和值';
+ else if(!ruleActions(d).length)msg='请添加执行动作';
+ else for(const a of ruleActions(d)){
+ if(a.type==='发送满意度问卷'&&!nativeRule(d)){
+ const q=surveyBy(a.question);msg=triggerSurveyProblem(q);if(msg)break;
+ const c=surveyInvitationChannel(q),conflict=d.all.find(x=>x.field==='channel'&&(['是','IS'].includes(x.op)?x.value!==c:x.op==='不是'&&x.value===c));
+ if(conflict){msg='条件中的渠道与所选问卷邀请渠道不匹配';break}
+ }else if(a.type!=='发送满意度问卷'&&!String(a.value||'').trim()){msg='请补全执行动作的值';break}
+ }
+ if(msg&&focus)flash(msg);return msg;
+}
+let matchTicket='',matchResult=null;
+const matchSamples=[{id:'10428',status:'已解决',channel:'WhatsApp',subject:'售后服务',email:'visitor@example.invalid',owner:'演示客服'},{id:'10429',status:'处理中',channel:'Messenger',subject:'物流咨询',email:'customer@example.invalid',owner:'演示客服'},{id:'10430',status:'已解决',channel:'邮件',subject:'售后咨询',email:'buyer@example.invalid',owner:'演示客服'}];
+function renderMatch(){return '<div data-anno="trigger-match"><p class="tiny mute">预览只评估条件，不会执行或修改工单。</p>'+input(matchTicket,'id="match-ticket" placeholder="输入工单号" aria-label="工单号"')+(matchResult?'<div class="readout" role="status"><b>'+e(matchResult.title)+'</b><p>'+e(matchResult.detail)+'</p></div>':'')+'<div class="line end" style="margin-top:18px">'+b('取 消','close')+b('执行预览','runMatch','primary')+'</div></div>'}
+function executeMatch(){
+ matchTicket=$('#match-ticket').value.trim();const ticket=matchSamples.find(t=>t.id===matchTicket);
+ if(!ticket){matchResult={title:'未找到演示工单',detail:'本地样本：10428（WhatsApp / 已解决）、10429（Messenger / 处理中）、10430（邮件 / 已解决）。'};overlayUpdate();return}
+ const compare=c=>{const v=ticket[c.field];if(v===undefined)return null;const equal=String(v)===String(c.value);return ['是','IS'].includes(c.op)?equal:c.op==='不是'?!equal:c.op==='包含'?String(v).includes(c.value):c.op==='不包含'?!String(v).includes(c.value):c.op==='有值'?Boolean(v):c.op==='无值'?!v:c.op==='包含任意一个'?c.value.split(',').some(x=>String(v).includes(x.trim())):null};
+ const all=ruleDraft.all.map(compare),any=ruleDraft.any.map(compare),known=!all.includes(null)&&!any.includes(null),matched=all.every(Boolean)&&(!any.length||any.some(Boolean));
+ const mismatch=ruleActions(ruleDraft).some(a=>a.type==='发送满意度问卷'&&!nativeRule(ruleDraft)&&surveyInvitationChannel(surveyBy(a.question))!==ticket.channel);
+ matchResult={title:known?(matched?'规则会命中':'规则不会命中'):'条件暂无法完整评估',detail:'全部条件：'+(all.map(x=>x===null?'待核验':x?'✓':'✕').join(' ')||'—')+'；任意条件：'+(any.map(x=>x===null?'待核验':x?'✓':'✕').join(' ')||'—')+'。'+(matched&&mismatch?'发送校验：原渠道与问卷不匹配，将跳过。':'仅条件预览，未执行动作。')};overlayUpdate();
+}
+
+function runSim(){
+ const {d,scope}=sim;
+ const survey=surveyBy(d.question);
+ const invalid=validateRule(d,scope);
+ let reason='';
+ if(invalid)reason=invalid;
+ else if(!d.enabled&&!sim.draft)reason='规则未启用';
+ else if(sim.event!=='end')reason=scope==='ticket'?'工单未进入「已解决」':'未收到明确的会话结束事件';
+ else if(scope==='conversation'&&sim.hasTicket==='yes')reason='已有工单，本次由工单触发器处理';
+ else if(sim.duplicate==='yes'||sim.sent)reason=scope==='ticket'?'本工单已发送过邀评':'本次会话已发送过邀评';
+ else if(sim.account!=='yes')reason='原接入账号不可用';
+ else if(d.channel==='Messenger'&&sim.window!=='in')reason=sim.window==='out'?'已超出 Messenger 发送窗口':'无法确认 Messenger 发送窗口';
+ const source=scope==='ticket'?'工单 #10428':'会话 #CS-021';
+ if(reason){sim.result={status:'已跳过',reason,source,scope,channel:d.channel,account:d.account,survey:survey?.name};attempts.unshift(sim.result);return}
+ if(d.channel==='LiveChat'){sim.result={status:'匹配成功',reason:'现有动作发送 LiveChat 原生弹窗，无需选择工单问卷。',source};return}
+ if(sim.delivery==='fail'){sim.result={status:'发送失败',reason:'渠道未受理消息。处理结果已记录，服务状态不受影响。',source,scope,channel:d.channel,account:d.account,survey:survey?.name};attempts.unshift(sim.result);return}
+ const id=nextId('invite');const data=copy(survey.versions.Original);
+ const inv={id,status:'已发出（模拟）',source,survey:survey.name,channel:d.channel,account:d.account||accounts[d.channel]?.[0],data,scope,score:null};
+ sim.result=inv;
+ sim.sent=true;
+ invites.unshift(inv);
+ attempts.unshift(inv);
+}
+function renderSim(){
+ const s=sim,d=s.d,x=s.result;
+ const f=(l,k,values)=>fld(l,sel(values,s[k],`data-sim="${k}"`));
+ const status=x?`<div class="readout" role="status"><div class="line">${tag(x.status,x.id?'ok':'wait')} <b>${e(x.source)}</b></div>${x.reason?`<p>${e(x.reason)}</p>`:''}${x.id?`<p>问卷：${e(x.survey)}</p>${b('打开客户问卷','openCustomer','outline small',x.id)}`:''}</div>`:'';
+ const message=d.channel==='Messenger'?d.message.replaceAll('{{问卷链接}}','[问卷链接]'):d.channel==='WhatsApp'?'Thanks for contacting our support team.\n[ 填写问卷 ]':d.channel==='LiveChat'?'LiveChat 满意度弹窗':isPlan()?mailContent(d).subject+'\n\n'+mailContent(d).body+'\n[填写问卷]':surveyBy(d.question)?.versions.Original.subject||'';
+ return `<div class="sim"><div>${f('服务状态','event',s.scope==='ticket'?[['end','刚进入已解决'],['not','已解决后只修改备注']]:[['end','收到会话结束事件'],['not','转人工或暂未回复']])}
+ ${s.scope==='conversation'?f('是否已有工单','hasTicket',[['no','没有关联工单'],['yes','已有工单']]):''}${f('是否已邀评','duplicate',[['no','尚未发送'],['yes','已发送']])}
+ ${d.channel==='Messenger'?f('Messenger 发送窗口','window',[['in','窗口内'],['out','窗口外'],['unknown','无法确认']]):''}
+ ${f('原账号状态','account',[['yes','可用'],['no','不可用']])}${f('渠道投递','delivery',[['sent','发送成功'],['fail','发送失败']])}<div style="margin-top:17px">${b('运行模拟','runSim','primary')}</div></div>
+ <div><div class="messaging"><div class="line spaced"><b>${e(d.account||d.channel)}</b>${tag(d.channel,'design')}</div><div class="bubble">${e(message)}</div></div>${status}<p class="tiny mute">演示使用测试数据，不发送真实消息。</p></div></div>`;
+}
+function resultView(){
+ return head('邀评结果',go('返回会话邀评','conversations'),tag('演示','design'))+`<div class="pane-scroll"><p class="subtitle mute">工单和会话分别归属；客户提交后回到发起邀评的那条服务记录。</p><div class="toolbar">${go('工单触发器','trigger')}${go('会话邀评','conversations')}</div>
+ <table class="table"><thead><tr><th>服务记录</th><th>渠道 / 账号</th><th>问卷</th><th>状态</th><th>评分</th><th>操作</th></tr></thead><tbody>${attempts.length?attempts.map(i=>`<tr><td>${e(i.source)}</td><td>${e(i.channel)}<p class="tiny mute">${e(i.account)}</p></td><td>${e(i.survey||'—')}</td><td>${tag(i.status,i.id?'ok':'wait')}${i.reason?`<p class="tiny mute">${e(i.reason)}</p>`:''}</td><td>${i.score??'—'}</td><td>${i.scope==='ticket'?b('查看工单','go','flat small','desk'):''}${i.id?b('查看问卷','openCustomer','flat small',i.id):''}</td></tr>`).join(''):'<tr><td colspan="6"><div class="empty">先试跑一条邀评规则，即可看到发送和填写结果。</div></td></tr>'}</tbody></table></div>`;
+}
+function deskView(){
+ const feedback=isPlan()?invites.find(i=>i.scope==='ticket'&&i.status==='已填写'):null;
+ const outcome=isPlan()?attempts.find(i=>i.scope==='ticket'):null;
+ return `<div class="desk-grid">
+ <section class="desk-list"><div class="line desk-header"><b>Facebook Messenger</b><span class="right">⌕　⇅</span></div><div class="line wrap" style="padding:12px">${tag('AI处理中')}${tag('待处理')}${tag('已解决')}</div>
+ <article class="desk-entry active"><div class="line spaced">访客 A <span class="tiny mute">#10428</span></div><p>Chat with Visitor A</p><p class="tiny mute">▣　已解决 <span style="float:right">11/05 10:00</span></p></article>
+ <article class="desk-entry"><div class="line spaced">访客 B <span class="tiny mute">#10427</span></div><p>Chat with Visitor B</p><p class="tiny mute">▣　处理中</p></article></section>
+ <section class="desk-thread"><div class="desk-header"><div class="line spaced"><h2>Chat with Visitor A</h2><span class="mute">⋮　◷</span></div><div class="line tiny mute" style="margin-top:10px">${tag('已解决')}　#10428　＋ 标签</div></div>
+ <div class="desk-chat"><div class="bubble">您好，我想确认一下订单配送状态。</div><div class="bubble reply">您好，已经帮您确认，订单今天会发出。</div></div>
+ <div class="desk-compose"><div class="tiny dim">✉　◉　☏　▣</div><textarea placeholder="请输入" aria-label="回复" disabled></textarea><div class="line"><span class="mute">⌕　A　▣</span><span class="right"></span><button class="btn" disabled>发送</button></div></div></section>
+ <aside class="desk-detail"><div class="desk-header"><h2>详情</h2></div><div class="desk-info"><h3>♟ 客户信息</h3><p style="margin-top:12px"><span class="avatar" style="background:#95bcf1">A</span>　访客 A</p><p class="tiny mute" style="margin-top:12px">Facebook Messenger</p></div><div class="desk-info"><div class="line spaced"><h3>满意度</h3><span class="mute">⌄</span></div>
+ ${feedback?`<p style="margin-top:12px">${tag('已评价','ok')}　${feedback.score??'—'} 分</p><p class="tiny mute">${e(feedback.survey)}</p>`:'<p class="tiny mute" style="margin-top:12px">暂无满意度信息</p>'}
+ ${outcome?`<div class="readout"><div class="line">${tag(outcome.status,outcome.id?'ok':'wait')}</div><p class="tiny mute">${e(outcome.reason||outcome.account)}</p></div>`:''}${isPlan()?`<div style="margin-top:10px">${go('邀评结果（演示）','result')}</div>`:''}</div></aside></div>`;
+}
+function customerView(){
+ if(previewRoute)return '<main class="customer"><div class="back hint">问卷预览 · 不计入正式评价数据</div>'+(answerDone?'<section class="questionnaire success"><h2>感谢您的反馈！</h2><p>问卷预览已完成。</p></section>':surveyHTML(customer.data,true))+'</main>';
+ return `<main class="customer"><div class="back">${b('← 返回邀评结果','customerBack','flat')}</div>${answerDone?`<section class="questionnaire success"><h2>感谢您的反馈！</h2><p>本次评价已提交。</p></section>`:surveyHTML(customer.data,true)}</main>`;
+}
+function dialog(title,body,{compact=false,extra=''}={}){
+ return `<div class="shade"><section class="modal ${compact?'compact':''}" role="dialog" aria-modal="true" aria-label="${e(title)}"><header class="drawerhead"><h2>${e(title)}</h2><span class="right"></span>${icon('close','关闭','close')}</header><div class="drawerbody">${extra}${body}</div></section></div>`;
+}
+function renderOverlay(){
+ let html='';
+ if(modal==='preview')html=dialog('预览问卷',answerDone?'<section class="success"><h2>感谢您的反馈！</h2><p>问卷预览已完成。</p></section>':surveyHTML(content(),true),{extra:`<div>${b(mobile?'桌面预览':'手机预览','phone')}</div>`});
+ else if(modal==='test')html=dialog('发送测试邮件',fld('收件邮箱',input('','type="email" id="test-address" placeholder="请输入测试邮箱"'),true)+`<div class="line end" style="margin-top:20px">${b('取 消','close')}${b('模拟发送','doTest','primary')}</div>`,{compact:true});
+ else if(modal==='delete')html=dialog('删除问卷',`<p>确定删除「${e(selectedName(pendingDelete))}」？</p><div class="line end" style="margin-top:20px">${b('取 消','close')}${b('确认删除','confirmDelete','primary')}</div>`,{compact:true});
+ else if(modal==='categories')html=dialog('管理分类','<div class="stack"><p>E2E Trigger - Managed1</p><p>未分类</p></div>',{compact:true});
+ else if(modal==='wa')html=dialog('WhatsApp 模板',`<div class="stack"><p><b>${e(waTemplate)}</b></p><p>${waTemplate==='support_csat_en'?'语言：English (US)　状态：已批准（演示）':'模板列表中的测试样例'}</p>${waTemplate==='support_csat_en'?'<div class="bubble">Thanks for contacting our support team.<br>[ 填写问卷 ]<br><span class="tiny mute">动态网址：{{问卷链接}}</span></div>':''}</div>`,{compact:true});
+ else if(modal==='simulate')html=dialog(sim.scope==='ticket'?'工单邀评试跑':'会话邀评试跑',renderSim());
+ else if(modal==='match')html=dialog('预览匹配',renderMatch(),{compact:true});
+ else if(ruleDraft)html=channelEditor?renderChannelSetting():renderRule();
+ else if(convDraft)html=renderConv();
+ $('#overlay').innerHTML=html;
+ const main=$('#app main.panel');if(main){main.id=editing?'survey-step'+step:page==='trigger'?'trigger-list':'survey-list';main.classList.toggle('page',true);main.classList.toggle('active',!html)}
+ const active=$('#overlay .drawer,#overlay .modal');if(active){active.id=modal==='match'?'trigger-match':ruleDraft&&!modal?'trigger-editor':'preview-dialog';active.classList.add('page','active')}
+ document.dispatchEvent(new Event('anno:viewchange'));
+}
+let pendingDelete='',waTemplate='';
+function overlayUpdate(){
+ const prev=$('#overlay .drawerbody');const scroll=prev?.scrollTop||0;
+ renderOverlay();const next=$('#overlay .drawerbody');if(next)next.scrollTop=scroll;
+}
+function editorUpdate(){
+ const sc=$('.formscroll')?.scrollTop||0,pr=$('.emailpreview')?.scrollTop||0;
+ render();if($('.formscroll'))$('.formscroll').scrollTop=sc;if($('.emailpreview'))$('.emailpreview').scrollTop=pr;
+}
+function refreshPreview(){const v=$('#editPreview');if(editing&&step>1&&v)v.innerHTML=editPreview()}
+function startSurvey(s){
+ editing=s?copy(s):{id:'',name:'',enabled:false,expiry:'永不过期',duration:30,versions:{Original:initContent()},invitationChannel:''};
+ if(editing.invitationChannel===undefined){
+  const previous=editing.invitationChannels;
+  editing.invitationChannel=Array.isArray(previous)?(previous.length===1?previous[0]:''):'邮件';
+  if(previous?.length>1)editing.legacyInvitationChannels=previous;
+ }
+ invitationChannel=editing.invitationChannel||'';
+ waConfig();step=1;lang='Original';syncUrl();render();
+}
+function canAdvance(){
+ if(step===1){
+  if(!editing.name.trim()){flash('请输入问卷名称');$('#survey-name')?.focus();return false}
+  const cap={天:365,小时:8760,分钟:525600,秒:31536000}[editing.expiry];
+  if(cap&&(!Number.isInteger(editing.duration)||editing.duration<1||editing.duration>cap)){flash('有效期请输入 1 至 '+cap+' 之间的整数');return false}
+ }
+ if(step===2&&!validateQuestionnaire())return false;
+ return true;
+}
+function closeOverlay(){
+ if(modal){modal=null;answerDone=false;customerError='';renderOverlay();return}
+ ruleDraft=null;convDraft=null;renderOverlay();
+}
+function resetAnswers(){answerState={};answerDone=false;customerError='';mobile=false}
+function updateAnswerView(){
+ const box=customer?$('.customer'):$('.modal .drawerbody');
+ const before=box?.scrollTop||0;
+ if(customer)render();else renderOverlay();
+ const after=customer?$('.customer'):$('.modal .drawerbody');if(after)after.scrollTop=before;
+}
+function submitAnswer(){
+ const d=customer?customer.data:content();
+ const missing=d.qs.findIndex((q,i)=>{
+  const dep=answerState[q.conditionQ];
+  const req=q.required||(q.conditional&&typeof dep==='number'&&dep<=q.conditionScore);
+  const v=answerState[i];return req&&(v==null||v===''||typeof v==='string'&&!v.trim()||Array.isArray(v)&&!v.length);
+ });
+ if(missing>=0){customerError='请填写第 '+(missing+1)+' 题。';updateAnswerView();return}
+ answerDone=true;customerError='';
+ if(customer){
+  const kpi=d.qs.findIndex(q=>q.type==='rating'&&q.kpi);
+  const rating=d.qs.findIndex(q=>q.type==='rating');
+  customer.score=answerState[kpi]??answerState[rating]??null;
+  customer.status='已填写';customer.answers=copy(answerState);
+ }
+ updateAnswerView();
+}
+function refreshRows(k){
+ if(k==='surveys')$('#surveyRows').innerHTML=surveyRows();
+ if(k==='trigger'||k==='ruleStatus')$('#triggerRows').innerHTML=triggerRows();
+ if(['wa','waAccount','waStatus'].includes(k))$('#waRows').innerHTML=waRows();
+ if(k==='conversations')$('#conversationsRows').innerHTML=convRows();
+}
+function getDraftField(el,value){
+ if(el.hasAttribute('data-wa-var')){waConfig().variables[el.dataset.waVar]=value;refreshPreview();return}
+ if(el.hasAttribute('data-mail')){
+  mailContent(ruleDraft)[el.dataset.mail]=value;
+  const preview=$('#channel-preview');
+  if(preview){const mail=mailContent(ruleDraft);const title=preview.querySelector('h3'),body=preview.querySelector('.emailbody');if(title)title.textContent=mail.subject;if(body)body.textContent=mail.body}
+  return;
+ }
+ if(el.hasAttribute('data-s')){
+  const k=el.dataset.s;editing[k]=k==='duration'?Number(value):value;
+  if(k==='expiry')editorUpdate();return;
+ }
+ if(el.hasAttribute('data-content')){content()[el.dataset.content]=value;if(el.dataset.content==='body'&&el.isContentEditable)content().bodyHtml=safeMailHtml(el.innerHTML);refreshPreview();return}
+ if(el.hasAttribute('data-q')){
+  const [i,k]=el.dataset.q.split(':');content().qs[i][k]=['conditionQ','conditionScore'].includes(k)?Number(value):value;
+  if(k==='type'&&value==='text')content().qs[i].analysisFilter=false;
+  if(['type','scale'].includes(k))editorUpdate();else refreshPreview();return;
+ }
+ if(el.hasAttribute('data-opt')){
+  const [i,j]=el.dataset.opt.split(':');content().qs[i].options[j]=value;refreshPreview();return;
+ }
+ if(el.hasAttribute('data-trigger-action')){const [i,k]=el.dataset.triggerAction.split(':');const a=ruleActions(ruleDraft)[Number(i)];a[k]=value;if(k==='type'){a.question='';a.value=''}overlayUpdate();return}
+ if(el.hasAttribute('data-rule')){
+  const k=el.dataset.rule;ruleDraft[k]=value;
+  if(k==='channel'){
+   if(!accounts[value]?.includes(ruleDraft.account))ruleDraft.account='';
+   const c=ruleDraft.all.find(x=>x.field==='channel'&&x.op==='是');
+   if(c)c.value=value;else ruleDraft.all.push(condition('channel',value));
+   if(['Messenger','WhatsApp'].includes(value))ruleDraft.once=true;
+   overlayUpdate();
+  }else if(channelEditor&&el.tagName==='SELECT')overlayUpdate();
+  else if(channelEditor&&k==='message'){const p=$('#channel-preview .bubble');if(p)p.textContent=value.replaceAll('{{问卷链接}}','[打开满意度问卷]')}
+  return;
+ }
+ if(el.hasAttribute('data-conv')){convDraft[el.dataset.conv]=value;return}
+ if(el.hasAttribute('data-condition')){
+ const [key,i,k]=el.dataset.condition.split(':');const c=ruleDraft[key][i];c[k]=value;
+ if(k==='field'){c.value='';c.op=['status','channel'].includes(value)?'是':'IS'}
+ if(k==='field'||k==='op'||el.tagName==='SELECT')overlayUpdate();return;
+ }
+ if(el.hasAttribute('data-sim')){sim[el.dataset.sim]=value;sim.result=null;overlayUpdate();return}
+ if(el.hasAttribute('data-filter')){const k=el.dataset.filter;filters[k]=value;refreshRows(k);return}
+ if(el.hasAttribute('data-answer'))answerState[el.dataset.answer]=value;
+}
+document.addEventListener('input',event=>{
+ const el=event.target;if(el.tagName==='SELECT'||['checkbox','radio'].includes(el.type))return;
+ getDraftField(el,el.isContentEditable?el.innerText:el.value);
+});
+document.addEventListener('change',event=>{
+ const el=event.target;
+ if(el.hasAttribute('data-wa-config')){
+  const w=waConfig(),key=el.dataset.waConfig;w[key]=el.value;w.binding=null;
+  if(key==='account'){w.templateId='';w.buttonIndex='';w.variables={}}
+  if(key==='templateId'){
+   w.buttonIndex='';w.variables={};const t=selectedWaTemplate();
+   const preferred=t?.language==='简体中文'?'简体中文':t?.language?.startsWith('English')?'English':'Original';
+   lang=editing.versions[preferred]?preferred:'Original';
+  }
+  editorUpdate();return;
+ }
+ if(el.hasAttribute('data-invitation-channel')){
+  invitationChannel=el.value;editing.invitationChannel=invitationChannel;
+  delete editing.invitationChannels;editorUpdate();return;
+ }
+ if(el.hasAttribute('data-lang')){const next=el.value;if(!editing.versions[next])editing.versions[next]=copy(editing.versions.Original);lang=next;editorUpdate();return}
+ if(el.hasAttribute('data-answer-option')){
+  const [i,j]=el.dataset.answerOption.split(':').map(Number);
+  if(el.type==='radio')answerState[i]=j;
+  else {const choices=Array.isArray(answerState[i])?answerState[i]:[];answerState[i]=el.checked?[...choices,j]:choices.filter(x=>x!==j)}
+  return;
+ }
+ if(el.tagName==='SELECT'||el.type==='checkbox')getDraftField(el,el.type==='checkbox'?el.checked:el.value);
+});
+document.addEventListener('pointerdown',event=>{if(event.target.closest('[data-act="format"]'))event.preventDefault()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&(modal||ruleDraft||convDraft)){closeOverlay()}});
+document.addEventListener('click',event=>{
+ const el=event.target.closest('[data-act]');if(!el||el.disabled)return;const a=el.dataset.act,v=el.dataset.v;
+ const [i,k]=(v||'').split(':');
+ switch(a){
+  case 'go':navigate(v);break;
+  case 'mode':
+   if(v!==mode){mode=v;filters.waAccount='test001';navigate(page==='result'||page==='conversations'?'surveys':page)}
+   break;
+  case 'usage':usage=!usage;render();break;
+  case 'surveySection':surveySection=v;syncUrl();render();break;
+  case 'editMailChannel':channelEditor=true;renderOverlay();break;
+  case 'mailSignature':mailContent(ruleDraft).signature=!mailContent(ruleDraft).signature;overlayUpdate();break;
+  case 'channelSetting':{
+   const selected=state().rules.find(r=>r.channel===v);
+   ruleDraft=selected?copy(selected):rule('',v+' 工单邀评',false,v,'');
+   channelEditor=true;renderOverlay();break;
+  }
+  case 'channelFullRule':channelEditor=false;renderOverlay();break;
+  case 'channelAllRules':channelEditor=false;filters.trigger=v==='邮件'||v==='LiveChat'?'':v;navigate('trigger');break;
+  case 'newSurvey':startSurvey();break;
+  case 'editSurvey':startSurvey(surveyBy(v));break;
+  case 'copySurvey':{
+   const clone=copy(surveyBy(v));clone.id=nextId('s');clone.name+=' Copy';clone.enabled=false;delete clone.previewRef;delete clone.contentReady;if(clone.whatsapp)clone.whatsapp.binding=null;state().surveys.unshift(clone);save();render();flash('问卷已复制');break;
+  }
+  case 'switchSurvey':{
+   const item=surveyBy(v);item.enabled=!item.enabled;save();refreshRows('surveys');flash(item.enabled?'问卷已启用':'问卷已禁用');break;
+  }
+  case 'askDelete':pendingDelete=v;modal='delete';renderOverlay();break;
+  case 'confirmDelete':{
+   if([...state().rules,...state().conversations].some(r=>r.question===pendingDelete)){closeOverlay();flash('该问卷已被规则引用，请先解除引用');break}
+   state().surveys=state().surveys.filter(s=>s.id!==pendingDelete);save();modal=null;render();flash('问卷已删除');break;
+  }
+  case 'next':if(canAdvance()){if(step===2)prepareQuestionnaire();step++;syncUrl();render()}break;
+  case 'prev':step--;syncUrl();render();break;
+  case 'signature':content().signature=!content().signature;editorUpdate();break;
+  case 'format':{document.execCommand(v,false,v==='foreColor'?'#2869e8':v==='hiliteColor'?'#fff0ad':null);const editor=$('[data-content=body]');if(editor){content().body=editor.innerText;content().bodyHtml=safeMailHtml(editor.innerHTML);refreshPreview()}break;}
+  case 'qSwitch':content().qs[i][k]=!content().qs[i][k];editorUpdate();break;
+  case 'addQ':content().qs.push(makeQ());editorUpdate();$('.formscroll').scrollTop=$('.formscroll').scrollHeight;break;
+  case 'delQ':{
+   if(!confirm('确定删除“'+(content().qs[Number(v)].title||'未命名问题')+'”？此操作不可恢复。'))break;
+   const questions=content().qs,index=Number(v);questions.splice(index,1);questions.forEach(q=>{if(q.conditionQ===index)q.conditional=false;else if(q.conditionQ>index)q.conditionQ--});editorUpdate();break;
+  }
+  case 'moveQ':{
+   const ix=Number(i),dest=ix+Number(k),qs=content().qs;[qs[ix],qs[dest]]=[qs[dest],qs[ix]];qs.forEach(q=>{if(q.conditionQ===ix)q.conditionQ=dest;else if(q.conditionQ===dest)q.conditionQ=ix});editorUpdate();break;
+  }
+  case 'addOpt':{const q=content().qs[i];if(!q.optionIds)q.optionIds=q.options.map(()=>crypto.randomUUID());q.options.push('选项 '+(q.options.length+1));q.optionIds.push(crypto.randomUUID());editorUpdate();break;}
+  case 'delOpt':{const q=content().qs[i];if(!confirm('确定删除“'+q.options[Number(k)]+'”？此操作不可恢复。'))break;q.options.splice(Number(k),1);q.optionIds?.splice(Number(k),1);editorUpdate();break;}
+  case 'saveSurvey':{
+   if(!validateQuestionnaire()||!validateInvitation())break;
+   prepareQuestionnaire();editing.invitationChannel=invitationChannel;delete editing.invitationChannels;
+   waConfig().binding=invitationChannel==='WhatsApp'?pendingWaBinding():null;
+   const ix=state().surveys.findIndex(s=>s.id===editing.id);
+   editing.date=new Date().toLocaleString('sv-SE').slice(0,16);
+   const before=copy(state().surveys);
+   for(const version of Object.values(editing.versions))for(const q of version.qs){if(!q.id)q.id=crypto.randomUUID();if(q.type==='text')q.analysisFilter=false;if(!q.optionIds)q.optionIds=q.options.map(()=>crypto.randomUUID())}
+   if(ix<0){editing.id=nextId('s');state().surveys.unshift(editing)}else state().surveys[ix]=editing;
+   if(!save()){state().surveys=before;break}navigate('surveys');flash('问卷已保存');break;
+  }
+  case 'preview':resetAnswers();modal='preview';renderOverlay();break;
+  case 'phone':mobile=!mobile;overlayUpdate();break;
+  case 'score':answerState[Number(i)]=Number(k);customerError='';updateAnswerView();break;
+  case 'submitAnswer':submitAnswer();break;
+  case 'testEmail':modal='test';renderOverlay();break;
+  case 'doTest':{
+   const addr=$('#test-address');if(!addr.value.trim()||!addr.checkValidity()){flash('请输入有效邮箱');addr.focus();break}
+   closeOverlay();flash('测试邮件演示完成，未实际发出');break;
+  }
+  case 'close':closeOverlay();break;
+  case 'categories':modal='categories';renderOverlay();break;
+  case 'newRule':channelEditor=false;ruleDraft=rule('','',false,'邮件','',{category:'',once:false,all:[],any:[],actions:[{type:'添加标签',value:''}]});renderOverlay();break;
+  case 'editRule':channelEditor=false;ruleDraft=copy(state().rules.find(r=>r.id===v));renderOverlay();break;
+  case 'switchRule':{
+   const r=state().rules.find(r=>r.id===v);
+   if(!r.enabled&&validateRule(r,'ticket',true))break;
+   r.enabled=!r.enabled;save();refreshRows('trigger');break;
+  }
+  case 'addCondition':ruleDraft[v].push(condition('','','IS'));overlayUpdate();break;
+  case 'delCondition':ruleDraft[i].splice(Number(k),1);overlayUpdate();break;
+  case 'addTriggerAction':ruleActions(ruleDraft).push({type:'添加标签',value:''});overlayUpdate();break;
+  case 'delTriggerAction':ruleActions(ruleDraft).splice(Number(v),1);overlayUpdate();break;
+  case 'runMatch':executeMatch();break;
+  case 'saveRule':{
+   if(validateRule(ruleDraft,'ticket',true))break;
+   if(!ruleDraft.id){ruleDraft.id=nextId('r');state().rules.push(ruleDraft)}else state().rules[state().rules.findIndex(r=>r.id===ruleDraft.id)]=ruleDraft;
+   ruleDraft.question=ruleActions(ruleDraft).find(a=>a.type==='发送满意度问卷')?.question||'';ruleDraft.date=new Date().toLocaleString('sv-SE').slice(0,16);save();ruleDraft=null;render();flash('触发器已保存');break;
+  }
+  case 'waReadOnly':flash('模板管理为现有页面参照；演示不提交、修改或删除平台模板');break;
+  case 'waPreview':waTemplate=v;modal='wa';renderOverlay();break;
+  case 'newConv':
+   convDraft={id:'',name:'',enabled:false,channel:'Messenger',account:'',question:'',message:'感谢联系我们。欢迎花 30 秒评价这次服务：{{问卷链接}}'};
+   renderOverlay();break;
+  case 'editConv':convDraft=copy(state().conversations.find(r=>r.id===v));renderOverlay();break;
+  case 'switchConv':{
+   const c=state().conversations.find(r=>r.id===v);if(!c.enabled&&validateRule(c,'conversation',true))break;
+   c.enabled=!c.enabled;save();refreshRows('conversations');flash(c.enabled?'会话邀评已启用（仅演示）':'会话邀评已禁用');break;
+  }
+  case 'saveConv':{
+   if(validateRule(convDraft,'conversation',true))break;
+   if(!convDraft.id){convDraft.id=nextId('c');state().conversations.push(convDraft)}else state().conversations[state().conversations.findIndex(r=>r.id===convDraft.id)]=convDraft;
+   save();convDraft=null;render();flash('会话邀评规则已保存');break;
+  }
+  case 'simulateRule':beginSim(state().rules.find(r=>r.id===v),'ticket');break;
+  case 'simulateDraft':
+   if(validateRule(ruleDraft,'ticket',true))break;
+   matchTicket='';matchResult=null;modal='match';renderOverlay();break;
+  case 'simulateConv':beginSim(state().conversations.find(r=>r.id===v),'conversation');break;
+  case 'simulateConvDraft':if(!validateRule(convDraft,'conversation',true))beginSim(convDraft,'conversation',true);break;
+  case 'runSim':runSim();overlayUpdate();break;
+  case 'openCustomer':{
+   customer=invites.find(inv=>inv.id===v);if(!customer)break;resetAnswers();answerDone=customer.status==='已填写';modal=null;ruleDraft=null;convDraft=null;render();break;
+  }
+  case 'customerBack':navigate('result');break;
+ }
+});
+// Seed only this prototype's storage namespace; retain old source prototypes.
+for(const bucket of [data.current,data.proposal]){
+ for(const seed of GOFO.seeds)if(!bucket.surveys.some(s=>s.id===seed.id))bucket.surveys.unshift(copy(seed));
+ for(const s of bucket.surveys)for(const version of Object.values(s.versions))version.qs.forEach((q,i)=>{q.id ||= s.id+'-q'+i;q.analysisFilter ??= false;q.optionIds ||= q.options.map((_,j)=>q.id+'-option-'+j)});
+}
+save();
+if(params.get('from')==='report')document.querySelector('.reviewbar a:last-child').textContent='返回满意度分析 →';
+if(params.has('preview')){
+ previewRoute=true;
+ try{const snapshots=JSON.parse(localStorage.getItem(previewStoreKey)||'{}'),draft=snapshots[params.get('preview')];
+  if(!draft)throw Error('preview unavailable');
+  const language=params.get('language')||'Original';customer={data:copy(draft.versions[language]||draft.versions.Original)};resetAnswers();render();
+ }catch{$('#app').innerHTML='<main class="customer"><section class="questionnaire"><h2>预览暂不可用</h2><p>请返回问卷编辑页，完成第二步后重新生成预览。</p></section></main>'}
+}else if(['surveys','trigger'].includes(params.get('page'))){page=params.get('page');syncUrl();render()}else {const requested=params.get('id');startSurvey(surveyBy(requested==='new'?'':requested||'gofo'));step=Math.min(3,Math.max(1,Number(params.get('step'))||2));syncUrl();render()}
