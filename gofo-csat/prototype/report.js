@@ -62,8 +62,8 @@ function gofoBindFilters(s){
 }
 function gofoApplied(s){return '<div class="gofo-active"><span>'+esc(state.channel||'全部渠道')+'</span><span>'+esc(s.name)+'</span>'+Object.entries(gofo.answers).filter(([,v])=>v.length).map(([id,selected])=>{const q=G.qs(s).find(q=>q.id===id);return '<span>'+esc(q?.title||id)+'：'+selected.map(v=>esc(q?G.values(q).find(x=>x[0]===v)?.[1]||v:v)).join('、')+'</span>'}).join('')+'</div>'}
 const gofoMetricDefinitions={
- valid:{label:'有效评分答卷数',formula:'当前条件内，推荐意愿题有 0–10 整数答案的正式答卷数。0 分有效，未作答不计入；没有有效评分时为 0，未配置评分来源时显示“—”。'},
- nps:{label:'NPS',formula:'（9–10 分份数 − 0–6 分份数）÷ 有效评分份数 × 100；7–8 分保留在分母。NPS 是 −100 至 +100 的分值。'},
+ valid:{label:'有效评分答卷数',formula:'当前筛选条件下，评分题有有效答案的正式答卷数。每份答卷只计一次；0 分有效，未作答不计。没有有效评分时显示 0，未配置评分来源时显示“—”。'},
+ nps:{label:'NPS',formula:'0–5 分的评分题先乘 2 换算为 0–10 分。同一答卷有多道纳入客服考核的评分题时，换算后取有效评分的平均值。NPS =（≥9 分答卷数 − ≤6 分答卷数）÷ 有效评分答卷数 × 100；其余有效评分也计入分母。'},
  rate:{label:'9–10 分占比',formula:'当前样本的 9–10 分份数 ÷ 当前样本有效评分份数 × 100%。无有效评分分母时显示“—”。'}
 };
 function gofoMetricHelp(key){const d=gofoMetricDefinitions[key];return '<button class="metric-help" type="button" data-gofo-help="'+key+'" aria-label="'+d.label+'的计算方式" aria-describedby="metricTooltip"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.2v4.3M8 11.1h.01"/></svg></button>'}
