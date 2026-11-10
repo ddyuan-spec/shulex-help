@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>满意度问卷分析｜产品方案</title>
+<link rel="stylesheet" href="solution.css"><script src="solution.js" defer=""></script>
+</head>
+<body id="top">
+<header class="top"><a href="#top"><b>产品方案</b><span>满意度问卷分析</span></a><span>分享版</span></header>
+<main class="wrap">
+<section class="hero" id="judgment">
+<div class="eyebrow">SURVEY ANALYTICS</div>
+<h1>先确定问卷，<br>再看<span>哪一群人的评价。</span></h1>
+<p class="judgment">问卷题目可配置为筛选项，报表按渠道、问卷和答案定位样本，再查看评分指标。</p>
+
+<div class="diagram hero-diagram">
+<svg viewBox="0 0 1100 334" role="img" aria-labelledby="overview-title overview-desc">
+<title id="overview-title">方案总图：配置、筛选与结果共用答卷集合</title><desc id="overview-desc">管理员在问卷题目保存分析开关。分析人员按渠道、问卷和题目答案筛选，在同一答卷样本上计算评分指标。全部问卷保留原汇总。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#7b8c9e"></path></marker></defs>
+<rect class="lane-bg" x="18" y="20" width="1064" height="100" rx="12"></rect><text class="role" x="38" y="52">管理员</text><text class="muted" x="38" y="78">配置用途</text>
+<rect class="node" x="164" y="37" width="230" height="65" rx="8"></rect><text x="184" y="64">问卷题目</text><text class="sub" x="184" y="87">评分 / 单选 / 多选</text>
+<path class="edge" d="M394 70 H448"></path><rect class="node teal" x="450" y="37" width="270" height="65" rx="8"></rect><text x="470" y="64">用于分析筛选：开启并保存</text><text class="sub" x="470" y="87">默认关闭 · 与客服考核独立</text>
+<text class="muted" x="810" y="77">只改变后台分析用途</text><text class="sub" x="810" y="100">客户作答与发送内容沿用</text>
+<rect class="lane-bg" x="18" y="136" width="1064" height="178" rx="12"></rect><text class="role" x="38" y="173">分析人员</text><text class="muted" x="38" y="200">筛样与核对</text>
+<path class="edge" d="M720 70 H785 V150 H570 V173"></path>
+<rect class="node" x="164" y="175" width="124" height="62" rx="8"></rect><text x="186" y="201">选渠道</text><text class="sub" x="180" y="224">权限范围内</text><path class="edge" d="M288 206 H319"></path>
+<rect class="node" x="321" y="175" width="145" height="62" rx="8"></rect><text x="338" y="201">选具体问卷</text><text class="sub" x="338" y="224">一期单选</text><path class="edge" d="M466 206 H497"></path>
+<rect class="node" x="499" y="175" width="143" height="62" rx="8"></rect><text x="516" y="201">按答案筛选</text><text class="sub" x="516" y="224">仅已开启题目</text><path class="edge" d="M642 206 H673"></path>
+<rect class="node dark" x="675" y="175" width="174" height="62" rx="8"></rect><text x="695" y="201">同一份答卷集合</text><text class="sub" x="695" y="224">同题 OR · 跨题 AND</text>
+<path class="edge" d="M849 206 H906"></path>
+<text x="918" y="211">评分 / NPS</text>
+<text class="sub" x="165" y="282">全部问卷 → 保留原六卡汇总，不展示专属题目条件</text><text class="sub" x="675" y="291">同条件 · 同集合 · 可对账</text>
+</svg>
+</div>
+
+</section>
+<nav class="nav" aria-label="方案目录"><a href="#scope-v6">本期影响范围</a><a href="#evidence">现状与缺口</a><a href="#changes">配置机制</a><a href="#flow">筛选逻辑</a><a href="#sample">样本与指标</a><a href="#states">切换与恢复</a><a href="#delivery">验收与决策</a><a href="#prototype-config">配置原型 ↗</a><a href="#prototype-analysis">分析原型 ↗</a></nav>
+
+<section class="section" id="scope-v6">
+<div class="sectionhead"><div><div class="eyebrow">STATISTICS</div><h2>原六项 + 两项新增，最多展示六块</h2></div><p>保留原有趋势和团队／渠道排行。</p></div>
+<div class="reuse-line"><b>好评率 / 好评数 / 差评数</b><span>＋</span><b>发出量 / 已填写量 / 点击率</b><span>＋</span><b>有效评分答卷数 / NPS</b><span>→</span><b>设置统计 · 勾选最多6项</b></div>
+<p class="caption">默认原六项；本人偏好保存，取消不改变；满6先取消再选择。公式统一在指标旁圆圈感叹号中悬停展示。</p>
+<div class="tablewrap"><table><thead><tr><th>影响页面 / 区域</th><th>本期改动</th><th>评估重点</th></tr></thead><tbody>
+<tr><td>问卷编辑 · 内容</td><td>单选/多选/评分的分析筛选开关；填空排除</td><td>保存回显、历史兼容、考核独立</td></tr>
+<tr><td>满意度 · 筛选区</td><td>渠道→问卷→题目答案</td><td>候选关联、同答卷OR/AND、版本与权限</td></tr>
+<tr><td>满意度 · 统计卡</td><td>8选6设置、新增有效评分数与NPS</td><td>来源、本人偏好与原六项接入</td></tr>
+<tr><td>满意度 · 原图表</td><td>保留原趋势与团队/渠道Top10</td><td>不新增图表；问卷/答案联动能否复用</td></tr>
+
+</tbody></table></div>
+<p class="caption">待确认：未答邀请没有题目答案，不能直接作为“客服样本”的发送/点击分母。旧好评率也不能未经确认替换为示例 9–10分占比。原型选定问卷后旧统计暂显示—与待确认空态，不展示无关联数值。</p>
+
+
+</section>
+
+<section class="section" id="evidence">
+<div class="sectionhead"><div><div class="eyebrow">01 / EVIDENCE → GAP</div><h2>已有问卷与评分链路，补上选样这一段</h2></div><p>沿用已有问卷编辑与评分流程，补充按答卷条件筛选。</p></div>
+<div class="diagram"><svg viewBox="0 0 1100 230" role="img" aria-labelledby="evidence-title"><title id="evidence-title">已核实能力与本次缺口的前后对照</title>
+<text class="role" x="26" y="45">已有实现</text>
+<rect class="node" x="183" y="20" width="245" height="70" rx="8"></rect><text x="204" y="49">问卷编辑 / 多题型 / 稳定 ID</text><text class="sub" x="204" y="74">量表与客服考核用途已有配置</text><path class="edge" d="M428 55 H484"></path>
+<rect class="node" x="486" y="20" width="236" height="70" rx="8"></rect><text x="507" y="49">邀请 → 版本 → 答案</text><text class="sub" x="507" y="74">已有数据关联可供核实复用</text><path class="edge" d="M722 55 H778"></path>
+<rect class="node" x="780" y="20" width="292" height="70" rx="8"></rect><text x="800" y="49">旧考核评分 / 工单等权</text><text class="sub" x="800" y="74">十分制好评 ≥8，不能直接当 NPS</text>
+<path class="dashed-edge" d="M305 90 V130 M605 90 V130"></path><text class="role" x="26" y="163">本次建议</text>
+<rect class="node teal" x="183" y="130" width="245" height="72" rx="8"></rect><text x="204" y="161">题目增加分析用途</text><text class="sub" x="204" y="186">哪些题可用于选样</text><path class="edge" d="M428 166 H484"></path>
+<rect class="node teal" x="486" y="130" width="236" height="72" rx="8"></rect><text x="507" y="161">问卷 + 答案条件</text><path class="edge" d="M722 166 H778"></path>
+<rect class="node teal" x="780" y="130" width="292" height="72" rx="8"></rect><text x="800" y="161">原始答卷 NPS / 9–10 分占比</text><text class="sub" x="800" y="186">按当前样本重新计算</text>
+</svg></div>
+
+</section>
+
+<section class="section" id="scenarios">
+<div class="sectionhead"><div><div class="eyebrow">02 / S01 → CONFIGURATION</div><h2>题目多一个用途，客户仍填原来的问卷</h2></div><p>管理员负责配置；分析人员使用保存后的可筛选题目。</p></div>
+<div class="diagram" id="changes"><svg viewBox="0 0 1100 320" role="img" aria-labelledby="config-title"><title id="config-title">题目开关决策图：允许题型默认关闭，开启后进入筛选</title>
+<text class="role" x="28" y="42">问卷内容</text><rect class="node" x="28" y="67" width="230" height="70" rx="8"></rect><text x="48" y="96">评分 / 单选 / 多选</text><text class="sub" x="48" y="121">提供“用于分析筛选”开关</text>
+<path class="edge" d="M258 102 H312"></path><polygon class="diamond" points="405,49 497,102 405,155 313,102"></polygon><text text-anchor="middle" x="405" y="98">是否开启</text><text class="sub" text-anchor="middle" x="405" y="123">默认关闭</text>
+<path class="edge" d="M497 102 H555"></path><text class="branch" x="513" y="88">是</text><rect class="node teal" x="557" y="67" width="231" height="70" rx="8"></rect><text x="578" y="96">统一保存 → 重开回显</text><text class="sub" x="578" y="121">按题目 / 选项稳定 ID 关联</text>
+<path class="edge" d="M788 102 H838"></path><rect class="node teal" x="840" y="67" width="232" height="70" rx="8"></rect><text x="860" y="96">进入该问卷分析条件</text><text class="sub" x="860" y="121">题目标题 + 选项 / 原始分值</text>
+<path class="edge" d="M405 155 V214 H555"></path><text class="branch" x="419" y="187">否</text><rect class="node" x="557" y="179" width="515" height="70" rx="8"></rect><text x="578" y="208">不提供该题筛选；答案照常保存</text><text class="sub" x="578" y="233">填空题直接走此路径，不提供开关（已确认）</text>
+<path class="edge" d="M258 214 H555"></path><rect class="node" x="28" y="179" width="230" height="70" rx="8"></rect><text x="48" y="208">填空题（文本）</text><text class="sub" x="48" y="233">客户仍可照常填写</text>
+<text class="sub" x="28" y="292">示例：评分题和触点多选开启；填空题不支持筛选。</text>
+</svg></div>
+<div class="scope-line"><b>互不替代</b><span>分析开关 → 能否筛选</span><span>客服考核 → 考核用途</span><span>评分题 → 用于统计</span></div>
+</section>
+
+<section class="section prototype-section" id="prototype-config">
+<div class="sectionhead"><div><div class="eyebrow">RULE → PROTOTYPE → ACCEPTANCE</div><h2>配置问卷题目的筛选用途</h2></div><p>开启、保存、重新打开核对。</p></div>
+<div class="prototype-links"><a class="btn primary" href="prototype/survey.html?page=create&amp;id=sample&amp;step=2" target="_blank" rel="noopener">独立打开配置原型 ↗</a><a class="btn" href="prototype/survey.html?page=surveys" target="_blank" rel="noopener">查看问卷列表 ↗</a></div>
+<div class="prototype-shell"><iframe title="示例 问卷配置高保真原型" src="prototype/survey.html?page=create&amp;id=sample&amp;step=2" loading="lazy"></iframe></div>
+<p class="caption">演示数据。</p>
+</section>
+
+<section class="section" id="flow">
+<div class="sectionhead"><div><div class="eyebrow">03 / S02–S03 → FILTER SEMANTICS</div><h2>同题选“任一”，跨题要“同时”</h2></div><p>条件在同一份答卷内判断，多选命中多个值仍只计一份。</p></div>
+<div class="diagram"><svg viewBox="0 0 1100 335" role="img" aria-labelledby="logic-title"><title id="logic-title">筛选逻辑：同题OR，跨题AND，同一答卷满足，禁止跨答卷拼接</title>
+<rect class="group" x="22" y="24" width="446" height="162" rx="10"></rect><text class="role" x="42" y="56">Q2 影响环节：任一命中 / OR</text>
+<rect class="node" x="44" y="79" width="177" height="69" rx="8"></rect><text x="64" y="109">客服响应</text><text class="sub" x="64" y="133">选项 A</text><text class="operator" x="236" y="120">或</text><rect class="node" x="276" y="79" width="169" height="69" rx="8"></rect><text x="296" y="109">异常处理</text><text class="sub" x="296" y="133">选项 B</text>
+<path class="edge" d="M468 107 H527"></path><text class="branch" x="482" y="93">且</text><rect class="node" x="529" y="72" width="208" height="70" rx="8"></rect><text x="549" y="101">Q4 回访授权 = 是</text><text class="sub" x="549" y="126">开启后才可追加此条件</text><path class="edge" d="M737 107 H798"></path>
+<rect class="node teal" x="800" y="72" width="275" height="70" rx="8"></rect><text x="821" y="101">同一份答卷同时满足</text><text class="sub" x="821" y="126">每个答卷 ID 仅进入集合一次</text>
+<path class="dashed-edge" d="M937 142 V197 H48"></path><text class="sub" x="45" y="228">禁止拼接：同一工单里，答卷 A 勾客服但不同意回访；答卷 B 同意回访但未勾客服 → 两份都不命中。</text>
+<line class="divider" x1="24" y1="250" x2="1075" y2="250"></line><text class="role" x="45" y="281">统一查询边界</text><text x="269" y="281">提交时间</text><text x="472" y="281">渠道 / 账号权限</text><text x="721" y="281">具体问卷 / 兼容版本</text><text class="sub" x="269" y="309">不混发送时间与工单日期</text><text class="sub" x="721" y="309">0 分有效，未作答单独识别</text>
+</svg></div>
+<p class="caption">候选问卷来自渠道配置 / 正式邀请答卷关系；某日期无答卷不使候选消失。历史停用问卷可查，不兼容量表或语义分版本分析。</p>
+</section>
+
+<section class="section" id="sample">
+<div class="sectionhead"><div><div class="eyebrow">04 / SAMPLE &amp; DENOMINATOR</div><h2>100 份看整体，40 份看客服，28 份是分子</h2></div><p>以下为合成示例，原型以单道评分题演示。</p></div>
+<div class="explainer" data-step="all">
+<div class="explain-toolbar"><span>逐步解释样本如何变化</span><div role="group" aria-label="样本解释步骤"><button type="button" data-step="all" aria-pressed="true">完整图</button><button type="button" data-step="0" aria-pressed="false">1 整体</button><button type="button" data-step="1" aria-pressed="false">2 客服</button><button type="button" data-step="2" aria-pressed="false">3 高分</button></div></div>
+<div class="diagram sample-diagram"><svg viewBox="0 0 1100 415" role="img" aria-labelledby="sample-title sample-desc"><title id="sample-title">100份整体、40份客服、28份客服高分的样本分层和指标公式</title><desc id="sample-desc">整体100份含70推荐20被动10贬损，NPS加60。仅加Q2客服条件得到40份，含28推荐8被动4贬损，高分率28除40为70%。如果再筛Q1九到十分只剩28份，高分率变成100%，不能代表全体客服触点。此样例客服NPS也为加60，仅为数据巧合。</desc>
+<g data-scene="0"><rect class="node" x="24" y="26" width="310" height="345" rx="12"></rect><text class="role" x="46" y="60">A / 所选问卷整体</text><text class="number" x="46" y="117">100<tspan class="unit"> 份有效评分</tspan></text>
+<rect class="bar-high" x="46" y="143" width="187.6" height="35" rx="3"></rect><rect class="bar-mid" x="233.6" y="143" width="53.6" height="35"></rect><rect class="bar-low" x="287.2" y="143" width="26.8" height="35" rx="3"></rect><text class="bar-label" x="93" y="167">70</text><text class="bar-label" x="250" y="167">20</text><text class="bar-label" x="292" y="167">10</text>
+<text x="46" y="219">NPS = (70 − 10) / 100 × 100</text><text class="result" x="46" y="264">+60<tspan class="unit"> 分值</tspan></text><text class="sub" x="46" y="308">7–8 分仍留在分母</text><text class="sub" x="46" y="336">无评分答卷不计有效评分分母</text></g>
+<path class="edge" d="M334 113 H392"></path><text class="branch" x="343" y="86">Q2</text><text class="sub" x="341" y="143">含客服</text>
+<g data-scene="1"><rect class="node teal" x="394" y="26" width="310" height="345" rx="12"></rect><text class="role" x="416" y="60">B / 客服触点样本</text><text class="number" x="416" y="117">40<tspan class="unit"> 份有效评分</tspan></text>
+<rect class="bar-high" x="416" y="143" width="187.6" height="35" rx="3"></rect><rect class="bar-mid" x="603.6" y="143" width="53.6" height="35"></rect><rect class="bar-low" x="657.2" y="143" width="26.8" height="35" rx="3"></rect><text class="bar-label" x="465" y="167">28</text><text class="bar-label" x="621" y="167">8</text><text class="bar-label" x="666" y="167">4</text>
+<text x="416" y="219">客服高分率 = 28 / 40 × 100%</text><text class="result" x="416" y="264">70%<tspan class="unit"> / 28 份高分</tspan></text><text class="sub" x="416" y="308">客服 NPS = (28−4)/40×100</text><text class="sub" x="416" y="336">也为 +60，仅是这个样例的巧合</text></g>
+<path class="edge warning-edge" d="M704 113 H762"></path><text class="branch" x="712" y="86">再筛 Q1</text><text class="sub" x="711" y="143">9–10分</text>
+<g data-scene="2"><rect class="node amber" x="764" y="26" width="310" height="345" rx="12"></rect><text class="role" x="786" y="60">C / 客服中的高分样本</text><text class="number" x="786" y="117">28<tspan class="unit"> 份有效评分</tspan></text>
+<rect class="bar-high" x="786" y="143" width="268" height="35" rx="3"></rect><text class="bar-label" x="905" y="167">28</text><text x="786" y="219">当前高分率 = 28 / 28 = 100%</text><text class="result warning-text" x="786" y="264">100%<tspan class="unit"> / NPS +100</tspan></text><text class="sub" x="786" y="308">分母已排除中低分答卷</text><text class="sub" x="786" y="336">不能当作客服触点总体满意率</text></g>
+<text class="sub" x="25" y="402">颜色：绿色 9–10 推荐者 / 灰色 7–8 被动者 / 红色 0–6 贬损者；NPS 范围 −100 至 +100，显示分值。</text>
+</svg></div>
+<p class="step-caption" id="step-caption" role="status" aria-live="polite">看客服触点满意率，只加 Q2 客服条件；Q1 高分由指标分子判断，分母保留这 40 份有效评分。</p>
+</div>
+<div class="metric-contract"><b>口径约束</b><span>无有效评分 → “—”</span><span>不套用旧考核 ≥8 阈值</span><span>不自动计入坐席绩效</span></div>
+<p class="caption">0–5 分先乘 2 换算为十分制；同一答卷有多道纳入客服考核的评分题时，换算后取有效评分的平均值。每份答卷只计一次。</p>
+</section>
+
+<section class="section prototype-section" id="prototype-analysis">
+<div class="sectionhead"><div><div class="eyebrow">RULE → PROTOTYPE → ACCEPTANCE</div><h2>查看筛选后的满意度指标</h2></div><p>选择客服触点并应用，查看当前样本的评分统计。</p></div>
+<div class="prototype-links"><a class="btn primary" href="prototype/report.html" target="_blank" rel="noopener">独立打开分析原型 ↗</a><a class="btn" href="prototype/report.html?scenario=normal" target="_blank" rel="noopener">重置原型，从整体 100 份开始 ↗</a></div>
+<div class="prototype-shell"><iframe title="示例 满意度问卷分析高保真原型" src="prototype/report.html" loading="lazy"></iframe></div>
+<p class="caption">原有图表保留；图解中的步骤按钮不改变原型筛选。</p>
+</section>
+
+<section class="section" id="states">
+<div class="sectionhead"><div><div class="eyebrow">05 / S04 → SWITCH &amp; RECOVER</div><h2>切换有明确去向，失效必须重新核对</h2></div><p>保留适用条件；不通过静默删条件扩大样本。</p></div>
+<div class="diagram"><svg viewBox="0 0 1100 365" role="img" aria-labelledby="switch-title"><title id="switch-title">渠道和问卷切换的决策路径</title>
+<rect class="node" x="24" y="32" width="172" height="64" rx="8"></rect><text x="46" y="71">切换渠道</text><path class="edge" d="M196 64 H252"></path><polygon class="diamond" points="383,14 511,64 383,114 255,64"></polygon><text text-anchor="middle" x="383" y="60">原问卷仍适用？</text><text class="sub" text-anchor="middle" x="383" y="84">看真实渠道关系</text>
+<path class="edge" d="M511 64 H654"></path><text class="branch" x="549" y="49">是</text><rect class="node teal" x="656" y="32" width="416" height="64" rx="8"></rect><text x="679" y="70">保留问卷与题目条件 → 按新渠道查询</text>
+<path class="edge" d="M383 114 V152 H654"></path><text class="branch" x="400" y="143">否</text><rect class="node amber" x="656" y="120" width="416" height="64" rx="8"></rect><text x="679" y="149">重置为全部问卷 + 清条件 + 提示</text><text class="sub" x="679" y="173">回到旧汇总，不展示专属题条件</text>
+<rect class="node" x="24" y="215" width="172" height="64" rx="8"></rect><text x="46" y="254">切换问卷</text><path class="edge" d="M196 247 H289"></path><rect class="node" x="291" y="215" width="251" height="64" rx="8"></rect><text x="311" y="253">清空原题目条件</text><path class="edge" d="M542 247 H654"></path><rect class="node teal" x="656" y="215" width="416" height="64" rx="8"></rect><text x="679" y="244">加载新问卷已开启的筛选题</text><text class="sub" x="679" y="269">无筛选题仍能看问卷统计</text>
+<text class="sub" x="25" y="330">历史题补开：同 ID / 同语义的历史答案可筛；改量表或语义需分版本；已发客户内容不改写。</text>
+</svg></div>
+<div class="diagram recovery"><svg viewBox="0 0 1100 390" role="img" aria-labelledby="recovery-title"><title id="recovery-title">查询状态与失败恢复：保留条件重试，配置失效阻止查询，刷新后显式重新应用</title>
+<text class="role" x="24" y="34">查询状态 / 恢复闭环</text><rect class="node" x="24" y="70" width="151" height="68" rx="8"></rect><text x="43" y="100">已选条件</text><text class="sub" x="43" y="125">应用 / 重试</text><path class="edge" d="M175 104 H232"></path><rect class="node" x="234" y="70" width="167" height="68" rx="8"></rect><text x="254" y="100">查询中</text><text class="sub" x="254" y="125">最新请求标识</text>
+<path class="edge" d="M401 104 H510 V69 H574"></path><text class="branch" x="425" y="83">成功</text><rect class="node teal" x="576" y="39" width="496" height="61" rx="8"></rect><text x="597" y="77">展示当前答卷集合的评分指标</text>
+<path class="edge" d="M401 104 H510 V146 H574"></path><text class="branch" x="424" y="144">空结果</text><rect class="node" x="576" y="116" width="496" height="61" rx="8"></rect><text x="597" y="154">区分无答卷 / 无评分 → 空分母显示“—”</text>
+<path class="edge" d="M317 138 V208 H574"></path><text class="branch" x="335" y="193">失败</text><rect class="node amber" x="576" y="188" width="496" height="61" rx="8"></rect><text x="597" y="225">保留条件 + 提示失败 → 可重试</text><path class="edge" d="M576 231 H100 V138"></path>
+<rect class="node amber" x="24" y="286" width="268" height="72" rx="8"></rect><text x="44" y="317">筛选配置已失效</text><text class="sub" x="44" y="342">阻止查询，不能静默删条件</text><path class="edge" d="M292 322 H350"></path><rect class="node" x="352" y="286" width="267" height="72" rx="8"></rect><text x="372" y="317">刷新配置 → 核对条件</text><text class="sub" x="372" y="342">等待显式重新应用</text><path class="edge" d="M619 322 H677"></path><rect class="node teal" x="679" y="286" width="393" height="72" rx="8"></rect><text x="699" y="317">重新应用 → 重新查询</text><text class="sub" x="699" y="342">切换后的旧响应一律忽略</text>
+</svg></div>
+<p class="caption">分析权限沿用现有账号与团队权限；问卷与题目条件也需校验。</p>
+</section>
+
+<section class="section" id="delivery">
+<div class="sectionhead"><div><div class="eyebrow">06 / TRACEABILITY → ACCEPTANCE</div><h2>每条核心机制，都有可观察的验收结果</h2></div><p>关键验收结果。</p></div>
+<div class="tablewrap"><table><thead><tr><th>依据 / 场景</th><th>规则 → 页面</th><th>可观察的结果</th><th>验收</th></tr></thead><tbody>
+<tr><td>E03 / S01 配置</td><td>独立开关 → 问卷内容</td><td>保存重开回显，客服考核与客户问卷不变</td><td>P01–P04</td></tr>
+<tr><td>E04 / S02 选范围</td><td>渠道联动 → 分析筛选</td><td>保留适用问卷；换问卷清条件；历史候选不随日期消失</td><td>P07–P09</td></tr>
+<tr><td>E01 / S03 看客服</td><td>同答卷条件 → 评分指标</td><td>100 份 NPS +60；客服 40 份中高分 28 份 = 70%</td><td>P11 / P12 / P17 / P18</td></tr>
+<tr><td>E04 / S04 恢复</td><td>失效阻断 → 核对 / 重查</td><td>失败保留条件，配置变化不能悄悄扩大结果</td><td>恢复与并发用例</td></tr>
+
+</tbody></table></div>
+
+</section>
+
+
+
+
+<footer><div class="links"><a href="#top">回到顶部 ↑</a></div><span>满意度问卷分析 · 分享版</span></footer>
+</main>
+
+
+</body></html>
