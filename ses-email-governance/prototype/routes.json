@@ -1,0 +1,380 @@
+[
+  {
+    "id": "platformTenants",
+    "title": "邮件治理租户列表",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "tenantDetail",
+    "title": "租户发送资格与健康详情",
+    "role": "平台管理员",
+    "modules": "M01/M11"
+  },
+  {
+    "id": "applicationReview",
+    "title": "SES申请审核独立页",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "restrictionEdit",
+    "title": "限制资格独立页",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "restorationReview",
+    "title": "整改与恢复审核独立页",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "mailHealth",
+    "title": "Email · 邮箱详情",
+    "role": "租户管理员",
+    "modules": "M02/M06"
+  },
+  {
+    "id": "mailSettings",
+    "title": "设置 IMAP/SMTP · 邮箱授权",
+    "role": "租户管理员",
+    "modules": "M02"
+  },
+  {
+    "id": "mailVerify",
+    "title": "IMAP/SMTP · 高级设置与验证",
+    "role": "租户管理员",
+    "modules": "M02"
+  },
+  {
+    "id": "applicationEdit",
+    "title": "SES申请独立页",
+    "role": "租户管理员",
+    "modules": "M01/M02"
+  },
+  {
+    "id": "remediationEdit",
+    "title": "整改提交独立页",
+    "role": "租户管理员",
+    "modules": "M01/M13"
+  },
+  {
+    "id": "pendingList",
+    "title": "受影响/待处理邮件列表",
+    "role": "管理员/客服",
+    "modules": "M02/M04/M13"
+  },
+  {
+    "id": "pendingDetail",
+    "title": "单封邮件尝试与处理记录",
+    "role": "管理员/客服",
+    "modules": "M03/M04"
+  },
+  {
+    "id": "ticketReady",
+    "title": "通道与收件人合格的工单",
+    "role": "客服",
+    "modules": "M03/M04"
+  },
+  {
+    "id": "ticketBlocked",
+    "title": "发送前阻断的工单",
+    "role": "客服",
+    "modules": "M03/M04/M05"
+  },
+  {
+    "id": "ticketFailed",
+    "title": "发送后明确失败的工单",
+    "role": "客服",
+    "modules": "M04"
+  },
+  {
+    "id": "ticketUnknown",
+    "title": "结果未知、核查中的工单",
+    "role": "客服",
+    "modules": "M03/M04"
+  },
+  {
+    "id": "qualityMissing",
+    "title": "资料已收到/只缺一项",
+    "role": "客服",
+    "modules": "M07"
+  },
+  {
+    "id": "qualityEscalation",
+    "title": "达到排障上限、交负责人",
+    "role": "客服/主管",
+    "modules": "M07"
+  },
+  {
+    "id": "qualityThanks",
+    "title": "纯感谢及包含新问题",
+    "role": "客服",
+    "modules": "M07"
+  },
+  {
+    "id": "qualitySurvey",
+    "title": "邀评资格与跳过结果",
+    "role": "客服/管理员",
+    "modules": "M07"
+  },
+  {
+    "id": "recipientList",
+    "title": "联系人联系状态列表",
+    "role": "管理员/客服",
+    "modules": "M05"
+  },
+  {
+    "id": "recipientDetail",
+    "title": "单联系人限制来源与范围",
+    "role": "管理员/客服",
+    "modules": "M05"
+  },
+  {
+    "id": "providerEvents",
+    "title": "租户详情 · 投诉与退信回执",
+    "role": "平台管理员",
+    "modules": "M06"
+  },
+  {
+    "id": "providerEventDetail",
+    "title": "事件归属、去重与晚到详情",
+    "role": "平台管理员",
+    "modules": "M06"
+  },
+  {
+    "id": "providerUnassigned",
+    "title": "未归属事件核查",
+    "role": "平台管理员",
+    "modules": "M06"
+  },
+  {
+    "id": "emailPreview",
+    "title": "已发服务邮件与页脚入口",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "feedbackEdit",
+    "title": "普通服务反馈提交",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "feedbackSuccess",
+    "title": "反馈已受理",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "feedbackUnknown",
+    "title": "提交超时、查询原结果",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "feedbackExpired",
+    "title": "链接过期/已撤销",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "preferenceEdit",
+    "title": "联系偏好选择",
+    "role": "收件人",
+    "modules": "M09"
+  },
+  {
+    "id": "preferenceVerify",
+    "title": "校验原收件人与操作范围",
+    "role": "收件人",
+    "modules": "M09"
+  },
+  {
+    "id": "preferenceStopConfirm",
+    "title": "停止该商家全部联系二次确认",
+    "role": "收件人",
+    "modules": "M09"
+  },
+  {
+    "id": "preferenceResult",
+    "title": "联系偏好生效结果",
+    "role": "收件人",
+    "modules": "M09"
+  },
+  {
+    "id": "feedbackList",
+    "title": "主管反馈列表",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "feedbackDetail",
+    "title": "反馈详情与原工单关联",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "feedbackHandle",
+    "title": "内部处理、关闭及理由",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "feedbackEscalate",
+    "title": "升级处理、负责人兜底",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "riskOverview",
+    "title": "租户详情 · 发送资格与指标",
+    "role": "平台管理员",
+    "modules": "M11"
+  },
+  {
+    "id": "riskReplay",
+    "title": "候选阈值影子回放",
+    "role": "平台管理员",
+    "modules": "M11"
+  },
+  {
+    "id": "riskIncomplete",
+    "title": "租户详情 · 统计缺口",
+    "role": "平台管理员",
+    "modules": "M11"
+  },
+  {
+    "id": "migrationList",
+    "title": "租户治理 · 存量接入分组",
+    "role": "平台管理员",
+    "modules": "M13"
+  },
+  {
+    "id": "migrationDetail",
+    "title": "租户详情 · 接入状态",
+    "role": "平台管理员",
+    "modules": "M13"
+  },
+  {
+    "id": "migrationValidation",
+    "title": "替代邮箱 · IMAP/SMTP 连接验证",
+    "role": "租户管理员",
+    "modules": "M02/M13"
+  },
+  {
+    "id": "queueReview",
+    "title": "恢复后的历史邮件核对列表",
+    "role": "管理员/客服",
+    "modules": "M13"
+  },
+  {
+    "id": "notifications",
+    "title": "租户详情 · 通知结果",
+    "role": "平台/租户管理员",
+    "modules": "M12"
+  },
+  {
+    "id": "notificationDetail",
+    "title": "受影响范围、接收人及发送结果",
+    "role": "平台/租户管理员",
+    "modules": "M12"
+  },
+  {
+    "id": "auditList",
+    "title": "租户详情 · 操作记录",
+    "role": "平台/租户管理员",
+    "modules": "M12"
+  },
+  {
+    "id": "auditDetail",
+    "title": "单次资格/偏好/反馈变更留痕",
+    "role": "平台/租户管理员",
+    "modules": "M12"
+  },
+  {
+    "id": "complaintConfig",
+    "title": "邮件内投诉设置",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "complaintFormList",
+    "title": "投诉表单",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "complaintFormEdit",
+    "title": "新建／编辑投诉表单",
+    "role": "平台管理员",
+    "modules": "M01"
+  },
+  {
+    "id": "complaintConfirm",
+    "title": "邮件投诉确认",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "complaintResult",
+    "title": "邮件投诉已提交",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "complaintUnknown",
+    "title": "邮件投诉结果待确认",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "complaintExpired",
+    "title": "邮件投诉链接失效",
+    "role": "收件人",
+    "modules": "M08"
+  },
+  {
+    "id": "complaintInbox",
+    "title": "租户邮件投诉待办",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "complaintPlatform",
+    "title": "租户详情 · 客户提交",
+    "role": "平台管理员",
+    "modules": "M06"
+  },
+  {
+    "id": "complaintDetail",
+    "title": "客户投诉详情",
+    "role": "平台/租户管理员/主管/客服",
+    "modules": "M10"
+  },
+  {
+    "id": "complaintBlacklist",
+    "title": "联系人 · 黑名单",
+    "role": "主管/管理员",
+    "modules": "M05"
+  },
+  {
+    "id": "complaintHandle",
+    "title": "处理邮件投诉",
+    "role": "主管/管理员",
+    "modules": "M10"
+  },
+  {
+    "id": "mailIntegration",
+    "title": "智能客服 · 集成",
+    "role": "租户管理员",
+    "modules": "M02"
+  },
+  {
+    "id": "mailList",
+    "title": "邮箱列表",
+    "role": "租户管理员",
+    "modules": "M02"
+  }
+]

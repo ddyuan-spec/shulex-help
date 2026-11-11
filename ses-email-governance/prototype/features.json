@@ -1,0 +1,1238 @@
+[
+  {
+    "id": "F01",
+    "module": "M01",
+    "name": "新租户默认 OFF",
+    "route": "tenantDetail",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-018"
+    },
+    "href": "index.html#tenantDetail?role=platform&tenant=TEN-018",
+    "review": "NOVA默认未开放；切换商家后无通道时保留待处理。",
+    "pages": [
+      {
+        "label": "新租户资格详情",
+        "route": "tenantDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-018"
+        },
+        "href": "index.html#tenantDetail?role=platform&tenant=TEN-018"
+      }
+    ]
+  },
+  {
+    "id": "F02",
+    "module": "M01",
+    "name": "申请、审核、撤回、恢复",
+    "route": "applicationEdit",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-018"
+    },
+    "href": "index.html#applicationEdit?role=admin&tenant=TEN-018",
+    "review": "填写申请→平台审核→商家显式选择SES；限制、整改与恢复分别审核。",
+    "pages": [
+      {
+        "label": "提交申请",
+        "route": "applicationEdit",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-018"
+        },
+        "href": "index.html#applicationEdit?role=admin&tenant=TEN-018"
+      },
+      {
+        "label": "审核申请",
+        "route": "applicationReview",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-018"
+        },
+        "href": "index.html#applicationReview?role=platform&tenant=TEN-018"
+      },
+      {
+        "label": "限制资格",
+        "route": "restrictionEdit",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#restrictionEdit?role=platform&tenant=TEN-017"
+      },
+      {
+        "label": "提交整改",
+        "route": "remediationEdit",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#remediationEdit?role=admin&tenant=TEN-019"
+      },
+      {
+        "label": "审核恢复",
+        "route": "restorationReview",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#restorationReview?role=platform&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F03",
+    "module": "M01",
+    "name": "原因与操作者审计",
+    "route": "tenantDetail",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-019"
+    },
+    "href": "index.html#tenantDetail?role=platform&tenant=TEN-019",
+    "review": "查看限制原因，提交限制后到操作记录核对前后状态。",
+    "pages": [
+      {
+        "label": "限制原因",
+        "route": "tenantDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#tenantDetail?role=platform&tenant=TEN-019"
+      },
+      {
+        "label": "操作者审计",
+        "route": "auditList",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#auditList?role=platform&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F04",
+    "module": "M02",
+    "name": "IMAP/SMTP 连接验证",
+    "route": "mailSettings",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-019"
+    },
+    "href": "index.html#mailSettings?role=admin&tenant=TEN-019",
+    "review": "在现有邮箱授权抽屉展开高级设置，验证成功返回对应邮箱，失败留在抽屉；不发测试邮件。",
+    "pages": [
+      {
+        "label": "授权设置",
+        "route": "mailSettings",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#mailSettings?role=admin&tenant=TEN-019"
+      },
+      {
+        "label": "验证连接",
+        "route": "mailVerify",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#mailVerify?role=admin&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F05",
+    "module": "M02",
+    "name": "实际 provider 与 From 展示",
+    "route": "mailHealth",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#mailHealth?role=admin&tenant=TEN-017",
+    "review": "邮箱详情查看地址及授权状态，实际供应商以单封发送记录为准；自有邮箱失效不静默回退 SES。",
+    "pages": [
+      {
+        "label": "邮箱详情",
+        "route": "mailHealth",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#mailHealth?role=admin&tenant=TEN-017"
+      },
+      {
+        "label": "实际发送通道",
+        "route": "pendingDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#pendingDetail?role=admin&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F06",
+    "module": "M02",
+    "name": "无通道待处理入口",
+    "route": "pendingList",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-019"
+    },
+    "href": "index.html#pendingList?role=admin&tenant=TEN-019",
+    "review": "无可用通道的邮件保留待处理，进入消息详情与工单。",
+    "pages": [
+      {
+        "label": "无通道待处理",
+        "route": "pendingList",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#pendingList?role=admin&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F07",
+    "module": "M03",
+    "name": "人工、AI、导入、定时、重试",
+    "route": "ticketBlocked",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-208"
+    },
+    "href": "index.html#ticketBlocked?role=agent&tenant=TEN-017&message=MSG-208",
+    "review": "切换人工、AI、导入、定时、重试、旧服务，所有入口使用同一门禁。",
+    "pages": [
+      {
+        "label": "多入口门禁结果",
+        "route": "ticketBlocked",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-208"
+        },
+        "href": "index.html#ticketBlocked?role=agent&tenant=TEN-017&message=MSG-208"
+      }
+    ]
+  },
+  {
+    "id": "F08",
+    "module": "M03",
+    "name": "实际 provider 路由",
+    "route": "mailHealth",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#mailHealth?role=admin&tenant=TEN-017",
+    "review": "邮箱详情查看地址及授权状态，实际供应商以单封发送记录为准；自有邮箱失效不静默回退 SES。",
+    "pages": [
+      {
+        "label": "邮箱详情",
+        "route": "mailHealth",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#mailHealth?role=admin&tenant=TEN-017"
+      },
+      {
+        "label": "实际通道结果",
+        "route": "pendingDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#pendingDetail?role=admin&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F09",
+    "module": "M03",
+    "name": "阻断原因回传",
+    "route": "ticketBlocked",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-019",
+      "message": "MSG-401"
+    },
+    "href": "index.html#ticketBlocked?role=agent&tenant=TEN-019&message=MSG-401",
+    "review": "尝试发送查看阻断原因；不新增发送后失败记录。",
+    "pages": [
+      {
+        "label": "无可用通道阻断",
+        "route": "ticketBlocked",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-019",
+          "message": "MSG-401"
+        },
+        "href": "index.html#ticketBlocked?role=agent&tenant=TEN-019&message=MSG-401"
+      }
+    ]
+  },
+  {
+    "id": "F10",
+    "module": "M04",
+    "name": "未发送/禁发/未知三态",
+    "route": "ticketBlocked",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-208"
+    },
+    "href": "index.html#ticketBlocked?role=agent&tenant=TEN-017&message=MSG-208",
+    "review": "对照发送前阻断、明确失败与未知；未知先核查。",
+    "pages": [
+      {
+        "label": "发送前阻断",
+        "route": "ticketBlocked",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-208"
+        },
+        "href": "index.html#ticketBlocked?role=agent&tenant=TEN-017&message=MSG-208"
+      },
+      {
+        "label": "明确失败",
+        "route": "ticketFailed",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-206"
+        },
+        "href": "index.html#ticketFailed?role=agent&tenant=TEN-017&message=MSG-206"
+      },
+      {
+        "label": "结果未知",
+        "route": "ticketUnknown",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-207"
+        },
+        "href": "index.html#ticketUnknown?role=agent&tenant=TEN-017&message=MSG-207"
+      }
+    ]
+  },
+  {
+    "id": "F11",
+    "module": "M04",
+    "name": "失败原因与处理人",
+    "route": "pendingDetail",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017",
+      "message": "MSG-206"
+    },
+    "href": "index.html#pendingDetail?role=admin&tenant=TEN-017&message=MSG-206",
+    "review": "失败消息就地显示原因，通道由商家管理员修复。",
+    "pages": [
+      {
+        "label": "失败原因与处理",
+        "route": "pendingDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "message": "MSG-206"
+        },
+        "href": "index.html#pendingDetail?role=admin&tenant=TEN-017&message=MSG-206"
+      },
+      {
+        "label": "管理员修复通道",
+        "route": "mailHealth",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#mailHealth?role=admin&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F12",
+    "module": "M04",
+    "name": "草稿保留、受控重发",
+    "route": "ticketFailed",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-206"
+    },
+    "href": "index.html#ticketFailed?role=agent&tenant=TEN-017&message=MSG-206",
+    "review": "编辑草稿或受控重发，再检查当前资格；刷新保留草稿。",
+    "pages": [
+      {
+        "label": "草稿与受控重发",
+        "route": "ticketFailed",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-206"
+        },
+        "href": "index.html#ticketFailed?role=agent&tenant=TEN-017&message=MSG-206"
+      }
+    ]
+  },
+  {
+    "id": "F13",
+    "module": "M05",
+    "name": "仅退订可选邮件",
+    "route": "recipientDetail",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017",
+      "recipient": "R-KIM"
+    },
+    "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-KIM",
+    "review": "Kim仅退出可选邮件，必要售后可继续。",
+    "pages": [
+      {
+        "label": "仅退出可选邮件",
+        "route": "recipientDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "recipient": "R-KIM"
+        },
+        "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-KIM"
+      }
+    ]
+  },
+  {
+    "id": "F14",
+    "module": "M05",
+    "name": "停止该商家全部联系",
+    "route": "recipientDetail",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017",
+      "recipient": "R-LEE"
+    },
+    "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-LEE",
+    "review": "Lee已停止全部联系，自有与SES均不能绕过。",
+    "pages": [
+      {
+        "label": "停止全部联系状态",
+        "route": "recipientDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "recipient": "R-LEE"
+        },
+        "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-LEE"
+      },
+      {
+        "label": "禁发工单",
+        "route": "ticketBlocked",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-208"
+        },
+        "href": "index.html#ticketBlocked?role=agent&tenant=TEN-017&message=MSG-208"
+      }
+    ]
+  },
+  {
+    "id": "F15",
+    "module": "M05",
+    "name": "Complaint/永久退信拦截",
+    "route": "recipientDetail",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017",
+      "recipient": "R-JO"
+    },
+    "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-JO",
+    "review": "Jo为Complaint抑制，Bo为永久退信；分别查看联系状态。",
+    "pages": [
+      {
+        "label": "Complaint抑制",
+        "route": "recipientDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "recipient": "R-JO"
+        },
+        "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-JO"
+      },
+      {
+        "label": "永久退信抑制",
+        "route": "recipientDetail",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017",
+          "recipient": "R-BO"
+        },
+        "href": "index.html#recipientDetail?role=admin&tenant=TEN-017&recipient=R-BO"
+      }
+    ]
+  },
+  {
+    "id": "F16",
+    "module": "M06",
+    "name": "投诉/退信事件归属",
+    "route": "providerEventDetail",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017",
+      "event": "EV-001"
+    },
+    "href": "index.html#providerEventDetail?role=platform&tenant=TEN-017&event=EV-001",
+    "review": "查看供应商、消息、收件人与原发送批次关联。",
+    "pages": [
+      {
+        "label": "投诉事件归属",
+        "route": "providerEventDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017",
+          "event": "EV-001"
+        },
+        "href": "index.html#providerEventDetail?role=platform&tenant=TEN-017&event=EV-001"
+      }
+    ]
+  },
+  {
+    "id": "F17",
+    "module": "M06",
+    "name": "重复与晚到事件去重",
+    "route": "providerEventDetail",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017",
+      "event": "EV-001"
+    },
+    "href": "index.html#providerEventDetail?role=platform&tenant=TEN-017&event=EV-001",
+    "review": "EV-001晚到归原批次；EV-002重复不加计数；未归属单独核查。",
+    "pages": [
+      {
+        "label": "晚到事件",
+        "route": "providerEventDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017",
+          "event": "EV-001"
+        },
+        "href": "index.html#providerEventDetail?role=platform&tenant=TEN-017&event=EV-001"
+      },
+      {
+        "label": "重复事件",
+        "route": "providerEventDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017",
+          "event": "EV-002"
+        },
+        "href": "index.html#providerEventDetail?role=platform&tenant=TEN-017&event=EV-002"
+      },
+      {
+        "label": "未归属核查",
+        "route": "providerUnassigned",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#providerUnassigned?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F18",
+    "module": "M06",
+    "name": "实际 provider 分母",
+    "route": "riskOverview",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#riskOverview?role=platform&tenant=TEN-017",
+    "review": "指标问号替换为圆圈感叹号，悬停查看实际SES分母口径。",
+    "pages": [
+      {
+        "label": "实际SES分母与指标",
+        "route": "riskOverview",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#riskOverview?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F19",
+    "module": "M07",
+    "name": "识别已提供资料",
+    "route": "qualityMissing",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#qualityMissing?role=agent&tenant=TEN-017&message=MSG-204",
+    "review": "生成草稿承接已提供订单号和照片，仅询问购买渠道；可切换抽取不确定。",
+    "pages": [
+      {
+        "label": "已有资料与缺项",
+        "route": "qualityMissing",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#qualityMissing?role=agent&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F20",
+    "module": "M07",
+    "name": "排障上限转负责人",
+    "route": "qualityEscalation",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#qualityEscalation?role=agent&tenant=TEN-017&message=MSG-204",
+    "review": "达到规则上限转负责人，刷新后保留已移交结果。",
+    "pages": [
+      {
+        "label": "排障上限与移交",
+        "route": "qualityEscalation",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#qualityEscalation?role=agent&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F21",
+    "module": "M07",
+    "name": "感谢不回复、邀评抑制",
+    "route": "qualityThanks",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#qualityThanks?role=agent&tenant=TEN-017&message=MSG-204",
+    "review": "仅感谢不追加结束语；在场景选择器查看邀评资格。",
+    "pages": [
+      {
+        "label": "仅感谢不追加回复",
+        "route": "qualityThanks",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#qualityThanks?role=agent&tenant=TEN-017&message=MSG-204"
+      },
+      {
+        "label": "邀评资格判断",
+        "route": "qualitySurvey",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#qualitySurvey?role=agent&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F22",
+    "module": "M08",
+    "name": "服务反馈（本期不放邮件入口）",
+    "route": "emailPreview",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#emailPreview?role=recipient&tenant=TEN-017&message=MSG-204",
+    "review": "原邮件页脚仅显示邮件偏好及符合配置的投诉；保留独立服务反馈作为备选。",
+    "pages": [
+      {
+        "label": "查看新版邮件页脚",
+        "route": "emailPreview",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#emailPreview?role=recipient&tenant=TEN-017&message=MSG-204"
+      },
+      {
+        "label": "提交服务反馈",
+        "route": "feedbackEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F23",
+    "module": "M08",
+    "name": "工单关联与链接生命周期",
+    "route": "feedbackEdit",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204",
+    "review": "关联原服务邮件；外壳切换链接失效查看过期状态。",
+    "pages": [
+      {
+        "label": "有效反馈链接",
+        "route": "feedbackEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204"
+      },
+      {
+        "label": "链接失效状态",
+        "route": "feedbackExpired",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204",
+          "condition": "tokenExpired"
+        },
+        "href": "index.html#feedbackExpired?role=recipient&tenant=TEN-017&message=MSG-204&condition=tokenExpired"
+      }
+    ]
+  },
+  {
+    "id": "F24",
+    "module": "M08",
+    "name": "GET 不写入、重复提交幂等",
+    "route": "feedbackEdit",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204",
+      "condition": "normal"
+    },
+    "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204&condition=normal",
+    "review": "切换反馈超时，提交后查询原结果；重入提交不新增重复记录。",
+    "pages": [
+      {
+        "label": "正常提交",
+        "route": "feedbackEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204",
+          "condition": "normal"
+        },
+        "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204&condition=normal"
+      },
+      {
+        "label": "超时后查询原结果",
+        "route": "feedbackEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204",
+          "condition": "timeout"
+        },
+        "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204&condition=timeout"
+      }
+    ]
+  },
+  {
+    "id": "F25",
+    "module": "M09",
+    "name": "仅退出可选邮件",
+    "route": "preferenceEdit",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#preferenceEdit?role=recipient&tenant=TEN-017&message=MSG-204",
+    "review": "选择保留必要售后，验证后生效；联系人与发送检查同步。",
+    "pages": [
+      {
+        "label": "选择仅退出可选邮件",
+        "route": "preferenceEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#preferenceEdit?role=recipient&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F26",
+    "module": "M09",
+    "name": "停止商家全部联系",
+    "route": "preferenceEdit",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#preferenceEdit?role=recipient&tenant=TEN-017&message=MSG-204",
+    "review": "选择停止全部→验证→独立二次确认→保存。",
+    "pages": [
+      {
+        "label": "选择联系偏好",
+        "route": "preferenceEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#preferenceEdit?role=recipient&tenant=TEN-017&message=MSG-204"
+      },
+      {
+        "label": "停止全部二次确认",
+        "route": "preferenceStopConfirm",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#preferenceStopConfirm?role=recipient&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F27",
+    "module": "M09",
+    "name": "验证后生效与作用域展示",
+    "route": "preferenceVerify",
+    "params": {
+      "role": "recipient",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#preferenceVerify?role=recipient&tenant=TEN-017&message=MSG-204",
+    "review": "仅当前租户与原收件人作用域；失效/转发条件拒绝修改。",
+    "pages": [
+      {
+        "label": "验证联系作用域",
+        "route": "preferenceVerify",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#preferenceVerify?role=recipient&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F28",
+    "module": "M10",
+    "name": "认领、处理、升级、关闭",
+    "route": "feedbackList",
+    "params": {
+      "role": "supervisor",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#feedbackList?role=supervisor&tenant=TEN-017",
+    "review": "处理即认领，可记录处理、升级或关闭；不自动发确认邮件。",
+    "pages": [
+      {
+        "label": "反馈列表",
+        "route": "feedbackList",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#feedbackList?role=supervisor&tenant=TEN-017"
+      },
+      {
+        "label": "认领与处理关闭",
+        "route": "feedbackHandle",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017",
+          "feedback": "FB-031"
+        },
+        "href": "index.html#feedbackHandle?role=supervisor&tenant=TEN-017&feedback=FB-031"
+      },
+      {
+        "label": "升级处理",
+        "route": "feedbackEscalate",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017",
+          "feedback": "FB-031"
+        },
+        "href": "index.html#feedbackEscalate?role=supervisor&tenant=TEN-017&feedback=FB-031"
+      }
+    ]
+  },
+  {
+    "id": "F29",
+    "module": "M10",
+    "name": "关联原邮件与工单",
+    "route": "feedbackDetail",
+    "params": {
+      "role": "supervisor",
+      "tenant": "TEN-017",
+      "feedback": "FB-031"
+    },
+    "href": "index.html#feedbackDetail?role=supervisor&tenant=TEN-017&feedback=FB-031",
+    "review": "原邮件与工单可回看，联系状态单独查看。",
+    "pages": [
+      {
+        "label": "关联邮件与处理记录",
+        "route": "feedbackDetail",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017",
+          "feedback": "FB-031"
+        },
+        "href": "index.html#feedbackDetail?role=supervisor&tenant=TEN-017&feedback=FB-031"
+      },
+      {
+        "label": "原服务工单",
+        "route": "ticketReady",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#ticketReady?role=supervisor&tenant=TEN-017&message=MSG-204"
+      }
+    ]
+  },
+  {
+    "id": "F30",
+    "module": "M10",
+    "name": "被反馈人不能自行终结",
+    "route": "feedbackHandle",
+    "params": {
+      "role": "supervisor",
+      "tenant": "TEN-017",
+      "feedback": "FB-031",
+      "condition": "selfFeedback"
+    },
+    "href": "index.html#feedbackHandle?role=supervisor&tenant=TEN-017&feedback=FB-031&condition=selfFeedback",
+    "review": "切换被反馈人是当前主管，拒绝自行终结；缺主管分配管理员。",
+    "pages": [
+      {
+        "label": "禁止自行终结",
+        "route": "feedbackHandle",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017",
+          "feedback": "FB-031",
+          "condition": "selfFeedback"
+        },
+        "href": "index.html#feedbackHandle?role=supervisor&tenant=TEN-017&feedback=FB-031&condition=selfFeedback"
+      },
+      {
+        "label": "缺主管转管理员",
+        "route": "feedbackEdit",
+        "params": {
+          "role": "recipient",
+          "tenant": "TEN-017",
+          "message": "MSG-204",
+          "condition": "noSupervisor"
+        },
+        "href": "index.html#feedbackEdit?role=recipient&tenant=TEN-017&message=MSG-204&condition=noSupervisor"
+      }
+    ]
+  },
+  {
+    "id": "F31",
+    "module": "M11",
+    "name": "实际 provider 分母",
+    "route": "riskOverview",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#riskOverview?role=platform&tenant=TEN-017",
+    "review": "缺失分母显示不可计算，不显示零风险或自动恢复。",
+    "pages": [
+      {
+        "label": "SES指标",
+        "route": "riskOverview",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#riskOverview?role=platform&tenant=TEN-017"
+      },
+      {
+        "label": "缺失分母状态",
+        "route": "riskIncomplete",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-018"
+        },
+        "href": "index.html#riskIncomplete?role=platform&tenant=TEN-018"
+      }
+    ]
+  },
+  {
+    "id": "F32",
+    "module": "M11",
+    "name": "候选阈值影子回放",
+    "route": "riskReplay",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#riskReplay?role=platform&tenant=TEN-017",
+    "review": "输入D与C执行AND条件回放，资格不改变。",
+    "pages": [
+      {
+        "label": "候选阈值影子回放",
+        "route": "riskReplay",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#riskReplay?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F33",
+    "module": "M11",
+    "name": "自动限制与恢复",
+    "route": "riskReplay",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#riskReplay?role=platform&tenant=TEN-017",
+    "review": "候选自动治理未启用；正式限制与恢复仍走有依据审核。",
+    "pages": [
+      {
+        "label": "候选治理判断",
+        "route": "riskReplay",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#riskReplay?role=platform&tenant=TEN-017"
+      },
+      {
+        "label": "正式资格限制",
+        "route": "restrictionEdit",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#restrictionEdit?role=platform&tenant=TEN-017"
+      },
+      {
+        "label": "恢复资格审核",
+        "route": "restorationReview",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#restorationReview?role=platform&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F34",
+    "module": "M12",
+    "name": "限制/恢复通知",
+    "route": "notificationDetail",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-019",
+      "notification": "N-001"
+    },
+    "href": "index.html#notificationDetail?role=platform&tenant=TEN-019&notification=N-001",
+    "review": "管理通知失败不撤销限制，可独立重试。",
+    "pages": [
+      {
+        "label": "通知失败与重试",
+        "route": "notificationDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-019",
+          "notification": "N-001"
+        },
+        "href": "index.html#notificationDetail?role=platform&tenant=TEN-019&notification=N-001"
+      }
+    ]
+  },
+  {
+    "id": "F35",
+    "module": "M12",
+    "name": "客服、管理员、主管权限",
+    "route": "ticketReady",
+    "params": {
+      "role": "agent",
+      "tenant": "TEN-017",
+      "message": "MSG-204"
+    },
+    "href": "index.html#ticketReady?role=agent&tenant=TEN-017&message=MSG-204",
+    "review": "切换普通客服后无法进入邮箱设置；主管、管理员和平台权限分开。",
+    "pages": [
+      {
+        "label": "客服视角",
+        "route": "ticketReady",
+        "params": {
+          "role": "agent",
+          "tenant": "TEN-017",
+          "message": "MSG-204"
+        },
+        "href": "index.html#ticketReady?role=agent&tenant=TEN-017&message=MSG-204"
+      },
+      {
+        "label": "商家管理员视角",
+        "route": "mailSettings",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#mailSettings?role=admin&tenant=TEN-017"
+      },
+      {
+        "label": "主管视角",
+        "route": "feedbackList",
+        "params": {
+          "role": "supervisor",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#feedbackList?role=supervisor&tenant=TEN-017"
+      },
+      {
+        "label": "平台管理员视角",
+        "route": "tenantDetail",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#tenantDetail?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F36",
+    "module": "M12",
+    "name": "资格、偏好、反馈操作留痕",
+    "route": "auditList",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#auditList?role=platform&tenant=TEN-017",
+    "review": "先执行资格、偏好或反馈操作，再查看分类记录及前后状态。",
+    "pages": [
+      {
+        "label": "分类操作记录",
+        "route": "auditList",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#auditList?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F37",
+    "module": "M13",
+    "name": "按通道就绪 / 未就绪 / 紧急限制分组",
+    "route": "migrationList",
+    "params": {
+      "role": "platform",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#migrationList?role=platform&tenant=TEN-017",
+    "review": "存量按已就绪、未就绪、紧急限制分组，不一刀切停发。",
+    "pages": [
+      {
+        "label": "存量通道分组",
+        "route": "migrationList",
+        "params": {
+          "role": "platform",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#migrationList?role=platform&tenant=TEN-017"
+      }
+    ]
+  },
+  {
+    "id": "F38",
+    "module": "M13",
+    "name": "过渡期与切换验证",
+    "route": "migrationValidation",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-019"
+    },
+    "href": "index.html#migrationValidation?role=admin&tenant=TEN-019",
+    "review": "查看商家验证流程；过渡期限待业务确认。",
+    "pages": [
+      {
+        "label": "迁移连接验证",
+        "route": "migrationValidation",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-019"
+        },
+        "href": "index.html#migrationValidation?role=admin&tenant=TEN-019"
+      }
+    ]
+  },
+  {
+    "id": "F39",
+    "module": "M13",
+    "name": "恢复后核对积压，不批量重放",
+    "route": "queueReview",
+    "params": {
+      "role": "admin",
+      "tenant": "TEN-017"
+    },
+    "href": "index.html#queueReview?role=admin&tenant=TEN-017",
+    "review": "恢复不批量回放；逐条核对，过期问卷可取消。",
+    "pages": [
+      {
+        "label": "历史队列逐项核对",
+        "route": "queueReview",
+        "params": {
+          "role": "admin",
+          "tenant": "TEN-017"
+        },
+        "href": "index.html#queueReview?role=admin&tenant=TEN-017"
+      }
+    ]
+  }
+]

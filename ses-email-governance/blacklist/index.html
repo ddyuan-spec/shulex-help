@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Solvea · 联系人与邮箱黑名单</title>
+  <link rel="stylesheet" href="app.css?v=unsub7"><script defer src="blacklist-store.js"></script><script defer src="app.js?v=unsub7"></script><script defer src="unsubscribe.js?v=8"></script>
+</head>
+<body>
+  <div class="reviewbar"><span><i class="review-dot"></i>交互原型 <span class="review-muted">· 示例数据</span></span><div class="review-actions"><label for="reviewRole">体验权限</label><select id="reviewRole"><option value="admin">管理员</option><option value="agent">客服 · 可加入</option><option value="viewer">仅查看</option></select><button id="scopeBtn">功能范围</button><button id="resetBtn">重置演示</button></div></div>
+  <header class="appbar"><span class="brand">◕ solvea.</span><span class="collapse-icon">◫</span><span id="topTitle">联系人</span><span class="bar-end">♧　智能伙伴</span></header>
+  <div class="shell"><aside class="sidebar"><div class="workspace">▣　智能工作台 <span>≡</span></div><nav aria-label="主导航"><a href="#blacklist" data-nav="contacts">♙<span>联系人</span></a><a href="#" data-placeholder="报表">▥<span>报表</span></a><a href="#" data-placeholder="设置">⚙<span>设置</span></a></nav><div class="profile"><span class="avatar small">L</span><span>演示账号</span><span>›</span></div></aside><main id="main"></main></div>
+  <dialog id="modal" aria-labelledby="modalTitle"></dialog>
+  <dialog id="drawer" class="drawer" aria-labelledby="drawerTitle"></dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
