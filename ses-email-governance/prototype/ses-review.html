@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solvea · SES 邮件投诉原型</title>
+  <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="mailbox.css"><link rel="stylesheet" href="ses-review.css">
+  <script defer src="seed.js"></script><script defer src="../blacklist/blacklist-store.js"></script><script defer src="mailbox.js"></script><script defer src="ses-workflows.js"></script><script defer src="ses-review.js"></script>
+</head>
+<body class="mailbox-mode ses-review">
+  <div class="reviewbar"><a href="../solution.html">← 产品方案</a><div class="review-actions"><label for="sample">演示数据</label><select id="sample"><option value="TEN-017">AURORA · 有投诉</option><option value="TEN-018">NOVA · 无投诉</option></select></div></div>
+  <header class="appbar"><span class="brand"><img src="assets/logo.svg" alt="Solvea"></span><span class="collapse-icon">◫</span><span>集成</span><span class="bar-end">♧　智能伙伴</span></header>
+  <div class="shell"><aside class="sidebar"><div class="workspace">▣　智能客服 <span>≡</span></div><nav id="productNav" aria-label="主导航"></nav><div class="profile"><span class="avatar small">A</span><span>租户管理员</span><span>›</span></div></aside><main id="main"></main></div>
+  <div id="toast" role="status" hidden></div>
+</body></html>

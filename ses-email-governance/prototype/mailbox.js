@@ -1,6 +1,7 @@
 'use strict';
 window.createMailboxPreview = function (api) {
   const { esc, navLink, action, tenant, state, context, stamp, audit, problem, toast, save, sesBadge } = api;
+  const compact = api.sesReview;
   const modes = new Set(['auth','new','domain','folders','signature']);
   const routes = new Set(['mailIntegration','mailList','mailHealth','mailSettings','mailVerify','migrationValidation']);
   const btn = (label, route, data={}, primary=false) => navLink(label,route,data,primary?'mb-button mb-primary':'mb-button');
@@ -19,13 +20,14 @@ window.createMailboxPreview = function (api) {
     return '<header class="mb-title"><h1>'+ (back?navLink('←',back,{},'mb-back'):'')+esc(name)+'</h1><div class="mb-actions">'+right+'</div></header>';
   }
   function rows(records) {
-    const ses = sesBadge(tenant().ses);
-    return records.map(m=>'<tr data-mailbox-row="'+esc(m.email.toLowerCase())+'"><td><span class="mb-address">'+(m.auth!=='connected'?'<span class="mb-warn-icon" aria-label="待核查授权">⚠ </span>':'')+esc(m.email)+'</span>'+(m.auth==='expired'?'<br><span class="mb-auth-error">⚠ 授权异常</span>':'')+'</td><td>'+esc(m.brand)+'</td><td>启用</td><td>'+ses+'</td><td>'+esc(m.date||'--')+'</td><td><div class="mb-actions">'+btn('配置 →','mailHealth',{mailbox:m.id})+'<button type="button" class="mb-more" aria-label="更多操作" disabled title="原型未演示其他操作">⋮</button></div></td></tr>').join('');
+    const ses = compact ? compact.countCell : () => sesBadge(tenant().ses);
+    return records.map(m=>'<tr data-mailbox-row="'+esc(m.email.toLowerCase())+'"><td><span class="mb-address">'+(m.auth!=='connected'?'<span class="mb-warn-icon" aria-label="待核查授权">⚠ </span>':'')+esc(m.email)+'</span>'+(m.auth==='expired'?'<br><span class="mb-auth-error">⚠ 授权异常</span>':'')+'</td><td>'+esc(m.brand)+'</td><td>启用</td><td>'+ses(m)+'</td><td>'+esc(m.date||'--')+'</td><td><div class="mb-actions">'+btn('配置 →','mailHealth',{mailbox:m.id})+'<button type="button" class="mb-more" aria-label="更多操作" disabled title="原型未演示其他操作">⋮</button></div></td></tr>').join('');
   }
   function list() {
-    return '<div class="mb-list">'+title('邮箱','mailIntegration',act('批量 IMAP 授权','mbBatch',{tab:'import'})+btn('＋ Email','mailSettings',{'mail-mode':'new'},true))+'<input type="search" class="mb-search" placeholder="搜索" aria-label="搜索邮箱"><table class="mb-table"><thead><tr><th>邮箱</th><th>品牌</th><th>状态</th><th>SES 状态</th><th>授权时间</th><th></th></tr></thead><tbody>'+rows(all())+'</tbody></table><p class="mb-list-empty" hidden>暂无匹配邮箱</p></div>';
+    return '<div class="mb-list">'+title('邮箱','mailIntegration',(compact?.listAction()||'')+act('批量 IMAP 授权','mbBatch',{tab:'import'})+btn('＋ Email','mailSettings',{'mail-mode':'new'},true))+'<input type="search" class="mb-search" placeholder="搜索" aria-label="搜索邮箱"><table class="mb-table"><thead><tr><th>邮箱</th><th>品牌</th><th>状态</th><th>'+(compact?'SES 投诉邮件数':'SES 状态')+'</th><th>授权时间</th><th></th></tr></thead><tbody>'+rows(all())+'</tbody></table><p class="mb-list-empty" hidden>暂无匹配邮箱</p></div>';
   }
   function integration() {
+    if (compact) return '<div class="mb-list">'+title('集成')+compact.channelCard(all().filter(m=>m.auth==='connected').length)+'</div>';
     return '<div class="mb-list">'+title('集成')+'<div class="mb-market"><span>渠道</span><button type="button" data-go="mailList">'+emailIcon+'<strong>Email</strong><small>已连接 '+all().filter(m=>m.auth==='connected').length+'</small></button></div></div>';
   }
   function item(name, description, control, extra='') {
@@ -67,14 +69,16 @@ window.createMailboxPreview = function (api) {
   }
   function drawer(id) {
     const ctx=context(), mode=ctx.mailMode, existing=selected(), mail=draft||existing, create=mode==='new', domain=mode==='domain'&&!!draft;
-    const step=create?1:domain?3:2, tab=mode==='auth'?'api':method;
+    const step=create?1:domain?3:2, tab=compact&&['api','forward','imap'].includes(ctx.mailTab)?ctx.mailTab:mode==='auth'?'api':method;
     const goBack=draft||create?'mailList':'mailHealth', back={mailbox:existing.id};
+    const forward=compact?compact.forwardPane(mail,goBack,back,!!draft):'<div class="mb-protocol-note">在邮箱服务商配置邮件转发。原型不生成转发地址。</div>';
+    const apiPane=compact?compact.apiPane():'<div class="mb-protocol-note">通过邮箱服务商授权。原型未连接 OAuth 服务。</div>';
     const reference=mode==='folders'||mode==='signature';
     const label=reference?(mode==='folders'?'同步邮箱文件夹':'配置邮箱签名'):'邮箱授权';
     const tools=reference?(mode==='folders'&&mail.auth!=='connected'?'<p>请先通过 IMAP/SMTP 服务授权。</p>'+btn('设置 IMAP/SMTP','mailSettings',back,true):'<p>此为现有配置入口，原型未连接邮箱服务。</p>'):
       create?'<h3>输入邮箱地址</h3><form data-form="mbAddress">'+input('邮箱','email',draft?.email||'','email','placeholder="support@shop.example"')+input('品牌','brand',draft?.brand||'')+'<p class="ses-form-error" role="alert" hidden></p><footer class="mb-drawer-footer">'+btn('取消','mailList')+'<button class="mb-button mb-primary" type="submit">继续</button></footer></form>':
       domain?'<h3>域名认证</h3><p>在现有系统按页面提供的 DNS 记录完成认证。本地原型未执行 DNS 验证。</p><footer class="mb-drawer-footer">'+btn('返回邮箱列表','mailList')+act('保存演示邮箱','mbSaveDemo',{},true)+'</footer>':
-      '<h3>授权邮箱 <span class="mb-muted">'+esc(mail.email)+'</span></h3>'+methods(tab)+'<div data-mb-tab="imap" '+(tab!=='imap'?'hidden':'')+'>'+fields(mail,id!=='mailSettings')+'</div><div data-mb-tab="api" '+(tab!=='api'?'hidden':'')+'><div class="mb-protocol-note">通过邮箱服务商授权。原型未连接 OAuth 服务。</div></div><div data-mb-tab="forward" '+(tab!=='forward'?'hidden':'')+'><div class="mb-protocol-note">在邮箱服务商配置邮件转发。原型不生成转发地址。</div></div>';
+      '<h3>授权邮箱 <span class="mb-muted">'+esc(mail.email)+'</span></h3>'+methods(tab)+'<div data-mb-tab="imap" '+(tab!=='imap'?'hidden':'')+'>'+fields(mail,id!=='mailSettings')+'</div><div data-mb-tab="api" '+(tab!=='api'?'hidden':'')+'>'+apiPane+'</div><div data-mb-tab="forward" '+(tab!=='forward'?'hidden':'')+'>'+forward+'</div>';
     return '<div class="mb-drawer" role="dialog" aria-modal="true" aria-label="'+label+'"><header><strong>'+label+'</strong>'+navLink('关闭',goBack,back,'mb-close')+'</header><div class="mb-drawer-body">'+
       (reference?'':'<ol class="mb-steps">'+['输入邮箱地址','邮箱授权','域名认证'].map((s,i)=>'<li '+(step===i+1?'aria-current="step"':'')+'><span>'+(i+1)+'</span>'+s+'</li>').join('')+'</ol>')+
       '<section class="mb-drawer-content">'+tools+'</section></div></div>';
@@ -98,6 +102,7 @@ window.createMailboxPreview = function (api) {
   }
   return {
     routes,
+    selected,
     nav: [[null,'首页','⌂'],[null,'数据分析','▥'],[null,'收件箱','▣'],[null,'预处理','♧'],[null,'知识中心','◫'],[null,'搭建','♙'],[null,'批量测试','⚒'],[null,'AI 安全','⛨'],['mailIntegration','集成','⬡'],[null,'智能伙伴','◈']],
     beforeRoute(id,data) {
       const ctx=context();

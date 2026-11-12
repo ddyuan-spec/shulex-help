@@ -36,11 +36,11 @@ const incomingNode=receivedWrap.firstElementChild,outgoing=receivedWrap.children
 incomingNode.id='message-ses-incoming';c(incomingNode,'userName___').textContent=r.name;c(incomingNode,'emailSubject___').textContent=quality?'订单 A1028 的售后问题':m.subject;c(incomingNode,'messageContent___').textContent=incoming;c(incomingNode,'messageContent___').style.whiteSpace='pre-wrap';c(incomingNode,'time___').textContent='11/09 10:00';incomingNode.querySelector('.shulex-avatar-text').textContent=r.name[0];
 if(route==='qualityMissing'){const att=document.createElement('div');att.className='ses-ticket-attachments';att.textContent='▧　damage-photo.jpg';c(incomingNode,'messageContent___').append(att)}
 function fillOutgoing(node,item){
- c(node,'userName___').textContent='客服 A';
+ c(node,'userName___').textContent=item.actor==='AI'?'AI 助手':'客服 A';
  c(node,'emailSubject___').textContent='Re: '+item.subject;
  const content=c(node,'messageContent___');content.textContent=item.body;content.style.whiteSpace='pre-wrap';
  c(node,'time___').textContent=item.date;
- node.querySelector('.shulex-avatar-text').textContent='A';
+ node.querySelector('.shulex-avatar-text').textContent=item.actor==='AI'?'AI':'A';
 }
 function appendReply(item){
  const template=document.createElement('template');template.innerHTML=response;
@@ -74,13 +74,18 @@ else if(route==='ticketBlocked'&&m.status==='queued'){
  showSendBlock(reason).dataset.example='true';
 }
 if(snap.ticketStatus==='resolved')showSolved();
-for(const complaint of snap.complaints||[]){
+for(const complaint of (snap.compact?[...new Map((snap.complaints||[]).map(x=>[x.message,x])).values()]:snap.complaints||[])){
  const row=document.createElement('div');row.className='ses-message-result';
- row.innerHTML='<span>客户投诉</span><button type="button" class="ses-ticket-details-link" data-ses="viewComplaint">查看</button>';
+ row.innerHTML=snap.compact?'<span>此邮件产生了投诉</span><button type="button" class="ses-ticket-details-link" data-ses="viewComplaint">查看投诉详情</button>':'<span>客户投诉</span><button type="button" class="ses-ticket-details-link" data-ses="viewComplaint">查看</button>';
  const link=row.querySelector('button');link.dataset.complaint=complaint.id;link.dataset.message=complaint.message;
- link.setAttribute('aria-label','查看客户投诉 '+complaint.id);
+ if(!snap.compact)link.setAttribute('aria-label','查看客户投诉 '+complaint.id);
  const related=document.getElementById('message-ses-'+complaint.message)||(m.id===complaint.message?outgoing:null);
- if(related?.isConnected)related.insertAdjacentElement('afterend',row);else receivedWrap.append(row);
+ if(related?.isConnected)related.insertAdjacentElement('afterend',row);else if(!snap.compact)receivedWrap.append(row);
+ if(snap.compact&&snap.handoff&&related?.isConnected){
+  const handoff=document.createElement('div');handoff.className='ses-ticket-alert';handoff.textContent=snap.handoff.reason+' · 已指派给 '+snap.handoff.assignee+(snap.handoff.paused?' · AI 已停止自动回信':'');row.after(handoff);
+  const label=$$('button span').find(el=>['分配','未分配'].includes(el.textContent.trim())&&el.childElementCount===0);
+  if(label)label.textContent=snap.handoff.assignee;
+ }
 }
 const panel=c(tc,'rightPanel___');c(panel,'nameText___').textContent=r.name;c(panel,'content___EkQOW').textContent=r.email;panel.querySelector('.shulex-avatar-text').textContent=r.name[0];c(panel,'notePreview___').textContent='暂无备注';const related=c(panel,'relatedTicketList___');if(related){c(related,'listHeader___').lastElementChild.textContent='0';c(related,'listWrapper___').replaceChildren();c(related,'listFooter___')?.remove()}panel.querySelectorAll('[class*="remarkContent___"],[class*="noteContent___"]').forEach(n=>n.textContent='');
 // Existing captured right-side integrations are retained structurally, without external sessions.
@@ -89,7 +94,7 @@ const meta=c(panel,'contactMetaFields___');const info=document.createElement('di
 const contact=snap.gate.code==='blacklist'?'黑名单':r.stop?'已停止全部联系':r.complaint?'投诉抑制':r.bounce?'永久退信':r.optional?'仅退出可选邮件':'可联系';
 info.innerHTML='<h4>邮件联系</h4><div class="ses-context-row"><span>联系状态</span><span class="ses-right-value">'+esc(contact)+'</span></div><div class="ses-context-row"><span>发送通道</span><span>'+esc(snap.gate.ok?snap.gate.provider:'当前不可发送')+'</span></div><div class="ses-context-actions"><button class="ticket-local-link" data-ses="recipient">查看联系状态</button><button class="ticket-local-link" data-ses="details">发送详情</button></div>';
 if(quality){info.innerHTML+='<h4 style="margin-top:23px">处理上下文</h4><div class="ses-context-row"><span>订单号 A1028</span><span>已收到</span></div><div class="ses-context-row"><span>破损照片</span><span>已收到</span></div><div class="ses-context-row missing"><span>购买渠道</span><span>待补充</span></div>';if(route==='qualityMissing'&&snap.uncertain)info.innerHTML+='<div class="ses-ticket-status">资料抽取不确定，需人工核实后回复。</div>';if(route==='qualityMissing')info.innerHTML+='<div class="ses-context-actions"><button class="ses-native-action primary" data-ses="draft">生成回复草稿</button></div>';if(route==='qualityEscalation')info.innerHTML+='<div class="ses-ticket-status">已达租户排障规则上限</div><div class="ses-context-actions"><button class="ses-native-action primary" data-ses="escalate">交售后负责人</button></div>';if(route==='qualityThanks')info.innerHTML+='<div class="ses-ticket-status">'+(snap.quality==='newQuestion'?'感谢中包含新问题，继续处理':'客户仅表示感谢，不再追加结束语')+'</div>';if(route==='qualitySurvey')info.innerHTML+='<div class="ses-ticket-status">检查工单状态、近期交互、联系偏好及防重</div><div class="ses-context-actions"><button class="ses-native-action" data-ses="survey">查看邀评结果</button></div>'}
-meta.prepend(info);
+if(!snap.compact)meta.prepend(info);
 const editor=tc.querySelector('[contenteditable="true"]');
 const startsBlank=['qualityMissing','qualityThanks'].includes(route)||(route==='ticketReady'&&m.complaintDemo);
 const initial=snap.draft??(startsBlank?'':m.body);
@@ -112,7 +117,7 @@ function localError(text){$('#sesReplyError')?.remove();const el=document.create
 function showSendRejection(result){if(!result.blocked)return localError(result.reason);$('#sesReplyError')?.remove();const {latestBlock}=bridge.snapshot();showSendBlock(result.reason,latestBlock,true)}
 function executeSend(resolve=false){const addresses=[$('#ses-to')?.value||r.email,$('#ses-cc')?.value||'',$('#ses-bcc')?.value||''].join(',').split(/[,;，；\n]/).map(x=>x.trim()).filter(Boolean);if(addresses.some(x=>!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x)))return localError('请填写有效的收件邮箱');const result=bridge.saveReply(editor.innerText,'service',resolve,addresses);if(!result.ok){if(result.blocked)saveEditedDraft();return showSendRejection(result)}clearTimeout(draftTimer);draftTimer=undefined;setEditorBody('');$('#sesReplyError')?.remove();$('#sesSendBlock[data-example]')?.remove();const sent=bridge.snapshot().sentReplies.find(item=>item.id===result.message);if(sent){appendReply(sent);receivedWrap.scrollTop=receivedWrap.scrollHeight}if(result.resolve)showSolved();}
 function addAddress(kind){const key='ses-'+kind;if($('#'+key))return $('#'+key).focus();const row=document.createElement('div');row.className='formItem___Jm4LY slx-flex css-var-r3';row.innerHTML='<div>'+(kind==='cc'?'抄送:':'密送:')+'</div><div class="itemContent___K5Q_v"><input class="ticket-local-address" id="'+key+'" aria-label="'+(kind==='cc'?'抄送':'密送')+'"></div>';c($('#replyBoxFrom'),'body___jQmz9').append(row)}
-$$('[role="menuitem"]').forEach(el=>{const label=el.getAttribute('aria-label');if(label==='联系人'){el.dataset.ses='contacts'}else if(label==='设置'){el.dataset.ses='settings'}else if(label!=='工单')el.setAttribute('aria-disabled','true')});
+$$('[role="menuitem"]').forEach(el=>{const label=el.getAttribute('aria-label');if(label==='联系人'){el.dataset.ses='contacts'}else if(label==='报表'&&snap.compact){el.dataset.ses='report';el.addEventListener('click',()=>bridge.navigate('report'));}else if(label==='设置'&&!snap.compact){el.dataset.ses='settings'}else if(label!=='工单')el.setAttribute('aria-disabled','true')});
 $$('button:not([data-ses])').forEach(b=>{if(!b.closest('[class*="sendActions___"]'))b.disabled=true});
 $$('a').forEach(a=>{a.removeAttribute('target');a.addEventListener('click',e=>e.preventDefault())});
 $$('[class*="channelAuthErrorContent___"]').forEach(el=>el.remove());
