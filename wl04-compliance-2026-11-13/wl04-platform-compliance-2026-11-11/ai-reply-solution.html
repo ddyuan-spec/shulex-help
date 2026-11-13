@@ -18,8 +18,8 @@
 <thead><tr><th scope="col">现有系统位置</th><th scope="col">本期开发改动</th><th scope="col">页面</th></tr></thead>
 <tbody>
 <tr><td>智能工作台 → 设置 → AI</td><td>在「AI 打标」下一行新增「AI 回复告知」。进入后，邮件区显示一个开关，默认开；点「保存」后影响本工作空间后续的 AI 自动回信，刷新回显。保存失败仍用上次设置；预览可以看未保存的效果，不发信。</td><td><a href="prototype/ai-reply-notice.html#aiReplyNotice">新增一个设置页</a><br>批注 01、02</td></tr>
-<tr><td>工单 → AI 自动回复邮件</td><td>发出前识别是否由 AI 自动发送，再读取已保存的开关和适用规则。需要告知时，系统在签名后、历史引用前追加一行；无签名时放正文后。需首次告知的首封，正文开头也说明身份。</td><td>改发信逻辑<br>不新增页面</td></tr>
-<tr><td>收件人的邮箱</td><td>客户看到「此邮件由 AI 客服自动回复。」发件人、主题、原签名和历史邮件照旧。</td><td><a href="#prototype">看邮件预览</a><br>批注 03</td></tr>
+<tr><td>工单 → AI 自动回复邮件</td><td>发出前识别发送方式，再读取已保存的开关和适用规则。开关开启后，每封 AI 自动回复都加一行尾注，首封也加。需要首次告知时，首封还在正文开头说明 AI 身份。</td><td>改发信逻辑<br>不新增页面</td></tr>
+<tr><td>收件人的邮箱</td><td>尾注「此邮件由 AI 客服自动回复。」放在签名后、历史引用前。无签名时放在正文后、历史引用前。发件人、主题、原签名和历史邮件照旧。</td><td><a href="#prototype">看邮件预览</a><br>批注 03</td></tr>
 </tbody></table></div>
 </section>
 <section class="section" id="impact">
@@ -35,21 +35,23 @@
 <div class="flow" aria-label="配置保存后到客户收件">
 <div class="step"><b>① 保存设置</b><small>按当前工作空间生效</small></div><span class="arrow" aria-hidden="true">→</span>
 <div class="step"><b>② 产生工单回复</b><small>区分 AI 自动发与客服自行发</small></div><span class="arrow" aria-hidden="true">→</span>
-<div class="step"><b>③ 发送前加说明</b><small>先判告知规则，再看开关</small></div><span class="arrow" aria-hidden="true">→</span>
-<div class="step"><b>④ 客户收件</b><small>首封看开头，尾注在引用前</small></div>
+<div class="step"><b>③ 发送前加说明</b><small>系统判断首封说明；开关控制每封尾注</small></div><span class="arrow" aria-hidden="true">→</span>
+<div class="step"><b>④ 客户收件</b><small>尾注在签名后、历史引用前</small></div>
 </div>
 <div class="grid"><table aria-label="各类邮件的发送结果">
-<thead><tr><th scope="col">这封邮件</th><th scope="col">开关开</th><th scope="col">开关关</th></tr></thead><tbody>
-<tr><td>普通 AI 自动回信</td><td>每封加一行尾注</td><td>不加尾注</td></tr>
-<tr><td>必须告知，或暂不能确定是否允许关闭</td><td>首封正文开头说明身份，每封保留尾注</td><td>同左，关闭不影响告知</td></tr>
-<tr><td>客服自行发信</td><td>不追加 AI 尾注</td><td>不追加 AI 尾注</td></tr>
+<thead><tr><th scope="col">这封邮件</th><th scope="col">开启</th><th scope="col">关闭（待评审口径）</th></tr></thead><tbody>
+<tr><td>普通场景的首封 AI 自动回复</td><td>仅加一行尾注</td><td>不加新告知</td></tr>
+<tr><td>需告知或暂无法可靠判断的首封 AI 自动回复</td><td>正文开头说明 AI 身份，另加一行尾注</td><td>只保留正文开头的身份说明</td></tr>
+<tr><td>同会话的后续 AI 自动回复</td><td>每封仅加一行尾注</td><td>不加新告知</td></tr>
+<tr><td>客服以本人身份发送</td><td>不加新告知</td><td>不加新告知</td></tr>
 </tbody></table></div>
-<p class="sample"><strong>收件示例：</strong>首封需要告知时，开头写「您好，我是示例品牌的 AI 客服，先帮您处理这个问题。」→ 回复正文 → 原签名 →「此邮件由 AI 客服自动回复。」→ 历史引用。</p>
+<p class="sample"><strong>收件示例（开启且首封需要告知）：</strong>开头写「您好，我是示例品牌的 AI 客服，先帮您处理这个问题。」→ 回复正文 → 原签名 →「此邮件由 AI 客服自动回复。」→ 历史引用。</p>
 <p class="sub">「首封」指同一邮件会话首次成功发出的 AI 回复。之前的人工邮件不算；首次发送失败也不算已告知。实发验收时，同一邮件重试只加一次，HTML 和纯文本都要核对。哪些场景必须告知、哪些路径会发送 AI 邮件，以及如何识别同一会话，实施前待确认。</p>
+<p class="sub"><strong>原型差异：</strong>关闭时，当前原型在需告知的首封仍展示开头说明和尾注。上表的关闭口径待评审，原型沿用原演示。</p>
 <div class="links"><a href="prototype/ai-reply-notice.html">从「自动规则」找入口</a><a href="prototype/ai-reply-notice.html#aiReplyNotice">直达设置与邮件预览</a></div>
 <details class="prototype"><summary>展开原型和 01／02／03 批注</summary><div class="frame"><iframe loading="lazy" title="AI 回复告知设置与邮件预览" src="prototype/ai-reply-notice.html#aiReplyNotice"></iframe></div></details>
 </section>
 </main>
-<footer class="wrap foot"><a href="ai-reply-product.md">规则与验收底稿</a><a href="spec/AI-REPLY-PAGE-SPEC.md">页面规格</a><a href="wl04-overview-archive.html">WL-04 全量背景（归档）</a> 原型为本地演示，未实发邮件。</footer>
+<footer class="wrap foot"><a href="ai-reply-product.md">规则与验收底稿</a><a href="spec/AI-REPLY-VERIFICATION.md">原型核验记录</a><a href="solution.html#dev-ai">返回主方案</a> 原型为本地演示，未实发邮件。</footer>
 </body>
 </html>

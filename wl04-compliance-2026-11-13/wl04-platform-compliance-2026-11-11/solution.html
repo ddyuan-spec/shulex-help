@@ -87,10 +87,10 @@
       <ol class="steps">
         <li><span>打开设置 → AI</span>在「AI 打标」下一行新增「AI 回复告知」，默认开，保存才生效。</li>
         <li><span>识别本封邮件的发送方式</span>AI 自动发送走告知规则；客服接手后自行发信，不加新的 AI 尾注。</li>
-        <li><span>发出前加告知</span>普通场景开时加尾注、关时不加。必须告知时，关了开关也按规则告知。</li>
+        <li><span>发出前加告知</span>开关开启后，每封 AI 自动回复都加一行尾注，首封也加。首封是否需要在开头说明身份，由系统规则判定。</li>
         <li><span>客户收件</span>尾注放在签名后、历史引用前；需告知的首封在正文开头也说明 AI 身份。</li>
       </ol>
-      <p class="effect"><strong>影响设置管理员、客服和收件人：</strong>有设置权限的人保存开关。客服无需逐封勾选。客户看到的尾注是「此邮件由 AI 客服自动回复。」<a href="#dev-ai">查看首封与每封的建议，以及和当前原型的差别</a></p>
+      <p class="effect"><strong>影响设置管理员、客服和收件人：</strong>有设置权限的人保存开关。客服无需逐封勾选。客户看到的尾注是「此邮件由 AI 客服自动回复。」<a href="#dev-ai">查看发送规则和原型差异</a></p>
       <p class="try"><strong>试一试：</strong>关闭开关并保存，对比普通 AI 回信、需告知的首封及人工回信。</p>
       <div class="preview-host" data-preview="ai"></div>
       <details class="note"><summary>批注 01–03 · 首封、保存和失败重试</summary>
@@ -118,7 +118,7 @@
 
   <section class="section" id="dev-review" aria-labelledby="dev-title">
     <div class="section-head"><div><p class="eyebrow">开发评审补充</p><h2 id="dev-title">字段、审批、导出和发信规则</h2></div><a href="开发评审补充.md">查看完整说明与验收</a></div>
-    <p class="effect">按本期范围列出要改的位置。平台审批入口、导出遮盖和邮件尾注的新增建议仍待评审。</p>
+    <p class="effect">按本期范围列出要改的位置。平台审批入口、导出遮盖和邮件开关关闭后的口径仍待评审。</p>
     <nav class="dev-nav" aria-label="开发口径分节"><a href="#dev-ticket">工单字段</a><a href="#dev-api">申请和审批</a><a href="#dev-export">两类导出</a><a href="#dev-ai">首封和每封</a></nav>
 
     <article class="panel dev-panel" id="dev-ticket" aria-labelledby="dev-ticket-title">
@@ -161,16 +161,19 @@
 
     <article class="panel dev-panel" id="dev-ai" aria-labelledby="dev-ai-title">
       <h3 id="dev-ai-title">3. AI 邮件：谁控制首封，谁控制每封</h3>
-      <p class="effect"><strong>建议：</strong>有设置权限的用户在「设置 → AI」控制「每封 AI 自动回复附加告知」，默认开、保存后生效。适用的首封身份告知由系统规则决定，参见 <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">EU AI Act 第 50(1)、(5) 条</a>。</p>
+      <p class="effect"><strong>开启后，每封 AI 自动回复都加一行尾注，首封也加。</strong>有设置权限的人在「设置 → AI → AI 回复告知」配置；入口在「AI 打标」下方，默认开，保存后对当前工作空间的后续发信生效。</p>
+      <p class="effect"><strong>首封开头的身份说明单独判断。</strong>仅在需要首次告知或暂无法可靠判断的场景，由系统在首封正文开头说明 AI 身份。参见 <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">EU AI Act 第 50(1)、(5) 条</a>；每封尾注是产品设置。</p>
       <div class="rule-scroll"><table class="rule-table">
-        <caption class="sr-only">建议方案下邮件开关的结果</caption>
-        <thead><tr><th scope="col">发送场景</th><th scope="col">开：每封尾注</th><th scope="col">关：无额外尾注</th></tr></thead>
+        <caption class="sr-only">邮件开关开启和关闭时的发信结果</caption>
+        <thead><tr><th scope="col">发送场景</th><th scope="col">开启</th><th scope="col">关闭（待评审口径）</th></tr></thead>
         <tbody>
-          <tr><th scope="row">必须告知或暂无法判断的首封 AI 自动回信</th><td>正文开头说明 AI 身份，签名后加尾注</td><td>正文开头仍说明 AI 身份</td></tr>
-          <tr><th scope="row">同会话后续 AI 自动回信，或确认可不告知的 AI 自动回信</th><td>签名后、历史引用前加尾注</td><td>不加新告知</td></tr>
+          <tr><th scope="row">普通场景的首封 AI 自动回复</th><td>仅加一行尾注</td><td>不加新告知</td></tr>
+          <tr><th scope="row">需告知或暂无法可靠判断的首封 AI 自动回复</th><td>正文开头说明 AI 身份，另加一行尾注</td><td>只保留正文开头的身份说明</td></tr>
+          <tr><th scope="row">同会话的后续 AI 自动回复</th><td>每封仅加一行尾注</td><td>不加新告知</td></tr>
           <tr><th scope="row">人工以本人身份发送</th><td colspan="2">不加新告知</td></tr>
         </tbody>
       </table></div>
+      <p class="effect"><strong>发信规则：</strong>尾注放在签名后、历史引用前。人工审批后仍由系统自动发送的邮件，按 AI 自动回复处理。</p>
       <p class="effect"><strong>首封判定：</strong>同一对客邮件会话第一次成功发出的 AI 回复。先发人工邮件不占首封；发送失败不计，重试不重复追加。</p>
       <p class="effect"><strong>原型差异：</strong>当前原型在关闭开关后，需告知的首封仍展示开头说明和尾注；上表建议此时只保留开头说明，后续也不追加尾注。评审确认后再改原型。</p>
     </article>
