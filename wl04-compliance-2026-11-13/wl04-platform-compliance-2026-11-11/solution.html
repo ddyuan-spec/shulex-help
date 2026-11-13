@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>WL-04 · Solvea 本期功能评审</title>
+<link rel="stylesheet" href="solution.css">
+<script src="solution.js" defer></script>
+</head>
+<body>
+<header class="masthead"><div class="wrap masthead-inner">
+  <a href="#top" class="brand"><span class="mark" aria-hidden="true">S</span> Solvea <span class="divider"></span> 产品评审</a>
+  <nav aria-label="方案目录"><a href="#changes">改动地图</a><a href="#prototype">页面原型</a><a href="#review">验收与依据</a></nav>
+</div></header>
+<main id="top" class="wrap">
+  <section class="hero" aria-labelledby="title">
+    <p class="eyebrow">WL-04 · 本期范围</p>
+    <h1 id="title">客户信息怎么显示，<br class="narrow">AI 回信怎么告知</h1>
+    <p class="intro">沿用 Solvea 的工单、开放平台和 AI 设置。这次评审三处改动，点流程就能对照原页面操作。</p>
+    <div class="case"><span class="case-label">用同一个售后场景看</span><p>客户 Amy 来信问退货进度。客服要确认邮箱，售后对账应用要读取工单，系统可能先发一封 AI 回信。</p></div>
+  </section>
+
+  <section id="changes" class="map-shell" aria-labelledby="map-title">
+    <div class="section-head"><div><p class="eyebrow">01 / 改动地图</p><h2 id="map-title">一张工单，三个操作入口</h2></div></div>
+    <div class="map-root"><span class="case-dot" aria-hidden="true"></span> Amy 的退货咨询</div>
+    <div class="branch-line" aria-hidden="true"></div>
+    <div class="tabs" role="tablist" aria-label="选择评审链路">
+      <button class="node" id="tab-ticket" role="tab" aria-controls="panel-ticket" aria-selected="true" type="button">
+        <span class="node-meta"><span class="num">01</span> 工单客服</span><strong>客户信息显示与隐藏</strong><span class="node-path">工单 → 详情 → 客户信息</span><span class="node-result">默认遮盖，点眼睛看原文 <span aria-hidden="true">↗</span></span>
+      </button>
+      <button class="node" id="tab-api" role="tab" aria-controls="panel-api" aria-selected="false" tabindex="-1" type="button">
+        <span class="node-meta"><span class="num">02</span> 接入负责人 / 开发者</span><strong>应用申请读取原文</strong><span class="node-path">智能客服 → 集成 → 开放平台</span><span class="node-result">按应用申请，获批字段才给原文 <span aria-hidden="true">↗</span></span>
+      </button>
+      <button class="node" id="tab-ai" role="tab" aria-controls="panel-ai" aria-selected="false" tabindex="-1" type="button">
+        <span class="node-meta"><span class="num">03</span> 设置管理员 / 收件人</span><strong>AI 邮件回复告知</strong><span class="node-path">智能工作台 → 设置 → AI</span><span class="node-result">保存设置，发送前按规则加告知 <span aria-hidden="true">↗</span></span>
+      </button>
+    </div>
+  </section>
+
+  <section class="section" id="prototype" aria-labelledby="prototype-title">
+    <div class="section-head"><div><p class="eyebrow">02 / 页面原型</p><h2 id="prototype-title">从现有页面走一遍</h2></div><span class="demo-tag">示例数据 · 不实际操作业务</span></div>
+    <article class="panel" id="panel-ticket" role="tabpanel" aria-labelledby="tab-ticket" tabindex="0">
+      <h3>客服查看 Amy 的邮箱</h3>
+      <ol class="steps">
+        <li><span>进入工单列表</span>列表里已有的客户字段默认遮盖。</li>
+        <li><span>打开详情，点邮箱旁的眼睛</span>现有工单权限决定能否进入；能看这张工单的客服可展开原文。</li>
+        <li><span>核对同一字段</span>示例 <code>a***@example.com</code> 展开为 <code>amy@example.com</code>，详情内对应的回复条和邮件信头同步。</li>
+        <li><span>收起或换单</span>再次点眼睛收起；换单、离开或刷新后恢复遮盖。</li>
+      </ol>
+      <p class="effect"><strong>影响客服操作：</strong>遮盖时复制拿不到原文；回复和拨号仍用真实目标。姓名、邮箱、电话分别切换，沿用现有工单角色范围。</p>
+      <p class="try"><strong>试一试：</strong>点邮箱的眼睛，查看回复条；收起后试复制，再展开并换到另一张工单。</p>
+      <div class="preview-host" data-preview="ticket"></div>
+      <details class="note"><summary>批注 01–04 · 导出、权限撤销与查看留痕</summary>
+        <ul>
+          <li><strong>导出：</strong>沿用现有独立导出权限。眼睛只控制页面显示，不改变导出结果。标签和消息导出的客户字段、正文和下载文件须逐项核对；哪些结构化列输出原文仍待定。</li>
+          <li><strong>撤权：</strong>撤销原有工单权限后，后续详情或原文请求应拒绝，并清除页内已展开状态。已复制或下载的数据不能召回。</li>
+          <li><strong>留痕与边界：</strong>建议记录操作者、时间、空间、工单和字段，日志不记原文。自由正文、附件、独立联系人及订单数据不纳入本次结构化字段遮盖。</li>
+        </ul>
+        <p><a href="../wl04-ticket-pii/spec/批注底稿.md">查看逐元素批注底稿</a> · <a href="../wl04-ticket-pii/spec/PAGE-SPEC-工单.md">工单页面规格</a></p>
+      </details>
+    </article>
+
+    <article class="panel" id="panel-api" role="tabpanel" aria-labelledby="tab-api" tabindex="0" hidden>
+      <h3>接入负责人为应用申请邮箱原文</h3>
+      <ol class="steps">
+        <li><span>打开现有应用的工单域</span>在「配置工作域权限」中进入工单域。</li>
+        <li><span>选字段、填用途</span>在「工单个人信息读取」里按应用和当前工作空间提交申请。</li>
+        <li><span>平台复核，应用回显结果</span>已有应用凭据和工单域仍按原来授权。获批字段才有原文，其他字段按接口兼容口径遮盖。</li>
+        <li><span>开发者调用接口</span>扩权须重审；撤销后下次请求就按撤销结果返回，旧令牌也一样。</li>
+      </ol>
+      <p class="effect"><strong>影响接入负责人、平台复核方和开发者：</strong>本期申请范围以已有对外字段为限，原型演示姓名、邮箱。接口文档补授权前后的响应对照。</p>
+      <p class="try"><strong>试一试：</strong>在「配置工作域权限」中申请邮箱。提交后可用下方评审场景查看复核结果，或打开接口文档对比授权前后响应。</p>
+      <div class="preview-host" data-preview="api"></div>
+      <details class="note"><summary>批注 05–07 · 授权、接口、Webhook 和撤销</summary>
+        <ul>
+          <li><strong>申请和撤销：</strong>审核中、驳回或撤销的字段均不得返回原文。记录授权变化和操作者，不记录客户字段值。历史已交付副本无法召回。</li>
+          <li><strong>数据出口：</strong>列表、详情、消息按各自实际字段验证；Webhook、投递日志和重试也要用当前授权核对，避免原文从旁路流出。</li>
+          <li><strong>兼容边界：</strong>按已有接口响应契约确认未授权字段的遮盖口径；自由正文、主题与自定义字段另行确认。</li>
+        </ul>
+        <p><a href="../wl04-ticket-pii/spec/批注底稿.md">查看逐元素批注底稿</a> · <a href="../wl04-ticket-pii/spec/PAGE-SPEC-开放平台.md">开放平台页面规格</a></p>
+      </details>
+    </article>
+
+    <article class="panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="0" hidden>
+      <h3>Amy 收到 AI 自动回信</h3>
+      <ol class="steps">
+        <li><span>打开设置 → AI</span>在「AI 打标」下一行新增「AI 回复告知」，默认开，保存才生效。</li>
+        <li><span>识别本封邮件的发送方式</span>AI 自动发送走告知规则；客服接手后自行发信，不加新的 AI 尾注。</li>
+        <li><span>发出前加告知</span>普通场景开时加尾注、关时不加。必须告知时，关了开关也按规则告知。</li>
+        <li><span>客户收件</span>尾注放在签名后、历史引用前；需告知的首封在正文开头也说明 AI 身份。</li>
+      </ol>
+      <p class="effect"><strong>影响设置管理员、客服和收件人：</strong>有设置权限的人保存开关。客服无需逐封勾选。客户看到的尾注是「此邮件由 AI 客服自动回复。」</p>
+      <p class="try"><strong>试一试：</strong>关闭开关并保存，对比普通 AI 回信、需告知的首封及人工回信。</p>
+      <div class="preview-host" data-preview="ai"></div>
+      <details class="note"><summary>批注 01–03 · 首封、保存和失败重试</summary>
+        <ul>
+          <li><strong>首封：</strong>同一邮件会话首次成功发出的 AI 回信。此前的人工邮件不计入；首次失败不算告知成功。无法可靠判定是否可关闭的场景按需告知处理。</li>
+          <li><strong>保存与重试：</strong>设置只影响后续发送，同一消息重试只追加一次。HTML 和纯文本均需可读。</li>
+          <li><strong>适用范围：</strong>现有「AI 打标」、群发、系统通知、聊天及语音不受此开关影响。</li>
+        </ul>
+        <p><a href="ai-reply-solution.html">AI 邮件子方案与文案对照</a> · <a href="ai-reply-product.md">发送规则与验收</a></p>
+      </details>
+    </article>
+    <div id="preview" hidden>
+      <div class="preview-bar"><span><span class="case-dot" aria-hidden="true"></span><span id="preview-label"></span></span><a id="preview-link" target="_blank" rel="noopener">单独打开原型 ↗</a></div>
+      <div class="scenario" id="api-scenarios" hidden>
+        <span>评审场景</span><button type="button" data-scene="" aria-pressed="true">从申请开始</button>
+        <button type="button" data-scene="approved" aria-pressed="false">获批邮箱</button>
+        <button type="button" data-scene="rejected" aria-pressed="false">未通过</button>
+        <button type="button" data-scene="revoked" aria-pressed="false">已撤销</button>
+      </div>
+      <div class="frame"><div class="frame-stage"><iframe id="preview-frame" title="功能原型"></iframe></div></div>
+    </div>
+  </section>
+
+  <section id="impact" class="boundary" aria-label="本期边界"><strong>本期边界</strong><p>租户管理员单独配置个人信息权限放后期。工单沿用现有角色权限；AI 邮件继续走现有设置权限。</p></section>
+
+  <section class="section review" id="review" aria-labelledby="review-title">
+    <div class="section-head"><div><p class="eyebrow">03 / 验收与依据</p><h2 id="review-title">上线前用什么来验</h2></div></div>
+    <dl class="checks">
+      <div><dt>工单</dt><dd>用可看与不可看的账号验详情和原文请求；撤权后再次请求，另核对真实导出文件。</dd></div>
+      <div><dt>开放平台</dt><dd>用同一个令牌验证授权前、获批后和撤销后；覆盖接口、Webhook、投递记录和重试。</dd></div>
+      <div><dt>AI 邮件</dt><dd>按实际发信路径验证开关、首封、人工接手与重试，用收件端核对正文和纯文本。</dd></div>
+    </dl>
+    <details class="note"><summary>展开法规依据、竞品与历史方案</summary>
+      <p>工单遮盖和应用按字段授权对应数据最小化和访问控制；邮件说明对应直接与 AI 互动时的告知要求。这些是产品做法，法规适用和生产效果分别核实。参考 Intercom 的邮件告知形式与 Zendesk 的可配置话术。</p>
+      <p><a href="competitor-review.md">竞品核查</a> · <a href="../wl04-ticket-pii/AI邮件告知-竞品与建议.md">AI 邮件竞品</a> · <a href="verification.md">原型核验记录</a></p>
+    </details>
+  </section>
+</main>
+<footer class="wrap footer">Solvea · WL-04 本期功能评审 <a href="#top">回到顶部 ↑</a></footer>
+</body>
+</html>

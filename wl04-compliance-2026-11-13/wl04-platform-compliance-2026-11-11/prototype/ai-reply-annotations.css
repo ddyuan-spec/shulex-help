@@ -1,0 +1,11 @@
+.annotation-anchor{position:relative}
+.annotation-action{display:inline-grid}
+.annotation-point{position:absolute;z-index:1;top:50%;left:calc(100% + 8px);transform:translateY(-50%);display:grid;place-items:center;min-width:23px;height:20px;padding:0 4px;border:1px solid #e5a14b;border-radius:6px;background:#fff8eb;color:#8a4308;font:700 11px/1 Inter,Arial,sans-serif}
+.annotation-menu>.annotation-point{left:auto;right:7px}
+.annotation-point:hover{background:#ffedcd}
+.annotation-note{position:fixed;inset:auto;left:var(--note-x,0px);top:var(--note-y,0px);width:min(330px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:0;overflow:auto;padding:12px 15px 13px;border:1px solid #e9d8ba;border-radius:10px;background:#fff;color:var(--ink);box-shadow:0 5px 20px #10182820;font-size:13px;line-height:1.55}
+.annotation-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.annotation-head h2{font-size:14px;margin:0}
+.annotation-head button{border:0;background:transparent;border-radius:5px;min-width:26px;height:26px;padding:0;color:#5a6470;font-size:20px;line-height:1}
+.annotation-head button:hover{background:#f3f4f6}
+.annotation-note p{margin:8px 0 0}

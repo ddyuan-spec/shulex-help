@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>AI 邮件回复告知｜改动、影响、链路</title>
+<style>
+:root{--ink:#172438;--muted:#526174;--line:#dce4eb;--blue:#1555a0;--paper:#fff;--bg:#f5f7fa}*{box-sizing:border-box}html{scroll-padding-top:14px}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Microsoft YaHei",sans-serif}.wrap{width:min(1100px,calc(100% - 36px));margin-inline:auto}header{background:#172438;color:#fff;padding:23px 0 20px}header p{color:#dce7f6}h1,h2,p{margin:0}h1{font-size:clamp(25px,4vw,34px);line-height:1.25;margin:4px 0 8px}h2{font-size:21px;margin-bottom:10px}a{color:var(--blue);text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}nav{border-bottom:1px solid var(--line);background:#fff}nav .wrap{display:flex;flex-wrap:wrap;gap:6px 20px;padding-block:9px}nav a{font-size:14px;text-decoration:none}.section{padding:18px 0;border-bottom:1px solid var(--line)}.path{font-weight:650}.grid{border:1px solid var(--line);border-radius:9px;overflow:auto;background:var(--paper)}table{width:100%;border-collapse:collapse;min-width:640px}th,td{padding:8px 12px;text-align:left;vertical-align:top;border-bottom:1px solid #e7edf2}th{background:#eef3f7;font-size:13px}td{font-size:14px}td:first-child{font-weight:650}tbody tr:last-child td{border-bottom:0}.changes th:first-child{width:23%}.changes th:last-child{width:21%}.sub{margin-top:9px;color:var(--muted);font-size:14px}.impact{margin:0;padding-left:1.25em}.impact li+li{margin-top:4px}.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:7px;margin-bottom:11px}.step{height:100%;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px}.step b,.step small{display:block}.step small{color:var(--muted)}.arrow{color:var(--blue);font-weight:700}.sample{margin-top:10px;padding:8px 11px;background:#eaf3ff;border-left:3px solid #5789c0;font-size:14px}.links{display:flex;flex-wrap:wrap;gap:6px 17px;margin-top:10px}.prototype{margin-top:14px}.prototype summary{cursor:pointer;font-weight:650;color:var(--blue)}.frame{overflow:auto;margin-top:10px;border:1px solid var(--line);border-radius:8px}.frame iframe{display:block;border:0;width:100%;min-width:800px;height:650px}.foot{padding:12px 0 24px;color:var(--muted);font-size:13px}.foot a{display:inline-block;margin:0 10px 4px 0}
+@media(max-width:680px){.wrap{width:calc(100% - 24px)}.flow{grid-template-columns:1fr;gap:4px}.arrow{justify-self:center;transform:rotate(90deg)}table{min-width:530px}}@media print{nav,.prototype,.foot{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><small>WL-04 · 本期邮件改动</small><h1>AI 邮件回复告知</h1><p>在现有「设置 → AI」加一个开关，发邮件时根据这个开关和告知规则追加说明。</p></div></header>
+<nav aria-label="方案目录"><div class="wrap"><a href="#changes">改哪里</a><a href="#impact">影响什么</a><a href="#prototype">功能链路和原型</a></div></nav>
+<main class="wrap">
+<section class="section" id="changes">
+<h2>1. 系统哪里改</h2>
+<div class="grid"><table class="changes">
+<thead><tr><th scope="col">现有系统位置</th><th scope="col">本期开发改动</th><th scope="col">页面</th></tr></thead>
+<tbody>
+<tr><td>智能工作台 → 设置 → AI</td><td>在「AI 打标」下一行新增「AI 回复告知」。进入后，邮件区显示一个开关，默认开；点「保存」后影响本工作空间后续的 AI 自动回信，刷新回显。保存失败仍用上次设置；预览可以看未保存的效果，不发信。</td><td><a href="prototype/ai-reply-notice.html#aiReplyNotice">新增一个设置页</a><br>批注 01、02</td></tr>
+<tr><td>工单 → AI 自动回复邮件</td><td>发出前识别是否由 AI 自动发送，再读取已保存的开关和适用规则。需要告知时，系统在签名后、历史引用前追加一行；无签名时放正文后。需首次告知的首封，正文开头也说明身份。</td><td>改发信逻辑<br>不新增页面</td></tr>
+<tr><td>收件人的邮箱</td><td>客户看到「此邮件由 AI 客服自动回复。」发件人、主题、原签名和历史邮件照旧。</td><td><a href="#prototype">看邮件预览</a><br>批注 03</td></tr>
+</tbody></table></div>
+</section>
+<section class="section" id="impact">
+<h2>2. 影响谁、影响哪些操作</h2>
+<ul class="impact">
+<li><strong>配置人：</strong>有现有设置权限的人操作。沿用工作空间范围，不增加角色权限配置。</li>
+<li><strong>客服：</strong>工单界面不加按钮。接管后自行发送不追加尾注；人工审批后仍由 AI 自动发出的邮件，仍按自动回复处理。</li>
+<li><strong>收件人：</strong>只影响保存后新发的 AI 自动回复。群发、系统通知、聊天和语音不受这个开关影响；已发邮件不改。</li>
+</ul>
+</section>
+<section class="section" id="prototype">
+<h2>3. 一封邮件怎么走</h2>
+<div class="flow" aria-label="配置保存后到客户收件">
+<div class="step"><b>① 保存设置</b><small>按当前工作空间生效</small></div><span class="arrow" aria-hidden="true">→</span>
+<div class="step"><b>② 产生工单回复</b><small>区分 AI 自动发与客服自行发</small></div><span class="arrow" aria-hidden="true">→</span>
+<div class="step"><b>③ 发送前加说明</b><small>先判告知规则，再看开关</small></div><span class="arrow" aria-hidden="true">→</span>
+<div class="step"><b>④ 客户收件</b><small>首封看开头，尾注在引用前</small></div>
+</div>
+<div class="grid"><table aria-label="各类邮件的发送结果">
+<thead><tr><th scope="col">这封邮件</th><th scope="col">开关开</th><th scope="col">开关关</th></tr></thead><tbody>
+<tr><td>普通 AI 自动回信</td><td>每封加一行尾注</td><td>不加尾注</td></tr>
+<tr><td>必须告知，或暂不能确定是否允许关闭</td><td>首封正文开头说明身份，每封保留尾注</td><td>同左，关闭不影响告知</td></tr>
+<tr><td>客服自行发信</td><td>不追加 AI 尾注</td><td>不追加 AI 尾注</td></tr>
+</tbody></table></div>
+<p class="sample"><strong>收件示例：</strong>首封需要告知时，开头写「您好，我是示例品牌的 AI 客服，先帮您处理这个问题。」→ 回复正文 → 原签名 →「此邮件由 AI 客服自动回复。」→ 历史引用。</p>
+<p class="sub">「首封」指同一邮件会话首次成功发出的 AI 回复。之前的人工邮件不算；首次发送失败也不算已告知。实发验收时，同一邮件重试只加一次，HTML 和纯文本都要核对。哪些场景必须告知、哪些路径会发送 AI 邮件，以及如何识别同一会话，实施前待确认。</p>
+<div class="links"><a href="prototype/ai-reply-notice.html">从「自动规则」找入口</a><a href="prototype/ai-reply-notice.html#aiReplyNotice">直达设置与邮件预览</a></div>
+<details class="prototype"><summary>展开原型和 01／02／03 批注</summary><div class="frame"><iframe loading="lazy" title="AI 回复告知设置与邮件预览" src="prototype/ai-reply-notice.html#aiReplyNotice"></iframe></div></details>
+</section>
+</main>
+<footer class="wrap foot"><a href="ai-reply-product.md">规则与验收底稿</a><a href="spec/AI-REPLY-PAGE-SPEC.md">页面规格</a><a href="wl04-overview-archive.html">WL-04 全量背景（归档）</a> 原型为本地演示，未实发邮件。</footer>
+</body>
+</html>
