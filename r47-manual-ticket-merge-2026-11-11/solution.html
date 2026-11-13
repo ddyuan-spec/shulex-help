@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>R47 手动合并工单｜一期方案</title><style>
+:root{--ink:#14243a;--muted:#617289;--blue:#216ee8;--cyan:#00a8c6;--green:#079669;--amber:#b36d00;--red:#c83d3d;--paper:#f6f8fb;--line:#d8e1ec}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 ui-sans-serif,system-ui,"Microsoft YaHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:30px 24px 56px}header{background:linear-gradient(120deg,#132a4a,#216ee8);color:#fff;padding:34px;border-radius:18px;box-shadow:0 15px 35px #183a6333}h1{font-size:34px;line-height:1.2;margin:0 0 10px}.eyebrow,.tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}.tag{display:inline-block;border:1px solid #ffffff77;border-radius:99px;padding:3px 9px;margin-right:6px}.lead{font-size:18px;max-width:800px;margin:0}.notice{margin:24px 0;background:#fff6df;border-left:5px solid #e7a41d;padding:14px 17px;border-radius:8px}.grid{display:grid;gap:16px}.four{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:repeat(2,1fr)}.card,.node{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px}.card h2{font-size:18px;margin:0 0 8px}.card p{margin:0;color:var(--muted)}section{margin-top:28px}h2{font-size:23px;margin:0 0 13px}.diagram{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;overflow:auto}.flow{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:center;min-width:760px}.node{min-height:143px;border-top:5px solid var(--blue)}.node.source{border-color:var(--cyan)}.node.result{border-color:var(--green)}.arrow{text-align:center;color:var(--blue);font-size:30px}.node b{display:block;font-size:18px;margin-bottom:7px}.node small{color:var(--muted)}.rules{display:grid;grid-template-columns:140px 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}.rules>div{padding:13px;border-bottom:1px solid var(--line);background:#fff}.rules>div:nth-last-child(-n+3){border-bottom:0}.rules .head{background:#eaf2ff;font-weight:750}.matrix{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}.matrix th,.matrix td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}.matrix th{background:#eaf2ff}.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}.warn{color:var(--amber);font-weight:700}.foot{color:var(--muted);font-size:13px}.pill{display:inline-block;border-radius:99px;padding:2px 8px;background:#edf4ff;color:#1459bd;font-size:12px;font-weight:700}@media(max-width:800px){.four,.two{grid-template-columns:1fr}.wrap{padding:16px}h1{font-size:27px}.rules{grid-template-columns:1fr}.rules .head{display:none}.rules>div{border-bottom:1px solid var(--line)}}
+</style><style>
+.demo-wrap{position:relative;left:50%;transform:translateX(-50%);width:min(1560px,calc(100vw - 36px));max-width:none;margin:16px 0 24px;padding:0;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.demo-wrap iframe{width:100%;height:720px;display:block;border:0;border-top:1px solid var(--line);background:#f1f2f4}.demo-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px}.demo-tools a{color:#1459bd;text-decoration:none;padding:5px 9px;border-radius:6px;border:1px solid #d8e1ec;font-size:13px}.demo-tools a[aria-current=true]{background:#eaf2ff;border-color:#abc7f4;font-weight:700}.demo-tools .full{margin-left:auto}.demo-tools strong{margin-right:5px;font-size:14px}#prototype,#reply-demo{scroll-margin-top:12px}@media(max-width:800px){.demo-wrap iframe{height:650px}.demo-tools .full{margin-left:0}}
+</style></head><body><main class="wrap"><header><div class="eyebrow">R47 · 2026-11-12</div><h1>手动合并工单：把“重复沟通”收束为一个可继续处理的目标单</h1><p class="lead">客服选择目标工单，将重复沟通归到同一处继续处理，并保留每条消息的来源。</p><p><a class="tag" href="#prototype">可点击原型</a> <a class="tag" href="#report-impact">报表影响</a> <a class="tag" href="#yunxiao">云效交接</a></p></header>
+<aside class="notice"><b>一期建议：</b>合单关系和工单状态分开。源单保留原状态，凭「已并入目标单」关系退出待办；两单都记操作日志。WL-32 的“关闭”是否要求改为「已解决」，仍待裁定。</aside>
+<section><h2>从需求到一期边界</h2><div class="grid four"><article class="card"><h2>直接声音</h2><p>4 条：同订单/同问题、补充附件拆单、按编号批量、保留源历史。</p></article><article class="card"><h2>风险证据</h2><p>同邮箱可对应不同问题；跨邮箱会漏收或越权；合后渠道可能筛不到。</p></article><article class="card"><h2>一期机制</h2><p>明确目标单 + 多个源单，人工预览与确认，统一时间线但来源不丢失。</p></article><article class="card"><h2>明确不做</h2><p>客户资料合并、自动规则改造、LiveChat 续接、批量删除。</p></article></div></section>
+<section><h2>核心闭环：一主多源，关系化归集</h2><div class="diagram"><div class="flow"><div class="node source"><b>源工单 × N</b><small>工单号 · 原渠道/邮箱 · 原消息/附件/收件人 · 原状态</small></div><div class="arrow">→</div><div class="node"><b>人工预览与校验</b><small>选择唯一目标；每张源单重新校验状态、可见权限、跨邮箱权限；显示失败原因</small></div><div class="arrow">→</div><div class="node result"><b>目标工单</b><small>按原时间汇集消息/附件；每项标来源；按任一关联渠道可查；默认沿目标线程回复</small></div></div><p class="foot">实现建议：保存合单关系和源单前状态，展示时聚合；不以物理复制/删除替代可追溯关系。</p></div></section>
+<section><h2>权限与邮件身份：允许选择，不允许越界</h2><div class="rules"><div class="head">检查点</div><div class="head">合并时</div><div class="head">合并后</div><div><b>可见</b></div><div>操作员必须能看目标和每一张源单。</div><div>每条历史消息仍按原可见规则展示。</div><div><b>跨售后邮箱</b></div><div>除可见外，必须拥有独立的跨邮箱合单权限。</div><div>不能借合单打开原无权附件或邮件。</div><div><b>收件/抄送</b></div><div>仅作为历史身份显示，不默认改变收件范围。</div><div>默认用目标线程；显式回复源消息时另验原邮箱发信权限。</div></div></section>
+<section id="state-machine"><h2>状态机：工单状态、合单关系、操作日志分开</h2>
+<p class="foot">现有工单状态：待处理（open）、处理中（pending）、已解决（solved）、AI处理中（ai_handing）。一期建议：合并不改任何一张单的状态。</p>
+<div class="diagram"><div class="flow" role="group" aria-label="三张工单合并前后的状态">
+<div class="node source"><b>合并前 · 工单状态</b><div>#100 目标：待处理</div><div>#101 源：处理中</div><div>#102 源：已解决</div></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node"><b>合并 · 写关系与日志</b><div>#101、#102 → #100</div><small>逐张校验；成功关系用于待办和回复路由。双边日志记录操作人、时间、单号；失败源不建立关系。</small></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node result"><b>合并后 · 状态原样保留</b><div>#100 待处理 · 合入 2 单</div><div>#101 处理中 · 已并入 #100</div><div>#102 已解决 · 已并入 #100</div></div>
+</div><p class="foot">「已并入 #100」是独立标记。源单退出默认待办和分派，历史可查；合并不触发源单邀评。目标正常解决时按既有规则处理。</p>
+<p class="foot">代码依据：Tars master 归档 90ac8926、工单前端 5000f328。<a href="https://support.zendesk.com/hc/en-us/articles/4408882445594-Merging-tickets#topic_qcg_cfv_y3c">Zendesk</a> 也将 Closed 与 closed_by_merge 标签、合并备注分开。</p></div>
+<h3 id="reply-routing">合并后的消息怎么回复？</h3>
+<div class="diagram"><table class="matrix"><thead><tr><th scope="col">谁做了什么</th><th scope="col">消息去哪里／用哪个身份</th><th scope="col">哪张工单变状态</th></tr></thead><tbody>
+<tr><th scope="row">客服在 #100 普通回复</th><td>用 #100 的线程和收件规则。不自动带入源单的 To/Cc 或其他线程历史。</td><td>按现有规则，普通回复进入「处理中」；选择解决进入「已解决」。</td></tr>
+<tr><th scope="row">客服点选回复 #101 的某条旧消息</th><td>从 #100 时间线操作，用 #101 的原线程、原渠道和原邮箱。无发信权限或不支持时阻止发送，不自动换身份。</td><td>同目标单人工回复规则；提交前被拦截则状态不变，异步投递失败按现有路径处理。#101 无独立发信入口。</td></tr>
+<tr><th scope="row">客户回复 #100 原线程</th><td>照常进入 #100。</td><td>#100 按该渠道现行进线规则流转。</td></tr>
+<tr><th scope="row">客户回复 #101 旧线程，能精确识别且允许承接</th><td>进入 #100，标明来源 #101；如果渠道既有流程创建后续单，保留目标关联。</td><td>已核查的普通 Inbox 命中既有单路径：#100 处理中／已解决 → 待处理。#101 状态不变。</td></tr>
+<tr><th scope="row">旧线程无法确认，或目标队列无权承接</th><td>保留来信，走原渠道正常进线，排除已并入源单；不凭同邮箱、主题或订单强行导入。</td><td>不强制变更 #100；#101 不重新进入待办。</td></tr>
+</tbody></table><p class="foot">旧线程识别、原身份回复及目标已解决后的进线，需要逐渠道核验；归档只证明所列正常路径。</p></div>
+<div class="demo-wrap" id="reply-demo"><div class="demo-tools"><strong>合并后的工单 #100</strong><span class="foot">可点 #101 查看源单，或在消息旁点「回复原线程」。</span><a class="full" href="prototype.html?scene=merged">独立打开此页 ↗</a></div>
+<iframe title="合并后的工单与原线程回复" src="prototype.html?embed=1&amp;scene=merged" loading="lazy"></iframe></div></section>
+<section id="report-impact"><h2>报表影响：历史建单保留，当前待办减少</h2>
+<div class="diagram"><div class="flow" role="group" aria-label="同一批工单在合并前后的报表对账">
+<div class="node source"><b>合并前</b><div>建单量 3</div><div>当前未解决 2</div><div>历史已解决 1</div></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node"><b>#101、#102 并入 #100</b><div>关系在合并成功时生效</div><small>待办与 SLA 按生效时点识别源单；不写新的解决时间。</small></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node result"><b>合并后</b><div>建单量仍 3</div><div>当前未解决降至 1</div><div>历史已解决仍 1</div></div></div>
+<p class="foot">沿用上方三张示例工单。当前积压快照只按工单状态判断；若不接入合单关系，#101 会被报表多算。</p></div>
+<div class="diagram"><table class="matrix"><thead><tr><th scope="col">指标</th><th scope="col">一期处理</th></tr></thead><tbody>
+<tr><th scope="row">积压与处理中时长</th><td>从关系生效时排除源单，保留历史快照。</td></tr>
+<tr><th scope="row">解决量与客服绩效</th><td>合并新增解决为 0；已有解决和目标后续真实解决照常统计。</td></tr>
+<tr><th scope="row">回复、首响与渠道</th><td>历史按原归属；合并展示不重复计数。新增回复只计一次。</td></tr>
+<tr><th scope="row">SLA</th><td>源单停表停告警，保留历史结果；目标不重置。合并不产生新达标或违约样本。</td></tr>
+<tr><th scope="row">满意度</th><td>合并新增邀评为 0；已有邀请与有效答卷照常统计。</td></tr>
+<tr><th scope="row">明细与导出</th><td>保留原单号；汇总、明细、导出按同一口径对账。</td></tr>
+</tbody></table><p class="foot">依据：Tars 报表刷新代码归档，未核验生产数据。详细指标、时间与归属规则见 <a href="product.md">方案正文 S06</a>；<a href="acceptance.md">验收 A19–A23</a>覆盖合并前后对账、回复归属、SLA、满意度和部分失败时的快照。</p></div></section>
+<section id="prototype"><h2>合单操作原型</h2>
+<div class="demo-wrap"><nav class="demo-tools" aria-label="选择合单演示页面">
+<a href="prototype.html?embed=1&amp;scene=detail" target="merge-preview" data-scene="detail" aria-current="true">详情发起合单</a>
+<a href="prototype.html?embed=1&amp;scene=batch" target="merge-preview" data-scene="batch">表格批量合单</a>
+<a href="prototype.html?embed=1&amp;scene=confirm" target="merge-preview" data-scene="confirm">确认合并</a>
+<a href="prototype.html?embed=1&amp;scene=result" target="merge-preview" data-scene="result">合并结果</a>
+<a class="full" id="open-merge-scene" href="prototype.html?scene=detail">独立打开此页 ↗</a></nav>
+<iframe id="merge-preview" name="merge-preview" title="合单操作交互原型" src="prototype.html?embed=1&amp;scene=detail" loading="lazy"></iframe></div>
+<div class="diagram">
+<div class="flow" role="group" aria-label="拟制作的工单合并交互">
+<div class="node source"><b>两个发起入口</b><div>详情「…」按号选源单</div><div>列表批量选源后指定目标</div></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node"><b>确认合并方向</b><div>预览唯一目标与每张源单</div><div>确认或返回修改</div></div>
+<div class="arrow" aria-hidden="true">→</div><div class="node result"><b>查看合并结果</b><div>查看目标时间线和操作记录</div><div>失败项可单独重试</div></div></div>
+<p class="foot">详情演示：打开 #100 →「⋯」→ 合并工单 → 查找 #101、#102。批量演示：工单区左下切换「表格布局」→ 勾选 #101、#102 → 底部「合并工单」→ 选择 #100 为目标。顶部可切换失败、超时和原线程回复场景。</p>
+<p class="foot"><a href="#reply-demo">查看合并后如何回复</a> · <a href="spec/NAV-MAP.md">导航地图</a> · <a href="spec/PUBLIC-SPEC.md">公共规范</a> · <a href="spec/PAGE-SPEC.md">页面与交互规格</a></p></div></section>
+<section id="yunxiao"><h2>手动与自动合单联审</h2><div class="diagram"><p>两项在云效分别跟踪：手动合单和邮件引用自动合单。联审目标单识别、已并入源单排除、原线程收发邮箱校验与来信归属，以及报表去重。自动合单仍按独立范围验收。</p></div></section>
+<section><h2>一期决策矩阵</h2><table class="matrix"><thead><tr><th>能力</th><th>一期</th><th>理由</th></tr></thead><tbody><tr><td>详情按号合并 / 列表多选</td><td class="yes">纳入</td><td>覆盖精准选择与 WL-30 批量需求。</td></tr><tr><td>跨渠道 / 跨邮箱</td><td class="yes">纳入（受权限）</td><td>真实场景存在；必须把查看、合并、附件、回复四类权限拆开。</td></tr><tr><td>消息、附件、关联 ID、任一渠道筛选</td><td class="yes">纳入</td><td>否则“合并”无法解决上下文和检索问题。</td></tr><tr><td>客户资料合并 / 软删</td><td class="no">不纳入</td><td>当前仅证实客户组关联，未证实工单消息合并实现；对象与风险不同。</td></tr><tr><td>自动合单、eBay 规则、LiveChat 续接</td><td class="no">不纳入</td><td>它们是另一个条件/触发问题，不能成为手动合单兜底。</td></tr><tr><td>前台撤销</td><td class="warn">待技术评估</td><td>一期至少保存关系和前状态；不承诺 UI 撤销。</td></tr></tbody></table></section>
+<section><h2>验收重点</h2><div class="grid two"><article class="card"><h2>A01–A05：选择与权限</h2><p>目标唯一、源去重、批量逐张复核；无权时不泄露内容，也不静默部分成功。</p></article><article class="card"><h2>A06–A10：合后可读可找</h2><p>消息/附件/原邮件身份标注来源；回复不扩散收件人；API 与筛选可返回关联关系。</p></article><article class="card"><h2>A11–A12：状态、关系与邀评</h2><p>目标和源状态都保留；通过合单关系排除源单待办、双边留痕、不触发源单邀评。</p></article><article class="card"><h2>A13–A18：回复、续接与异常</h2><p>验证原线程与发信权限、旧线程回流与兜底、目标已解决后的续接，以及批量重试。</p></article></div><p class="foot">完整验收：<a href="acceptance.md">acceptance.md</a>；规则与核验边界：<a href="product.md">product.md</a>。</p></section></main>
+<script>
+const scenarioLinks=[...document.querySelectorAll('[data-scene]')];
+for(const link of scenarioLinks)link.addEventListener('click',event=>{
+ event.preventDefault();
+ document.getElementById('merge-preview').src=link.href;
+ for(const item of scenarioLinks)item.removeAttribute('aria-current');
+ link.setAttribute('aria-current','true');
+ document.getElementById('open-merge-scene').href='prototype.html?scene='+link.dataset.scene;
+});
+</script><link rel="stylesheet" href="review-notes.css"><script src="review-notes.js" defer></script></body></html>
