@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>统一设置中心｜系统现状与调整对照</title>
+<style>
+:root{--ink:#14233b;--muted:#5d6e86;--line:#d7e1ee;--paper:#f4f7fb;--navy:#132946;--blue:#2166d1;--bs:#ebf3ff;--purple:#7651ce;--ps:#f1edff;--orange:#c96116;--os:#fff2e8;--green:#14725a;--gs:#e9f8f2;--amber:#a35b0a;--as:#fff3df}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}header{background:var(--navy);color:#fff;padding:34px max(24px,calc((100% - 1160px)/2));border-bottom:4px solid #86afff}main{max-width:1160px;margin:auto;padding:28px 24px 64px}h1{font-size:32px;line-height:1.22;margin:4px 0 9px;letter-spacing:-.4px}h2{font-size:24px;margin:46px 0 14px}h3{font-size:17px;margin:0 0 7px}.eyebrow{font-size:13px;color:#c3d8ff;letter-spacing:.07em}.lede{font-size:18px;color:#e8f0ff;max-width:860px;margin:0}.status{display:inline-block;background:#ffe7c0;color:#5c3000;border-radius:99px;padding:4px 10px;margin-top:12px;font-size:13px;font-weight:700}.nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:19px}.nav a{display:inline-block;background:#ffffff1c;border:1px solid #dbe8ff99;color:#fff;text-decoration:none;padding:6px 11px;border-radius:7px;font-size:13px;font-weight:650}.nav a:hover,.nav a:focus{background:#fff;color:#17335a;outline:3px solid #92b7ff;outline-offset:2px}.callout{background:#fff;border-left:5px solid var(--blue);padding:16px 18px;border-radius:0 10px 10px 0;box-shadow:0 1px 3px #19385f16}.callout b{color:#1556b9}.note{font-size:13px;color:var(--muted);margin:10px 0}.mini{font-size:12px;color:var(--muted)}.two,.three,.summary{display:grid;gap:14px}.two{grid-template-columns:1fr 1fr}.three,.summary{grid-template-columns:repeat(3,1fr)}.card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:17px}.card p{margin:5px 0}.card ul{padding-left:19px;margin:8px 0}.card li{margin:4px 0}.current.bot{border-top:5px solid var(--purple)}.current.desk{border-top:5px solid var(--orange)}.current.other{border-top:5px solid #62758f}.target.common{border-top:5px solid var(--blue)}.target.ai{border-top:5px solid var(--purple)}.target.ticket{border-top:5px solid var(--orange)}.pill{display:inline-block;border-radius:5px;padding:2px 7px;margin:0 3px 5px 0;font-size:12px;font-weight:650}.blue{background:var(--bs);color:#1653b0}.purple{background:var(--ps);color:#5b3db1}.orange{background:var(--os);color:#a64c07}.gray{background:#eef1f5;color:#516174}.green{background:var(--gs);color:var(--green)}.amber{background:var(--as);color:var(--amber)}.flow{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;gap:7px;margin:14px 0}.arrow{font-size:25px;color:var(--blue);font-weight:800;text-align:center}table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden}th,td{padding:11px 12px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line)}th{background:#edf3fb;color:#304662;font-size:13px;white-space:nowrap}tr:last-child td{border-bottom:none}tr:hover td{background:#fbfdff}.id{font-size:12px;font-weight:800;color:#38516f;white-space:nowrap}.check{display:inline-block;min-width:65px;text-align:center;border-radius:99px;padding:2px 7px;font-size:12px;font-weight:700}.yes{background:var(--gs);color:var(--green)}.wait{background:var(--as);color:var(--amber)}.no{background:#eef1f5;color:#526176}.legend{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}.legend span{font-size:13px}.section-lede{max-width:850px;color:#465b77;margin-top:-4px;margin-bottom:15px}a{color:#185cc4}@media(max-width:780px){header{padding:28px 20px}main{padding:22px 16px}h1{font-size:27px}.two,.three,.summary{grid-template-columns:1fr}.flow{grid-template-columns:1fr;gap:5px}.arrow{transform:rotate(90deg)}table{display:block;overflow-x:auto}.nav{gap:7px}}
+</style>
+<link rel="stylesheet" href="solution-demo.css">
+<script src="prototype/menu.js" defer></script>
+<script src="solution-demo.js" defer></script>
+</head><body>
+<header><div class="eyebrow">统一设置中心 · 产品评审稿 v7</div><h1>统一设置中心</h1><p class="lede">从左上角应用切换进入设置中心，按配置用途找到原来的设置页。</p><nav class="nav" aria-label="方案目录"><a href="#overview">概览</a><a class="nav-primary" href="#mapping">完整设置对照</a><a href="#prototype">操作原型</a></nav></header>
+<main>
+<section id="overview">
+<h2>01｜概览</h2>
+<div class="overview-compare"><div><strong>系统现状</strong><span>设置分散在智能客服和智能工作台</span></div><div><strong>调整后</strong><span>左上角应用切换 → 设置中心 → 全部设置</span></div></div>
+<p class="section-lede overview-note">原来集中在「集成」的入口按用途拆开：工单渠道接入管理客户消息来源；开放平台管理资格、Webhook 和 API 文档；工具软件管理插件及三方授权。工单触发器从开放平台选择已有订阅。</p>
+</section>
+<section id="mapping" aria-labelledby="mapping-title">
+<h2 id="mapping-title" tabindex="-1">02｜完整设置对照</h2>
+<p class="section-lede">从「原型」列直达对应配置页。首次进入显示全部设置。</p>
+<div class="inventory-toolbar" role="group" aria-label="按设置归属筛选">
+<button type="button" data-filter="all" aria-pressed="true">全部</button>
+<button type="button" data-filter="common" aria-pressed="false">通用设置</button>
+<button type="button" data-filter="ai" aria-pressed="false">智能客服设置</button>
+<button type="button" data-filter="ticket" aria-pressed="false">工单设置</button>
+<button type="button" data-filter="channel" aria-pressed="false">工单渠道接入</button>
+<button type="button" data-filter="platform" aria-pressed="false">开放平台</button>
+<button type="button" data-filter="tools" aria-pressed="false">工具软件</button>
+<span id="inventory-count" aria-live="polite"></span></div>
+<table><thead><tr><th scope="col">设置项</th><th scope="col">系统现状</th><th scope="col">调整后</th><th scope="col">原型</th></tr></thead><tbody></tbody></table>
+</section>
+<section id="prototype" aria-labelledby="prototype-title">
+<h2 id="prototype-title" tabindex="-1">03｜操作原型</h2>
+<div class="demo-shell">
+  <div class="demo-bar"><strong>Solvea 设置中心</strong><a id="demo-open" href="prototype/index.html#home" target="_blank" rel="noopener">独立打开 ↗</a></div>
+  <div class="demo-examples" aria-label="原型查看方式">
+    <a data-demo="home" aria-current="location" href="prototype/index.html#home">全部</a>
+    <div class="demo-switch" role="group" aria-label="导航版本"><button type="button" data-mode="legacy" aria-pressed="false">系统现状</button><button type="button" data-mode="target" aria-pressed="true">调整后</button></div>
+    <a id="back-to-row" href="#mapping">返回对照表 ↑</a>
+  </div>
+  <iframe id="demo-frame" title="统一设置中心 Solvea 复刻原型" src="prototype/index.html#home"></iframe>
+  <div class="demo-location"><span>当前路径</span> <strong id="demo-path" aria-live="polite">设置中心 → 全部</strong></div>
+</div>
+<p class="note">原型使用本地示例数据。API 文档为只读示例。</p>
+</section>
+</main></body></html>
