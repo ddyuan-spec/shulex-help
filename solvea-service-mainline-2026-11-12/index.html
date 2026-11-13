@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solvea · 服务闭环评审</title>
+<style>
+:root{--ink:#223a42;--muted:#65777e;--paper:#f5f7f8;--line:#dfe8e6;--green:#237b66;--mint:#e7f3ed}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.55 "Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px}.shell{display:grid;grid-template-columns:190px minmax(0,1fr);min-height:100vh}.side{background:#fff;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;overflow:auto;padding:19px 13px}.brand{display:flex;gap:9px;align-items:center;font-size:17px;font-weight:700}.mark{display:grid;place-items:center;background:var(--green);border-radius:8px;color:#fff;width:32px;height:34px;font:italic bold 23px Georgia}.side small,.eyebrow{color:var(--muted);font-size:11px;letter-spacing:.08em}.side small{display:block;margin:18px 4px 8px}.side a[data-scene]{display:block;padding:8px 9px;border-radius:6px}.side a[aria-current]{color:#1b6655;background:var(--mint);font-weight:700}.side details{margin:7px 0}.side summary{cursor:pointer;font-weight:650;padding:6px 8px}.side details a{padding-left:18px!important;font-size:13px}.side footer{border-top:1px solid var(--line);margin-top:16px;padding:12px 6px;color:var(--muted);font-size:12px}
+.head{height:54px;background:#fff;border-bottom:1px solid var(--line);padding:0 22px;display:flex;justify-content:space-between;align-items:center;gap:10px}.head nav{display:flex;gap:6px}.head nav a{padding:4px 8px;border:1px solid var(--line);border-radius:5px;font-size:12px;background:#fff}.canvas{padding:22px;max-width:1660px;margin:auto}h1{font-size:clamp(22px,3vw,34px);line-height:1.22;margin:7px 0 10px}p{margin:0 0 14px;color:var(--muted)}.flow{border:1px solid #d6e5df;border-radius:12px;background:#fbfdfb;padding:18px;display:grid;gap:12px}.lane{display:grid;grid-template-columns:90px minmax(0,1fr);gap:10px;align-items:center}.lane>strong{font-size:13px;color:#276e5e}.nodes{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}.nodes a,.nodes .node{padding:8px 12px;background:white;border:1px solid var(--line);border-radius:7px;min-width:112px}.nodes a:hover{border-color:var(--green);background:var(--mint)}.nodes small{display:block;color:var(--muted);font-size:11px}.arrow{align-self:center;color:#658379}.role-line{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.role-line a{background:white;border:1px solid var(--line);padding:6px 10px;border-radius:6px;font-size:13px}.role-line a[aria-current]{background:var(--mint);color:#1c6a57;border-color:#b7d8ce;font-weight:700}.prototype{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}.proto-meta{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;gap:8px;font-size:12px;color:var(--muted)}.proto-meta a{color:#206b59}iframe{width:100%;height:650px;display:block;border:0;border-top:1px solid var(--line)}[hidden]{display:none!important}.sources{margin:17px 0;color:var(--muted);font-size:12px;display:flex;gap:15px;flex-wrap:wrap}.sources a{text-decoration:underline}.after{margin-top:14px}
+@media(max-width:850px){.shell{grid-template-columns:146px minmax(0,1fr)}.canvas{padding:13px}.head{padding:0 13px}.side{padding:13px 8px}.lane{grid-template-columns:1fr}.flow{padding:12px}}@media(max-width:550px){.shell{display:block}.side{position:static;height:auto}.side details,.side footer,.side small{display:none}.brand{margin-bottom:8px}.head{height:auto;min-height:52px;flex-wrap:wrap}}
+</style></head><body><div class="shell">
+<aside class="side"><a class="brand" href="#overview"><span class="mark">s</span>Solvea 服务闭环</a><small>现稿 · 待讨论</small><a data-scene="overview" href="#overview">▦ 服务总览</a>
+<details open><summary>管理员 · 启用准备</summary><a data-scene="integration" href="#integration">01 渠道集成</a><a data-scene="members" href="#members">02 坐席配置与分流</a></details>
+<details open><summary>客服 · 首单处理</summary><a data-scene="ticket-ai" href="#ticket-ai">03 AI 直解</a><a data-scene="ticket-human" href="#ticket-human">04 人工直解</a><a data-scene="ticket-hitl" href="#ticket-hitl">05 人机协同</a></details>
+<details open><summary>主管 · 服务结果</summary><a data-scene="survey" href="#survey">06 满意度调查</a><a data-scene="service-report" href="#service-report">07 报表与监控</a></details>
+<footer>评审样例<br>合成数据 · 不连业务系统</footer></aside>
+<div><header class="head"><span id="crumb">Solvea / 服务总览</span><nav aria-label="环节导航"><a id="prev" href="#overview">← 上一环节</a><a href="#overview">返回总览</a><a id="next" href="#integration">下一环节 →</a></nav></header>
+<main class="canvas"><div class="eyebrow" id="eyebrow">SOLVEA / 租户服务闭环</div><h1 id="headline">从接入第一个渠道，到看见首单服务结果。</h1><p id="blurb">管理员先接渠道、再配人；客服处理工单；主管看评价和运营结果。</p>
+<section class="flow" id="overview" aria-label="租户服务流程">
+<div class="lane"><strong>管理员</strong><div class="nodes"><span class="node">登录 Solvea</span><span class="arrow">→</span><a href="#integration">接入渠道<small>智能客服 · 集成</small></a><span class="arrow">→</span><a href="#members">配置人员与分流<small>智能工作台 · 设置</small></a></div></div>
+<div class="lane"><strong>客服 / AI</strong><div class="nodes"><span class="node">客户发来消息<small>首个工单进入工作台</small></span><span class="arrow">→</span><a href="#ticket-ai">AI 直解<small>AI处理中 → 已解决</small></a><a href="#ticket-human">人工直解<small>分配 → 回复 → 已解决</small></a><a href="#ticket-hitl">人机协同<small>同意 / 拒绝；也可转人工</small></a></div></div>
+<div class="lane"><strong>客户 / 主管</strong><div class="nodes"><a href="#survey">邀请评价<small>按渠道与已配置发送规则</small></a><span class="arrow">→</span><a href="#survey-result">查看回收<small>工单详情 · 满意度</small></a><span class="arrow">→</span><a href="#service-report">报表复盘<small>总览 · 坐席与队列监控</small></a></div></div>
+</section>
+<nav class="role-line" id="related" aria-label="当前环节的页面" hidden></nav>
+<section class="prototype" id="demo" hidden><div class="proto-meta"><span id="realpath"></span></div><iframe id="proto" title="Solvea 页面评审样例"></iframe></section>
+<div class="sources">待讨论：首单能否从接入一路走到结单、邀评和报表？渠道怎么选用 ChatFlow，三类处理结果怎么统计？</div>
+</main></div></div>
+<script>
+const scene={
+integration:['渠道集成','先在集成中心接入消息来源。','智能客服 → 集成'],
+agents:['文本智能体','智能体在搭建里管理；渠道绑定以各渠道现有配置为准。','智能客服 → 搭建 → 文本'],
+members:['成员','先确认有哪些人可以接单。','智能工作台 → 设置 → 坐席配置 → 成员'],
+teams:['团队','用团队组织接单人员。','智能工作台 → 设置 → 坐席配置 → 团队'],
+schedule:['排班','在排班页配置服务时间。','智能工作台 → 设置 → 坐席配置 → 排班'],
+capacity:['容量','按渠道查看坐席接待上限。','智能工作台 → 设置 → 坐席配置 → 容量'],
+assign:['分单','现有自动规则负责分单。','智能工作台 → 设置 → 效率 → 自动规则 → 分单'],
+queue:['队列','队列由指定团队承接。','智能工作台 → 设置 → 工单 → 队列'],
+'ticket-ai':['AI 直解','看 AI 回应和工单状态；需要接手时从现有入口转人工。','智能工作台 → 工单 → AI处理中'],
+'ticket-human':['人工直解','客服在原工单分配和回复，处理结果留在同一张单。','智能工作台 → 工单 → 待处理'],
+'ticket-hitl':['人机协同','在会话里的协同卡同意或拒绝；转人工是另一个动作。','智能工作台 → 工单 → 人工介入'],
+survey:['满意度调查','问卷在设置维护；是否邀评取决于渠道和发送规则。','智能工作台 → 设置 → 工单 → 满意度调查'],
+'survey-result':['回收结果','客户提交后，在同一工单详情查看评分。','智能工作台 → 工单 → 详情 → 满意度'],
+'service-report':['报表总览','看数据概览、今日工单、回复表现和绩效。三种处理方式的独立归因仍待核验。','智能工作台 → 报表 → 总览'],
+monitor:['坐席与队列监控','看积压、超时和当前可分配坐席。','智能工作台 → 报表 → 坐席与队列监控']};
+const groups=[['integration','agents'],['members','teams','schedule','capacity','assign','queue'],['ticket-ai','ticket-human','ticket-hitl'],['survey','survey-result'],['service-report','monitor']];
+const order=['overview',...Object.keys(scene)];const $=id=>document.getElementById(id);
+function show(){let id=location.hash.slice(1);if(id==='routing')id='members';if(!order.includes(id))id='overview';const item=scene[id], index=order.indexOf(id), group=groups.find(g=>g.includes(id))||[];
+$('overview').hidden=!!item;$('demo').hidden=!item;$('related').hidden=!item;$('crumb').textContent='Solvea / '+(item?.[0]||'服务总览');$('eyebrow').textContent=item?'SOLVEA / '+String(index).padStart(2,'0')+' · 场景评审':'SOLVEA / 租户服务闭环';
+$('headline').textContent=item?.[0]||'从接入第一个渠道，到看见首单服务结果。';$('blurb').textContent=item?.[1]||'管理员先接渠道、再配人；客服处理工单；主管看评价和运营结果。';
+$('related').replaceChildren(...group.map(k=>{const a=document.createElement('a');a.href='#'+k;a.textContent=scene[k][0];if(k===id)a.setAttribute('aria-current','page');return a}));
+if(item){const frame=$('proto'),src='prototype/index.html#'+id;let shown=false;try{shown=frame.contentWindow.location.hash==='#'+id}catch{}if(!shown&&frame.getAttribute('src')!==src)frame.setAttribute('src',src);else if(!shown)frame.contentWindow.location.hash=id;$('realpath').textContent=item[2]+' · 评审样例'}
+$('prev').hidden=index===0;$('next').hidden=index===order.length-1;$('prev').href='#'+(order[index-1]||'overview');$('next').href='#'+(order[index+1]||'overview');
+document.querySelectorAll('.side [data-scene]').forEach(a=>{const k=a.dataset.scene;if(k===id||group.includes(k)&&!group.includes('ticket-ai'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
+window.addEventListener('message',ev=>{if(ev.source!==$('proto').contentWindow||ev.origin!==location.origin||ev.data?.type!=='solvea-preview-route'||!Object.hasOwn(scene,ev.data.id))return;if(location.hash!=='#'+ev.data.id){history.replaceState(null,'','#'+ev.data.id);show()}});
+window.addEventListener('hashchange',show);show();
+</script></body></html>
