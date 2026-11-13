@@ -12,7 +12,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
 .ticket-local-restriction{font-size:12px;padding:12px 0;line-height:20px}
 .ticket-local-restriction>div{margin-bottom:6px}
 .ticket-local-restriction .blocked{color:#d92d20}
-.ticket-local-restriction .unsubscribed{color:#b7791f}
 .ticket-local-empty{height:100%;display:flex;align-items:center;justify-content:center;color:#98a2b3;font-size:13px}
 .ticket-local-toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:2000;background:#fff;box-shadow:0 4px 20px #0002;padding:10px 16px;border-radius:6px;font-size:13px;color:#344054}
 .ticket-local-menu{position:fixed;z-index:1500;background:#fff;border-radius:6px;padding:4px;box-shadow:0 6px 20px #0002;min-width:140px}

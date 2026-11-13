@@ -9,8 +9,6 @@
 
 html:has(.outreach-replica-frame),body:has(.outreach-replica-frame){overflow:hidden}
 body:has(.outreach-replica-frame)>.reviewbar,body:has(.outreach-replica-frame)>.appbar,body:has(.outreach-replica-frame)>.shell>.sidebar{display:none}
-/* 联系人模块的邮件退订；嵌入退订评审时共用同一份联系人档案。 */
-body.embedded .reviewbar,body.embedded .appbar,body.embedded .sidebar{display:none}body.embedded .shell{display:block;padding:0;height:100vh}body.embedded main{margin:0;min-height:100vh;border:0;border-radius:0;overflow:auto}body.embedded{background:#fff}.unsubscribe-table th:first-child,.unsubscribe-table td:first-child{width:auto;min-width:210px}.unsubscribe-table td{height:68px}.unsubscribe-table th{white-space:nowrap}.unsubscribe-table .row-actions{gap:12px}.unsubscribe-table{min-width:820px}#unsubForm .notice{font-size:13px;line-height:1.8}#unsubTerm{width:100%}
 [hidden]{display:none!important}
 
 .ticket-replica-frame{position:fixed;inset:0;width:100vw;height:100vh;border:0;background:#fff;z-index:50}

@@ -1,1 +1,83 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>邮箱黑名单｜方案摘要</title><style>body{max-width:900px;margin:44px auto;padding:0 24px;font:16px/1.7 system-ui,"Microsoft YaHei",sans-serif;color:#172033}h1{margin-bottom:4px}h2{margin-top:36px}a{color:#2459c5}small{color:#667085}.note{background:#f5f8ff;border-left:4px solid #4775e8;padding:14px 18px;border-radius:4px}table{border-collapse:collapse;width:100%;margin:16px 0}th,td{border:1px solid #d9e0ed;padding:10px;text-align:left;vertical-align:top}th{background:#f5f7fb}</style></head><body><p><a href="./index.html#blacklist">打开交互原型</a></p><h1>GOFO 联系人邮箱黑名单及发信前拦截</h1><small>产品方案摘要 · 设计建议，待业务与技术评审</small><p class="note">按“当前租户 + 指定收件邮箱”生效。联系人、历史工单与来信保留；不扩展为整个客户、其他邮箱或其他渠道的封禁。</p><h2>交付范围</h2><table><tr><th>页面/能力</th><th>变化</th></tr><tr><td>联系人 → 黑名单</td><td>支持搜索、筛选、单条新增、CSV 导入、详情、单条/批量移出及操作记录。</td></tr><tr><td>联系人与工单</td><td>展示黑名单状态；从联系人或工单客户邮箱快捷加入时，必须明确指定邮箱及原因。</td></tr><tr><td>邮件发送</td><td>回复、回复全部、转发、新建邮件工单与重发均按本次 To/Cc/Bcc 检查。命中时整封不发送，并展示命中地址与原因；“发送并解决”被拦时不自动解决工单。</td></tr><tr><td>主动触达</td><td>发送前排除命中邮箱，记录“已排除/已跳过”及原因；不将发送前拦截记为投递失败。</td></tr></table><h2>规则与边界</h2><ul><li>名单按邮箱精确匹配；不同租户隔离。加入名单不会删除联系人、工单或来信。</li><li>自动任务、批量、定时、API 与重试在实际提交前再次检查；命中后不换邮箱、路由或供应商绕过。</li><li>解除仅恢复后续新发送资格，历史被拦邮件不自动补发；系统或供应商限制需按各自来源复核。</li><li>黑名单与退订独立维护。退订的发送范围与解除规则不由本方案改变。</li></ul><h2>验收重点</h2><ul><li>命中地址不提交给邮件供应商；同封混合收件人、批量任务与已排队未提交邮件都按规则处理。</li><li>完整解除后新邮件可以发送，未解除的其他限制继续生效。</li><li>正常客户来信、工单处理、内部备注、电话和 IM 等未命中能力保持可用。</li></ul><p><a href="./index.html#blacklist">联系人黑名单原型</a> · <a href="./index.html#ticket">工单发信原型</a> · <a href="./index.html#automation">主动触达原型</a></p></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>GOFO 邮箱黑名单｜产品方案</title>
+<style>
+:root{--ink:#172033;--muted:#485978;--blue:#2459c5;--line:#d9e0ed;--soft:#f5f8ff;--green:#146553;--amber:#795018}
+*{box-sizing:border-box}body{max-width:1180px;margin:32px auto;padding:0 24px 48px;font:16px/1.65 system-ui,"Microsoft YaHei",sans-serif;color:var(--ink)}a{color:var(--blue);text-underline-offset:3px}a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}h1,h2{line-height:1.3}h1{margin-bottom:6px}h2{margin-top:0}p{margin:0 0 12px}.muted,small{color:var(--muted)}.note{background:var(--soft);border-left:4px solid #4775e8;padding:12px 16px;border-radius:4px}.nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:16px 0 22px}.section{border-top:1px solid var(--line);padding-top:24px;margin-top:28px;scroll-margin-top:16px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:620px;margin:0 0 12px}th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}th{background:#f5f7fb}.overview{margin:18px 0;border:1px solid var(--line);border-radius:10px;padding:8px 12px;overflow:auto}.overview svg{display:block;width:100%;min-width:650px;height:auto}.n{fill:#f5f8ff;stroke:#a8b9da;stroke-width:1.3}.g{fill:#edf8f3;stroke:#83bfae}.w{fill:#fff7e8;stroke:#d5b882}.edge{fill:none;stroke:#516f9f;stroke-width:1.8;marker-end:url(#arrow)}.t{fill:var(--ink);font-weight:650;font-size:17px}.s{fill:var(--muted);font-size:13px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;padding-left:22px}.proto{width:100%;height:680px;border:1px solid var(--line);border-radius:8px;background:white}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs button{font:inherit;border:1px solid var(--line);border-radius:6px;background:white;color:var(--ink);padding:6px 12px;cursor:pointer}.tabs button[aria-pressed=true]{background:var(--soft);border-color:var(--blue);color:var(--blue)}footer{border-top:1px solid var(--line);padding-top:16px;margin-top:30px}.verified{color:var(--green)}.pending{color:var(--amber)}@media(max-width:640px){body{margin:18px auto;padding:0 14px 30px}.checks{display:block}.proto{height:570px}}@media print{.proto,.tabs,.nav{display:none}}
+</style>
+</head>
+<body><main>
+<h1>GOFO 联系人邮箱黑名单及发信前拦截</h1>
+<p class="muted">产品方案 · 2026-11-13 · 产品评审</p>
+<nav class="nav" aria-label="方案目录"><a href="#scope">影响模块</a><a href="#delivery-result">退信处理</a><a href="#trigger">触发器现状</a><a href="#prototype">交互原型</a><a href="#acceptance">验收</a></nav>
+<p class="note">一份名单承接手动禁发和自动禁发。系统识别到「发送失败」或「收件邮箱无效」，且能定位实际失败收件邮箱时，由已启用的触发器把该邮箱加入名单。</p>
+<figure class="overview" aria-label="两条路径汇入同一份邮箱黑名单">
+<svg viewBox="0 0 1000 238" role="img" aria-labelledby="diagram-title diagram-description">
+<title id="diagram-title">手动与自动加入同一份黑名单</title><desc id="diagram-description">管理员可手动维护名单。系统在识别到发送失败或邮箱无效且明确失败地址时写入工单标签，现有标签条件命中后由新增动作写入同一份名单。后续发信前拦截。</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#516f9f"/></marker></defs>
+<rect class="n" x="20" y="18" width="222" height="53" rx="6"/><text class="t" x="36" y="40">管理员维护禁发邮箱</text><text class="s" x="36" y="59">新增 / 导入 / 联系人快捷加入</text>
+<rect class="n" x="20" y="96" width="222" height="53" rx="6"/><text class="t" x="36" y="118">发送失败 / 收件邮箱无效</text><text class="s" x="36" y="137">按实际收件地址生成失败记录</text>
+<rect class="n w" x="299" y="96" width="244" height="53" rx="6"/><text class="t" x="315" y="118">系统写工单标签</text><text class="s" x="315" y="137">同时传本次失败记录及邮箱</text>
+<rect class="n w" x="591" y="96" width="221" height="53" rx="6"/><text class="t" x="607" y="118">触发器按标签匹配</text><text class="s" x="607" y="137">条件已有 · 入名单动作待补</text>
+<rect class="n g" x="591" y="18" width="221" height="53" rx="6"/><text class="t" x="607" y="40">同一份邮箱黑名单</text><text class="s" x="607" y="59">当前租户 + 指定收件邮箱</text>
+<rect class="n g" x="850" y="18" width="128" height="53" rx="6"/><text class="t" x="865" y="40">发信前拦截</text><text class="s" x="865" y="59">原有方案</text>
+<rect class="n" x="299" y="173" width="244" height="53" rx="6"/><text class="t" x="315" y="195">没有可归因的失败地址</text><text class="s" x="315" y="214">保留发送结果，不加入名单</text>
+<path class="edge" d="M244 44H585"/><path class="edge" d="M244 123H293"/><path class="edge" d="M545 123H585"/><path class="edge" d="M702 94V77"/><path class="edge" d="M814 44H844"/><path class="edge" d="M131 151V199H293"/>
+</svg></figure>
+
+<section class="section" id="scope"><h2>影响模块与功能</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">页面 / 能力</th><th scope="col">变化</th></tr></thead><tbody>
+<tr><td><a href="#prototype" data-scene="blacklist">联系人 → 黑名单</a></td><td>保留搜索、筛选、单条新增、CSV 导入、详情、移出及操作记录。拟议自动加入复用这份名单，记录来源、规则及失败地址。</td></tr>
+<tr><td><a href="#prototype" data-scene="contacts">联系人与工单</a></td><td>保留黑名单状态和快捷加入；确认指定邮箱及原因。</td></tr>
+<tr><td><a href="#prototype" data-scene="ticket">工单 → 邮件发送</a></td><td>按实际 To/Cc/Bcc 检查。命中整封不发；「发送并解决」不解决工单。原发信结果照常保留。</td></tr>
+<tr><td><a href="#trigger">设置 → 触发器</a></td><td>复用「标签」条件。发信链路补系统打标和失败邮箱上下文，触发器新增「加入邮箱黑名单」动作。</td></tr>
+<tr><td><a href="#prototype" data-scene="automation">主动触达</a></td><td>发送前命中名单时记录「已排除 / 已跳过」，保留原因；实际失败仍为「发送失败」。</td></tr>
+</tbody></table></div></section>
+
+<section class="section" id="delivery-result"><h2>两类结果自动加入黑名单</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">系统结果</th><th scope="col">建议系统标签</th><th scope="col">业务处理</th></tr></thead><tbody>
+<tr><td>邮件发送失败</td><td>邮件发送失败</td><td>系统已确认发送失败且能定位实际失败收件邮箱，按启用规则加入同一份黑名单。</td></tr>
+<tr><td>收件邮箱不存在或无效</td><td>收件邮箱无效</td><td>系统明确识别为地址无效，按启用规则将该地址加入名单；同时符合两类时按地址无效记录一次。</td></tr>
+</tbody></table></div></section>
+
+<section class="section" id="trigger"><h2>触发器改造与配置</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">改造点</th><th scope="col">交付要求</th></tr></thead><tbody>
+<tr><td class="verified">复用条件</td><td>现有「工单事件类型」「标签」够用，无需新增条件。设置 → 触发器 → 新建一条规则；在「全部条件」选择「工单事件类型 → 是 → 更新」和「标签 → 包含任意一个 → 邮件发送失败、收件邮箱无效」。</td></tr>
+<tr><td class="pending">新增系统打标和事件数据</td><td>命中两类结果后写对应工单标签，并发工单更新，携带本次发送记录、结果类型及实际失败的收件邮箱。相同标签已存在时，新失败也要提交带本次记录的更新，不能只靠标签首次变化。</td></tr>
+<tr><td class="pending">新增执行动作</td><td>「执行动作 → 加入邮箱黑名单」，地址来源固定为「本次失败收件邮箱」。动作校验本次系统失败记录，只写确切地址。手动贴标签、后续普通工单更新或发送前拦截不执行该动作。保存并启用规则，不勾「同一工单仅执行一次」；按失败记录和邮箱去重。</td></tr>
+</tbody></table></div>
+<p class="muted">两个标签为拟新增系统标签。已有工单打标入口能发布更新；所查发信链路未见自动打这两类标签，动作列表未见入名单动作。依据 Tars master 90ac8926、前端 master 5000f328 归档；未核最新部署。</p></section>
+
+<section class="section" id="prototype"><h2>在方案里看原型</h2>
+<p class="muted">沿用原联系人、工单和主动触达原型。自动化链路以代码和上方方案为准，暂不模拟现有系统没有证实的配置或动作。</p>
+<div class="tabs" role="group" aria-label="切换原型场景"><button type="button" data-scene="blacklist" aria-pressed="true">联系人黑名单</button><button type="button" data-scene="contacts" aria-pressed="false">全部联系人</button><button type="button" data-scene="ticket" aria-pressed="false">工单发信</button><button type="button" data-scene="automation" aria-pressed="false">主动触达</button></div>
+<iframe id="prototype-frame" class="proto" title="联系人黑名单原型" src="./index.html?embed=1#blacklist"></iframe>
+<p><a id="prototype-open" href="./index.html#blacklist">独立查看当前原型</a></p></section>
+
+<section class="section" id="acceptance"><h2>规则与验收</h2><ul class="checks">
+<li>同租户精确匹配实际地址；同封混合收件人整封拦截，批量按封处理，已排队未提交及重发也复查。</li>
+<li>规则启用后，两类结果都能自动加入名单；未启用、没有失败记录或无法定位失败邮箱时不入名单。</li>
+<li>同封其他地址不受影响；手动贴标签不拉黑；同一事件重放不重复写，同工单后来失败的另一邮箱仍能加入。</li>
+<li>停规则不解除旧记录；解除只恢复后续发信，其他有效限制仍生效，不补发历史。</li>
+<li>不改联系人、历史工单、正常来信、内部备注、电话和 IM。</li>
+</ul></section>
+
+</main>
+<script>
+const names={blacklist:'联系人黑名单',contacts:'全部联系人',ticket:'工单发信',automation:'主动触达'};
+const frame=document.getElementById('prototype-frame'),open=document.getElementById('prototype-open');
+let scene='blacklist';
+document.querySelectorAll('[data-scene]').forEach(control=>control.addEventListener('click',()=>{
+  const next=control.dataset.scene;
+  if(!Object.hasOwn(names,next)||next===scene)return;
+  scene=next;
+  frame.src='./index.html?embed=1#'+scene;
+  frame.title=names[scene]+'原型';
+  open.href='./index.html#'+scene;
+  document.querySelectorAll('.tabs [data-scene]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.scene===scene)));
+}));
+</script>
+</body></html>
