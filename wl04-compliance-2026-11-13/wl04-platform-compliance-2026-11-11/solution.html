@@ -11,7 +11,7 @@
 <body>
 <header class="masthead"><div class="wrap masthead-inner">
   <a href="#top" class="brand"><span class="mark" aria-hidden="true">S</span> Solvea <span class="divider"></span> 产品评审</a>
-  <nav aria-label="方案目录"><a href="#changes">改动地图</a><a href="#prototype">页面原型</a><a href="#review">验收与依据</a></nav>
+  <nav aria-label="方案目录"><a href="#changes">改动地图</a><a href="#prototype">页面原型</a><a href="#dev-review">开发口径</a><a href="#review">验收与依据</a></nav>
 </div></header>
 <main id="top" class="wrap">
   <section class="hero" aria-labelledby="title">
@@ -48,12 +48,12 @@
         <li><span>核对同一字段</span>示例 <code>a***@example.com</code> 展开为 <code>amy@example.com</code>，详情内对应的回复条和邮件信头同步。</li>
         <li><span>收起或换单</span>再次点眼睛收起；换单、离开或刷新后恢复遮盖。</li>
       </ol>
-      <p class="effect"><strong>影响客服操作：</strong>遮盖时复制拿不到原文；回复和拨号仍用真实目标。姓名、邮箱、电话分别切换，沿用现有工单角色范围。</p>
+      <p class="effect"><strong>影响客服操作：</strong>遮盖时复制拿不到原文；回复和拨号仍用真实目标。姓名、邮箱、电话分别切换，沿用现有工单角色范围。<a href="#dev-ticket">查看字段、页面和服务端规则</a></p>
       <p class="try"><strong>试一试：</strong>点邮箱的眼睛，查看回复条；收起后试复制，再展开并换到另一张工单。</p>
       <div class="preview-host" data-preview="ticket"></div>
       <details class="note"><summary>批注 01–04 · 导出、权限撤销与查看留痕</summary>
         <ul>
-          <li><strong>导出：</strong>沿用现有独立导出权限。眼睛只控制页面显示，不改变导出结果。标签和消息导出的客户字段、正文和下载文件须逐项核对；哪些结构化列输出原文仍待定。</li>
+          <li><strong>导出：</strong>沿用现有独立导出权限。眼睛只控制页面显示，文件不读取眼睛状态。<a href="#dev-export">查看三类工单导出的字段和遮盖建议</a>。</li>
           <li><strong>撤权：</strong>撤销原有工单权限后，后续详情或原文请求应拒绝，并清除页内已展开状态。已复制或下载的数据不能召回。</li>
           <li><strong>留痕与边界：</strong>建议记录操作者、时间、空间、工单和字段，日志不记原文。自由正文、附件、独立联系人及订单数据不纳入本次结构化字段遮盖。</li>
         </ul>
@@ -69,7 +69,7 @@
         <li><span>平台复核，应用回显结果</span>已有应用凭据和工单域仍按原来授权。获批字段才有原文，其他字段按接口兼容口径遮盖。</li>
         <li><span>开发者调用接口</span>扩权须重审；撤销后下次请求就按撤销结果返回，旧令牌也一样。</li>
       </ol>
-      <p class="effect"><strong>影响接入负责人、平台复核方和开发者：</strong>本期申请范围以已有对外字段为限，原型演示姓名、邮箱。接口文档补授权前后的响应对照。</p>
+      <p class="effect"><strong>影响接入负责人、平台复核方和开发者：</strong>本期申请范围以已有对外字段为限，原型演示姓名、邮箱。接口文档补授权前后的响应对照。<a href="#dev-api">查看平台审批与撤权</a></p>
       <p class="try"><strong>试一试：</strong>在「配置工作域权限」中申请邮箱。提交后可用下方评审场景查看复核结果，或打开接口文档对比授权前后响应。</p>
       <div class="preview-host" data-preview="api"></div>
       <details class="note"><summary>批注 05–07 · 授权、接口、Webhook 和撤销</summary>
@@ -90,7 +90,7 @@
         <li><span>发出前加告知</span>普通场景开时加尾注、关时不加。必须告知时，关了开关也按规则告知。</li>
         <li><span>客户收件</span>尾注放在签名后、历史引用前；需告知的首封在正文开头也说明 AI 身份。</li>
       </ol>
-      <p class="effect"><strong>影响设置管理员、客服和收件人：</strong>有设置权限的人保存开关。客服无需逐封勾选。客户看到的尾注是「此邮件由 AI 客服自动回复。」</p>
+      <p class="effect"><strong>影响设置管理员、客服和收件人：</strong>有设置权限的人保存开关。客服无需逐封勾选。客户看到的尾注是「此邮件由 AI 客服自动回复。」<a href="#dev-ai">查看首封与每封的建议，以及和当前原型的差别</a></p>
       <p class="try"><strong>试一试：</strong>关闭开关并保存，对比普通 AI 回信、需告知的首封及人工回信。</p>
       <div class="preview-host" data-preview="ai"></div>
       <details class="note"><summary>批注 01–03 · 首封、保存和失败重试</summary>
@@ -116,6 +116,66 @@
 
   <section id="impact" class="boundary" aria-label="本期边界"><strong>本期边界</strong><p>租户管理员单独配置个人信息权限放后期。工单沿用现有角色权限；AI 邮件继续走现有设置权限。</p></section>
 
+  <section class="section" id="dev-review" aria-labelledby="dev-title">
+    <div class="section-head"><div><p class="eyebrow">开发评审补充</p><h2 id="dev-title">字段、审批、导出和发信规则</h2></div><a href="开发评审补充.md">查看完整说明与验收</a></div>
+    <p class="effect">按本期范围列出要改的位置。平台审批入口、导出遮盖和邮件尾注的新增建议仍待评审。</p>
+    <nav class="dev-nav" aria-label="开发口径分节"><a href="#dev-ticket">工单字段</a><a href="#dev-api">申请和审批</a><a href="#dev-export">两类导出</a><a href="#dev-ai">首封和每封</a></nav>
+
+    <article class="panel dev-panel" id="dev-ticket" aria-labelledby="dev-ticket-title">
+      <h3 id="dev-ticket-title">1. 工单显示和隐藏</h3>
+      <p class="effect"><a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng">GDPR 第 5(1)(c)、25、32 条</a>和<a href="https://cppa.ca.gov/pdf/20260101_ccpa_statute.pdf">CCPA §1798.100(c)、(e)</a>涉及数据最小化、默认保护或合理安全措施。以下页面和眼睛是 Solvea 的实现选择。</p>
+      <div class="rule-scroll"><table class="rule-table">
+        <caption class="sr-only">工单各位置的字段和显示规则</caption>
+        <thead><tr><th scope="col">页面或位置</th><th scope="col">本期规则</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">工单卡片和搜索结果</th><td>遮盖现有客户显示名；显示名按实际姓名、邮箱或电话回退。列表不加眼睛。</td></tr>
+          <tr><th scope="row">工单表格</th><td>遮盖已有「客户邮箱」列；「售后邮箱」是商家账号，保持原样。</td></tr>
+          <tr><th scope="row">工单详情 → 客户信息</th><td>姓名、邮箱、电话有值才加眼睛。现有工单权限决定谁可以展开；关闭、换单、离开、刷新后恢复遮盖。</td></tr>
+          <tr><th scope="row">详情 → 来信信头、会话、回复区</th><td>同一结构化字段跟随右栏；遮盖时不能复制原文，实际发信和拨号继续用真实目标。</td></tr>
+        </tbody>
+      </table></div>
+      <p class="effect"><strong>服务端：</strong>默认接口只给上述受控字段的遮盖值。点眼睛时按当前工作空间和既有工单权限重新校验，只返回对应字段原文；撤权后拒绝后续读取。独立联系人、订单收件人、自由正文和附件不在本期联动范围。</p>
+    </article>
+
+    <article class="panel dev-panel" id="dev-api" aria-labelledby="dev-api-title">
+      <h3 id="dev-api-title">2. 租户申请、平台授权与导出</h3>
+      <ol class="steps">
+        <li><span>租户申请</span>在现有应用的工单域选择姓名或邮箱，填写用途并提交。</li>
+        <li><span>平台审批</span>Solvea 平台管理员按申请字段批准、部分批准或驳回，记录原因。内部审批入口待确认。</li>
+        <li><span>开发者调用</span>应用页回显状态和获批字段；已有令牌只读到获批字段原文。扩权重审。</li>
+        <li><span>平台撤权</span>下一次请求、Webhook 投递或重试按当前授权；旧令牌不能继续读取已撤销字段。</li>
+      </ol>
+      <h4 id="dev-export">两类导出，各走自己的权限和规则</h4>
+      <div class="rule-scroll"><table class="rule-table">
+        <caption class="sr-only">应用接入文档与工单文件的导出差异</caption>
+        <thead><tr><th scope="col">导出入口</th><th scope="col">交付内容与建议</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">开放平台 → 导出应用接入文档</th><td>记录工作域、获批字段和合成示例；不写入密钥或客户数据。</td></tr>
+          <tr><th scope="row">工单 → 导出工单标签</th><td>沿用现有导出权限；建议保留表头、遮盖「客户邮箱」，另验首封内容、备注和附件。</td></tr>
+          <tr><th scope="row">工单 → 导出工单消息</th><td>同样遮盖「客户邮箱」；另验沟通记录、备注和附件，避免联系方式仍出现在自由文本里。</td></tr>
+          <tr><th scope="row">工单 → 导出满意度数据</th><td>核实实际模板是否含「客户邮箱」；若有，按同一口径遮盖，另验回答明细。</td></tr>
+        </tbody>
+      </table></div>
+      <p class="effect"><strong>设置建议：</strong>工单导出用服务端固定规则，本期不增加租户模板配置。生成与下载分别校验既有权限。眼睛展开或应用获批都不会解锁工单文件原文。</p>
+    </article>
+
+    <article class="panel dev-panel" id="dev-ai" aria-labelledby="dev-ai-title">
+      <h3 id="dev-ai-title">3. AI 邮件：谁控制首封，谁控制每封</h3>
+      <p class="effect"><strong>建议：</strong>有设置权限的用户在「设置 → AI」控制「每封 AI 自动回复附加告知」，默认开、保存后生效。适用的首封身份告知由系统规则决定，参见 <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">EU AI Act 第 50(1)、(5) 条</a>。</p>
+      <div class="rule-scroll"><table class="rule-table">
+        <caption class="sr-only">建议方案下邮件开关的结果</caption>
+        <thead><tr><th scope="col">发送场景</th><th scope="col">开：每封尾注</th><th scope="col">关：无额外尾注</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">必须告知或暂无法判断的首封 AI 自动回信</th><td>正文开头说明 AI 身份，签名后加尾注</td><td>正文开头仍说明 AI 身份</td></tr>
+          <tr><th scope="row">同会话后续 AI 自动回信，或确认可不告知的 AI 自动回信</th><td>签名后、历史引用前加尾注</td><td>不加新告知</td></tr>
+          <tr><th scope="row">人工以本人身份发送</th><td colspan="2">不加新告知</td></tr>
+        </tbody>
+      </table></div>
+      <p class="effect"><strong>首封判定：</strong>同一对客邮件会话第一次成功发出的 AI 回复。先发人工邮件不占首封；发送失败不计，重试不重复追加。</p>
+      <p class="effect"><strong>原型差异：</strong>当前原型在关闭开关后，需告知的首封仍展示开头说明和尾注；上表建议此时只保留开头说明，后续也不追加尾注。评审确认后再改原型。</p>
+    </article>
+  </section>
+
   <section class="section review" id="review" aria-labelledby="review-title">
     <div class="section-head"><div><p class="eyebrow">03 / 验收与依据</p><h2 id="review-title">上线前用什么来验</h2></div></div>
     <dl class="checks">
@@ -123,7 +183,7 @@
       <div><dt>开放平台</dt><dd>用同一个令牌验证授权前、获批后和撤销后；覆盖接口、Webhook、投递记录和重试。</dd></div>
       <div><dt>AI 邮件</dt><dd>按实际发信路径验证开关、首封、人工接手与重试，用收件端核对正文和纯文本。</dd></div>
     </dl>
-    <details class="note"><summary>展开法规依据、竞品与历史方案</summary>
+    <details class="note"><summary>展开法规依据、竞品与核验记录</summary>
       <p>工单遮盖和应用按字段授权对应数据最小化和访问控制；邮件说明对应直接与 AI 互动时的告知要求。这些是产品做法，法规适用和生产效果分别核实。参考 Intercom 的邮件告知形式与 Zendesk 的可配置话术。</p>
       <p><a href="competitor-review.md">竞品核查</a> · <a href="../wl04-ticket-pii/AI邮件告知-竞品与建议.md">AI 邮件竞品</a> · <a href="verification.md">原型核验记录</a></p>
     </details>

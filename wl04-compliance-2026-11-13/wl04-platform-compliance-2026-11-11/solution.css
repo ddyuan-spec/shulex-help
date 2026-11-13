@@ -79,6 +79,17 @@ iframe { display: block; width: 100%; min-width: 1050px; height: clamp(660px, 84
 .checks > div { padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); font-size: 14px; }
 dt { color: var(--ink); font-weight: 700; }
 dd { margin: 2px 0 0; }
+.dev-nav { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 9px; font-size: 13px; }
+.dev-panel { margin-top: 12px; }
+.dev-panel h4 { margin: 15px 0 0; color: var(--ink); font-size: 15px; }
+.rule-scroll { margin-top: 10px; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.rule-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.rule-table th, .rule-table td { padding: 7px 10px; vertical-align: top; border-bottom: 1px solid var(--line); }
+.rule-table thead { background: var(--mist); }
+.rule-table tbody th { width: 30%; color: var(--ink); font-weight: 650; }
+.rule-table tr:last-child > * { border-bottom: 0; }
+.rule-table thead tr:last-child > * { border-bottom: 1px solid var(--line); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .footer { display: flex; justify-content: space-between; margin-top: 18px; border-top: 1px solid var(--line); padding-block: 12px 20px; color: var(--muted); font-size: 12px; }
 @media (max-width: 800px) {
   .wrap { width: calc(100% - 30px); }
