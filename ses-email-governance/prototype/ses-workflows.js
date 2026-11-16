@@ -88,7 +88,7 @@ window.createSesWorkflows=({esc,tenant,records,href,navLink,go,toast})=>{
     blacklist();
     const email=view?'':tickets[scene]?.email||'';
     const page=view==='contacts'?'contacts':'blacklist';
-    return '<div class="scr-external-bar">'+navLink('← 返回工单','ticketComplaint',{scene})+'</div><iframe class="scr-workframe" title="联系人黑名单" src="../blacklist/index.html?'+esc(new URLSearchParams({tenant:tenant().id,email}))+'#'+page+'"></iframe>';
+    return '<div class="scr-external-bar">'+navLink('← 返回工单','ticketComplaint',{scene})+'</div><iframe class="scr-workframe" title="联系人黑名单" src="../../email-blacklist-2026-11-05/index.html?'+esc(new URLSearchParams({tenant:tenant().id,email}))+'#'+page+'"></iframe>';
   }
   function report(){
     const id=tenant().id, options=[['','全部邮箱'],['primary',tenant().from],['secondary','returns@'+tenant().name.toLowerCase()+'.example']];

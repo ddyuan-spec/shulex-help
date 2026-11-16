@@ -12,6 +12,10 @@
   <section aria-labelledby="flows">
     <h2 id="flows">业务流程</h2>
     <div class="flow-group">
+      <article class="flow" id="ses-notifications"><h3>通知：上线前公告、上线后投诉提醒</h3>
+        <p><b>上线前：</b>复用系统公告弹窗 → 说明 SES 转发授权的变化、投诉风险和替代发信方式。</p>
+        <p><b>上线后：</b>核实并归属本租户的 AWS SES 投诉 → 工单管理员在顶栏下看到提醒 →「查看」进入本租户 SES 投诉列表。横幅可复用样式，投诉事件和接收权限需接入。</p>
+      </article>
       <article class="flow"><h3>01　发现并查看投诉</h3><div class="steps">
         <a href="prototype/ses-review.html#mailIntegration" target="prototype"><b>渠道卡片</b><small>有 SES 投诉邮件（3）</small></a>
         <a href="prototype/ses-review.html#mailList" target="prototype"><b>邮箱列表</b><small>每邮箱投诉数</small></a>
@@ -53,6 +57,8 @@
   <section aria-labelledby="impact">
     <h2 id="impact">影响模块与功能汇总</h2>
     <div class="table-wrap"><table><thead><tr><th>模块</th><th>功能</th><th>开发说明</th><th>原型</th></tr></thead><tbody>
+      <tr><td>工单 · 系统公告</td><td>SES 授权上线通知</td><td>上线前通过现有公告弹窗告知授权变化。若只向部分租户或管理员展示，需另确认定向能力。</td><td>复用现有弹窗</td></tr>
+      <tr><td>工单 · 顶栏下方</td><td>SES 投诉提醒条</td><td>仅本租户工单管理员可见；收到可归属的 AWS SES 投诉后显示，点击查看投诉列表；邮件内问卷不触发。无符合条件的投诉时隐藏；何时消失待确认。</td><td>待补演示</td></tr>
       <tr><td>集成</td><td>邮箱渠道卡</td><td>保留连接数，显示「有 SES 投诉邮件（N）」；没有投诉时隐藏。</td><td><a href="prototype/ses-review.html#mailIntegration" target="prototype">渠道卡片</a></td></tr>
       <tr><td>集成 · 邮箱</td><td>邮箱列表</td><td>「SES 状态」换为「SES 投诉邮件数」。非零数字跳本邮箱配置；右上入口看全租户投诉。</td><td><a href="prototype/ses-review.html#mailList" target="prototype">有投诉</a> · <a href="prototype/ses-review.html#mailList?tenant=TEN-018" target="prototype">无投诉</a></td></tr>
       <tr><td>集成 · 邮箱</td><td>邮箱配置</td><td>有投诉时显示提示与入口，进入该发件邮箱的投诉邮件。授权和其他配置沿用现有页面。</td><td><a href="prototype/ses-review.html#mailHealth?mailbox=primary" target="prototype">邮箱配置</a></td></tr>
