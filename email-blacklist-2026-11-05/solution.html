@@ -11,16 +11,16 @@
 </head>
 <body><main>
 <h1>GOFO 联系人邮箱黑名单及发信前拦截</h1>
-<p class="muted">产品方案 · 2026-11-13 · 产品评审</p>
-<nav class="nav" aria-label="方案目录"><a href="#scope">影响模块</a><a href="#delivery-result">退信处理</a><a href="#trigger">触发器现状</a><a href="#prototype">交互原型</a><a href="#acceptance">验收</a></nav>
-<p class="note">一份名单承接手动禁发和自动禁发。系统识别到「发送失败」或「收件邮箱无效」，且能定位实际失败收件邮箱时，由已启用的触发器把该邮箱加入名单。</p>
-<figure class="overview" aria-label="两条路径汇入同一份邮箱黑名单">
+<p class="muted">产品方案 · 2026-11-17</p>
+<nav class="nav" aria-label="方案目录"><a href="#scope">影响模块</a><a href="#ai-inbound">黑名单来信</a><a href="#delivery-result">退信处理</a><a href="#trigger">触发器现状</a><a href="#prototype">交互原型</a><a href="#acceptance">验收</a></nav>
+<p class="note">本期：手动管理邮箱黑名单，拦截出站邮件。黑名单来信照常进工单，明确命中时跳过 AI 自动回信。退信后自动加入名单是延伸方案。</p>
+<figure class="overview" aria-label="手动维护与延伸的自动加入路径汇入同一份邮箱黑名单">
 <svg viewBox="0 0 1000 238" role="img" aria-labelledby="diagram-title diagram-description">
 <title id="diagram-title">手动与自动加入同一份黑名单</title><desc id="diagram-description">管理员可手动维护名单。系统在识别到发送失败或邮箱无效且明确失败地址时写入工单标签，现有标签条件命中后由新增动作写入同一份名单。后续发信前拦截。</desc>
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#516f9f"/></marker></defs>
 <rect class="n" x="20" y="18" width="222" height="53" rx="6"/><text class="t" x="36" y="40">管理员维护禁发邮箱</text><text class="s" x="36" y="59">新增 / 导入 / 联系人快捷加入</text>
 <rect class="n" x="20" y="96" width="222" height="53" rx="6"/><text class="t" x="36" y="118">发送失败 / 收件邮箱无效</text><text class="s" x="36" y="137">按实际收件地址生成失败记录</text>
-<rect class="n w" x="299" y="96" width="244" height="53" rx="6"/><text class="t" x="315" y="118">系统写工单标签</text><text class="s" x="315" y="137">同时传本次失败记录及邮箱</text>
+<rect class="n w" x="299" y="96" width="244" height="53" rx="6"/><text class="t" x="315" y="118">系统写工单标签（延伸）</text><text class="s" x="315" y="137">同时传本次失败记录及邮箱</text>
 <rect class="n w" x="591" y="96" width="221" height="53" rx="6"/><text class="t" x="607" y="118">触发器按标签匹配</text><text class="s" x="607" y="137">条件已有 · 入名单动作待补</text>
 <rect class="n g" x="591" y="18" width="221" height="53" rx="6"/><text class="t" x="607" y="40">同一份邮箱黑名单</text><text class="s" x="607" y="59">当前租户 + 指定收件邮箱</text>
 <rect class="n g" x="850" y="18" width="128" height="53" rx="6"/><text class="t" x="865" y="40">发信前拦截</text><text class="s" x="865" y="59">原有方案</text>
@@ -33,17 +33,26 @@
 <tr><td><a href="#prototype" data-scene="blacklist">联系人 → 黑名单</a></td><td>保留搜索、筛选、单条新增、CSV 导入、详情、移出及操作记录。拟议自动加入复用这份名单，记录来源、规则及失败地址。</td></tr>
 <tr><td><a href="#prototype" data-scene="contacts">联系人与工单</a></td><td>保留黑名单状态和快捷加入；确认指定邮箱及原因。</td></tr>
 <tr><td><a href="#prototype" data-scene="ticket">工单 → 邮件发送</a></td><td>按实际 To/Cc/Bcc 检查。命中整封不发；「发送并解决」不解决工单。原发信结果照常保留。</td></tr>
-<tr><td><a href="#trigger">设置 → 触发器</a></td><td>复用「标签」条件。发信链路补系统打标和失败邮箱上下文，触发器新增「加入邮箱黑名单」动作。</td></tr>
+<tr><td><a href="#ai-inbound">工单 → AI 自动回信</a></td><td>来信照常建单或并入会话；确定回信地址命中黑名单时跳过自动回信，记录原因，不新增发送失败或自动关单。</td></tr>
+<tr><td><a href="#trigger">设置 → 触发器（延伸方案）</a></td><td>复用「标签」条件。发信链路补系统打标和失败邮箱上下文，触发器新增「加入邮箱黑名单」动作。</td></tr>
 <tr><td><a href="#prototype" data-scene="automation">主动触达</a></td><td>发送前命中名单时记录「已排除 / 已跳过」，保留原因；实际失败仍为「发送失败」。</td></tr>
 </tbody></table></div></section>
 
-<section class="section" id="delivery-result"><h2>两类结果自动加入黑名单</h2>
+<section class="section" id="ai-inbound"><h2>黑名单来信：正常进工单，跳过自动回信</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">场景</th><th scope="col">本期处理</th></tr></thead><tbody>
+<tr><td>接收来信</td><td>沿用现有建单、并入会话和路由。客服可继续查看、备注、指派和人工处理。</td></tr>
+<tr><td>启动 AI 自动回信前</td><td>已确定本租户的实际回信目标且命中名单时，跳过本次自动回信；记录「已跳过：邮箱黑名单」。回信目标尚未确定时不按主联系人或来信发件人误拦。</td></tr>
+<tr><td>实际发信前</td><td>按实际 To/Cc/Bcc 复查，包括已排队的 AI 回信。命中即停止出站，不重试、不算发送失败或已回复，不触发依赖回复成功的关单。实际投递失败沿用原链路。</td></tr>
+</tbody></table></div><p class="muted">上线后按租户观察命中来信量、AI 跳过量和人工积压，再决定是否要做来信分流或专门队列。</p></section>
+
+<section class="section" id="delivery-result"><h2>延伸方案：两类结果自动加入黑名单</h2>
+<p class="muted">此处描述退信自动加入的设计；OEZJ-220 本期交付手动名单、跨入口禁发和黑名单来信的 AI 兜底。</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">系统结果</th><th scope="col">建议系统标签</th><th scope="col">业务处理</th></tr></thead><tbody>
 <tr><td>邮件发送失败</td><td>邮件发送失败</td><td>系统已确认发送失败且能定位实际失败收件邮箱，按启用规则加入同一份黑名单。</td></tr>
 <tr><td>收件邮箱不存在或无效</td><td>收件邮箱无效</td><td>系统明确识别为地址无效，按启用规则将该地址加入名单；同时符合两类时按地址无效记录一次。</td></tr>
 </tbody></table></div></section>
 
-<section class="section" id="trigger"><h2>触发器改造与配置</h2>
+<section class="section" id="trigger"><h2>延伸方案：触发器改造与配置</h2>
 <div class="table-wrap"><table><thead><tr><th scope="col">改造点</th><th scope="col">交付要求</th></tr></thead><tbody>
 <tr><td class="verified">复用条件</td><td>现有「工单事件类型」「标签」够用，无需新增条件。设置 → 触发器 → 新建一条规则；在「全部条件」选择「工单事件类型 → 是 → 更新」和「标签 → 包含任意一个 → 邮件发送失败、收件邮箱无效」。</td></tr>
 <tr><td class="pending">新增系统打标和事件数据</td><td>命中两类结果后写对应工单标签，并发工单更新，携带本次发送记录、结果类型及实际失败的收件邮箱。相同标签已存在时，新失败也要提交带本次记录的更新，不能只靠标签首次变化。</td></tr>
@@ -52,14 +61,15 @@
 <p class="muted">两个标签为拟新增系统标签。已有工单打标入口能发布更新；所查发信链路未见自动打这两类标签，动作列表未见入名单动作。依据 Tars master 90ac8926、前端 master 5000f328 归档；未核最新部署。</p></section>
 
 <section class="section" id="prototype"><h2>在方案里看原型</h2>
-<p class="muted">沿用原联系人、工单和主动触达原型。自动化链路以代码和上方方案为准，暂不模拟现有系统没有证实的配置或动作。</p>
+<p class="muted">沿用原联系人、工单和主动触达原型。AI 自动回信兜底及退信自动加入看上方规则，本页不模拟这两个后台流程。</p>
 <div class="tabs" role="group" aria-label="切换原型场景"><button type="button" data-scene="blacklist" aria-pressed="true">联系人黑名单</button><button type="button" data-scene="contacts" aria-pressed="false">全部联系人</button><button type="button" data-scene="ticket" aria-pressed="false">工单发信</button><button type="button" data-scene="automation" aria-pressed="false">主动触达</button></div>
 <iframe id="prototype-frame" class="proto" title="联系人黑名单原型" src="./index.html?embed=1#blacklist"></iframe>
 <p><a id="prototype-open" href="./index.html#blacklist">独立查看当前原型</a></p></section>
 
 <section class="section" id="acceptance"><h2>规则与验收</h2><ul class="checks">
 <li>同租户精确匹配实际地址；同封混合收件人整封拦截，批量按封处理，已排队未提交及重发也复查。</li>
-<li>规则启用后，两类结果都能自动加入名单；未启用、没有失败记录或无法定位失败邮箱时不入名单。</li>
+<li>黑名单来信照常入工单；已知回信地址命中时 AI 跳过且留因。已排队后才命中也不出站；发送失败计数、已回复状态和关单结果不因跳过而改变。未命中沿用原 AI 流程。</li>
+<li>延伸方案：规则启用后，两类结果都能自动加入名单；未启用、没有失败记录或无法定位失败邮箱时不入名单。</li>
 <li>同封其他地址不受影响；手动贴标签不拉黑；同一事件重放不重复写，同工单后来失败的另一邮箱仍能加入。</li>
 <li>停规则不解除旧记录；解除只恢复后续发信，其他有效限制仍生效，不补发历史。</li>
 <li>不改联系人、历史工单、正常来信、内部备注、电话和 IM。</li>
