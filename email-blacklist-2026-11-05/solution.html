@@ -13,16 +13,16 @@
 <h1>GOFO 联系人邮箱黑名单及发信前拦截</h1>
 <p class="muted">产品方案 · 2026-11-17</p>
 <nav class="nav" aria-label="方案目录"><a href="#scope">影响模块</a><a href="#ai-inbound">黑名单来信</a><a href="#delivery-result">退信处理</a><a href="#trigger">触发器现状</a><a href="#prototype">交互原型</a><a href="#acceptance">验收</a></nav>
-<p class="note">手动拉黑和已确认的邮件投诉共用一份名单。名单里的邮箱再来信，照常进工单，停止 AI 自动回信，按现有规则转人工并分配；对该邮箱的外发仍会被拦截。</p>
+<p class="note">手动拉黑和已确认的邮件投诉共用一份名单。名单邮箱再来信，照常进工单、停 AI 并转人工；工单邮件发起发送后命中名单，进入左侧「发送失败」。</p>
 <figure class="overview" aria-label="投诉与手动维护共用名单，命中来信转人工、命中外发拦截">
 <svg viewBox="0 0 1000 170" role="img" aria-labelledby="diagram-title diagram-description">
-<title id="diagram-title">共用黑名单，分别处理来信和发信</title><desc id="diagram-description">手动维护和已确认的投诉收件邮箱进入同一名单。名单地址再来信照常入工单，停 AI 并按现有规则转人工分配。外发前继续检查实际收件地址。</desc>
+<title id="diagram-title">共用黑名单，分别处理来信和发信</title><desc id="diagram-description">手动维护和已确认的投诉收件邮箱进入同一名单。名单地址再来信照常入工单，停 AI 并转人工分配。发起工单邮件发送后命中名单，拦截并进入左侧发送失败。</desc>
 <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#516f9f"/></marker></defs>
 <rect class="n" x="20" y="15" width="257" height="56" rx="6"/><text class="t" x="36" y="37">手动拉黑</text><text class="s" x="36" y="57">新增 / 导入 / 快捷加入</text>
 <rect class="n" x="20" y="99" width="257" height="56" rx="6"/><text class="t" x="36" y="121">邮件投诉确认</text><text class="s" x="36" y="141">自动加入已核实的收件邮箱</text>
 <rect class="n g" x="368" y="57" width="264" height="56" rx="6"/><text class="t" x="384" y="79">联系人邮箱黑名单</text><text class="s" x="384" y="99">当前租户 + 完整邮箱</text>
 <rect class="n g" x="723" y="15" width="256" height="56" rx="6"/><text class="t" x="739" y="37">名单地址再来信</text><text class="s" x="739" y="57">正常入工单 → 停 AI → 转人工分配</text>
-<rect class="n" x="723" y="99" width="256" height="56" rx="6"/><text class="t" x="739" y="121">外发邮件命中名单</text><text class="s" x="739" y="141">发信前拦截，转人工后也生效</text>
+<rect class="n" x="723" y="99" width="256" height="56" rx="6"/><text class="t" x="739" y="121">工单发信命中名单</text><text class="s" x="739" y="141">拦截 → 左侧「发送失败」可查</text>
 <path class="edge" d="M278 43H321V76H363"/><path class="edge" d="M278 127H321V94H363"/><path class="edge" d="M633 76H678V43H718"/><path class="edge" d="M633 94H678V127H718"/>
 </svg></figure>
 
@@ -30,7 +30,7 @@
 <div class="table-wrap"><table><thead><tr><th scope="col">页面 / 能力</th><th scope="col">变化</th></tr></thead><tbody>
 <tr><td><a href="#prototype" data-scene="blacklist">联系人 → 黑名单</a></td><td>支持单条新增、CSV 导入、查询、移出和操作记录；已确认的邮件投诉自动加入同一份名单，记录来源及投诉依据。</td></tr>
 <tr><td><a href="#prototype" data-scene="contacts">联系人与工单</a></td><td>保留黑名单状态和快捷加入；确认指定邮箱及原因。</td></tr>
-<tr><td><a href="#prototype" data-scene="ticket">工单 → 邮件发送</a></td><td>按实际 To/Cc/Bcc 检查。命中整封不发；「发送并解决」不解决工单。原发信结果照常保留。</td></tr>
+<tr><td><a href="#ai-inbound">工单 → 邮件发送与发送失败</a></td><td>按实际 To/Cc/Bcc 检查。命中整封不发；工单纳入左侧「发送失败」列表及计数，点进会话查看命中邮箱及拦截原因。「发送并解决」不解决工单。</td></tr>
 <tr><td><a href="#ai-inbound">工单 → 转人工及分配</a></td><td>名单内发件邮箱来信照常建单或并入会话；停止 AI 自动回信，沿用现有转人工与分配规则，记录命中原因。</td></tr>
 <tr><td><a href="#trigger">设置 → 触发器（延伸方案）</a></td><td>复用「标签」条件。发信链路补系统打标和失败邮箱上下文，触发器新增「加入邮箱黑名单」动作。</td></tr>
 <tr><td><a href="#prototype" data-scene="automation">主动触达</a></td><td>发送前命中名单时记录「已排除 / 已跳过」，保留原因；实际失败仍为「发送失败」。</td></tr>
@@ -39,8 +39,9 @@
 <section class="section" id="ai-inbound"><h2>投诉拉黑与黑名单来信转人工</h2>
 <div class="table-wrap"><table><thead><tr><th scope="col">场景</th><th scope="col">本期处理</th></tr></thead><tbody>
 <tr><td>已确认邮件投诉</td><td>沿用 SES 邮件投诉需求的处理规则，将核实的实际投诉收件邮箱加入当前租户同一名单。地址不明确时不拉黑；重复事件不重复入名单。若被投诉的是 AI 回信，原工单按 SES 规则停止 AI 并转人工分配。</td></tr>
-<tr><td>黑名单邮箱再来信</td><td>手动拉黑、CSV 导入或投诉入名单都适用。按本次实际来信发件邮箱匹配，照常建单或并入会话；AI 不自动回信，按现有规则转人工并分配。无匹配沿用待分配；已由人工处理的工单保留原分配，不重复转交。记录转人工原因「邮箱黑名单」。</td></tr>
-<tr><td>实际发信前</td><td>已排队的 AI 回信以及人工回复都按实际 To/Cc/Bcc 检查。命中即停止出站，不重试、不算发送失败或已回复，不触发依赖回复成功的关单。真实投递失败沿用原流程。</td></tr>
+<tr><td>黑名单邮箱再来信</td><td>手动拉黑、CSV 导入或投诉入名单都适用。照常建单或并入会话，跳过 AI 回信，按现有规则转人工并分配；无匹配沿用待分配，已分配的不重复处理。记录原因「邮箱黑名单」；未发起回信不产生失败记录。</td></tr>
+<tr><td>已发起工单邮件发送</td><td>人工发送或已排队的 AI 回信出站前检查实际 To/Cc/Bcc。命中后计入左侧「发送失败」列表和计数；会话标明「黑名单拦截」及命中邮箱，可忽略。同一邮件重试仍命中时更新原记录；拦截不投递、不自动重试、不算已回复，也不自动关单。</td></tr>
+<tr><td>投递数据和自动化</td><td>黑名单拦截与供应商投递失败分开统计，不触发退信自动拉黑；主动触达继续使用「已排除 / 已跳过」。</td></tr>
 </tbody></table></div><p class="muted">上线后按租户观察命中来信量、AI 跳过量和人工积压，再决定是否要做来信分流或专门队列。</p></section>
 
 <section class="section" id="delivery-result"><h2>延伸方案：两类结果自动加入黑名单</h2>
@@ -59,7 +60,7 @@
 <p class="muted">两个标签为拟新增系统标签。已有工单打标入口能发布更新；所查发信链路未见自动打这两类标签，动作列表未见入名单动作。依据 Tars master 90ac8926、前端 master 5000f328 归档；未核最新部署。</p></section>
 
 <section class="section" id="prototype"><h2>在方案里看原型</h2>
-<p class="muted">原型演示联系人、工单发信和主动触达。投诉拉黑、转人工分配及退信自动加入见上方规则。</p>
+<p class="muted">原型演示联系人、工单发信和主动触达。工单原型演示现有失败列表，黑名单拦截纳入该列表及计数以本页规则为准；投诉拉黑、转人工分配及退信自动加入也见上方规则。</p>
 <div class="tabs" role="group" aria-label="切换原型场景"><button type="button" data-scene="blacklist" aria-pressed="true">联系人黑名单</button><button type="button" data-scene="contacts" aria-pressed="false">全部联系人</button><button type="button" data-scene="ticket" aria-pressed="false">工单发信</button><button type="button" data-scene="automation" aria-pressed="false">主动触达</button></div>
 <iframe id="prototype-frame" class="proto" title="联系人黑名单原型" src="./index.html?embed=1#blacklist"></iframe>
 <p><a id="prototype-open" href="./index.html#blacklist">独立查看当前原型</a></p></section>
@@ -68,7 +69,7 @@
 <li>同租户精确匹配实际地址；同封混合收件人整封拦截，批量按封处理，已排队未提交及重发也复查。</li>
 <li>投诉只拉黑核实的实际收件邮箱；重复投诉不重复加入或转交，无法确认地址时不拉黑。</li>
 <li>手动拉黑、导入或投诉入名单后，同一邮箱来信照常入工单，停止 AI 并按现有规则转人工分配；无匹配进入原有待分配，已分配的不改变原负责人。未命中沿用原流程。</li>
-<li>已排队的回信在出站前复查；命中不出站、不重试、不新增发送失败、不算已回复，也不自动关单。</li>
+<li>未发起回信不进失败列表；人工发起发送或排队回信被拦后，左侧「发送失败」可找到该工单，点击可见拦截原因和命中邮箱。按原工单口径计数，同一邮件再拦截不重复计数，不算已回复，不自动关单。</li>
 <li>延伸方案：规则启用后，两类结果都能自动加入名单；未启用、没有失败记录或无法定位失败邮箱时不入名单。</li>
 <li>同封其他地址不受影响；手动贴标签不拉黑；同一事件重放不重复写，同工单后来失败的另一邮箱仍能加入。</li>
 <li>停规则不解除旧记录；解除只恢复后续发信，其他有效限制仍生效，不补发历史。</li>
