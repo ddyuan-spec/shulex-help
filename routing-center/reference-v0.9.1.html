@@ -1,0 +1,1597 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="source-sha256" content="522f93505e30d51a08bfbd32857054af628b7258431d555f57fcbd6766f3bf64"><title>Tars · 统一分单产品方案</title><style>:root{--paper:#f4f8f7;--ink:#263c40;--muted:#667b7c;--line:#dce5e2;--green:#397a70;--mint:#e7f2ed;--purple:#656b91;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}*{box-sizing:border-box}html{scroll-padding-top:88px}body{margin:0;color:var(--ink);background:var(--paper);font:14px/1.85 var(--font)}a{color:var(--green);text-underline-offset:4px}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:6px;padding:5px 11px;background:white;color:var(--ink);min-height:32px}button:disabled{opacity:.45;cursor:default}button:hover{border-color:#8eafa3}a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #599b8e;outline-offset:3px}.skip{position:fixed;top:-100px;background:#fff;z-index:60;padding:10px}.skip:focus{top:0}.sidebar{position:fixed;inset:0 auto 0 0;width:228px;padding:27px 20px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:auto}.logo{font-size:29px;font-weight:900;text-decoration:none;color:var(--ink);letter-spacing:1px;padding-left:9px}.subtitle{font-size:12px;color:var(--muted);margin:2px 9px 22px}.edition{background:#f1f6f4;border:1px solid var(--line);border-radius:8px;padding:12px;margin:0 4px 24px}.edition b,.edition span{display:block;font-size:12px}.edition span{font-size:11px;color:var(--muted);margin-top:3px}.sidebar nav{display:grid;gap:7px}.sidebar nav a{font-size:13px;text-decoration:none;color:#526568;border-radius:6px;padding:9px 10px}.sidebar nav a.active{background:var(--mint);color:#265f55;font-weight:600}.sidebar nav span{font:11px ui-monospace,monospace;color:#81928c;margin-right:13px}.reading-note{font-size:11px;color:var(--muted);margin:28px 10px}.sidebar footer{margin-top:auto;display:grid;gap:8px;font-size:10px;color:#7d8d89;padding:14px 10px 0;border-top:1px solid var(--line)}.workspace{margin-left:228px}.topbar{position:sticky;top:0;z-index:20;background:#f4f8f7f5;backdrop-filter:blur(10px);height:64px;padding:0 30px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line)}.topbar>div{display:flex;gap:12px;align-items:center}.badge{font-size:10px;color:var(--green);padding:4px 8px;background:var(--mint);border-radius:4px}.topbar strong{font-size:12px}.topbar nav{display:flex;gap:8px;margin-left:auto}.topbar nav a{font-size:11px;text-decoration:none;border:1px solid var(--line);background:white;padding:4px 10px;border-radius:6px}.topbar button{font-size:11px}.workspace main{max-width:1180px;margin:auto;padding:0 36px 30px}.cover{padding:48px 0 40px;border-bottom:1px solid #bdd4cb}.eyebrow{font-size:11px;color:var(--green);letter-spacing:.1em;font-weight:600;margin:0 0 13px}.cover h1{font-size:clamp(29px,3.3vw,44px);line-height:1.4;font-weight:650;letter-spacing:-.04em;margin:0 0 18px}.cover em{font-style:normal;color:var(--green)}.cover-intro{max-width:700px;font-size:15px;color:#5b7372;line-height:1.9}.reading-path{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0}.reading-path a{background:white;border:1px solid var(--line);border-radius:7px;text-decoration:none;padding:9px 12px;font-size:12px;display:flex;align-items:center;gap:8px}.reading-path span{font:10px ui-monospace,monospace;color:#849890}.reading-path i{font-style:normal;color:#99aba4}.status-key{display:flex;flex-wrap:wrap;gap:13px 24px;padding:17px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.status-key>span{display:flex;align-items:center;gap:8px}.state{font-weight:500;padding:3px 7px;border-radius:4px;white-space:nowrap}.state.current{background:#e4f1e9;color:#3d7857}.state.proposed{background:#e7efee;color:#326d66}.state.future{background:#eceef9;color:#626b98}.state.pending{background:#f6efdd;color:#8b6c35}.cover-note{font-size:11px;margin:0;color:#7b8e86}.chapter{padding-top:44px;scroll-margin-top:0}.chapter-heading{margin-bottom:22px}.chapter-heading h2{font-size:27px;line-height:1.4;letter-spacing:-.02em;margin:0 0 13px}.chapter-lead{font-size:14px;max-width:900px;line-height:1.9;color:#617774}.chapter-lead strong{color:#2d534e;font-weight:600}.chapter-lead p{margin:0}.section-card,.detail-block{background:white;border:1px solid var(--line);border-radius:9px;margin:13px 0;scroll-margin-top:0;overflow:hidden}.section-card h3{font-size:16px;margin:0;padding:17px 22px;border-bottom:1px solid #edf1ef;font-weight:600}.section-card h3>span,.detail-block summary>span{font:11px ui-monospace,monospace;color:#6e8e83;margin-right:13px}.prose{padding:20px 22px;font-size:13px;overflow-wrap:anywhere}.prose p{margin:0 0 15px}.prose p:last-child{margin-bottom:0}.prose h4{font-size:14px;margin:22px 0 10px;color:#355e53}.prose h4:first-child{margin-top:0}.prose ul,.prose ol{padding-left:22px;margin:10px 0 16px}.prose li{margin:6px 0}.prose strong{font-weight:600}.prose blockquote{border-left:3px solid #a5c9b9;background:#f2f7f4;padding:11px 15px;margin:12px 0;color:#627b6f}.prose code{font:11px ui-monospace,SFMono-Regular,monospace;background:#f0f4f2;color:#476259;padding:2px 4px;border-radius:3px;word-break:break-word}.detail-block summary{cursor:pointer;padding:16px 22px;font-size:14px;font-weight:550;display:flex;align-items:center;list-style:none;gap:2px}.detail-block summary::-webkit-details-marker{display:none}.detail-block summary small{margin-left:auto;font-size:10px;color:#8c9b95;font-weight:400;padding-left:16px;white-space:nowrap}.detail-block summary:after{content:'＋';font-size:16px;color:#64877a;margin-left:10px}.detail-block[open] summary:after{content:'−'}.detail-block[open] summary{background:#f7faf8;border-bottom:1px solid var(--line)}.detail-block[open] summary small{display:none}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:7px;margin:16px 0}.prose table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.8;min-width:620px}th{background:#f0f6f2;text-align:left;font-weight:550;padding:11px 13px;color:#365b4e;white-space:nowrap}td{padding:12px 13px;vertical-align:top;border-top:1px solid var(--line)}td:first-child{min-width:100px}td:not(:first-child){min-width:170px}.chapter-next{padding:20px 4px 4px;display:flex;justify-content:flex-end}.chapter-next a{display:flex;gap:16px;align-items:center;text-decoration:none}.chapter-next small{font-size:10px;color:#8b9d95}.chapter-next b{font-size:13px;font-weight:500}.book-footer{padding:24px 36px;color:#8b9c94;font-size:11px;text-align:center}.prose figure{margin:15px 0;background:#fbfdfb;border:1px solid #e0ebe4;border-radius:8px;padding:10px;text-align:center;overflow:auto}.prose figure img{max-width:100%;height:auto;display:block;margin:0 auto}.zoom-diagram{font-size:10px;margin-top:6px;color:var(--green)}#image-dialog{width:calc(100vw - 40px);max-height:94vh;padding:0;border:1px solid var(--line);border-radius:10px;color:var(--ink)}#image-dialog::backdrop{background:#183c3666}#image-dialog header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:13px}#image-dialog>div{overflow:auto;max-height:80vh;padding:15px}#image-large{display:block;min-width:1000px;width:100%;height:auto}
+.practice{margin:18px -6px 4px;border:1px solid #ceded5;border-radius:9px;overflow:hidden;background:#f8fbf9}.practice-top{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}.practice-top strong{font-size:12px}.practice-top .mode-switch{display:flex;margin-left:auto;border:1px solid var(--line);border-radius:6px;padding:2px;background:white}.mode-switch button{border:0;font-size:11px;padding:3px 9px;min-height:26px}.mode-switch button[aria-pressed=true]{background:var(--mint);color:var(--green)}.practice-tabs{display:flex;gap:6px;padding:9px 11px;overflow:auto}.practice-tabs button{white-space:nowrap;font-size:11px;background:transparent;border-color:transparent}.practice-tabs button[aria-pressed=true]{border-color:#b8d2c2;background:white;color:#2b6e51}.practice-context{font-size:11px;color:#6f8377;padding:0 13px 9px}.demo-stage{position:relative;background:#eef2ef;overflow:hidden;height:430px}.demo-canvas{position:absolute;inset:0;overflow:auto}.demo-stage iframe{border:0;width:1280px;position:absolute;top:0;left:0;transform-origin:top left;background:#f4f6f5}.demo-stage.expanded{height:680px!important}.bubble{position:absolute;bottom:14px;left:12px;width:210px;border:1px solid #d9d1b6;border-radius:8px;background:#fffdf6;padding:10px 13px;box-shadow:0 4px 20px #193a3518;pointer-events:none}.bubble small{display:block;color:#9c7f48;font-size:10px;margin-bottom:4px}.bubble b{font-size:12px;line-height:1.5;display:block}.bubble p{font-size:11px;color:#6c786b;margin:5px 0 0}.tour-steps{display:flex;gap:5px;padding:9px 10px;overflow:auto;border-top:1px solid var(--line)}.tour-steps button{font-size:10px;white-space:nowrap;padding:4px 9px;min-height:29px;border-color:transparent;background:transparent}.tour-steps button[aria-pressed=true]{background:var(--mint);border-color:#bdd2c4;color:#386e50}.demo-controls{display:flex;gap:7px;flex-wrap:wrap;align-items:center;padding:9px 12px;border-top:1px solid var(--line)}.demo-controls p{font-size:10px;color:#7c8b7e;margin:0 auto 0 0;max-width:50%}.demo-controls button{font-size:10px;min-height:28px;padding:3px 9px}.demo-controls .primary{background:#3f7d63;color:#fff}.practice [hidden]{display:none!important}.demo-loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:#f0f6f2;color:#738779;font-size:12px;z-index:5;padding:20px}.demo-loading p{margin-bottom:12px}.practice[data-free=true] .demo-stage{height:600px}.print-note{display:none}
+@media(max-width:1100px){.sidebar{width:200px;padding:22px 14px}.workspace{margin-left:200px}.workspace main{padding:0 22px 24px}.topbar{padding:0 22px}.topbar .badge{display:none}.cover{padding-top:35px}.status-key{gap:12px}.prose{padding:17px}.section-card h3,.detail-block summary{padding:16px 17px}.bubble{width:185px}.topbar strong{font-size:11px}}
+@media(max-width:720px){html{scroll-padding-top:20px}.sidebar{position:static;width:auto;padding:17px;border-right:0;border-bottom:1px solid var(--line)}.logo{font-size:24px;padding:0}.subtitle{margin:0 0 9px;display:inline-block;margin-left:8px}.edition{margin:7px 0 10px;padding:7px 10px;display:flex;gap:12px}.edition span{margin:0}.sidebar nav{display:flex;overflow:auto;gap:5px;white-space:nowrap}.sidebar nav a{padding:7px;font-size:12px}.sidebar nav span{margin-right:7px}.reading-note,.sidebar footer{display:none}.workspace{margin-left:0}.topbar{position:static;height:auto;min-height:50px;flex-wrap:wrap;padding:10px 16px;gap:7px}.topbar>div{flex:1}.topbar nav{margin:0}.topbar nav a{font-size:10px;padding:4px 7px}.topbar button{font-size:10px;min-height:28px}.workspace main{padding:0 16px 20px}.cover{padding:27px 0}.cover h1{font-size:29px}.cover-intro{font-size:13px}.reading-path{gap:7px}.reading-path a{font-size:11px;padding:7px 9px}.status-key{display:grid;grid-template-columns:1fr;font-size:10px;gap:9px}.chapter{padding-top:30px;scroll-margin-top:0}.chapter-heading h2{font-size:23px}.chapter-lead{font-size:13px}.section-card h3{font-size:14px;padding:14px}.section-card h3 span,.detail-block summary span{margin-right:9px}.prose{padding:14px;font-size:12px}.detail-block summary{padding:14px;font-size:13px}.detail-block summary small{display:none}.section-card,.detail-block{scroll-margin-top:0}.practice{margin-left:-5px;margin-right:-5px}.practice-top{gap:7px}.practice-top strong{font-size:11px}.practice-top .mode-switch{margin-left:0}.practice-context{font-size:10px}.demo-stage{height:340px!important}.demo-stage iframe{width:900px}.bubble{width:auto;left:9px;right:9px;max-width:300px;bottom:10px}.demo-controls p{max-width:none;flex-basis:100%;margin-bottom:4px}.book-footer{font-size:10px;padding:18px}.prose figure{padding:5px}.prose figure img{min-width:650px}#image-dialog{width:calc(100vw - 16px)}#image-dialog header{font-size:11px}.chapter-next small{display:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{.sidebar,.topbar,.practice,.zoom-diagram,.chapter-next{display:none!important}.workspace{margin:0}.workspace main{max-width:none;padding:0}.cover,.chapter{padding-top:18px}.section-card,.detail-block{break-inside:avoid}.table-scroll{overflow:visible}table{min-width:0!important}.prose figure img{min-width:0}.book-footer{display:none}}
+/* Visual narrative: the default path carries relationships and state, detail stays inline. */
+.cover{padding:30px 0 28px}.cover h1{font-size:clamp(24px,2.8vw,36px);margin-bottom:16px}.cover h1 em{display:block}.cover-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}.cover-actions a{font-size:12px;text-decoration:none}.cover-actions>span{font-size:11px;color:var(--muted)}.visual-primary{display:inline-flex;align-items:center;justify-content:center;background:var(--green)!important;color:white!important;border:1px solid var(--green);border-radius:7px;padding:8px 14px;text-decoration:none;font-size:12px}.chapter{padding-top:36px}.chapter-heading{margin-bottom:15px}.chapter-heading h2{font-size:24px}.chapter-lead{font-size:13px}.visual-board{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}.visual-kicker{font-size:11px;color:var(--muted);font-weight:600}.visual-foot{padding:13px 20px;background:#f6faf8;color:#617c73;font-size:12px;text-align:center;border-top:1px solid var(--line)}.lane-arrow{color:#88a59a;padding:0 8px}.comparison{display:grid;grid-template-columns:1fr 1fr}.compare-side{padding:20px 20px 0}.compare-side.before{background:#fafafa;border-right:1px solid var(--line)}.compare-side.after .visual-kicker{color:var(--green)}.comparison .visual-foot{grid-column:1/-1}.visual-board svg{display:block;width:100%;height:auto}.visual-board svg rect,.visual-board svg circle{fill:white;stroke:#c9d9d2;stroke-width:1.5}.visual-board svg text{font-family:var(--font);font-size:16px;fill:var(--ink)}.visual-board svg .svg-note{font-size:13px;fill:var(--muted)}.visual-board svg .svg-title{font-size:18px;font-weight:600}.visual-board svg .svg-active{fill:var(--mint);stroke:var(--green)}.wires path{fill:none;stroke:#6c9e8e;stroke-width:2}.wires.old path{stroke:#bb9e90;stroke-dasharray:5 4}.before svg circle{stroke:#b18c79;fill:#faf4ef}.map-layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;align-items:center;gap:12px;padding:18px}.role-map [role=button]{cursor:pointer;outline:none}.role-map [role=button]:hover rect{fill:#f1f7f3;stroke:var(--green)}.role-map [aria-pressed=true] rect{fill:var(--mint);stroke:var(--green);stroke-width:2.5}.role-map [role=button]:focus-visible rect{stroke:#235c9b;stroke-width:3}.role-explain{padding:16px;border-left:2px solid #b5d6c8}.role-explain h3{font-size:17px;line-height:1.6;margin:10px 0}.role-explain p{font-size:12px;color:var(--muted);min-height:64px;margin-bottom:18px}.role-explain a{font-size:11px}.setup-lane{display:flex;align-items:center;padding:25px 18px}.setup-lane button{flex:1;min-width:0;border:0;background:none;padding:8px 2px;text-align:center}.setup-lane b,.setup-lane small{display:block}.setup-lane b{font-size:13px;margin:9px 0 4px}.setup-lane small{font-size:10px;color:var(--muted)}.step-disc{display:grid;place-content:center;margin:auto;width:44px;height:44px;border:1px solid #c7d9cf;border-radius:50%;color:var(--green);font:17px ui-monospace,monospace}.setup-lane [aria-pressed=true] .step-disc{background:var(--green);color:white;box-shadow:0 0 0 6px #e7f2ed}.setup-lane [aria-pressed=true] b{color:var(--green)}.selection-note{padding:18px 22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;background:#f7faf8;min-height:104px}.selection-note h3{font-size:15px;margin:0 0 5px}.selection-note p{font-size:12px;color:var(--muted);margin:0}.selection-note a{font-size:12px;white-space:nowrap}.prototype-fold{border:1px solid #bdcfc5;border-radius:9px;margin:14px 0;background:white;overflow:hidden}.prototype-fold>summary{padding:14px 18px;cursor:pointer;font-size:13px;color:var(--green)}.prototype-fold>summary small{font-size:11px;color:var(--muted);margin-left:15px}.prototype-fold .prose{padding-top:0}.chapter-reference{background:transparent;border-color:#dee7e2}.chapter-reference>summary{font-size:12px;font-weight:400;padding:12px 18px}.chapter-reference>summary:before{content:'＋';margin-right:10px;color:#78948a}.chapter-reference[open]>summary:before{content:'−'}.chapter-reference>summary:after{display:none}.chapter-reference[open]{background:white;padding:0 14px 14px}.chapter-reference .reference-lead{padding:20px 8px 5px}.chapter-reference .section-card,.chapter-reference .detail-block{margin:10px 0}.story-tabs{display:flex;gap:6px;padding:15px 18px;border-bottom:1px solid var(--line);overflow:auto}.story-tabs button{white-space:nowrap;border-color:transparent;background:#f5f7f6;font-size:12px;padding:5px 13px}.story-tabs [aria-pressed=true]{border-color:var(--green);background:var(--mint);color:#265e51}.story-tabs small{font-size:9px;margin-left:5px;color:#716897}.story-label{display:flex;justify-content:space-between;gap:15px;padding:12px 20px 0;color:var(--muted);font-size:10px}.story-canvas{padding:0 18px 18px;background:radial-gradient(#ccdcd44a 1px,transparent 1px);background-size:18px 18px}.story-track{fill:none;stroke:#e0e8e3;stroke-width:4}.story-progress{fill:none;stroke:#619f8b;stroke-width:4;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .65s ease}.story-stations circle{fill:white;stroke:#d7e2dc}.story-stations [data-done=true] circle{fill:var(--mint);stroke:#81ad9c}.story-stations [data-active=true] circle{fill:var(--green);stroke:var(--green)}.story-stations [data-active=true] text:first-of-type{fill:white}.story-stations .station-label{font-size:14px}.ticket-token{transition:transform .65s cubic-bezier(.22,.65,.35,1)}.ticket-token rect{fill:#2d6c60!important;stroke:#2d6c60!important}.ticket-token path{fill:#2d6c60}.ticket-token text{fill:white!important;font-size:11px!important}.story-readout{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center;background:#ffffffed;border:1px solid #dfebe3;border-radius:10px;padding:20px}.story-current>span{font:11px ui-monospace,monospace;color:#7c9c8d}.story-current h3{font-size:20px;line-height:1.5;margin:7px 0}.story-current p{font-size:12px;color:var(--muted);margin:0;min-height:44px}.ticket-facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-left:1px solid var(--line);padding-left:22px}.ticket-facts small,.ticket-facts b{display:block}.ticket-facts small{font-size:10px;color:#80948b}.ticket-facts b{font-size:12px;font-weight:550;margin-top:4px}.candidate-row{display:flex;gap:10px;margin-top:13px}.candidate-row[hidden]{display:none}.candidate{flex:1;background:#fff;border:1px solid #e6ded5;border-radius:8px;display:flex;align-items:center;padding:10px 12px;gap:10px}.candidate[data-ready=true]{border-color:#9ac2af;background:#f1f9f4}.candidate-avatar{width:30px;height:30px;display:grid;place-content:center;background:#eeeae4;border-radius:50%;font-size:12px}.candidate[data-ready=true] .candidate-avatar{background:#d4ebdf;color:#24684d}.candidate b{font-size:12px;display:block}.candidate small{font-size:10px;color:var(--muted);display:block}.story-controls{padding:12px 18px;display:flex;align-items:center;gap:9px;border-top:1px solid var(--line);flex-wrap:wrap}.story-controls button{font-size:11px}.story-range{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:10px;color:var(--muted)}.story-range input{width:120px;accent-color:var(--green)}.phase-lane{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:25px 22px 0;align-items:end;position:relative;background:linear-gradient(175deg,transparent 70%,#e4efe9 70.2%,#e4efe9 71%,transparent 71.2%)}.phase-lane button{position:relative;text-align:left;height:calc(152px + var(--level)*16px);border-radius:10px 10px 0 0;padding:18px 15px 42px;background:#f5f8f6;border-color:#dbe5df;border-bottom:0}.phase-lane [aria-pressed=true]{background:var(--mint);border-color:var(--green)}.phase-lane span{display:block;font-size:11px;color:#6b8f7d}.phase-lane b{display:block;font-size:17px;margin:10px 0 4px}.phase-lane small{font-size:11px;color:var(--muted)}.phase-lane i{position:absolute;bottom:9px;right:17px;font-style:normal;color:#79a28c;font-size:25px}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.decision-grid article{border:1px solid var(--line);border-radius:10px;background:white;padding:22px;text-align:center}.decision-icon{width:54px;height:54px;display:grid;place-content:center;border:1px solid #b6cfc1;border-radius:14px;background:var(--mint);color:var(--green);font-size:27px;margin:22px auto 16px}.decision-grid h3{font-size:15px;margin:0}.decision-line{font-size:20px;color:#9eb8aa}.decision-grid p{font-size:12px;margin:6px 0 0;color:var(--muted)}.decision-grid>.visual-foot{grid-column:1/-1;background:transparent;border:0;text-decoration:none;padding:4px}.proof-board{display:grid;grid-template-columns:repeat(3,1fr);padding:12px}.proof-step{display:flex;gap:14px;padding:20px;text-decoration:none;color:var(--ink);border-right:1px solid var(--line)}.proof-step:last-child{border:0}.proof-symbol{font-size:28px;color:#6d9983;padding-top:6px}.visual-tag{font-size:10px;background:#eef5f0;padding:4px 8px;border-radius:5px;color:#6b8a79}.proof-step h3{font-size:16px;margin:14px 0 5px}.proof-step b{font-size:12px;font-weight:500}.proof-step p{font-size:11px;color:var(--muted);margin:6px 0 0}
+@media(max-width:1100px){.map-layout{grid-template-columns:1fr}.role-explain{border-left:0;border-top:1px solid var(--line);padding:15px;display:grid;grid-template-columns:1fr 2fr;gap:6px 18px}.role-explain .visual-kicker{grid-column:1/-1}.role-explain h3{margin:0}.role-explain p{min-height:0;margin:0}.role-explain a{grid-column:2}.setup-lane .lane-arrow{padding:0 2px}.setup-lane small{font-size:9px}.proof-step{padding:15px;gap:8px}.phase-lane b{font-size:15px}}
+@media(max-width:720px){.cover{padding:22px 0}.cover h1{font-size:26px}.cover-actions{gap:14px}.cover-actions>span{width:100%}.chapter-heading h2{font-size:21px}.comparison{grid-template-columns:1fr}.compare-side{padding:15px 15px 0}.compare-side.before{border-right:0;border-bottom:1px solid var(--line)}.visual-foot{font-size:11px;padding:12px}.map-layout{padding:8px;overflow:auto}.role-map{min-width:570px}.role-explain{min-width:0;display:block;max-width:320px}.role-explain h3{font-size:16px;margin:7px 0}.role-explain p{margin:8px 0}.setup-lane{display:grid;grid-template-columns:repeat(3,1fr);gap:15px 8px;padding:22px 10px}.setup-lane .lane-arrow{display:none}.setup-lane b{font-size:12px}.setup-lane small{font-size:9px}.selection-note{display:block;padding:15px;min-height:0}.selection-note h3{font-size:14px}.selection-note a{display:inline-flex;margin-top:14px}.story-tabs{padding:10px}.story-label{padding:10px;font-size:9px}.story-canvas{padding:0 10px 12px}.story-canvas>svg{min-height:120px}.story-readout{grid-template-columns:1fr;padding:14px;gap:10px}.story-current h3{font-size:17px}.story-current p{min-height:0;font-size:12px}.ticket-facts{border-left:0;border-top:1px solid var(--line);padding:12px 0 0;gap:10px}.candidate-row{gap:6px;flex-wrap:wrap}.candidate{flex:1 1 90px;padding:8px;gap:6px}.candidate-avatar{display:none}.story-controls{padding:10px;gap:6px}.story-range{width:100%;margin:5px 0 0}.story-range input{flex:1}.phase-lane{grid-template-columns:1fr 1fr;padding:15px 12px;gap:8px;background:none}.phase-lane button{height:145px;border-bottom:1px solid var(--line);border-radius:9px;padding:12px 10px 35px}.phase-lane b{font-size:15px}.phase-lane small{font-size:10px}.decision-grid{grid-template-columns:1fr}.decision-grid article{display:grid;grid-template-columns:50px 1fr;text-align:left;padding:18px;gap:0 14px}.decision-grid .visual-kicker{grid-column:2}.decision-icon{grid-column:1;grid-row:1/5;margin:0;width:45px;height:45px;font-size:23px}.decision-grid h3{grid-column:2;margin:7px 0}.decision-line{display:none}.decision-grid p{grid-column:2}.proof-board{grid-template-columns:1fr}.proof-step{border-right:0;border-bottom:1px solid var(--line);gap:18px}.prototype-fold>summary small{display:block;margin-left:0}.chapter-reference[open]{padding:0 6px 6px}}
+@media print{.story-controls,.story-tabs,.cover-actions,.chapter-next{display:none!important}.visual-board,.decision-grid{break-inside:avoid}.chapter-reference[open]{border:0}.prototype-fold{display:none}}
+@media(min-width:721px){.story-canvas>svg{height:180px}.story-readout{padding:14px 18px}.story-current h3{font-size:18px;margin:5px 0}.story-current p{min-height:36px}.story-label{padding-top:8px}.story-controls{padding-top:10px;padding-bottom:10px}}
+.ticket-story{display:flex;flex-direction:column}.story-tabs{order:0}.story-label{order:1}.story-controls{order:2;border-top:0;border-bottom:1px solid var(--line);margin-top:8px}.story-canvas{order:3}
+@media(max-width:720px){.story-canvas>svg{min-height:230px}.story-stations .station-label{font-size:13px}.ticket-token{transition:transform .5s ease}}
+
+/* V0.8: show entrances, ordered decisions and their evidence at the reading scale. */
+.contrast-board,.route-app,.route-lab{border:1px solid #DADDE1;border-radius:12px;background:#fff;overflow:hidden}
+.shared-ticket{display:flex;align-items:center;gap:14px;padding:22px 28px;border-bottom:1px solid #DADDE1;background:#F6F8FB}.shared-ticket small,.shared-ticket b{display:block}.shared-ticket small{color:#5A6470;font-size:12px;margin-bottom:5px}.ticket-icon{font-size:32px;color:#1A5AE6}.shared-ticket>.visual-tag{margin-left:auto}.contrast-grid{display:grid;grid-template-columns:1fr 1fr}.contrast-grid section{padding:28px}.contrast-grid h3{font-size:22px;margin:8px 0 22px}.old-route{background:#FAFAFB;border-right:1px solid #DADDE1}.old-route .visual-kicker{color:#886355}.new-route .visual-kicker{color:#1A5AE6}.old-entry{background:#fff;border:1px solid #DADDE1;border-left:3px solid #AF9284;border-radius:6px;padding:13px 16px;display:grid;grid-template-columns:58px 1fr;gap:5px 8px}.old-entry>span{grid-row:span 2;font-size:11px;color:#886355;padding-top:3px}.old-entry b{font-size:15px}.old-entry small{font-size:12px;color:#5A6470}.entry-join{text-align:center;font-size:11px;color:#5A6470;padding:10px 0}.unclear-order{display:flex;align-items:center;flex-direction:column;font-size:12px;color:#8F5D48;margin:12px 0;gap:5px}.unclear-order b{letter-spacing:2px}.customer-question{border-top:1px dashed #CBB9AF;margin-top:22px;padding-top:18px;display:flex;flex-direction:column;gap:8px;font-size:15px}.customer-question span{color:#5A6470}.diagram-caveat{font-size:11px!important;color:#697481;line-height:1.7;margin:18px 0 0!important}.center-menu{display:flex;background:#EFF4FF;border:1px solid #CDDCFA;border-radius:7px;padding:11px 8px;justify-content:space-around;font-size:12px;color:#1A5AE6}.ordered-route{list-style:none;padding:0;margin:18px 0}.ordered-route li{display:flex;gap:12px;padding:0 0 16px;position:relative}.ordered-route li:not(:last-child):before{content:'';position:absolute;left:13px;top:28px;bottom:0;border-left:2px solid #CDDCFA}.ordered-route li>span{flex:none;width:28px;height:28px;border-radius:50%;background:#1A5AE6;color:#fff;text-align:center;line-height:28px;font-size:12px}.ordered-route b{font-size:14px;display:block;margin:3px 0 5px}.ordered-route small{font-size:12px;line-height:1.8;color:#5A6470}.ordered-route em{font-style:normal;color:#15774F;background:#EAF6EE;padding:2px 5px}.ordered-route s{color:#75808E;text-decoration:none;background:#F3F4F6;padding:2px 5px}.clear-result{display:flex;gap:5px;flex-direction:column;background:#EFF4FF;border-left:3px solid #1A5AE6;padding:12px 16px}.clear-result b{color:#1A5AE6}.clear-result span{font-size:12px}.contrast-cta{display:block;text-align:center;padding:17px;border-top:1px solid #DADDE1;font-size:14px;background:#FAFCFF}
+.route-app,.route-lab{color:#0F1629;scroll-margin-top:90px}.app-path{display:flex;align-items:center;gap:16px;padding:15px 20px;background:#F3F4F6;border-bottom:1px solid #EBEDF0;font-size:13px}.app-path b{color:#1A5AE6;font-size:20px}.app-path>.visual-tag{margin-left:auto}.app-body{display:grid;grid-template-columns:174px minmax(0,1fr);min-height:450px}.center-nav{padding:22px 12px;border-right:1px solid #EBEDF0;display:flex;flex-direction:column;gap:8px;background:#FAFBFD}.center-nav strong{padding:0 12px 12px;font-size:15px}.center-nav button,.center-nav a{padding:12px;text-align:left;font-size:13px;background:transparent;border:0;color:#5A6470;border-radius:6px}.center-nav [aria-pressed=true]{background:#EAF0FD;color:#1A5AE6;font-weight:600}.center-nav small{padding:16px 12px;font-size:11px;color:#8B94A3;line-height:1.8}.center-work{padding:28px;min-width:0}.center-work h3{font-size:21px;margin:9px 0 12px}.center-work p{font-size:13px;color:#5A6470;line-height:1.8}.queue-config{border:1px solid #EBEDF0;border-radius:8px;padding:16px;margin:14px 0;display:flex;flex-direction:column;gap:9px}.queue-config>span{font-size:13px}.queue-config>small,.center-work form>small{font-size:12px;color:#697481}.check-label{display:flex;align-items:center;gap:8px;font-size:13px}.check-label input{width:16px;height:16px;accent-color:#1A5AE6;flex:none}.wait-field{display:flex;align-items:center;gap:10px;font-size:13px;margin:20px 0 10px}.wait-field input{width:64px;padding:8px;border:1px solid #DADDE1;border-radius:6px}.config-footer{display:flex;justify-content:flex-end;align-items:center;gap:12px;padding-top:24px}.config-footer button,.config-footer a,.order-tools button,.rule-row button,.lab-actions button,.lab-recovery button,.publish-bar button{border:1px solid #DADDE1;border-radius:6px;padding:9px 13px;font-size:13px;background:white;color:#0F1629;cursor:pointer}.route-app .visual-primary,.route-lab .visual-primary{background:#1A5AE6;color:#fff;border-color:#1A5AE6}.save-status{font-size:11px!important;color:#697481!important;margin:14px 0 0!important}.rule-row{display:grid;grid-template-columns:27px minmax(0,1fr) auto;align-items:start;gap:12px;padding:18px 0;border-bottom:1px solid #EBEDF0}.rule-position{border-radius:50%;background:#EFF4FF;color:#1A5AE6;font-size:13px;width:27px;height:27px;text-align:center;line-height:27px}.rule-row>div{display:flex;flex-direction:column;gap:8px}.rule-row small{font-size:10px;color:#697481}.rule-row b{font-size:15px}.rule-row span,.rule-row strong{font-size:12px}.rule-row strong{color:#1A5AE6;font-weight:500}.rule-row .check-label{grid-column:2/4;font-size:12px}.order-tools{display:flex;align-items:center;gap:12px;margin:20px 0}.order-tools small{font-size:11px;color:#697481;line-height:1.6}.rule-contract{background:#F3F6FC;padding:13px;border-radius:6px;display:flex;flex-direction:column;gap:6px;font-size:12px}.rule-contract span{line-height:1.7;color:#5A6470}.audit-callout{display:flex;flex-direction:column;gap:8px;border-left:3px solid #C39345;background:#FBF8F2;margin:18px 0;padding:17px 21px;font-size:13px}.audit-callout span{color:#5A6470;line-height:1.8}.audit-callout a{font-size:12px}
+#rule-editor{width:min(570px,calc(100vw - 32px));padding:0;border:1px solid #DADDE1;border-radius:12px;color:#0F1629}#rule-editor::backdrop{background:#0F162955}#rule-form{padding:26px}#rule-form header{display:flex;justify-content:space-between;align-items:center}#rule-form header small{font-size:11px;color:#5A6470}#rule-form h3{margin:8px 0}#rule-form header button{border:0;background:transparent;font-size:25px}#rule-form p{font-size:12px;color:#5A6470;line-height:1.8}#rule-form label:not(.check-label){display:flex;flex-direction:column;gap:8px;margin:19px 0;font-size:13px}#rule-form input:not([type=checkbox]),#rule-form select{border:1px solid #DADDE1;border-radius:5px;padding:10px;font:inherit}.rule-condition{padding:12px;background:#F3F4F6;border-radius:6px;font-size:13px}#rule-form footer{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}#rule-form footer button{padding:10px 18px;border-radius:5px;border:1px solid #DADDE1;background:#fff}#rule-form footer .visual-primary{background:#1A5AE6;color:#fff}
+.lab-head{display:flex;justify-content:space-between;align-items:center;padding:22px 25px;border-bottom:1px solid #EBEDF0}.lab-head small{font-size:11px;color:#5A6470}.lab-head h3{font-size:22px;margin:8px 0 0}.lab-head a{font-size:12px}.lab-scenarios{display:flex;gap:8px;padding:19px 25px 0;flex-wrap:wrap}.lab-scenarios button{font-size:12px;padding:8px 11px;border:1px solid #DADDE1;border-radius:5px;background:#fff;color:#5A6470}.lab-scenarios [aria-pressed=true]{border-color:#1A5AE6;background:#EFF4FF;color:#1A5AE6}#lab-question{margin:18px 25px!important;font-size:16px;font-weight:600}.lab-input{margin:0 25px;padding:18px;background:#F6F8FB;border:1px solid #EBEDF0;border-radius:8px;display:flex;gap:15px;justify-content:space-between;align-items:center}.lab-input b{display:block;font-size:16px;margin:9px 0 12px}#lab-facts{display:flex;flex-wrap:wrap;gap:6px}#lab-facts span{font-size:11px;padding:4px 7px;background:white;border:1px solid #E0E5ED;border-radius:4px}.lab-actions{display:flex;flex-direction:column;gap:7px;flex:none}.trial-version{display:flex;justify-content:space-between;font-size:11px;color:#697481;margin:20px 25px 8px}.trace-list{padding:10px 25px}.trace-block{display:grid;grid-template-columns:29px minmax(0,1fr);gap:14px;margin:0;padding-bottom:22px;position:relative}.trace-block:not(:last-child):before{content:'';border-left:2px solid #DCE5F8;position:absolute;left:14px;top:29px;bottom:0}.trace-num{width:29px;height:29px;line-height:29px;text-align:center;border-radius:50%;color:#1A5AE6;background:#EFF4FF;font-size:12px}.trace-block h4{margin:5px 0 9px;font-size:15px}.trace-block p{font-size:12px;margin:5px 0!important;line-height:1.8;color:#5A6470}.trace-rules{padding:0;list-style:none;margin:12px 0 0}.trace-rules li{padding:12px 14px;background:#F7F8FA;border-left:3px solid #CDD2DB;margin-bottom:7px;border-radius:4px}.trace-rules li[data-verdict=生效]{border-color:#1A5AE6;background:#EFF4FF}.trace-rules li>div{display:flex;gap:10px;align-items:center;justify-content:space-between}.trace-rules b{font-size:13px}.verdict{font-size:11px;white-space:nowrap;color:#5A6470}.trace-rules [data-verdict=生效] .verdict{color:#1A5AE6;font-weight:600}.person-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.person-card{border:1px solid #DADDE1;padding:13px;border-radius:6px;display:flex;flex-direction:column;gap:8px}.person-card b{font-size:14px}.person-card span{font-size:11px;color:#5A6470}.person-card strong{font-size:12px;color:#5A6470}.person-card[data-eligible=true]{border-color:#A6C5E8;background:#FAFCFF}.person-card[data-eligible=true] strong{color:#1A5AE6}.person-card small{font-size:10px;font-weight:400;color:#1A5AE6;margin-left:5px}.trace-outcome{margin:0 25px 23px;padding:19px;background:#EFF4FF;border-radius:8px;display:flex;gap:16px;align-items:flex-start}.trace-outcome>span{font-size:25px;color:#1A5AE6}.trace-outcome small{font-size:11px;color:#5A6470}.trace-outcome h3{font-size:21px;margin:7px 0}.trace-outcome p{font-size:12px;color:#5A6470;line-height:1.8;margin:5px 0 0!important}.trace-outcome[data-status=配置异常]{background:#FFF3E8}.trace-pending{margin:0 25px 25px;padding:15px;border:1px dashed #CAD6EA;font-size:13px}.trace-pending span{color:#697481;margin-left:12px}.lab-recovery{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:0 25px 20px;font-size:12px}.lab-recovery:empty{display:none}.publish-bar{padding:18px 25px;background:#F8F9FB;border-top:1px solid #EBEDF0;display:flex;justify-content:space-between;gap:18px;align-items:center}.publish-bar b{display:block;font-size:13px}.publish-bar small{display:block;font-size:11px;color:#697481;margin-top:6px}#lab-publish-result:not(:empty){padding:15px 25px;background:#F5F8FD;font-size:12px;line-height:1.8}.route-app button:focus-visible,.route-lab button:focus-visible,.center-nav a:focus-visible{outline:3px solid #9BBAFF;outline-offset:3px}
+@media(max-width:1100px){.contrast-grid{grid-template-columns:1fr}.old-route{border-right:0;border-bottom:1px solid #DADDE1}.contrast-grid section{padding:24px}.app-body{grid-template-columns:145px minmax(0,1fr)}.center-work{padding:22px}.order-tools{align-items:flex-start;flex-direction:column}}
+@media(max-width:720px){.shared-ticket{padding:17px;flex-wrap:wrap}.shared-ticket>.visual-tag{margin:0}.shared-ticket b{font-size:14px}.contrast-grid section{padding:20px}.contrast-grid h3{font-size:20px}.old-entry{grid-template-columns:48px 1fr}.app-path{gap:8px;padding:12px;font-size:11px;flex-wrap:wrap}.app-path>.visual-tag{margin:0}.app-body{display:block}.center-nav{flex-direction:row;flex-wrap:wrap;padding:10px;gap:4px;border-right:0;border-bottom:1px solid #EBEDF0}.center-nav strong,.center-nav small{display:none}.center-nav button,.center-nav a{padding:9px 7px;font-size:11px}.center-work{padding:18px}.center-work h3{font-size:18px}.rule-row{gap:8px}.rule-row b{font-size:13px}.rule-row button{padding:7px 9px;font-size:12px}.wait-field{flex-wrap:wrap}.config-footer{flex-wrap:wrap}.lab-head{padding:18px;display:block}.lab-head h3{font-size:20px;margin-bottom:12px}.lab-scenarios{padding:15px 18px 0;gap:6px}.lab-scenarios button{font-size:11px}#lab-question{margin:16px 18px!important;font-size:15px}.lab-input{margin:0 18px;padding:15px;display:block}.lab-actions{flex-direction:row;flex-wrap:wrap;margin-top:15px}.lab-actions button{font-size:12px}.trial-version{margin:16px 18px 8px;gap:8px;flex-wrap:wrap}.trace-list{padding:10px 18px}.trace-block{gap:10px}.person-grid{grid-template-columns:1fr}.trace-outcome{margin:0 18px 18px;padding:15px;gap:10px}.trace-outcome h3{font-size:18px}.lab-recovery{padding:0 18px 18px}.publish-bar{padding:18px;display:block}.publish-bar button{margin-top:14px}.route-app,.route-lab{scroll-margin-top:65px}.trace-rules li>div{align-items:flex-start}.trace-rules li{padding:10px}.contrast-cta{padding:15px;font-size:12px}}
+@media(prefers-reduced-motion:no-preference){.trace-block,.trace-outcome{animation:trace-reveal .22s ease-out}@keyframes trace-reveal{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}}
+
+.conflict-targets{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}.conflict-targets span{padding:7px 10px;border:1px solid #CBB9AF;border-radius:5px;font-size:12px;background:white}.conflict-targets>b{color:#98654D;font-size:16px}
+
+/* Product surfaces use the existing HelpDesk tokens; overview retains the review palette. */
+.mechanism-v9{border:1px solid #CBDAD6;border-radius:12px;background:white;overflow:hidden}.mode-gate{text-align:center;padding:24px 28px 0;background:#F4F8F7}.mode-gate h3{font-size:23px;margin:10px 0 18px}.mode-fork{display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;gap:12px;max-width:740px;margin:auto}.mode-fork>span{padding:12px;border:1px solid #C2D3CE;border-bottom:0;border-radius:8px 8px 0 0;background:white;font-size:14px;font-weight:600}.mode-fork>span:last-child{color:#1A5AE6;border-color:#BDCEF1}.mode-fork>b{font-size:12px;color:#586A65}.mechanism-branches{display:grid;grid-template-columns:265px minmax(0,1fr);border-top:1px solid #DCE4E1}.legacy-branch{padding:25px;background:#FAFAF9;border-right:1px solid #E0E5E3}.legacy-branch h4{font-size:17px;margin:0 0 20px}.legacy-branch>div{border:1px dashed #C7CEC9;padding:19px 14px;border-radius:7px;line-height:1.8;font-size:13px;text-align:center;margin-bottom:18px;background:#fff}.legacy-branch small{display:block;font-size:11px;color:#66736E}.legacy-branch>p{font-size:12px;line-height:1.9;color:#66736E}.legacy-branch>div>span{font-size:11px;color:#8C7261}.new-branch{padding:24px}.new-branch>header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}.new-branch>header>b{font-size:15px}.new-branch button{font-size:12px;border:1px solid #DADDE1;padding:7px 10px;background:white;border-radius:5px}.new-branch button[aria-pressed=true]{background:#EEF3FF;border-color:#1A5AE6;color:#1A5AE6}.mechanism-node{display:flex;gap:12px;position:relative;padding:0 0 18px}.mechanism-node:not(:last-child):before{content:'';position:absolute;left:13px;top:29px;bottom:0;border-left:2px solid #BFCEC8}.mechanism-node>span{width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#E8F2ED;color:#317A64;font-size:12px;flex:none}.mechanism-node b{display:block;font-size:14px;padding-top:4px}.mechanism-node small{font-size:12px;color:#5A6470;line-height:1.8;display:block;margin-top:5px}.mechanism-node.skill-off>div{border:1px dashed #B9B1CE;background:#F9F8FC;padding:9px 13px;border-radius:7px;width:100%}.mechanism-node.skill-off>span,.mechanism-node.skill-on>span{background:#EFE8FC;color:#7043AE}.mechanism-node.skill-on>div{background:#F3EEFC;padding:9px 13px;border-radius:7px;width:100%}.waiting-loop{border:1px solid #D6C79F;background:#FFFCF4;border-radius:7px;padding:15px 17px;display:flex;flex-direction:column;gap:7px}.waiting-loop b{font-size:13px;color:#785E27}.waiting-loop span{font-size:12px}.waiting-loop small{font-size:11px;color:#716C5C;line-height:1.8}.mechanism-footer{padding:18px 25px;border-top:1px solid #DEE7E2;background:#F7FAF8;display:flex;flex-direction:column;gap:10px;font-size:12px;color:#53685F}.future-strip{display:flex;flex-wrap:wrap;gap:16px;padding:14px 25px;background:#F0F3F2;font-size:11px;color:#5A6470}
+.hifi-v9{border:1px solid #DADDE1;border-radius:12px;overflow:hidden;background:#F3F4F6;color:#0F1629;scroll-margin-top:80px}.hifi-banner{display:flex;align-items:center;justify-content:space-between;padding:10px 15px;background:#EEF3FF;color:#34548B;font-size:11px}.hifi-banner button{border:1px solid #BFCEF0;background:#fff;padding:6px 10px;border-radius:5px;color:#1A5AE6;font-size:12px}.hifi-shell{display:grid;grid-template-columns:54px 146px minmax(0,1fr);min-height:590px;padding:6px;gap:6px}.hifi-rail{display:flex;align-items:center;flex-direction:column;gap:19px;padding:16px 6px;background:white;border-radius:8px}.hifi-rail img{width:21px;height:21px;padding:7px;box-sizing:content-box}.hifi-rail img:first-child{width:26px;height:26px;margin-bottom:18px;padding:3px}.hifi-rail .chosen{background:#EAF0FF;border-radius:7px}.hifi-rail>span{margin-top:auto;width:32px;height:32px;border-radius:50%;display:grid;place-content:center;background:#DDEAFD;font-size:13px;color:#1A5AE6}.hifi-settings{background:white;border-radius:8px;padding:20px 10px;display:flex;flex-direction:column;gap:5px}.hifi-settings h3{font-size:18px;margin:0 8px 20px}.hifi-settings>small{font-size:10px;color:#737C8B;margin:12px 8px 6px}.hifi-settings button{border:0;background:white;border-radius:5px;font-size:12px;text-align:left;padding:10px;color:#5A6470}.hifi-settings button.chosen{background:#EFF4FF;color:#1A5AE6;font-weight:600}.hifi-settings i{font-style:normal;font-size:9px;color:#7043AE}.hifi-settings p{font-size:10px;color:#7A8493;line-height:1.9;margin:auto 7px 0;padding-top:26px}.hifi-work{margin:0;width:auto;max-width:none;background:white;border-radius:10px;min-width:0;padding:22px;display:block}.hifi-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.hifi-title small{font-size:10px;color:#737C8B}.hifi-title h3{font-size:23px;margin:6px 0 20px}.hifi-title>span{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.hifi-badge{display:inline-block;padding:3px 6px;font-size:10px;font-weight:400;border-radius:4px;background:#F0F2F5;color:#5A6470;line-height:1.5;white-space:nowrap;margin:2px}.hifi-badge.green{background:#EAF6EF;color:#22754C}.hifi-badge.blue{background:#EDF3FF;color:#1A5AE6}.hifi-badge.purple{background:#F0EAFB;color:#7245A8}.hifi-badge.amber{background:#FFF4DE;color:#95691D}.hifi-tabs{display:flex;border-bottom:1px solid #EBEDF0;gap:20px;overflow:auto;white-space:nowrap}.hifi-tabs button{background:white;border:0;border-bottom:2px solid transparent;padding:9px 0 13px;font-size:12px;color:#5A6470;border-radius:0}.hifi-tabs [aria-pressed=true]{border-bottom-color:#1A5AE6;color:#1A5AE6;font-weight:600}.execution-strip{padding:12px 0;font-size:10px;color:#5A6470;line-height:1.8}.execution-strip b{color:#88A0C5;padding:0 4px;font-weight:400}.hifi-section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:16px 0}.hifi-section-head h4{font-size:16px;margin:0 0 7px}.hifi-section-head p{font-size:11px;color:#5A6470;line-height:1.8;margin:0}.hifi-work button,.hifi-dialog button,.movie-v9 button{font:inherit;cursor:pointer}.hifi-work button:not([data-hifi-tab]),.hifi-dialog button,.movie-controls button,.movie-outcome button{border:1px solid #DADDE1;border-radius:5px;background:#fff;font-size:12px;padding:8px 11px;white-space:nowrap;color:#0F1629}.hifi-work button.primary,.hifi-dialog button.primary,.movie-v9 button.primary{background:#1A5AE6;border-color:#1A5AE6;color:white}.hifi-v9 button:disabled,.movie-v9 button:disabled{opacity:.45;cursor:not-allowed}.hifi-v9 button:focus-visible,.hifi-dialog :is(button,input,select):focus-visible,.movie-v9 :is(button,select):focus-visible{outline:3px solid #9BB8F8;outline-offset:3px}.scope-picker{display:flex;align-items:center;flex-wrap:wrap;gap:14px;font-size:12px;background:#F8FAFC;padding:13px;border-radius:7px;margin:16px 0}.scope-picker label{display:flex;gap:5px;align-items:center}.scope-picker small{font-size:10px;color:#737C8B}.hifi-v9 input[type=checkbox],.hifi-dialog input[type=checkbox]{accent-color:#1A5AE6}.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:13px}.mode-cards article{border:1px solid #DADDE1;border-radius:8px;padding:17px}.mode-cards article.selected{border-color:#1A5AE6;background:#FAFCFF;box-shadow:inset 0 0 0 1px #1A5AE6}.mode-cards h4{font-size:15px;margin:0 0 14px}.mode-cards p{font-size:12px;line-height:1.9;color:#5A6470}.mode-cards small{font-size:11px;color:#737C8B;line-height:1.8}.hifi-info{background:#F5F8FE;border-radius:6px;border:1px solid #E2EAF9;font-size:11px;color:#54677F;padding:12px 14px;line-height:1.9;margin:18px 0}.hifi-actions{display:flex;justify-content:flex-end;gap:10px;margin:22px 0 6px}.hifi-table-scroll{overflow-x:auto}.hifi-table{width:100%;border-collapse:collapse;font-size:11px;min-width:470px}.hifi-table th{text-align:left;background:#F8F9FB;color:#5A6470;font-weight:500;padding:11px 9px;border-bottom:1px solid #EBEDF0;white-space:nowrap}.hifi-table td{padding:14px 9px;vertical-align:top;border-bottom:1px solid #EBEDF0;line-height:1.8}.hifi-table td>b{display:block;font-size:12px;font-weight:500}.hifi-table td>small{display:block;color:#737C8B;font-size:10px}.hifi-table td button{border:0!important;background:transparent!important;color:#1A5AE6!important;padding:2px 0!important}.generic-rule{padding:16px;border:1px solid #EBEDF0;border-radius:6px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:12px;margin:14px 0}.generic-rule span:not(.hifi-badge){color:#5A6470;font-size:11px}.skill-policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.skill-policy-grid article{border:1px solid #EBEDF0;border-radius:7px;padding:14px;display:flex;flex-direction:column;gap:10px;font-size:12px}.skill-policy-grid small{color:#737C8B;font-size:10px;line-height:1.8}.skill-policy-grid button{align-self:flex-start}.migration-row{padding:16px 0;border-bottom:1px solid #EBEDF0;display:flex;gap:12px;align-items:center;justify-content:space-between;font-size:12px}.migration-row b{display:block;font-size:13px;margin-bottom:7px}.migration-row small{display:block;color:#5A6470;line-height:1.8;font-size:11px}.migration-row label{display:flex;align-items:flex-start;gap:7px;margin-top:12px;font-size:11px;line-height:1.8}.migration-row a{font-size:11px;white-space:nowrap}.fault-tools{margin-top:20px;font-size:10px;color:#737C8B}.fault-tools summary{cursor:pointer}.fault-tools button{margin:10px 8px 0 0}.fault-tools span{display:block;margin-top:9px}#hifi-message:not(:empty){margin-top:15px;padding:10px 12px;background:#F8FAFC;border-radius:5px;font-size:11px;color:#52627B;line-height:1.8}.hifi-v9.expanded{position:fixed;inset:18px;z-index:1000;box-shadow:0 0 0 80px #0F162988;overflow:auto}.hifi-v9.expanded .hifi-shell{min-height:calc(100vh - 96px);grid-template-columns:56px 185px minmax(0,1fr)}.hifi-v9.expanded .hifi-work{padding:30px}.hifi-expanded{overflow:hidden}
+.hifi-dialog{border:1px solid #DADDE1;border-radius:12px;width:min(690px,calc(100vw - 28px));max-height:90vh;padding:0;color:#0F1629;box-shadow:0 16px 65px #0F162933}.hifi-dialog::backdrop{background:#0F16294D}.hifi-dialog form{margin:0}.hifi-dialog header{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #EBEDF0;padding:22px 25px;z-index:1}.hifi-dialog header small{font-size:11px;color:#737C8B}.hifi-dialog header h3{font-size:21px;margin:6px 0 0}.hifi-dialog header button{border:0;font-size:24px}.dialog-fields{padding:20px 25px}.dialog-fields label{display:block;font-size:12px;margin:10px 0 7px;line-height:1.8}.dialog-fields label>input:not([type=checkbox]),.dialog-fields label>select{display:block;margin-top:7px;width:100%;box-sizing:border-box;border:1px solid #DADDE1;border-radius:5px;padding:10px;font:inherit;background:white;color:#0F1629}.dialog-fields h4{font-size:14px;margin:24px 0 12px}.dialog-fields p{font-size:12px;color:#5A6470;line-height:1.9}.dialog-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.skill-checks{display:flex;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#F8F9FB;border:1px solid #EBEDF0;border-radius:5px}.skill-checks label{display:flex;gap:5px;margin:3px 0}.condition-chip,.source-ref{padding:12px;background:#F3F6FC;border-radius:5px;font-size:11px;line-height:1.8;margin:12px 0}.hifi-dialog footer{position:sticky;bottom:0;background:white;border-top:1px solid #EBEDF0;padding:17px 25px;display:flex;justify-content:flex-end;gap:12px}.hifi-dialog #dialog-error:not(:empty){background:#FFF1EC;color:#A03D20;border-radius:5px;padding:10px 12px}.publish-summary{display:flex;flex-direction:column;gap:13px;padding:18px;background:#F4F7FD;border-radius:7px;font-size:13px}
+.movie-v9{border:1px solid #CBDAD6;border-radius:12px;background:#fff;overflow:hidden;scroll-margin-top:80px;color:#0F1629}.movie-header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid #EBEDF0;gap:16px}.movie-header small{font-size:11px;color:#5A6470}.movie-header h3{font-size:23px;margin:8px 0 0}.movie-header label{font-size:11px;color:#5A6470;display:flex;flex-direction:column;gap:7px}.movie-v9 select{font:inherit;font-size:12px;border:1px solid #DADDE1;border-radius:5px;padding:8px;background:white;color:#0F1629}.movie-scenarios{display:flex;gap:7px;flex-wrap:wrap;padding:18px 24px 0}.movie-scenarios button{border:1px solid #DADDE1;border-radius:5px;padding:8px 10px;font-size:11px;background:white;color:#5A6470}.movie-scenarios [aria-pressed=true]{border-color:#1A5AE6;color:#1A5AE6;background:#EEF3FF}#movie-subtitle{font-size:12px!important;color:#5A6470;padding:0 24px;line-height:1.8;margin:14px 0!important}.movie-ticket{margin:0 24px 18px;border:1px solid #D8E1EE;border-radius:8px;background:#F9FBFE;padding:15px 18px}.movie-ticket header{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#5A6470}.movie-ticket header button{border:0;background:transparent;color:#1A5AE6;font-size:11px}.movie-ticket h4{font-size:17px;margin:10px 0 14px}.movie-ticket dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px 15px;margin:0}.movie-ticket dl>div{display:flex;gap:7px;align-items:baseline;min-width:0}.movie-ticket dt{font-size:10px;color:#737C8B;flex:none}.movie-ticket dd{margin:0;font-size:11px;line-height:1.7;overflow-wrap:anywhere}.movie-controls{display:flex;align-items:center;gap:8px;padding:15px 24px;border-top:1px solid #EBEDF0;border-bottom:1px solid #EBEDF0;flex-wrap:wrap;background:#FAFBFD}.movie-controls label{display:flex;align-items:center;gap:7px;font-size:11px;margin-left:auto}.movie-controls #movie-time{font-size:11px;color:#5A6470;font-variant-numeric:tabular-nums}.movie-route{position:relative;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));padding:60px 12px 18px;overflow:hidden;background:linear-gradient(180deg,#F8FAFF,#fff)}.movie-track{position:absolute;top:79px;height:2px;background:#D8E2F3;left:6%;right:6%}.movie-station{position:relative;border:0;background:transparent;display:flex;align-items:center;flex-direction:column;gap:9px;padding:0;font-size:11px;color:#737C8B}.movie-station>span{width:38px;height:38px;display:grid;place-content:center;border:1px solid #D8E2F3;border-radius:50%;background:white;z-index:1;font-size:12px}.movie-station b{font-size:10px;font-weight:500}.movie-station[data-done=true]>span{border-color:#87B3A0;background:#EFF8F4;color:#317A64}.movie-station[data-active=true]>span{border-color:#1A5AE6;background:#1A5AE6;color:white;box-shadow:0 0 0 5px #EAF0FC}.movie-station[data-active=true] b{color:#1A5AE6;font-weight:600}.moving-ticket{position:absolute;left:0;top:14px;width:84px;height:28px;display:grid;place-content:center;background:#1A5AE6;color:white;border-radius:6px;font-size:11px;z-index:2;transition:transform .65s cubic-bezier(.2,.7,.2,1);box-shadow:0 3px 10px #1A5AE62A}.moving-ticket:after{content:'';position:absolute;bottom:-5px;left:38px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #1A5AE6}.movie-stage{padding:18px 24px 22px;min-height:280px}.movie-narration{border-left:3px solid #1A5AE6;padding-left:15px;margin-bottom:22px}.movie-narration>span{font-size:10px;color:#1A5AE6}.movie-narration h3{font-size:20px;margin:7px 0}.movie-narration p{font-size:12px;margin:0!important;color:#5A6470;line-height:1.9}.intro-decision{display:flex;align-items:center;justify-content:center;gap:30px;margin:28px auto}.intro-decision>div{border:1px solid #C6D6EF;background:#F5F9FF;border-radius:8px;padding:20px;font-size:14px}.intro-decision+small{display:block;font-size:11px;line-height:1.8;text-align:center;color:#737C8B}.animated-rules{display:grid;gap:12px}.animated-rule{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:15px;border:1px solid #DADDE1;border-radius:7px;background:#FBFCFD}.animated-rule>span{font-size:12px;color:#737C8B}.animated-rule b{font-size:13px}.animated-rule small{display:block;font-size:11px;color:#737C8B;margin-top:7px}.animated-rule strong{font-size:11px;color:#5A6470}.animated-rule p{grid-column:2/4;font-size:11px;margin:0!important;color:#5A6470}.animated-rule[data-status=生效]{background:#EFF5FF;border-color:#1A5AE6}.animated-rule[data-status=生效] strong{color:#1A5AE6}.animated-rule[data-status=不再采纳]{opacity:.65}.queue-route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.queue-route>div{border:1px solid #DADDE1;border-radius:7px;padding:17px;display:flex;flex-direction:column;gap:11px;background:#FAFBFC}.queue-route b{font-size:14px}.queue-route span{font-size:12px;color:#5A6470}.queue-route small{font-size:10px;color:#737C8B}.queue-route>div.selected{background:#EFF5FF;border:2px solid #1A5AE6}.queue-route>div.selected small{color:#1A5AE6}.skill-equation{display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0}.skill-equation>div{border:1px solid #D9CBEF;background:#FAF7FF;border-radius:8px;padding:17px;min-width:105px}.skill-equation small{display:block;font-size:11px;color:#735F8C;margin-bottom:9px}.skill-equation>b{color:#9A8CAF}.optional-skill,.phase-skip{padding:16px;background:#FAF8FD;border-radius:7px;font-size:12px;line-height:1.8;color:#6D568D;text-align:center}.candidate-deck{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.agent-tile{border:1px solid #DADDE1;border-radius:7px;padding:12px;background:#FBFCFD;min-width:0}.agent-tile header{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.agent-tile header>span:first-child{display:grid;place-content:center;width:26px;height:26px;background:#E6EAF0;border-radius:50%;font-size:11px;flex:none}.agent-tile header b{font-size:12px}.agent-tile header small{display:block;font-size:9px;color:#737C8B;line-height:1.7}.capacity-meter{height:5px;overflow:hidden;border-radius:3px;background:#EBEDF0;margin:15px 0 5px}.capacity-meter i{height:100%;display:block;background:#89A5D7;transition:width .4s}.agent-tile>small{font-size:9px;color:#737C8B}.agent-skills{display:flex;flex-wrap:wrap;gap:2px;margin:10px -2px}.agent-skills .hifi-badge{font-size:9px;padding:2px 4px}.agent-tile p{font-size:10px;color:#8A6C3A;line-height:1.8;margin:0!important;overflow-wrap:anywhere}.agent-tile[data-eligible=true]{background:#F0F8F5;border-color:#6AA88A}.agent-tile[data-eligible=true] p{color:#27764E}.agent-tile[data-picked=true]{border:2px solid #1A5AE6;background:#F0F5FF}.agent-tile[data-picked=true] p{color:#1A5AE6;font-weight:600}.wait-clock{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:23px;padding:15px;background:#FFFBF1;border-radius:6px;color:#8A6C3A;font-size:11px}.wait-clock>div{flex:1;height:7px;border-radius:4px;background:#EEE4C9}.wait-clock i{height:100%;display:block;background:#CBA25E;border-radius:4px;transition:width .65s}.wait-clock small{width:100%;font-size:10px}.movie-outcome{padding:18px 24px;background:#F0F6F3;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid #DEE7E2;font-size:12px;min-height:62px}.movie-outcome>div{display:flex;flex-direction:column;gap:6px}.movie-outcome small{font-size:10px;color:#5A6470}.movie-outcome>div b{font-size:18px;color:#2D7359}.movie-outcome span{font-size:11px;color:#5A6470}.movie-footer{display:flex;justify-content:space-between;gap:10px;padding:14px 24px;font-size:10px;color:#737C8B;border-top:1px solid #E6EDE9}
+@media(max-width:1100px){.hifi-shell{grid-template-columns:42px 115px minmax(0,1fr)}.hifi-work{padding:17px}.hifi-tabs{gap:13px}.hifi-settings{padding:17px 7px}.hifi-settings button{font-size:11px;padding:9px 7px}.hifi-rail img{width:18px;height:18px;padding:6px}.candidate-deck{grid-template-columns:repeat(3,minmax(0,1fr))}.mode-cards article{padding:12px}.mode-cards h4{font-size:13px}.mode-cards p{font-size:11px}}
+@media(max-width:720px){.mechanism-branches{grid-template-columns:1fr}.legacy-branch{border-right:0;border-bottom:1px solid #DCE4E1;padding:20px}.mode-gate{padding:20px 15px 0}.mode-gate h3{font-size:19px}.mode-fork{grid-template-columns:1fr 1.2fr 1fr;gap:7px}.mode-fork>span{font-size:11px;padding:10px 5px}.mode-fork>b{font-size:10px;line-height:1.8}.new-branch{padding:20px}.new-branch>header{flex-wrap:wrap}.mechanism-footer{padding:17px;font-size:11px;line-height:1.8}.future-strip{padding:14px 17px;gap:10px}.hifi-shell{grid-template-columns:minmax(0,1fr);padding:5px}.hifi-rail,.hifi-settings{display:none}.hifi-work{padding:15px}.hifi-title h3{font-size:21px}.hifi-tabs{gap:17px}.hifi-tabs button{font-size:11px}.execution-strip{font-size:9px}.hifi-section-head{align-items:flex-start;flex-wrap:wrap}.hifi-section-head p{font-size:11px}.scope-picker{gap:10px}.mode-cards{grid-template-columns:1fr}.mode-cards article{padding:16px}.hifi-actions{flex-wrap:wrap}.hifi-work button:not([data-hifi-tab]){min-height:36px}.skill-policy-grid{grid-template-columns:1fr}.migration-row{align-items:flex-start;flex-wrap:wrap}.hifi-banner{font-size:10px;padding:10px}.hifi-v9.expanded{inset:6px}.hifi-v9.expanded .hifi-shell{grid-template-columns:minmax(0,1fr)}.hifi-v9.expanded .hifi-work{padding:14px}.dialog-grid{grid-template-columns:1fr;gap:0}.dialog-fields{padding:15px 18px}.hifi-dialog header{padding:17px 18px}.hifi-dialog footer{padding:15px 18px}.movie-header{padding:18px;align-items:flex-start;flex-wrap:wrap}.movie-header h3{font-size:20px}.movie-header label{flex-direction:row;align-items:center}.movie-scenarios{padding:15px 18px 0}.movie-scenarios button{padding:9px;font-size:10px}#movie-subtitle{padding:0 18px;font-size:11px!important}.movie-ticket{margin:0 18px 15px;padding:14px}.movie-ticket h4{font-size:15px}.movie-ticket dl{grid-template-columns:1fr 1fr;gap:9px}.movie-ticket dl>div{display:block}.movie-ticket dd{font-size:10px}.movie-controls{padding:12px 18px;gap:7px}.movie-controls button{font-size:11px;padding:9px}.movie-controls label{margin-left:0}.movie-controls #movie-time{margin-left:auto}.movie-route{padding:51px 4px 12px}.movie-track{top:66px;left:6%;right:6%}.movie-station>span{width:29px;height:29px;font-size:11px}.movie-station b{font-size:8px;max-width:39px;line-height:1.5;min-height:24px}.moving-ticket{width:62px;top:11px;font-size:9px;height:24px;margin-left:11px}.moving-ticket:after{left:27px}.movie-stage{padding:18px;min-height:260px}.movie-narration{padding-left:12px}.movie-narration h3{font-size:17px}.movie-narration p{font-size:11px}.candidate-deck{grid-template-columns:1fr 1fr;gap:8px}.agent-tile{padding:10px}.agent-tile p{font-size:10px}.queue-route{grid-template-columns:1fr}.queue-route>div{padding:12px}.skill-equation{gap:7px;flex-wrap:wrap}.skill-equation>div{padding:12px;min-width:74px}.skill-equation .hifi-badge{font-size:9px}.optional-skill{font-size:11px;padding:13px}.movie-outcome{padding:16px 18px}.movie-outcome>div b{font-size:17px}.movie-footer{padding:12px 18px;flex-wrap:wrap;font-size:10px}.intro-decision{gap:14px}.intro-decision>div{font-size:12px;padding:14px}}
+@media(prefers-reduced-motion:reduce){.moving-ticket,.capacity-meter i,.wait-clock i{transition:none}.movie-v9 *{animation:none!important}}
+</style></head><body>
+<a class="skip" href="#main">跳到正文</a><aside class="sidebar"><a class="logo" href="#start">TARS /</a><p class="subtitle">统一分单产品方案</p><div class="edition"><b>内部评审 · V0.9.1</b><span>建议机制，尚未实施</span></div><nav aria-label="方案章节"><a href="#why" data-chapter-link="0"><span>01</span>为什么统一</a><a href="#mechanism" data-chapter-link="1"><span>02</span>完整机制</a><a href="#configure" data-chapter-link="2"><span>03</span>配置与迁移</a><a href="#runtime" data-chapter-link="3"><span>04</span>运行与恢复</a><a href="#roadmap" data-chapter-link="4"><span>05</span>分期与验收</a><a href="#decisions" data-chapter-link="5"><span>06</span>待确认决策</a><a href="#evidence" data-chapter-link="6"><span>07</span>依据与边界</a></nav><p class="reading-note">看入口与顺序，<br>配置后立即试单，<br>逐步看分配原因。</p><footer><span>更新于 2026.11.05</span><a href="https://unbent-uneatable-exceeding.ngrok-free.dev/portfolio/">返回个人工作集 ↗</a></footer></aside>
+<div class="workspace"><header class="topbar"><div><span class="badge">图解优先 · 细则按需展开</span><strong id="current-chapter">阅读起点</strong></div><nav aria-label="章节导航"><a id="previous-chapter" href="#start">回到开篇</a><a id="next-chapter" href="#why">开始阅读 →</a></nav><button id="expand-all" aria-pressed="false">展开全部细则</button></header>
+<main id="main" tabindex="-1"><section class="cover" id="start"><p class="eyebrow">TARS / 统一分单 · 视觉讲解</p><h1>看一张工单，<em>怎样找到对的人。</em></h1><div class="cover-actions"><a class="visual-primary" href="#runtime">试一张工单 →</a><a href="#why">从头看图解 ↓</a><span>内部提案 · 尚未实施</span></div></section><article class="chapter" id="why" data-chapter="0"><header class="chapter-heading"><p class="eyebrow">01 / 为什么统一</p><h2>为什么要统一分单</h2><div class="chapter-lead">客户只进分单中心：先看规则顺序，再看承接队列，最后看分配结果。</div></header><div class="contrast-board">
+ <div class="shared-ticket"><span class="ticket-icon">▤</span><div><small>同一张示例工单</small><b>产品 A 咨询 · 复购客户 · 尚无负责人</b></div><span class="visual-tag">虚构冲突案例</span></div>
+ <div class="contrast-grid"><section class="old-route"><header><span class="visual-kicker">现在 / 多个配置入口</span><h3>每处都能配，合起来谁生效？</h3></header>
+ <div class="old-entry"><span>入口 A</span><b>自动规则 → 自动分单</b><small>条件：产品 A → 平均分给产品组</small></div>
+ <div class="entry-join">↑ Queue 接管时不再执行旧分单；未接管才走旧路径</div>
+ <div class="old-entry"><span>入口 B</span><b>Queue → 团队队列</b><small>条件：邮件 → 交给售后组</small></div>
+ <div class="unclear-order"><span>没有跨链路的固定总顺序</span><b>⋮　先到 / 后到？　⋮</b></div>
+ <div class="old-entry"><span>入口 C</span><b>Trigger → 设置负责人</b><small>条件：复购 → 直接给林薇</small></div>
+ <div class="customer-question"><div class="conflict-targets"><span>Queue 选中陈晨</span><b>⇄ ?</b><span>Trigger 指定林薇</span></div><b>“在哪里配？谁先执行？会被覆盖吗？”</b></div>
+ <p class="diagram-caveat">示意组合风险，不代表三个执行器必然同时运行，也不是已确认的客户事故。</p></section>
+ <section class="new-route"><header><span class="visual-kicker">建议 / 一个分单入口</span><h3>设置 → 分单中心</h3></header>
+ <div class="center-menu"><span>分单规则（关联 Trigger）</span><span>承接队列</span><span>试单与发布</span></div>
+ <ol class="ordered-route"><li><span>1</span><div><b>先保护已有负责人</b><small>有人负责 → 保留；本单无人 → 继续 ↓</small></div></li><li><span>2</span><div><b>再判断分单规则（关联 Trigger）</b><small>① 复购 → 林薇优先 <em>生效</em><br>② 产品 A → 陈晨优先 <s>不再采纳</s></small></div></li><li><span>3</span><div><b>确定一个承接队列</b><small>有规则目标就用它；否则按队列顺序 → 兜底</small></div></li><li><span>4</span><div><b>统一检查资格，再分配</b><small>林薇可接 → 分给她；不可接 → 同队列选人 / 等待</small></div></li></ol>
+ <div class="clear-result"><b>本单 → 林薇</b><span>理由：规则 ① 生效，且林薇可以接单。</span></div>
+ <p class="diagram-caveat">Trigger 通用规则仍独立；分配动作在此关联管理。已迁移范围的旧分单不再执行。</p></section></div>
+ <a class="contrast-cta" href="#configure">在这个统一入口里配一次，再试一张单 →</a></div><details class="detail-block chapter-reference" id="reference-why"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>客户需要的是可解释、可控制的一套分单机制。</strong> 当前困惑来自多个入口都能影响负责人，却没有一套对客户统一说明的职责、顺序和恢复规则。先明确现状与缺口，再决定需要改什么。</p>
+</div><section class="section-card" id="s-1-1"><h3><span>1.1</span>当前已有：功能存在，执行关系分散</h3><div class="prose"><p>用户反馈已明确：客户会问每个功能的用途，以及一起使用时谁生效。目前没有客户访谈样本或问题量基线，不能把反馈扩大成量化结论。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>能力</th>
+<th>master 中核实的行为</th>
+<th>对组合使用的影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自动规则中的分单</td>
+<td><code>TICKET_TO_AGENT</code> 先调用 Queue Routing；被处理则返回，否则继续旧 Automation。旧规则首个条件命中即派发动作。平均分单跳过已有负责人，按所选用户组中 Open 工单量选人，在线过滤取决于设置；存在邮件日工作量限制适配</td>
+<td>Queue 和旧分单在这个入口上主要是接管/回退关系，不能理解为叠加执行</td>
+</tr>
+<tr>
+<td>Trigger 指派客服</td>
+<td>独立事件与执行链；<code>ASSIGN_MEMBER</code> 调用 Ticket 指派；此路径无“已有负责人即跳过”保护，可更新 agentId；AI 处理中且非 HITL 时有禁止指派校验</td>
+<td>不存在与 Queue/Automation 共用的固定总执行顺序；晚到动作存在覆盖负责人风险</td>
+</tr>
+<tr>
+<td>Trigger 按排班指派</td>
+<td>master 已有 <code>ASSIGN_MEMBER_IN_SCHEDULE</code>；执行时校验用户、日历和时段；非排班跳过，日历引用失效也按跳过处理；不自动等到上班补派</td>
+<td>排班限制只作用于该动作，不代表所有分单渠道都受这一排班约束</td>
+</tr>
+<tr>
+<td>Queue 路由</td>
+<td>按 position、id 排序，首个匹配队列决定团队；有效活动 HSR 优先被处理；无活动 HSR 时，开关关闭/事实不支持/未匹配返回旧路径；命中且已有负责人或已解决则接管但不新分配</td>
+<td>队列顺序有意义，但并不天然控制 Trigger 写入</td>
+</tr>
+<tr>
+<td>Queue 选人</td>
+<td>有效团队成员、在线/连接信息、渠道容量；按剩余容量降序，再按上次分配时间、用户 ID 排序</td>
+<td>与旧规则按 ES 中 Open 工单数平均分配不是同一算法，不能共用“平均分单”文案</td>
+</tr>
+<tr>
+<td>服务准入</td>
+<td>Message/Email、V1/V2 和渠道入口存在差异；如 Message 营业外会结束人工请求，V2 全离线预检和 Custom Livechat 关单也有特例</td>
+<td>不能把“所有渠道无人在线都排队”写成现状；统一方案需显式定义渠道政策</td>
+</tr>
+<tr>
+<td>管理入口</td>
+<td>HelpDesk Settings 内 Automation、Trigger、Queue 分别存在，团队与容量也独立管理</td>
+<td>管理员无法在一个入口看到关联关系、冲突和最终解释</td>
+</tr>
+</tbody></table></div>
+<p><strong>现状优先级只能局部说明：Queue 在 <code>TICKET_TO_AGENT</code> 入口先尝试接管，Trigger 独立运行。</strong> 是否线上启用 Queue、哪些规则会同时触发、实际消息先后顺序，仍需目标租户现场核实。本次不把代码风险描述成已发生的生产事故。</p>
+<p>一个额外发现：仓库存在 <code>TriggerAverageAssigner</code> 类，但本次基线的生产源码未找到调用，Trigger 动作白名单也没有平均分配动作；不把这个类算作已开放能力。</p>
+</div></section>
+<section class="section-card" id="s-1-2"><h3><span>1.2</span>哪些是整合，哪些才是新增</h3><div class="prose"><p><strong>本轮补充（2026-11-04）：</strong> 已完成一个真实租户的只读配置核查，结果见第 3.7 节。该租户旧自动分单及队列均关闭，不能把“入口关系分散”画成该租户三路同时写入。源码基线与生产 schema 需分别看：当前生产已有 <code>routing_queue_team</code> 关系表；本方案一期单团队是范围约束，不是声称生产仅有 <code>team_id</code> 字段。</p>
+<p>本表区分新增能力与已有基础的统一，不将设计原型当作实现证据。本次比较方案基线与本机 <code>origin/master</code>（<code>e72b9fbe94601ecba6cd327d0ae71c186b6731d4</code>）的 routing/trigger、Ticket 指派和等待排序相关路径，无差异；未据此确认当前生产租户启用状态，未进行新一轮全仓库审计；V0.8 已另行核查目标租户配置，V0.9 保留该结论，不能把旧基线等同于生产构建。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>已有基础 / 待补齐</th>
+<th>建议阶段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已有基础</td>
+<td>团队队列、条件匹配、在线、渠道容量、营业日历、等待上限、等待列表及基础容量监控</td>
+<td>一期复用并统一</td>
+</tr>
+<tr>
+<td>统一执行</td>
+<td>Trigger 与 Queue/旧 Automation 的顺序、负责人保护、人工与自动分配冲突</td>
+<td>一期</td>
+</tr>
+<tr>
+<td>统一等待政策</td>
+<td>已有超时处理；需要明确渠道等待/退出/主管处理与提醒政策，而非一概结束客户问题</td>
+<td>一期基础、三期增强</td>
+</tr>
+<tr>
+<td>完整解释与配置验证</td>
+<td>已有日志、队列和容量监控；补规则到候选的原因链、发布前模拟、迁移差异与冲突诊断</td>
+<td>一期基础、四期增强</td>
+</tr>
+<tr>
+<td>技能匹配</td>
+<td>队列默认与 Trigger 追加；必需/可选与技能时钟</td>
+<td>二期</td>
+</tr>
+<tr>
+<td>服务连续性</td>
+<td>单团队基础之上补备用团队；Email/Message 主路径之上补渠道适用的邀请、拒绝和超时恢复。Voice 已有独立 Reservation/Attempt 机制，不能算全产品缺失</td>
+<td>三期</td>
+</tr>
+<tr>
+<td>紧急程度调度</td>
+<td>等待主要按入队时间；补优先级/SLA 和长期等待保障。队列匹配顺序不是工单紧急等级</td>
+<td>四期</td>
+</tr>
+<tr>
+<td>候选方向</td>
+<td>原客服优先、跨渠道总负载：需实际回访和混合接待场景决定范围；尚未承诺期次</td>
+<td>待评估</td>
+</tr>
+</tbody></table></div>
+<p>“原客服优先”区别于规则指定固定客服：需识别上一位处理人，并定义可用性、保留时长及退回团队的条件。“跨渠道总负载”区别于已有渠道容量：需决定电话、会话、邮件是否竞争同一工作负载。二者作为后续评估候选，不自动纳入已建议的四期必备范围。</p>
+<p>补充源码证据：<code>domain/routing/dto/RoutingQueueDefinition.java</code>（单 teamId、maxWaitSeconds）、<code>business/core/routing/RoutingMonitoringService.java:72–130</code>（队列/坐席/等待监控）、<code>infra/routing/store/HumanServiceRequestRepositoryImpl.java:154–162</code>（queuedAt/id 排序）；路径前缀同第 7 章。</p>
+</div></section>
+<details class="detail-block" id="s-1-3"><summary><span>1.3</span>谁会使用，怎样衡量改善<small>展开细则</small></summary><div class="prose"><ul>
+<li>作为管理员，我希望在一个地方配置“售后邮件去售后团队、VIP 先找专属客服”，知道两者如何配合。</li>
+<li>作为主管，我希望看到未分配是因为无人在线、容量满、未到营业时间还是配置错误，并能接管或修复。</li>
+<li>作为客服，我希望接手后不会被普通字段更新抢走工单；需要转交时能明确看到转交结果。</li>
+<li>作为实施人员，我希望用历史工单模拟新旧差异，确认后再切换，避免老客户行为无声变化。</li>
+</ul>
+<p>以下是建议目标，需在试点前确认基线与样本：</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>建议验收指标</th>
+<th>采集口径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>管理员能解释分单结果</td>
+<td>5 名试点管理员中至少 4 名，独立判断 6 个代表场景的结果，正确率 ≥90%</td>
+<td>产品可用性走查，不用开发人员代答</td>
+</tr>
+<tr>
+<td>客户能完成首次配置</td>
+<td>至少 4/5 管理员在 15 分钟内完成团队、队列、例外规则、模拟验证</td>
+<td>从“设置”真实入口计时；必要资源已就绪</td>
+</tr>
+<tr>
+<td>每次自动分配可追溯</td>
+<td>新机制试点分配/跳过/等待/失败均有原因与版本记录，覆盖率 100%</td>
+<td>决策记录对账实际负责人变化；抽查不是全量证明</td>
+</tr>
+<tr>
+<td>归属不被异步旧事件抢回</td>
+<td>人工接管、重复消费、乱序回放验收用例中 0 次覆盖</td>
+<td>并发测试与试点观察分别记录</td>
+</tr>
+<tr>
+<td>减少配置咨询</td>
+<td>上线后 4 周，与上线前 4 周相比，“分单冲突/优先级”咨询率下降 50%</td>
+<td>按活跃配置租户数归一化；当前无基线，非收益承诺</td>
+</tr>
+</tbody></table></div>
+</div></details></details><footer class="chapter-next"><a href="#mechanism"><small>接下来 · 02</small><b>完整机制 →</b></a></footer></article>
+<article class="chapter" id="mechanism" data-chapter="1"><header class="chapter-heading"><p class="eyebrow">02 / 完整机制</p><h2>完整机制：谁负责哪一个决定</h2><div class="chapter-lead">先选新老模式，再看执行主线；一期、二期技能与后续增强明确分层。</div></header><div class="mechanism-v9"><div class="mode-gate"><span class="visual-kicker">管理员先选择 · 按迁移渠道生效</span><h3>这个渠道，使用哪套分单机制？</h3><div class="mode-fork"><span>旧模式</span><b>二选一 · 切换成功才接管</b><span>队列路由 · 新模式</span></div></div><div class="mechanism-branches"><section class="legacy-branch"><h4>保留现有行为</h4><div>Queue 优先尝试接管<br><span>未接管 ↓</span><br>旧自动分单规则</div><div>Trigger 直接指派<br><small>独立事件链，没有跨链路固定总顺序</small></div><p>未迁移渠道继续用旧模式。仅保存新队列草稿不会自动切换。</p></section><section class="new-branch"><header><b>新机制的运行顺序</b><div role="group" aria-label="查看机制阶段"><button data-map-phase="1" aria-pressed="true">一期</button><button data-map-phase="2" aria-pressed="false">＋ 二期技能</button></div></header><div class="mechanism-chain" id="mechanism-chain"></div><div class="waiting-loop"><b>无人可接 → 留在原队列等待 ↻</b><span>资源恢复 / 可选技能到期 → 再检查资格</span><small>Email 到期：提醒并保留待处理　·　Message 到期：结束本次排队</small></div></section></div><div class="mechanism-footer"><span><b>贯穿两种模式</b>　Trigger 的标签、通知、Webhook 继续独立执行</span><span><b>迁移成功后</b>　该范围旧分单停止；失败、满载都不退回旧分单</span></div><div class="future-strip"><span>三期：备用团队 / 邀请与受控转派</span><span>四期：优先级 / SLA 与长期等待保障</span></div></div><details class="detail-block chapter-reference" id="reference-mechanism"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>“队列路由”是新的分单执行方式；Trigger 是与它协作的独立业务规则。</strong> 分单中心统一管理，规则表达要求，队列确定团队，技能与接单资格筛选候选，统一提交负责人并解释结果。</p>
+</div><section class="section-card" id="s-2-1"><h3><span>2.1</span>先统一名称和职责</h3><div class="prose"><p><strong>建议客户在同一已纳入渠道上，选择“现有分单方式（兼容）”或“队列路由”之一。</strong> Trigger 是始终独立的通用业务规则能力，不是新模式的开关，也不是 Routing 的子功能。队列路由没有任何 Trigger 分单规则也能工作：直接按队列条件匹配和兜底队列分配；需要 VIP、特定事件等例外时再组合 Trigger。</p>
+<p>启用“队列路由”成功后，系统自动阻止适用渠道的旧自动分单动作执行，保留配置并显示“由队列路由接管”。客户无需逐条手动停用，也不能在后台绕过模式开关重新启用旧分单。旧规则中的合并/关单、通知等非分单能力不因此失效。</p>
+<p>“待废弃”只指旧自动分单执行方式的产品演进方向，不代表本次立即删除或已有退役日期。现有实现本身允许 Queue 与旧规则接管/回退，因此当前行为还不是严格二选一；新方案必须增加统一的执行边界。已迁移渠道不会在队列未命中、无人可用或技术失败时重新调用旧分单。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>决定什么</th>
+<th>不承担什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分单规则（关联 Trigger）</td>
+<td>条件成立时，选择目标队列，或在该队列内优先指定客服</td>
+<td>不另做一套团队平均分配/容量计算</td>
+</tr>
+<tr>
+<td>队列</td>
+<td>条件、匹配顺序、承接团队、渠道、等待上限与退出政策</td>
+<td>不与规则争抢工单负责人</td>
+</tr>
+<tr>
+<td>团队</td>
+<td>成员集合、营业日历；可被多个队列复用</td>
+<td>不等于工单列表视图，不代表每人都有容量</td>
+</tr>
+<tr>
+<td>技能（二期）</td>
+<td>客服能处理的语言/产品/业务能力；工单的必需与可选能力要求</td>
+<td>不授予数据权限、不等于在线或有空、不作为另一套分单入口</td>
+</tr>
+<tr>
+<td>坐席接单资格</td>
+<td>账号与成员有效、权限、营业/排班、在线连接、容量</td>
+<td>在线不代表有空，排班内不代表在线</td>
+</tr>
+<tr>
+<td>分单记录</td>
+<td>当前服务周期的队列、团队、负责人、来源、配置版本、等待/失败原因</td>
+<td>不把“命中规则”显示成“分配成功”</td>
+</tr>
+</tbody></table></div>
+<p>产品上展示“当前服务周期”。技术上可复用/扩展 HSR，不要求客户理解 HSR 或 MQ。</p>
+</div></section>
+<section class="section-card" id="s-2-2"><h3><span>2.2</span>功能关系：管理入口与运行过程分开看</h3><div class="prose"><p><strong>客户唯一分单入口：设置 → 分单中心。</strong> 同一页按“分单规则（关联 Trigger）→ 承接队列 → 试单与发布”组织功能，保持与运行顺序一致。分单规则决定进入哪个队列；队列决定承接团队、选人和等待。两者属于同一入口。Trigger 保持独立通用业务能力；分单中心以同一规则 ID 展示和编辑其分配动作，不复制规则。新模式下从独立 Trigger 选择分配动作时，进入分单中心的关联编辑器并可返回来源；不再暴露一条可绕过路由的直接写入路径。旧自动分单入口在迁移范围只显示只读迁移提示与分单中心链接。</p>
+<p>分单规则展示完整分类位置、规则次序和关联通用动作。调序同步到原 Trigger，含标签准备/通知等混合动作时先展示影响，不能在分单中心暗建独立排序。通用 Trigger 按既有事件/多轮机制准备字段；分单读取同一事件稳定事实后计算意图，归属仅提交一次。存在事实依赖环或读取临时负责人副作用的旧规则，属于迁移阻塞项；技术设计须落地稳定事实与执行终止边界。</p>
+<p>分单方式是管理员提前选择的执行边界，不是每张工单都重新迁移一次。运行时优先保护已有负责人；Trigger 可选参与，队列也能独立分单。</p>
+<p><figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijg1MCIgdmlld0JveD0iMCAwIDExMDAgODUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUiPjx0aXRsZSBpZD0idGl0bGUiPuW7uuiuruacuuWItueahOiBjOi0o+WFs+ezu++8mueuoeeQhumFjee9ruS4juW3peWNlei/kOihjOWIhuW8gDwvdGl0bGU+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMCBMOCA0IEwwIDgiIGZpbGw9IiMzOTdhNzAiLz48L21hcmtlcj48L2RlZnM+PHN0eWxlPnRleHR7Zm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlBpbmdGYW5nIFNDIiwiTWljcm9zb2Z0IFlhSGVpIixzYW5zLXNlcmlmO2ZpbGw6IzI2M2M0MH0udGl0bGV7Zm9udC1zaXplOjI0cHg7Zm9udC13ZWlnaHQ6NjUwfS5ib2R5e2ZvbnQtc2l6ZToxN3B4O2ZpbGw6IzY2N2I3Y30ubGFiZWx7Zm9udC1zaXplOjE0cHg7ZmlsbDojMzk3YTcwO2ZvbnQtd2VpZ2h0OjYwMH0uaGVhZGluZ3tmb250LXNpemU6MTlweDtmb250LXdlaWdodDo2NTB9PC9zdHlsZT48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI4NTAiIHJ4PSIxNiIgZmlsbD0iI2ZmZiIvPgo8dGV4dCB4PSIzNiIgeT0iNDUiIGNsYXNzPSJ0aXRsZSI+5q+P6aG55Yqf6IO977yM5Y+q6LSf6LSj5LiA5Liq5riF5qWa55qE5Yaz5a6aPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iNzYiIGNsYXNzPSJib2R5Ij5UYXJzIOW7uuiuruacuuWItiDCtyBUcmlnZ2VyIOaYr+eLrOeri+S4muWKoeinhOWIme+8jOWIhuWNleS4reW/g+e7n+S4gOmFjee9ruS4juino+mHijwvdGV4dD4KPHRleHQgeD0iMzYiIHk9IjExOSIgY2xhc3M9ImxhYmVsIj7nrqHnkIbphY3nva4gLyDkuovlhYjlrozmiJA8L3RleHQ+CjxyZWN0IHg9IjM2IiB5PSIxMzYiIHdpZHRoPSIxMDI4IiBoZWlnaHQ9IjEwNiIgcng9IjEwIiBmaWxsPSIjZjRmOGY3IiBzdHJva2U9IiNkY2U1ZTIiLz4KPHRleHQgeD0iNTYiIHk9IjE2OCIgY2xhc3M9ImhlYWRpbmciPuWIhuWNleS4reW/g++8mumAieaLqeWIhuWNleaWueW8j+OAgemFjee9rui1hOa6kOOAgeaooeaLn+S4jui/geenuzwvdGV4dD4KPHRleHQgeD0iNTYiIHk9IjE5NyIgY2xhc3M9ImJvZHkiPumAgueUqOa4oOmBk++8mueOsOacieWIhuWNleaWueW8jyDmiJYg6Zif5YiX6Lev55Sx77yb5YiH5o2i5oiQ5Yqf5ZCO77yM5pen5YiG5Y2V6Ieq5Yqo5LiN5omn6KGM44CCPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iMjIyIiBjbGFzcz0iYm9keSI+6L+B56e75Y+q5Y+R55Sf5Zyo566h55CG5ZGY5Y+R5biD5pe277yM5LiN5piv5q+P5byg5bel5Y2V6L+Q6KGM5Lit55qE5LiA5Liq5q2l6aqk44CCPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iMjg2IiBjbGFzcz0ibGFiZWwiPui/kOihjOiBjOi0oyAvIOW3suWQr+eUqOmYn+WIl+i3r+eUseeahOa4oOmBkzwvdGV4dD4KPHJlY3QgeD0iMzYiIHk9IjMxMCIgd2lkdGg9IjI5MCIgaGVpZ2h0PSIxNDEiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjhmNyIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjU2IiB5PSIzNDIiIGNsYXNzPSJoZWFkaW5nIj5UcmlnZ2VyIMK3IOWPr+mAieWPguS4jjwvdGV4dD4KPHRleHQgeD0iNTYiIHk9IjM3MSIgY2xhc3M9ImJvZHkiPuS6i+S7tuS4juS4muWKoeS+i+WkljwvdGV4dD4KPHRleHQgeD0iNTYiIHk9IjM5NiIgY2xhc3M9ImJvZHkiPuebruagh+mYn+WIlyAvIOS8mOWFiOWuouacjTwvdGV4dD4KPHRleHQgeD0iNTYiIHk9IjQyMSIgY2xhc3M9ImJvZHkiPuagh+etvuOAgemAmuefpeetieS7jeeLrOeri+aJp+ihjDwvdGV4dD4KPHJlY3QgeD0iNDAwIiB5PSIzMTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTQxIiByeD0iMTAiIGZpbGw9IiNlN2YyZWQiIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI0MjAiIHk9IjM0MiIgY2xhc3M9ImhlYWRpbmciPumYn+WIlyDCtyDlhrPlrprlm6LpmJ/ojIPlm7Q8L3RleHQ+Cjx0ZXh0IHg9IjQyMCIgeT0iMzcxIiBjbGFzcz0iYm9keSI+6KeE5YiZ5oyH5a6a77yM5oiW5p2h5Lu26aaW5Liq5Yy56YWNPC90ZXh0Pgo8dGV4dCB4PSI0MjAiIHk9IjM5NiIgY2xhc3M9ImJvZHkiPuacquWMuemFjei/m+WFpea4oOmBk+WFnOW6lemYn+WIlzwvdGV4dD4KPHRleHQgeD0iNDIwIiB5PSI0MjEiIGNsYXNzPSJib2R5Ij7kuIDkuKrlm6LpmJ/mib/mjqXvvIjkuIDmnJ/vvIk8L3RleHQ+CjxyZWN0IHg9Ijc3NCIgeT0iMzEwIiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjE0MSIgcng9IjEwIiBmaWxsPSIjZjRmOGY3IiBzdHJva2U9IiNkY2U1ZTIiLz4KPHRleHQgeD0iNzk0IiB5PSIzNDIiIGNsYXNzPSJoZWFkaW5nIj7lm6LpmJ/kuI7mjqXljZXmnaHku7Y8L3RleHQ+Cjx0ZXh0IHg9Ijc5NCIgeT0iMzcxIiBjbGFzcz0iYm9keSI+5oiQ5ZGY44CB5p2D6ZmQ44CB6JCl5LiaIC8g5o6S54+tPC90ZXh0Pgo8dGV4dCB4PSI3OTQiIHk9IjM5NiIgY2xhc3M9ImJvZHkiPuWcqOe6v+i/nuaOpeOAgea4oOmBk+WuuemHjzwvdGV4dD4KPHRleHQgeD0iNzk0IiB5PSI0MjEiIGNsYXNzPSJib2R5Ij7nu5/kuIDnrZvpgInlj6/mjqXljZXlrqLmnI08L3RleHQ+CjxwYXRoIGQ9Ik0zMjYgMzgwIEg0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5N2E3MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzMzIiIHk9IjM2NCIgY2xhc3M9ImxhYmVsIj7liIbphY3opoHmsYI8L3RleHQ+CjxwYXRoIGQ9Ik03MDAgMzgwIEg3NzQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5N2E3MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI3MDUiIHk9IjM2NCIgY2xhc3M9ImxhYmVsIj7mib/mjqXotYTmupA8L3RleHQ+CjxyZWN0IHg9IjM2IiB5PSI1MDYiIHdpZHRoPSIyOTAiIGhlaWdodD0iMTM3IiByeD0iMTAiIGZpbGw9IiNmNGY4ZjciIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI1NiIgeT0iNTM4IiBjbGFzcz0iaGVhZGluZyI+5oqA6IO9IMK3IOS6jOacn+i1hOagvOadoeS7tjwvdGV4dD4KPHRleHQgeD0iNTYiIHk9IjU2NyIgY2xhc3M9ImJvZHkiPumYn+WIl+m7mOiupCArIFRyaWdnZXIg6L+95YqgPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iNTkyIiBjbGFzcz0iYm9keSI+5b+F6ZyA5oqA6IO95aeL57uI5ruh6LazPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iNjE3IiBjbGFzcz0iYm9keSI+5Y+v6YCJ5oqA6IO95oyJ562J5b6F5pS/562W5pS+5a69PC90ZXh0Pgo8cmVjdCB4PSI0MDAiIHk9IjUwNiIgd2lkdGg9IjY2NCIgaGVpZ2h0PSIxMzciIHJ4PSIxMCIgZmlsbD0iI2U3ZjJlZCIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjQyMCIgeT0iNTM4IiBjbGFzcz0iaGVhZGluZyI+57uf5LiA6YCJ5Lq644CB5o+Q5Lqk5b2S5bGe5LiO5YiG5Y2V6K6w5b2VPC90ZXh0Pgo8dGV4dCB4PSI0MjAiIHk9IjU2NyIgY2xhc3M9ImJvZHkiPuS8mOWFiOWuouacjeS5n+W/hemhu+a7oei2s+WFqOmDqOi1hOagvO+8m+S4jeWPr+eUqOWImeeUseWQjOmYn+WIl+WboumYn+aJv+aOpeOAgjwvdGV4dD4KPHRleHQgeD0iNDIwIiB5PSI1OTIiIGNsYXNzPSJib2R5Ij7mj5DkuqTmiJDlip/miY3mmL7npLrlt7LliIbphY3vvJvml6DotYTmupDmjInmuKDpgZPnrYnlvoXvvIzmioDmnK/lvILluLjljZXni6zmgaLlpI3jgII8L3RleHQ+Cjx0ZXh0IHg9IjQyMCIgeT0iNjE3IiBjbGFzcz0iYm9keSI+5bey5pyJ5b2S5bGe5Y+X5L+d5oqk77yb6KeE5YiZ5ZG95Lit44CB6Zif5YiX6YCJ5Lit6YO95LiN562J5LqO5YiG6YWN5oiQ5Yqf44CCPC90ZXh0Pgo8cGF0aCBkPSJNNTUwIDQ1MSBWNTA2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzOTdhNzAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTkyMCA0NTEgVjUwNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzk3YTcwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0zMjYgNTc1IEg0MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5N2E3MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzMzIiIHk9IjU1OSIgY2xhc3M9ImxhYmVsIj7otYTmoLzov4fmu6Q8L3RleHQ+Cjx0ZXh0IHg9IjM2IiB5PSI2OTciIGNsYXNzPSJsYWJlbCI+5Zyo5ZCM5LiA5py65Yi25LiK6YCQ5pyf5aKe5by6PC90ZXh0Pgo8cmVjdCB4PSIzNiIgeT0iNzE0IiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEwIiBmaWxsPSIjZjRmOGY3IiBzdHJva2U9IiNkY2U1ZTIiLz4KPHRleHQgeD0iNTYiIHk9Ijc0NiIgY2xhc3M9ImhlYWRpbmciPuS4ieacnyDCtyDmnI3liqHov57nu63mgKc8L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI3NzUiIGNsYXNzPSJib2R5Ij7lkIzpmJ/liJflop7liqDlpIfnlKjlm6LpmJ/jgIHpgoDor7fkuI7lj5fmjqfmgaLlpI08L3RleHQ+CjxyZWN0IHg9IjU2NCIgeT0iNzE0IiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjEwMCIgcng9IjEwIiBmaWxsPSIjZjRmOGY3IiBzdHJva2U9IiNkY2U1ZTIiLz4KPHRleHQgeD0iNTg0IiB5PSI3NDYiIGNsYXNzPSJoZWFkaW5nIj7lm5vmnJ8gwrcg5pyN5Yqh55uu5qCH5LiO6L+Q6JClPC90ZXh0Pgo8dGV4dCB4PSI1ODQiIHk9Ijc3NSIgY2xhc3M9ImJvZHkiPuaMieS8mOWFiOe6pyAvIFNMQSDosIPluqbvvIzkv53pmpzplb/mnJ/nrYnlvoXlt6XljZU8L3RleHQ+Cjwvc3ZnPg==" alt="目标机制：分单中心、Trigger、队列、技能和统一选人的关系"><button class="zoom-diagram" data-image="assets/assignment-relationships.svg?v=9d7a28125f" data-caption="目标机制：分单中心、Trigger、队列、技能和统一选人的关系">放大查看图示</button></figure></p>
+<ul>
+<li><strong>普通分类交给队列。</strong> 已有字段能直接表达“哪类工单交给哪个团队”时，在队列配置条件即可。</li>
+<li><strong>业务例外交给 Trigger。</strong> 需要事件、标签准备、目标队列或优先客服时，复用独立 Trigger；通用动作不因分单模式切换而停用。</li>
+<li><strong>技能决定能不能处理（二期）。</strong> 队列决定团队范围；技能要求与客服技能求交，不替代团队或权限。必需技能不超时降级，可选技能可按政策放宽。</li>
+<li><strong>接不接得了由接单条件决定。</strong> 在线、营业时间和容量统一检查，不让每条 Trigger 重复承担选人逻辑。</li>
+<li><strong>旧自动分单与队列路由二选一。</strong> 成功切换后，迁移范围内的旧分单自动不执行；不因新模式满载或失败而回退旧分单。</li>
+</ul>
+</div></section>
+<section class="section-card" id="s-2-3"><h3><span>2.3</span>三种顺序与两类分配动作</h3><div class="prose"><ul>
+<li><strong>规则生效顺序：</strong> 哪条分配要求被采纳。首个有效分配动作胜出。</li>
+<li><strong>队列匹配顺序：</strong> 工单归入哪个队列。首个匹配胜出，不等于此队列永远抢先处理。</li>
+<li><strong>待分配顺序：</strong> 哪张等待工单先尝试接单。首期同渠道、同一个候选坐席可服务的等待项按首次进入当前周期的时间 FIFO；跨队列也沿用此顺序，时间相同按稳定 ID。跨 Chat/Email 不新增共同抢占优先级，按各自容量分配。</li>
+</ul>
+<p>选人继续使用已核实的队列策略：剩余容量优先、同余量按最久未分配、再按稳定 ID。首期不向客户承诺绝对平均或严格轮询；后续引入策略选择需独立验收。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>分配动作</th>
+<th>必填</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>转入队列</td>
+<td>目标队列</td>
+<td>由队列团队统一选人或等待</td>
+</tr>
+<tr>
+<td>优先指派客服</td>
+<td>目标队列、该团队内客服</td>
+<td>客服符合条件则分给他；暂时不可接单则由该队列团队承接</td>
+</tr>
+</tbody></table></div>
+<p>“按排班指派”合并为优先指派的可选生效日历，而不是第三种独立分单方式。该日历表示<strong>该例外规则何时生效</strong>；非排班时跳过该动作并继续找后续分单规则，最后仍可走普通队列。团队营业日历表示<strong>这个团队何时接单</strong>，两者用途不同。界面直接展示这两句说明。</p>
+<p>同一条规则首期最多一个分配动作，避免“指定 A 后又转队列 B”。引用失效（队列删除、客服移出团队、日历无效）是配置错误：阻止保存；运行时若出现则记录失败并进入主管待处理，不静默降级。与“客服当前离线/满载”这种正常不可用情况分开。</p>
+<p>旧 <code>ASSIGN_MEMBER</code> 的强制直接指派不自动改名成“优先指派”。迁移检查必须列出其覆盖、离线、排班行为差异；不能等价转换的保留旧模式直至管理员选择目标行为。</p>
+</div></section>
+<details class="detail-block" id="s-2-4"><summary><span>2.4</span>规则一起使用时，怎样处理冲突<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>新机制的结果</th>
+<th>客户看到的解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已有有效负责人，又命中普通自动分单规则</td>
+<td>保留负责人，不重新匹配或改派</td>
+<td>已有负责人，自动分配已跳过</td>
+</tr>
+<tr>
+<td>人工接管与自动分配并发</td>
+<td>提交时版本复核；人工成功后旧自动结果失效；人工遇到版本变化则展示最新状态并重试确认</td>
+<td>归属已变更，请按最新信息操作</td>
+</tr>
+<tr>
+<td>两条 Trigger 都包含分配动作</td>
+<td>按可见顺序首个有效动作生效</td>
+<td>规则 A 生效；规则 B 的分配动作跳过</td>
+</tr>
+<tr>
+<td>排班规则命中，但当前不在其时段</td>
+<td>跳过该动作，继续后续分单规则，再进入队列匹配</td>
+<td>非规则生效时段；按普通队列处理</td>
+</tr>
+<tr>
+<td>规则指定队列 A，工单条件也匹配队列 B</td>
+<td>使用 A，不再自动匹配 B</td>
+<td>规则指定了售后队列</td>
+</tr>
+<tr>
+<td>优先客服离线或满载</td>
+<td>在已确定的队列内选其他合格客服；无人则按该队列等待/退出政策</td>
+<td>优先客服暂不可接单，团队接管</td>
+</tr>
+<tr>
+<td>两个队列条件同时命中</td>
+<td>使用列表中靠前队列</td>
+<td>先命中售后队列；后续队列未参与</td>
+</tr>
+<tr>
+<td>所有队列条件未命中</td>
+<td>使用该渠道兜底队列；未配置时新版本不能启用</td>
+<td>进入默认队列</td>
+</tr>
+<tr>
+<td>所有客服满载</td>
+<td>等待容量，不跳到低顺序队列，不运行旧分单</td>
+<td>团队已满，等待空位</td>
+</tr>
+<tr>
+<td>队列或日历配置失效</td>
+<td>可见配置错误；修复后恢复该分单周期</td>
+<td>配置异常，等待管理员修复</td>
+</tr>
+<tr>
+<td>技术错误/超时</td>
+<td>重试同一个决策；查询结果不明时先核对实际归属</td>
+<td>分配结果确认中，不重复分配</td>
+</tr>
+</tbody></table></div>
+<p>这里的“人工优先”指保护与版本控制，不是绕过权限和跨租户校验，也不是按消息到达时间排序。</p>
+</div></details>
+<details class="detail-block" id="s-2-5"><summary><span>2.5</span>按场景选择功能<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>业务场景</th>
+<th>应使用的功能</th>
+<th>配置与预期结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>普通邮件统一给售后团队</td>
+<td>只配队列</td>
+<td>设置售后队列与承接团队；配置渠道兜底。无需 Trigger。</td>
+</tr>
+<tr>
+<td>按品牌、语言、问题类型分团队</td>
+<td>队列条件与匹配顺序</td>
+<td>使用已有字段直接匹配；若需先生成标签或字段，再用通用 Trigger 准备。</td>
+</tr>
+<tr>
+<td>VIP 交专属队列，或优先给某客服</td>
+<td>Trigger 分配动作 + 队列</td>
+<td>设置目标队列，可加团队内优先客服；客服离线或满载时由同队列团队承接。</td>
+</tr>
+<tr>
+<td>工作时段优先给专人，其余时间正常分配</td>
+<td>Trigger 生效日历 + 队列</td>
+<td>例外动作在日历外跳过，继续后续规则或普通队列匹配；不等到上班补执行该动作。</td>
+</tr>
+<tr>
+<td>有人在线但已经满载</td>
+<td>容量规则 + 队列等待政策</td>
+<td>等待当前队列出现空位；不另建 Trigger，不转给下一条分单规则。</td>
+</tr>
+<tr>
+<td>无人在线、营业外或排队超时</td>
+<td>接单条件 + 渠道等待 / 退出政策</td>
+<td>Email 保留待处理；Message 按具体条件等待或退出实时接待。详见第 4.3 节。</td>
+</tr>
+<tr>
+<td>客服已接手，需要交给另一人</td>
+<td>人工转派 / 交回队列</td>
+<td>显式操作变更归属，失败保留原负责人；普通 Trigger 不抢走在办工单。</td>
+</tr>
+<tr>
+<td>加标签、发通知、调用 Webhook</td>
+<td>独立 Trigger 的通用动作</td>
+<td>不需要队列参与；切换新分单方式后仍正常执行。</td>
+</tr>
+<tr>
+<td>同一个团队中，只有部分人能用德语处理硬件问题</td>
+<td>二期：技能路由</td>
+<td>必需德语 + 硬件，候选必须同时具备；优先客服也要满足。</td>
+</tr>
+<tr>
+<td>希望优先由退款专家处理，但可以等一会后由其他人接</td>
+<td>二期：可选技能 + 放宽时限</td>
+<td>保留必需技能；时限到达只放宽可选退款技能，不跳过在线与容量。</td>
+</tr>
+<tr>
+<td>主团队满载，希望备用团队接待</td>
+<td>三期：多团队溢出</td>
+<td>到达溢出阈值后扩展候选范围，继续检查技能与容量；不换到下一条队列。</td>
+</tr>
+<tr>
+<td>Message 已邀请客服，但客服没有接受</td>
+<td>三期：接单确认与超时重投</td>
+<td>释放该邀请的预留，换另一名合格客服；晚到接受被拒绝。</td>
+</tr>
+<tr>
+<td>VIP 或即将违约的工单应更早分配</td>
+<td>四期：优先级 / SLA 调度</td>
+<td>在可服务的候选工单之间排序；不是调高队列匹配顺序。</td>
+</tr>
+<tr>
+<td>老客户暂时无法接受迁移差异</td>
+<td>现有分单方式</td>
+<td>保持原行为，完成差异确认后再切换；新模式生效范围内不并行执行旧分单。</td>
+</tr>
+</tbody></table></div>
+<p>最小配置路径：<strong>团队与接单条件 → 队列与渠道兜底 → 按需添加 Trigger 例外 → 模拟检查 → 确认迁移差异并切换模式。</strong> 不应让简单客户先学会所有自动化能力才能开始分单。</p>
+</div></details>
+<details class="detail-block" id="s-2-6"><summary><span>2.6</span>Zendesk 借鉴与差异<small>展开细则</small></summary><div class="prose"><p>查阅日期：2026-11-03；以下来自官方产品文档，不是 Zendesk 账号实测。</p>
+<p><strong>Zendesk 的 Trigger 不属于 Routing。</strong> 官方导航明确区分：</p>
+<ul>
+<li><code>Admin Center → Objects and rules → Business rules → Triggers</code>：通用条件/动作规则，用于字段更新、分配、通知等。</li>
+<li><code>Admin Center → Objects and rules → Omnichannel routing → Queues</code>：队列与路由配置。</li>
+</ul>
+<p>它们的关系是通用业务规则与路由能力协作。不能因为 Trigger 在路由之前执行，就把整个 Trigger 放进 Routing。Tars 也应保持同级独立入口；“关联分单的 Trigger”只是筛选视图。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>Zendesk 官方行为</th>
+<th>Tars 应借鉴什么</th>
+<th>Tars 建议取舍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工单创建/更新先执行 Trigger，再尝试 Omnichannel Routing</td>
+<td>明确业务规则到分配的阶段顺序，避免两个写入方竞争</td>
+<td>需要产品与后端语义改造，不能只调整菜单或增加延时</td>
+</tr>
+<tr>
+<td>标准队列按工单 Group 路由；自定义队列按自己的主/备 Group 路由，忽略工单 Group</td>
+<td>必须明确谁拥有团队选择权</td>
+<td>首期让队列是团队归属的唯一来源；规则选择队列，不再同时设置另一份团队字段</td>
+</tr>
+<tr>
+<td>自定义队列按列表顺序首个匹配；未命中可能进入符合资格的标准队列</td>
+<td>默认路径和例外路径可解释</td>
+<td>每个首期渠道显式配置一个兜底队列；不隐式退回旧 Automation</td>
+</tr>
+<tr>
+<td>已分给坐席的工单不具备自动路由资格；重分有独立条件和配置</td>
+<td>已有归属保护，重分是状态转换</td>
+<td>已有负责人默认不动；首期自动规则不抢人工归属</td>
+</tr>
+<tr>
+<td>可用性与容量统一参与分配；队列内可按优先级/时间或 SLA 排序，套餐存在差异</td>
+<td>区分“选哪个队列”“哪个工单先分”“选哪个人”</td>
+<td>首期采用等待时间 FIFO，不引入 SLA 排序、技能、预测分配或多层优先级</td>
+</tr>
+<tr>
+<td>自定义队列可有主/备团队，部分套餐有按比例子队列</td>
+<td>能力可逐步扩展，仍在统一模型下</td>
+<td>首期一个队列一个团队，溢出团队与比例分配放后续</td>
+</tr>
+</tbody></table></div>
+<p><strong>等待超时需要按机制区分。</strong> 本次官方资料未给出适用于所有渠道的统一“队列最大等待时长 → 自动转下一队列”规则，不能将 Tars 的 <code>maxWaitSeconds</code> 等同于 Zendesk 的队列机制。可选技能超时放宽技能限制；接单邀请超时重新寻找合格客服；它们都不等于客户问题自动关闭。文档中的 15 天涉及重新进入队列的时间口径，也不是 15 天后自动关单的承诺。Tars 的总等待、技能、备用团队、邀请及 SLA 五个时钟统一在第 4.4 节说明。</p>
+<p>这里不照搬 Zendesk 的全部规则。尤其是其自定义队列覆盖 Group 的语义、队列间高优先级先服务、15 天重入时间口径，都不作为 Tars 的默认承诺。</p>
+<p>技能依据补充（2026-11-03 官方文档核对，非租户实测）：Zendesk 必需技能不超时，可选技能超时后不再限制路由；技能超时与队列总等待、客服未接受邀请分别管理。Tars 的具体时钟与分期见第 3.3、4.4、5.1 节。</p>
+<p>官方来源：</p>
+<ul>
+<li><a href="https://support.zendesk.com/hc/en-us/articles/4828787357210">Z4 · Managing your omnichannel routing configuration</a>：必需/可选技能、各渠道技能超时语义、Messaging 接单超时。</li>
+<li><a href="https://support.zendesk.com/hc/en-us/articles/4408886797466-Creating-ticket-triggers-for-automatic-ticket-updates-and-notifications">Z3 · Creating ticket triggers for automatic ticket updates and notifications</a>：明确的 Trigger 菜单归属、通用业务用途、顺序和多轮执行。</li>
+<li><a href="https://support.zendesk.com/hc/en-us/articles/6712096584090-Understanding-how-omnichannel-routing-uses-queues-to-route-work-to-agents">Z1 · Understanding how omnichannel routing uses queues to route work to agents</a>：阶段顺序、标准/自定义队列、资格、顺序、重分、套餐差异。</li>
+<li><a href="https://support.zendesk.com/hc/en-us/articles/6716541571994-Editing-and-managing-custom-omnichannel-routing-queues">Z2 · Editing and managing custom omnichannel routing queues</a>：队列按顺序匹配，配置更新对新入队生效，已入队保留当时配置。</li>
+</ul>
+</div></details></details><footer class="chapter-next"><a href="#configure"><small>接下来 · 03</small><b>配置与迁移 →</b></a></footer></article>
+<article class="chapter" id="configure" data-chapter="2"><header class="chapter-heading"><p class="eyebrow">03 / 配置与迁移</p><h2>管理员如何配置，并从旧模式迁移</h2><div class="chapter-lead">先判断分单规则（关联 Trigger），再确定承接队列；在设置页中编辑、试单并迁移。</div></header><div class="hifi-v9" id="demo-configure"><div class="hifi-banner"><span>高保真原型 · 虚构演示空间 · 本机草稿</span><button id="hifi-expand">放大操作</button></div><div class="hifi-shell"><aside class="hifi-rail"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNTY2NDEgMS44MDkyM0MxMC45MDQ4IC0xLjM0NTkgMTUuNjQxMSAtMC4wNzY2OTM1IDE1LjIyMjcgMy4zMjQ4NUwxNS4wMjA4IDQuOTY2NzhDMTQuODE2NCA2LjYyNzkzIDE2LjAzMDYgOC4xMjcxNyAxNy42OTc5IDguMjcyNzdMMTkuMzQ2NCA4LjQxNzNDMjIuNzYwOCA4LjcxNTA3IDIzLjAxNyAxMy42MTA2IDE5LjY1MjMgMTQuMjYzN0wxOC4wMjg2IDE0LjU3ODhDMTYuMzg1OCAxNC44OTc4IDE1LjMzNDIgMTYuNTE3MiAxNS43MTA5IDE4LjE0NzhMMTYuMDg0NiAxOS43NTk3QzE2Ljg1NiAyMy4wOTg4IDEyLjI3NzkgMjQuODU1NCAxMC42MTcyIDIxLjg1NzRMOS44MTY0MSAyMC40MTA4QzkuNTMyOTkgMTkuODk5MyA5LjExOTA5IDE5LjUwNyA4LjY0MTkzIDE5LjI0OEMxMC45NTkxIDE3LjY1NDkgMTIuNDgwMSAxNC45ODczIDEyLjQ4MDUgMTEuOTYyOUMxMi40ODA0IDguNzM4NzMgMTAuNzUzNCA1LjkxOCA4LjE3NDQ4IDQuMzc0MzNDOC40ODY0MSA0LjA5NDIgOC43NDU2IDMuNzQ1MDQgOC45MjA1NyAzLjMzMjY3TDkuNTY2NDEgMS44MDkyM1oiIGZpbGw9IiMyQjJCMkIiLz4KPHBhdGggZD0iTTUuMDk3NjYgOC41ODM5N0M2LjgwNzgxIDguNTg0MyA4LjE5Mzk5IDkuOTcwMSA4LjE5NDAxIDExLjY4MDNDOC4xOTQwMSAxMy4zOTA2IDYuODA3ODIgMTQuNzc3NiA1LjA5NzY2IDE0Ljc3OEMzLjM4NzIxIDE0Ljc3OCAyIDEzLjM5MDggMiAxMS42ODAzQzIuMDAwMDIgOS45Njk4OSAzLjM4NzIyIDguNTgzOTcgNS4wOTc2NiA4LjU4Mzk3WiIgZmlsbD0iIzJCMkIyQiIvPgo8L3N2Zz4K" alt="Solvea"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1LjUgOS41QzE2LjA1MjMgOS41IDE2LjUgOS45NDc3MSAxNi41IDEwLjVDMTYuNSAxMS4wNTIzIDE2LjA1MjMgMTEuNSAxNS41IDExLjVIOC41QzcuOTQ3NzIgMTEuNSA3LjUgMTEuMDUyMyA3LjUgMTAuNUM3LjUgOS45NDc3MSA3Ljk0NzcyIDkuNSA4LjUgOS41SDE1LjVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGQ9Ik0xNSA2QzE1LjU1MjMgNiAxNiA2LjQ0NzcyIDE2IDdDMTYgNy41NTIyOCAxNS41NTIzIDggMTUgOEg5QzguNDQ3NzIgOCA4IDcuNTUyMjggOCA3QzggNi40NDc3MiA4LjQ0NzcyIDYgOSA2SDE1WiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE3Ljg0NzcgMUMxOS4yODYxIDEgMjAuNTIyMyAyLjAyMTA3IDIwLjc5MzkgMy40MzM1OUwyMi45ODI0IDE0LjgxMTVDMjIuOTkzMSAxNC44NjcyIDIyLjk5NjggMTQuOTIyNyAyMi45OTggMTQuOTc3NUMyMi45OTgyIDE0Ljk4NSAyMyAxNC45OTI1IDIzIDE1VjIwQzIzIDIxLjY1NjkgMjEuNjU2OSAyMyAyMCAyM0g0QzIuMzQzMTUgMjMgMSAyMS42NTY5IDEgMjBWMTVDMSAxNC45OTI1IDEuMDAwODEgMTQuOTg1IDEuMDAwOTggMTQuOTc3NUMxLjAwMjI2IDE0LjkyMjcgMS4wMDY5IDE0Ljg2NzIgMS4wMTc1OCAxNC44MTE1TDMuMjA2MDUgMy40MzM1OUMzLjQ3NzY5IDIuMDIxMDcgNC43MTM5NCAxIDYuMTUyMzQgMUgxNy44NDc3Wk02LjE1MjM0IDNDNS42NzI4OCAzIDUuMjYwNDcgMy4zNDA2OCA1LjE2OTkyIDMuODExNTJMMy4yMTA5NCAxNEg3LjQ1NDFMNy42MTkxNCAxNC4wMTM3QzcuOTk2MzYgMTQuMDc2NSA4LjMxMDc4IDE0LjM1MiA4LjQxNjk5IDE0LjcyOTVMOS4xMjEwOSAxNy4yMzA1SDE0Ljg3ODlMMTUuNTgzIDE0LjcyOTVMMTUuNjQwNiAxNC41NzQyQzE1LjgwMzMgMTQuMjI4MiAxNi4xNTM5IDE0IDE2LjU0NTkgMTRIMjAuNzg5MUwxOC44MzAxIDMuODExNTJDMTguNzM5NSAzLjM0MDY4IDE4LjMyNzEgMyAxNy44NDc3IDNINi4xNTIzNFoiIGZpbGw9IiMzMzMzMzMiLz4KPC9zdmc+Cg==" alt="工单"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiAyQzE1LjYzNjkgMiAxOC4wODAyIDIuMTMzODggMTkuNjAzNSAyLjI2NTYyTDE5LjkxNSAyLjMwNjY0QzIxLjQ0OTMgMi41NzQ3MSAyMi42MDEyIDMuODA3MTYgMjIuNzUgNS4zODg2N0wyMi44NDI4IDYuNTI0NDFDMjIuOTMwOSA3Ljc4ODIgMjMgOS40MzgyOCAyMyAxMS41QzIzIDEzLjQxMjMgMjIuOTQwMiAxNC44NTYzIDIyLjg2MDQgMTUuOTMyNkwyMi43NzU0IDE2Ljg5MDZDMjIuNjA5MSAxOC40NjY3IDIxLjM4MTQgMTkuNTcwNyAxOS44NjcyIDE5LjcxMDlDMTkuMTI1MSAxOS43Nzk3IDE4LjEzNDQgMTkuODUwNiAxNi44NTU1IDE5LjkwNTNMMTcuNDQ4MiAyMS42ODM2TDE3LjQ3NjYgMjEuNzgyMkMxNy41ODc1IDIyLjI3NjcgMTcuMzA3NCAyMi43ODQ0IDE2LjgxNjQgMjIuOTQ4MkMxNi4zMjUxIDIzLjExMiAxNS43OTY4IDIyLjg3MzUgMTUuNTg4OSAyMi40MTExTDE1LjU1MTggMjIuMzE2NEwxNC43Njk1IDE5Ljk3MDdDMTMuOTM1MiAxOS45ODg2IDEzLjAxNCAyMCAxMiAyMEMxMC45ODU2IDIwIDEwLjA2NDEgMTkuOTg4NiA5LjIyOTQ5IDE5Ljk3MDdMOC40NDgyNCAyMi4zMTY0QzguMjczNDggMjIuODQwMSA3LjcwNzQzIDIzLjEyMjggNy4xODM1OSAyMi45NDgyQzYuNjU5ODQgMjIuNzczNSA2LjM3NzE1IDIyLjIwNzQgNi41NTE3NiAyMS42ODM2TDcuMTQ0NTMgMTkuOTA0M0M2LjE4ODU3IDE5Ljg2MzMgNS4zOTM1OCAxOS44MTQyIDQuNzQzMTYgMTkuNzYyN0w0LjEzMjgxIDE5LjcxMDlDMi42MTg1OCAxOS41NzA3IDEuMzkwODUgMTguNDY2NyAxLjIyNDYxIDE2Ljg5MDZDMS4xMDYyNCAxNS43Njc1IDEgMTQuMDQ5OSAxIDExLjVDMSA4Ljc1MTE5IDEuMTIzMzggNi43MzQxNCAxLjI1IDUuMzg4NjdDMS40MDg3NiAzLjcwMTggMi43MDg1MyAyLjQxMTYxIDQuMzk2NDggMi4yNjU2Mkw1LjAxMTcyIDIuMjE2OEM2LjU0OTYgMi4xMDI4OSA4LjgxNzg5IDIgMTIgMlpNNy41IDExLjVDNi45NDc3MiAxMS41IDYuNSAxMS45NDc3IDYuNSAxMi41VjE0LjVMNi41MDQ4OCAxNC42MDI1QzYuNTU2MjEgMTUuMTA2NyA2Ljk4MjMyIDE1LjUgNy41IDE1LjVDOC4wMTc2OCAxNS41IDguNDQzNzkgMTUuMTA2NyA4LjQ5NTEyIDE0LjYwMjVMOC41IDE0LjVWMTIuNUM4LjUgMTEuOTQ3NyA4LjA1MjI4IDExLjUgNy41IDExLjVaTTEyIDYuNUMxMS40NDc3IDYuNSAxMSA2Ljk0NzcyIDExIDcuNVYxNC41TDExLjAwNDkgMTQuNjAyNUMxMS4wNTYyIDE1LjEwNjcgMTEuNDgyMyAxNS41IDEyIDE1LjVDMTIuNTE3NyAxNS41IDEyLjk0MzggMTUuMTA2NyAxMi45OTUxIDE0LjYwMjVMMTMgMTQuNVY3LjVDMTMgNi45NDc3MiAxMi41NTIzIDYuNSAxMiA2LjVaTTE2LjUgOS41QzE1Ljk0NzcgOS41IDE1LjUgOS45NDc3MiAxNS41IDEwLjVWMTQuNUwxNS41MDQ5IDE0LjYwMjVDMTUuNTU2MiAxNS4xMDY3IDE1Ljk4MjMgMTUuNSAxNi41IDE1LjVDMTcuMDE3NyAxNS41IDE3LjQ0MzggMTUuMTA2NyAxNy40OTUxIDE0LjYwMjVMMTcuNSAxNC41VjEwLjVDMTcuNSA5Ljk0NzcyIDE3LjA1MjMgOS41IDE2LjUgOS41WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" alt="报表"><img class="chosen" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMi4wMDAxIDguMDAwMjVDMTQuMjA5MiA4LjAwMDI5IDE2LjAwMDEgOS43OTExNCAxNi4wMDAxIDEyLjAwMDNDMTUuOTk5OSAxNC4yMDkzIDE0LjIwOTEgMTYuMDAwMiAxMi4wMDAxIDE2LjAwMDNDOS43OTEwMiAxNi4wMDAzIDguMDAwMiAxNC4yMDkzIDguMDAwMDcgMTIuMDAwM0M4LjAwMDA3IDkuNzkxMTIgOS43OTA5NCA4LjAwMDI1IDEyLjAwMDEgOC4wMDAyNVpNMTIuMDAwMSAxMC4wMDAzQzEwLjg5NTUgMTAuMDAwMyAxMC4wMDAxIDEwLjg5NTcgMTAuMDAwMSAxMi4wMDAzQzEwLjAwMDIgMTMuMTA0NyAxMC44OTU2IDE0LjAwMDMgMTIuMDAwMSAxNC4wMDAzQzEzLjEwNDUgMTQuMDAwMiAxMy45OTk5IDEzLjEwNDcgMTQuMDAwMSAxMi4wMDAzQzE0LjAwMDEgMTAuODk1NyAxMy4xMDQ2IDEwLjAwMDMgMTIuMDAwMSAxMC4wMDAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTExLjM2OTIgMS4yMjQ4NkMxMS43NjIgMC45MDQ1MTMgMTIuMzQxIDAuOTI3MTA3IDEyLjcwNzEgMS4yOTMyMkwxNS40MTQxIDQuMDAwMjVIMTkuMDAwMUwxOS4xMDI2IDQuMDA1MTRDMTkuNjA2NyA0LjA1NjUyIDIwLjAwMDEgNC40ODI2MiAyMC4wMDAxIDUuMDAwMjVWOC41ODYxOUwyMi43MDcxIDExLjI5MzJDMjMuMDk3NSAxMS42ODM4IDIzLjA5NzYgMTIuMzE2OCAyMi43MDcxIDEyLjcwNzNMMjAuMDAwMSAxNS40MTQzVjE5LjAwMDNDMTkuOTk5OSAxOS41NTI0IDE5LjU1MjIgMjAuMDAwMiAxOS4wMDAxIDIwLjAwMDNIMTUuNDE0MUwxMi43MDcxIDIyLjcwNzNDMTIuMzE2NiAyMy4wOTc3IDExLjY4MzYgMjMuMDk3NiAxMS4yOTMgMjIuNzA3M0w4LjU4NjAxIDIwLjAwMDNINS4wMDAwN0M0LjQ0Nzg2IDIwLjAwMDMgNC4wMDAyIDE5LjU1MjQgNC4wMDAwNyAxOS4wMDAzVjE1LjQxNDNMMS4yOTMwNCAxMi43MDczQzAuOTAyNTQgMTIuMzE2OCAwLjkwMjU4NyAxMS42ODM4IDEuMjkzMDQgMTEuMjkzMkw0LjAwMDA3IDguNTg2MTlWNS4wMDAyNUw0LjAwNDk2IDQuODk3NzFDNC4wNTYyOSA0LjM5MzU5IDQuNDgyNCA0LjAwMDI1IDUuMDAwMDcgNC4wMDAyNUg4LjU4NjAxTDExLjI5MyAxLjI5MzIyTDExLjM2OTIgMS4yMjQ4NlpNOS43MDcxIDUuNzA3MjhDOS41MTk2IDUuODk0NzYgOS4yNjUyMiA2LjAwMDIzIDkuMDAwMDcgNi4wMDAyNUg2LjAwMDA3VjkuMDAwMjVDNi4wMDAwMSA5LjI2NTM5IDUuODk0NTkgOS41MTk4IDUuNzA3MSA5LjcwNzI4TDMuNDE0MTMgMTIuMDAwM0w1LjcwNzEgMTQuMjkzMkw1Ljc3MzUxIDE0LjM2NjVDNS45MTkyNSAxNC41NDQ0IDYuMDAwMDcgMTQuNzY4MiA2LjAwMDA3IDE1LjAwMDNWMTguMDAwM0g5LjAwMDA3QzkuMjY1MjYgMTguMDAwMyA5LjUxOTU5IDE4LjEwNTcgOS43MDcxIDE4LjI5MzJMMTIuMDAwMSAyMC41ODYyTDE0LjI5MyAxOC4yOTMyTDE0LjM2NjMgMTguMjI2OEMxNC41NDQyIDE4LjA4MSAxNC43NjggMTguMDAwMyAxNS4wMDAxIDE4LjAwMDNIMTguMDAwMVYxNS4wMDAzQzE4LjAwMDEgMTQuNzM1MSAxOC4xMDU1IDE0LjQ4MDggMTguMjkzIDE0LjI5MzJMMjAuNTg2IDEyLjAwMDNMMTguMjkzIDkuNzA3MjhDMTguMTA1NiA5LjUxOTggMTguMDAwMSA5LjI2NTM5IDE4LjAwMDEgOS4wMDAyNVY2LjAwMDI1SDE1LjAwMDFDMTQuNzM0OSA2LjAwMDI1IDE0LjQ4MDYgNS44OTQ3MiAxNC4yOTMgNS43MDcyOEwxMi4wMDAxIDMuNDE0MzJMOS43MDcxIDUuNzA3MjhaIiBmaWxsPSIjMzMzMzMzIi8+Cjwvc3ZnPgo=" alt="设置"><span>林</span></aside><aside class="hifi-settings"><h3>设置</h3><small>效率工具</small><button data-app-page="trigger">Trigger</button><button data-app-page="legacy">自动规则</button><small>工单</small><button data-app-page="center" class="chosen">分单中心</button><small>团队与服务</small><button data-app-page="team">团队与容量</button><button data-app-page="skills">技能 <i>二期</i></button><p>先判断 Trigger 分单规则，<br>再确定队列、团队与客服。</p></aside><div class="hifi-work"><header class="hifi-title"><div><small>设置 / 工单</small><h3 id="hifi-title">分单中心</h3></div><span id="hifi-mode"></span></header><nav class="hifi-tabs" aria-label="分单配置页签"><button data-hifi-tab="mode">分单方式</button><button data-hifi-tab="rules">分单规则（关联 Trigger）</button><button data-hifi-tab="queues">承接队列</button><button data-hifi-tab="skills">技能 · 二期</button><button data-hifi-tab="migration">迁移检查</button></nav><div class="execution-strip">执行顺序：已有归属保护 <b>→</b> 分单规则（关联 Trigger） <b>→</b> 承接队列 / 团队 <b>→</b> 资格与技能 <b>→</b> 分配 / 等待</div><div id="hifi-content"></div><div id="hifi-message" role="status"></div></div></div></div><dialog id="hifi-dialog" class="hifi-dialog" aria-labelledby="hifi-dialog-title"></dialog><div class="audit-callout"><b>真实配置适配仍是迁移门槛</b><span>下方演示使用合成迁移样例。真实客户的固定归属、覆盖与重叠排班，仍需逐条确认。</span><a href="#s-3-7">查看已核查的适配边界 →</a></div><details class="detail-block chapter-reference" id="reference-configure"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>先准备承接资源，再建立队列；有业务例外才添加 Trigger，有能力差异再加技能；验证后最后切换模式。</strong> 配置完成不等于立即生效，迁移是显式发布动作。</p>
+</div><section class="section-card" id="s-3-1"><h3><span>3.1</span>最小配置路径与产品入口</h3><div class="prose"><p>设置 → 分单中心 → 查看尚未配置 → 选择团队并检查成员/日历/容量 → 建立 Email 或 Message 兜底队列 → 按需增加条件队列 → 按需添加 Trigger 例外 → 模拟代表工单 → 查看差异与阻断项 → 发布新版本。</p>
+<p>简单客户只需团队和兜底队列即可使用；不要强迫所有客户同时配置 Trigger 和自定义队列。新租户也不能默认给“所有人”自动开分单，必须确认承接团队。</p>
+<p>保留两个独立主入口：<strong>设置 → Trigger</strong> 与 <strong>设置 → 分单中心</strong>。旧自动规则入口保留“自动分单 / 合并与关单”等原有职责，自动分单页展示接管状态。</p>
+<p>分单中心以“队列路由”为新分单方式名称，不使用“Trigger + 队列”作为模式名。它不要求客户配置 Trigger。</p>
+<ul>
+<li>概览：当前模式、待完善项、从规则到队列到客服的流程、进入模拟。</li>
+<li>分单规则：在分单中心展示和编辑关联 Trigger 的同一条规则，显示来源、原始分类、全局顺序和通用动作影响。独立 Trigger 保留通用规则管理能力，但客户不必跳转才能配置分单。</li>
+<li>队列：匹配条件、匹配顺序、目标团队、渠道政策和兜底标识。</li>
+<li>接单条件：复用团队、营业日历、容量配置，提供关联入口和使用说明，不复制主数据。</li>
+<li>分单记录：已分配、等待、跳过、失败；按工单/队列/原因筛选。</li>
+<li>兼容与迁移：仅旧模式租户显示，列出旧自动分单与旧指派动作的迁移状态。</li>
+</ul>
+<p>工单详情新增“分单过程”：当前队列、团队、负责人、来源、时间和可读原因；权限允许时提供“转派客服”“交回队列”。刷新后来自持久事实，不靠临时提示保留状态。</p>
+</div></section>
+<section class="section-card" id="s-3-2"><h3><span>3.2</span>在同一页完成配置预演</h3><div class="prose"><p>高保真原型从“设置 → 分单中心”进入，保留真实项目的全局导航、设置侧栏、白色内容区和编辑弹窗，支持放大操作。页签为“分单方式 / 分单规则（关联 Trigger） / 承接队列 / 技能 · 二期 / 迁移检查”，不编号；规则在队列之前，上方同时列出固定运行顺序。名称明确关联 Trigger，同一能力在不同页面使用一致称呼。</p>
+<p>先选择 Email / Message 迁移范围，再检查队列、关联 Trigger、团队容量与二期技能；编辑共享同一份草稿，刷新恢复。保存草稿不改变当前发布版本。迁移检查要求配置有效、明确接受示例语义差异、确认当前草稿试单结果；任一相关配置变化都会使试单确认失效。</p>
+<p>检查通过后查看切换影响、确认切换。可观察旧分单只读、通用 Trigger 保留；评审工具支持保存失败保留输入、切换失败保留当前模式、重试及演示回退。这里的确认仅作用于合成示例，不能替代第 3.7 节真实客户的逐条迁移评估。</p>
+<p><strong>未命中如何处理：</strong> 某条 Trigger 不命中就继续判断后续规则；所有规则均未产生有效分单动作，则按队列条件依次匹配，最后进入兜底队列。不是先分给团队再运行 Trigger，也不会因为没有分单规则命中而停止分单。Trigger 的标签、通知、Webhook 等通用动作仍按各自条件执行。</p>
+</div></section>
+<details class="detail-block" id="s-3-3"><summary><span>3.3</span>二期技能：目录、要求、匹配与变更<small>展开细则</small></summary><div class="prose"><p><strong>技能不是团队的别名。</strong> 团队描述组织归属，技能描述客服的处理能力。同一客服可具备多个技能，同一技能可被多个团队使用。用例：退款队列归售后团队，工单要求德语，退款经验为可选；仅在售后团队内先找“德语 + 退款”客服，放宽后仍必须会德语。</p>
+<h4>配置对象与入口</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>配置位置与权限</th>
+<th>字段与规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>技能目录</td>
+<td>设置 → 技能；有路由配置权限的管理员</td>
+<td>稳定 ID、唯一名称、分类（语言/产品/业务）、启用状态；改名不影响引用，停用前显示依赖并阻断活跃引用，不物理删除历史</td>
+</tr>
+<tr>
+<td>客服技能</td>
+<td>技能页 / 团队成员详情；管理员维护</td>
+<td>客服与技能多选关联。二期只做“具备/不具备”，不做等级、自动评分或客服自认证；能力不代替权限</td>
+</tr>
+<tr>
+<td>队列默认要求</td>
+<td>队列编辑 → 技能要求</td>
+<td>固定必需技能、可选技能、可选技能放宽时限；无要求时沿用一期选人</td>
+</tr>
+<tr>
+<td>动态工单要求</td>
+<td>独立 Trigger → 添加技能要求</td>
+<td>根据工单字段/标签追加必需或可选技能；可单独使用，不必同时指定队列。分单中心只展示关联摘要</td>
+</tr>
+<tr>
+<td>当前周期要求</td>
+<td>工单 → 分单过程</td>
+<td>展示来源（队列/Trigger/人工重评估）、冻结版本、必需/可选、起算点、已放宽项及原因</td>
+</tr>
+</tbody></table></div>
+<p><strong>来源合并规则：</strong> 采用所选队列默认要求与本轮所有适用 Trigger“添加技能要求”动作的并集。重复技能去重，同一技能一处必需、一处可选时，必需优先。首个有效分配动作只决定目标队列/优先客服，不截断其他规则的字段、通知或技能追加。二期不开放自动规则删除/覆盖技能要求，避免后执行规则降低要求；需要修改当前周期要求时由有权限管理员显式重评估。</p>
+<p>不同必需技能之间为 AND，多个可选技能在放宽前也须全部满足。不默认支持“德语或法语”、技能等级或按数量打分；如误配“德语且法语”，界面展示交集候选数，不擅自改成 OR。未知或停用技能引用属于配置错误；当前没有具备技能的人属于资源不足，两者分别展示。</p>
+<h4>候选选择与计时</h4>
+<ol>
+<li>已有负责人保护仍在最前面。新技能或人员技能变化不自动抢走正在服务的工单。</li>
+<li>确定队列及候选团队，一期/二期为单团队；三期扩展主/备用团队。</li>
+<li>过滤有效成员、权限、营业/排班、在线连接和渠道容量，然后检查全部必需技能与尚未放宽的可选技能。管理员看到各原因排除人数与最终交集。</li>
+<li>二期沿用“当前客服可服务工单中的 FIFO”：技能不匹配的队首工单继续等待，不能堵住该客服能够处理的后续工单。四期再扩展优先级/SLA，不把避免技能阻塞推迟到四期。优先客服也必须通过上述条件。优先客服技能不符或不可用时，按既有剩余容量/最近分配顺序选择同范围其他合格客服。</li>
+<li>无合格客服时，依据渠道准入政策进入等待或退出。Message 全队离线/营业外维持已定义的渠道处理；有可接资源但技能不符时进入技能等待，仍受总排队上限约束。</li>
+<li><strong>可选技能计时从本轮入队开始，按自然时间持续计算。</strong> 不是建单时间，不从排到队头才计时，不因轮询、标签变化、进程重启、跨团队溢出或编辑规则而重置。二期采用一个统一时限、到期一次性放宽全部可选技能；关闭放宽则持续保留技能要求直至渠道总等待期限。配置值必须为正整数秒且小于有限的总排队上限，示例值不作为默认 SLA 承诺。</li>
+<li>放宽只改变可选技能筛选；必需技能、权限、在线、营业与容量永不放宽。若仍无人可接，继续等待并说明原因，不自动转旧规则或下一队列。</li>
+<li>同时到达总排队截止与技能截止时，先按总排队退出/主管处理政策结束本轮尝试，不能用技能放宽重新开启已到期周期。技术失败或未知结果也不能被伪装成技能超时。</li>
+</ol>
+<p><strong>与 Zendesk 的取舍：</strong> 借鉴必需/可选技能及超时放宽，但不照搬其各渠道技能时钟。Zendesk Email 技能超时与到达队首后的等待相关，Messaging/Call 与匹配客服持续不可用相关；Tars 二期建议统一从入队起算，以便解释、复现和跨实例恢复。此差异必须在产品帮助及迁移说明中明示。官方依据：Z4。</p>
+<h4>更新、人工操作与边界</h4>
+<ul>
+<li>工单技能要求、放宽时限与队列政策按当前周期冻结；普通字段变化只影响后续周期，当前周期显式重评估后记录新版本，不重置本轮累计等待和总截止。新增可选技能若其时限已过，立即显示为已放宽；不得借重评估延长总等待。</li>
+<li>客服技能资格实时读取：撤销技能影响尚未提交的分配；提交前再次校验资格版本。已提交的在办工单保持原负责人，向主管提示能力变化，由主管处理；不静默重分。</li>
+<li>手工转派和优先指派同样不能突破必需技能、权限和硬容量。可选技能已放宽则正常选择，未放宽时可通过“交回并显式重评估”改变要求，需说明差异并留审计。首期明确允许的 Email 离线手工指派仍单独提示。</li>
+<li>技能的设置不代表完成 AI 转人工；HITL 审核是否适用技能先做任务/服务周期映射。</li>
+<li>管理员发布前至少看到“团队内具备全部必需技能的人数”。为 0 时阻断新配置启用；正常成员变动后变成 0，则阻断新分配并可见告警，不删除技能要求。</li>
+<li>二期回退不能直接关技能过滤。未启用技能的队列可继续一期行为；有技能要求的活动周期保留技能执行器或暂停待人工处理。只有零依赖、零活动技能周期时，才能完全回退二期服务。</li>
+</ul>
+</div></details>
+<section class="section-card" id="s-3-4"><h3><span>3.4</span>切换模式的边界与回退</h3><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>能力</th>
+<th>现有分单方式（兼容）</th>
+<th>队列路由（新模式）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>旧自动分单规则</td>
+<td>按原入口与现有 Queue 接管关系运行</td>
+<td>适用渠道自动不执行，配置只读保留；不得异常回退</td>
+</tr>
+<tr>
+<td>Trigger 的通知/标签/Webhook 等动作</td>
+<td>正常生效</td>
+<td>正常生效，不因切换整体停用</td>
+</tr>
+<tr>
+<td>Trigger 的旧直接指派动作</td>
+<td>保持现有语义</td>
+<td>切换前转换或明确处理；不能有绕过统一分配的旧指派</td>
+</tr>
+<tr>
+<td>Trigger 的队列路由动作</td>
+<td>可保存草稿，尚不执行</td>
+<td>可选参与；未配置也可使用队列路由</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>按现有开关与既有行为</td>
+<td>统一匹配、兜底、资格、等待和记录</td>
+</tr>
+<tr>
+<td>人工分配</td>
+<td>既有语义</td>
+<td>统一归属/容量校验与保护</td>
+</tr>
+<tr>
+<td>旧自动规则的合并/关单等功能</td>
+<td>正常生效</td>
+<td>正常生效；只替换分单职责</td>
+</tr>
+</tbody></table></div>
+<p>启用按钮要先展示“接管 Email / Message、将停用哪些分单动作、哪些通用动作继续有效”。队列草稿保存或 Trigger 规则保存都不自动切换模式。</p>
+<p>启用前必须同时满足：各适用渠道有效兜底队列、团队与接单条件可用、旧直接指派/混合动作处理完毕、用户确认差异、拥有配置权限。切换用一个可查询的版本提交完成；切换失败保留原模式，不出现 UI 新模式而旧分单仍在运行的半成功状态。客户端请求超时先查当前模式与版本，不能直接重提。</p>
+<p>切换后旧分单页显示“已由队列路由接管，当前规则不参与 Email / Message 分配”，不可重新开启；如有未迁移渠道，逐渠道展示仍适用范围，不能把整条规则笼统标成停用。当前 Queue Routing 开关应收敛为模式管理下的兼容入口，不暴露两个互相矛盾的独立开关。</p>
+<p>现有 Queue Routing 开关仍然是旧产品能力，<strong>不等于新统一分单模式</strong>。新机制需要清晰的版本/模式标识。</p>
+<ul>
+<li>旧模式：原自动规则、Trigger 与 Queue 行为保留，统一入口展示实际关系和冲突提示。</li>
+<li>统一模式：已纳入渠道的所有自动分配入口都走统一提交；不允许旧指派动作在后台继续直接写负责人。未纳入渠道明确保留旧模式。</li>
+<li>首期按租户及已支持渠道整体切换，不做同渠道随机抽样双写。事件和服务周期绑定所用模式/版本。</li>
+<li>旧活动周期按原版本完成；新模式从新周期启用。切换必须先阻断新的旧模式请求，并检查在途旧写入，不仅关一个 UI 开关。</li>
+</ul>
+</div></section>
+<details class="detail-block" id="s-3-5"><summary><span>3.5</span>迁移检查与发布反馈<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>旧配置</th>
+<th>推荐映射</th>
+<th>需要人工确认的差异</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户组平均分单规则</td>
+<td>条件队列 + 团队</td>
+<td>ES Open 工单量 → 渠道容量与最久未分配；离线可分变为在线自动接单</td>
+</tr>
+<tr>
+<td>多用户组平均分单</td>
+<td>明确一个承接团队或拆分条件队列</td>
+<td>不自动扩展为全员团队；多团队能力不在首期</td>
+</tr>
+<tr>
+<td>Trigger 固定负责人</td>
+<td>确认接受团队代接后，才转换为优先客服 + 目标队列</td>
+<td>强制覆盖 → 已有归属保护；离线/满载时转团队；可能不等价</td>
+</tr>
+<tr>
+<td>Trigger 按排班指派</td>
+<td>优先指派的生效日历</td>
+<td>排班外跳过保留；新机制再走后续规则/队列；不可用日历变配置异常</td>
+</tr>
+<tr>
+<td>已有 Queue</td>
+<td>保留条件、团队与政策，纳入统一版本</td>
+<td>校验默认队列、指定客服与队列团队一致性</td>
+</tr>
+<tr>
+<td>分单与通知等混合旧动作</td>
+<td>迁移分配职责，保留其他业务动作一次性执行语义</td>
+<td>无法可靠拆分时标为阻断，不能停用整条规则导致通知丢失</td>
+</tr>
+</tbody></table></div>
+<p>迁移步骤：盘点 → 只读生成草稿 → 展示不等价项与条件遮挡 → 用历史/代表工单模拟 → 管理员确认目标行为 → 同步切换写入所有权 → 核对新周期记录。模拟只能比较当前事实下的预期差异，不能精确重建缺失历史配置或坐席状态。</p>
+<p>回退只影响后续新周期；不自动撤销已分配工单。回退前处理新机制在途任务，恢复旧配置快照，并验证不会两个模式同时写入。本文不执行迁移、发布或生产配置修改。</p>
+<ul>
+<li>加载中：列表骨架与明确状态，禁用提交，不展示误导性的空配置。</li>
+<li>空状态：说明缺少团队/队列，提供前往配置入口。</li>
+<li>保存成功：显示版本和“尚未启用”；刷新后仍可继续评审。</li>
+<li>校验失败：在队列/客服/日历字段旁显示错误，保留已填内容。</li>
+<li>模拟：展示输入事实、规则命中、选中队列、资格排除、最终结果；声明只读且使用某时间点的状态，不能保证未来实际分配给同一人。</li>
+<li>发布：显示影响渠道、旧规则停用清单、仍在服务的旧周期处理方式。发布有权限控制与版本冲突校验。</li>
+<li>部分成功：例如业务字段更新成功但分配失败，明确两项结果；重试只恢复分配，不重发 Webhook/通知。</li>
+<li>结果未知：不显示“发布成功”或“分配失败”；先查询版本/决策状态，再允许安全重试。</li>
+<li>读数据失败：显示重试，不把失败当作无数据；刷新/重入恢复最后已保存配置与状态。</li>
+</ul>
+<p>高保真配置与试单位于第 3、4 章，复用真实 HelpDesk 的设置导航、白色面板、规则表格与抽屉交互；在阅读宽度内直接操作，不缩放 iframe。所有数据为演示数据，不连接真实租户。</p>
+</div></details>
+<details class="detail-block" id="s-3-6"><summary><span>3.6</span>为什么采用显式迁移<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>路线</th>
+<th>收益</th>
+<th>代价</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>只合并菜单和写说明</td>
+<td>快速改善发现性</td>
+<td>无法消除竞争写入，客户仍需理解独立时序</td>
+<td>可作预备阶段，不能宣称已统一分单</td>
+</tr>
+<tr>
+<td>统一职责和分配执行，复用 Trigger/Queue</td>
+<td>客户只学一条链路，可渐进迁移</td>
+<td>要处理事件顺序、归属保护与兼容</td>
+<td><strong>推荐</strong></td>
+</tr>
+<tr>
+<td>重写全渠道工作流引擎</td>
+<td>理论上最自由</td>
+<td>成本大、迁移与回归面过广</td>
+<td>不作为首期</td>
+</tr>
+</tbody></table></div>
+</div></details>
+<section class="section-card" id="s-3-7"><h3><span>3.7</span>真实配置适配：先识别差异，再允许切换</h3><div class="prose"><p>2026-11-04 只读核查一个由用户指定的生产租户。公开评审页只保留去标识的结构结论；客户映射、规则 ID 与原始查询回执留在本地私有证据目录，不在预览中发布。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>已核实配置</th>
+<th>适配判断</th>
+<th>迁移动作与门槛</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>28 条 Trigger，16 条启用；其中 13 条含分配动作</td>
+<td>新机制可以承接条件表达，不能宣称原样迁移</td>
+<td>保留 ALL/ANY、分类/规则顺序、重复策略与原规则身份；逐条比对动作语义</td>
+</tr>
+<tr>
+<td>5 条启用的固定负责人规则，均要求负责人为空</td>
+<td>已有归属保护基本吻合；“固定给某人”仍不同于“优先给某人”</td>
+<td>明确离线、满载能否由团队代接；未确认则阻止迁移该范围</td>
+</tr>
+<tr>
+<td>7 条启用的单人排班规则，按标签判断且没有负责人为空限制</td>
+<td>可能承担重新指派；新模式默认保护负责人会改变行为</td>
+<td>回放已有负责人场景。接受仅首次分配，或等待三期受控转派；不能静默改写</td>
+</tr>
+<tr>
+<td>1 条启用规则包含 5 个按排班指派动作，12 个启用动作引用的日历均存在</td>
+<td>一期单规则单意图不能等价承接</td>
+<td>该规则的多个周排班存在重叠；先确定重叠时应由谁负责，再改成有序互斥规则或另行设计值班组选人。不是把多个动作当平均分单</td>
+</tr>
+<tr>
+<td>12 条启用分单规则为每工单一次，1 条允许重复；另有 3 条启用的标签/备注规则</td>
+<td>不能将分配完成与通用动作的重复次数混为一谈</td>
+<td>旧成功历史保留；仅跳过时不消耗一次性资格，意图进入等待时保留幂等状态，分配成功才提交分配结果；混合动作重复语义需验收</td>
+</tr>
+<tr>
+<td>9 条旧自动分单规则均关闭；1 条队列关闭；另 1 条启用自动规则用于通知分类</td>
+<td>该样本不是三路同时分单</td>
+<td>禁用状态原样保留；通知分类继续执行；补齐可用队列、团队和兜底后才可迁移</td>
+</tr>
+</tbody></table></div>
+<p><strong>结论：有条件适配，不能一键无损切换。</strong> 一期先统一入口、顺序与解释；有覆盖负责人、多动作重叠、固定专人不接受代接的范围保持旧模式。若同一渠道还引用未解决规则，就阻止该渠道整体切换，不能同时执行两种分单机制。</p>
+<p>额外边界：最近 100 条事件摘要中观察到匹配与跳过记录，证明部分规则有近期活动；<code>MATCHED</code> 不是负责人提交成功证明。本次未回放真实工单、未校验在线/容量运行值、未确认生产构建 SHA，也未证明规则覆盖已构成事故。排班重叠按周配置静态判断，未纳入节假日例外与真实事件时间。</p>
+<p>原型采用“标签例外 + 主题专人 + 时段 + 负责人保护”的虚构案例来呈现上述模式。它不还原客户名单、标签值、产品编码、日历时刻或完整规则集。</p>
+</div></section></details><footer class="chapter-next"><a href="#runtime"><small>接下来 · 04</small><b>运行与恢复 →</b></a></footer></article>
+<article class="chapter" id="runtime" data-chapter="3"><header class="chapter-heading"><p class="eyebrow">04 / 运行与恢复</p><h2>一张工单如何分配、等待与恢复</h2><div class="chapter-lead">跟随一张属性完整的工单，看规则、技能、容量和时间如何改变去向。</div></header><div class="movie-v9" id="demo-runtime"><header class="movie-header"><div><small>工单路由动画 · 使用上方同一份草稿</small><h3>跟着工单，看每一次决定</h3></div><label>预演阶段<select id="movie-phase"><option value="1">一期 · 统一分单</option><option value="2" selected>二期 · 加入技能</option></select></label></header><nav class="movie-scenarios" aria-label="动画场景"><button data-scene="skills">技能等待与放宽</button><button data-scene="overlap">一期：规则冲突</button><button data-scene="schedule">排班外继续判断</button><button data-scene="protected">已有人负责</button><button data-scene="capacity">容量释放后恢复</button><button data-scene="message">Message 排队到期</button><button data-scene="email">Email 超时待处理</button><button data-scene="normal">无规则也能分单</button><button data-scene="notify">分配成功、通知失败</button></nav><p id="movie-subtitle"></p><div class="movie-ticket"><header><span>工单 <b>#10428</b></span><button id="edit-ticket">调整工单属性</button></header><h4 id="movie-subject"></h4><dl id="movie-facts"></dl></div><div class="movie-controls"><button id="movie-play" class="primary">▶ 播放分单过程</button><button id="movie-prev">上一步</button><button id="movie-next">下一步</button><button id="movie-reset">从头重播</button><label>速度<select id="movie-speed"><option value="3800">舒缓</option><option value="2200" selected>标准</option><option value="900">快速</option></select></label><span id="movie-time"></span></div><div class="movie-route" aria-label="工单沿执行顺序移动"><div class="movie-track"></div><div class="moving-ticket" id="moving-ticket">▤ #10428</div><button class="movie-station" data-station="0"><span>1</span><b>进入新机制</b></button><button class="movie-station" data-station="1"><span>2</span><b>归属保护</b></button><button class="movie-station" data-station="2"><span>3</span><b>Trigger 分单</b></button><button class="movie-station" data-station="3"><span>4</span><b>选定队列</b></button><button class="movie-station" data-station="4"><span>5</span><b>技能要求</b></button><button class="movie-station" data-station="5"><span>6</span><b>候选资格</b></button><button class="movie-station" data-station="6"><span>7</span><b>等待 / 恢复</b></button><button class="movie-station" data-station="7"><span>8</span><b>分配结果</b></button></div><div class="movie-stage"><div class="movie-narration" aria-live="polite"><span id="movie-step"></span><h3 id="movie-title"></h3><p id="movie-note"></p></div><div id="movie-detail"></div></div><div class="movie-outcome" id="movie-outcome"></div><footer class="movie-footer"><span>动画中的秒数为压缩后的示意时间，不连接真实工单。</span><a href="#configure">返回分单中心 →</a></footer></div><details class="detail-block chapter-reference" id="reference-runtime"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>队列已选中不等于分配成功。</strong> 一张工单沿同一服务周期判断资格、选择客服、提交归属；无资源时等待，配置或技术异常单独恢复，人工接手后受保护。</p>
+</div><section class="section-card" id="s-4-1"><h3><span>4.1</span>从进入人工服务到完成分配</h3><div class="prose"><ol>
+<li><strong>检查资格和当前归属。</strong> 只处理需要人工、允许分配且未被保护的工单。AI 正在处理且未转人工/未进入允许人工介入的状态、已结束服务均不分单。</li>
+<li><strong>准备业务事实。</strong> 完成本轮相关本地字段/标签规则，得到稳定事实；外部 Webhook、通知和异步 AI 结果不阻塞这一阶段。之后收到新事实，按新的工单版本处理。</li>
+<li><strong>计算分配要求。</strong> 复用 Trigger 的分类/规则排序；在“分单规则”视图可看到完整相对顺序。同一轮首个条件及动作前置条件成立的分配动作生效。该轮其他分配动作标记“已有更高顺序规则生效”；非分配动作继续按既有规则语义运行。</li>
+<li><strong>确定队列。</strong> 有显式队列目标则使用它；否则按队列顺序首个匹配；仍无匹配进入本渠道显式兜底队列。显式队列选择跳过该队列的普通匹配条件，但不能绕过渠道、租户、团队、日历及资格校验。</li>
+<li><strong>尝试选人。</strong> 有优先客服时先检查该客服；不满足在线/容量等接单条件时回到同一个队列的团队选人，不阻塞后续工作，也不转给另一条低优先规则。</li>
+<li><strong>记录结果并等待或结束。</strong> 原子提交负责人、当前服务状态和容量；无空位按渠道政策等待，资源变化后重试。技术失败进入可恢复失败，不因异常退回另一套规则。</li>
+</ol>
+<p>二期在步骤 2–4 汇总技能要求，在步骤 5 选人前统一过滤技能；三期在同一队列内扩展团队范围并增加可选接单确认；四期调整等待工单的调度顺序。不会为每一期再建立独立执行链。</p>
+<p>这是目标语义，当前 Trigger 与队列尚未具备这条完整顺序。第一条路由动作优先与现有 Trigger 多规则直接写入的语义不同，必须经迁移确认；不能把两者混用后称为统一机制。</p>
+<p><figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjEwNzAiIHZpZXdCb3g9IjAgMCAxMTAwIDEwNzAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbGxlZGJ5PSJ0aXRsZSI+PHRpdGxlIGlkPSJ0aXRsZSI+5LiA5byg5bel5Y2V55qE6L+Q6KGM5rWB56iL5LiO562J5b6F5oGi5aSNPC90aXRsZT48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwIEw4IDQgTDAgOCIgZmlsbD0iIzM5N2E3MCIvPjwvbWFya2VyPjwvZGVmcz48c3R5bGU+dGV4dHtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwiUGluZ0ZhbmcgU0MiLCJNaWNyb3NvZnQgWWFIZWkiLHNhbnMtc2VyaWY7ZmlsbDojMjYzYzQwfS50aXRsZXtmb250LXNpemU6MjRweDtmb250LXdlaWdodDo2NTB9LmJvZHl7Zm9udC1zaXplOjE3cHg7ZmlsbDojNjY3YjdjfS5sYWJlbHtmb250LXNpemU6MTRweDtmaWxsOiMzOTdhNzA7Zm9udC13ZWlnaHQ6NjAwfS5oZWFkaW5ne2ZvbnQtc2l6ZToxOXB4O2ZvbnQtd2VpZ2h0OjY1MH08L3N0eWxlPjxyZWN0IHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjEwNzAiIHJ4PSIxNiIgZmlsbD0iI2ZmZiIvPgo8dGV4dCB4PSIzNiIgeT0iNDUiIGNsYXNzPSJ0aXRsZSI+5LiA5byg5bel5Y2V77yM5rK/5LiA5Liq5pyN5Yqh5ZGo5pyf5rWB6L2sPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iNzYiIGNsYXNzPSJib2R5Ij7liY3mj5DvvJrlvZPliY3muKDpgZPlt7LlkK/nlKjpmJ/liJfot6/nlLEgwrcg57u/6Imy5Li65Li76Lev5b6E77yM5Y+z5L6n5Li65L+d5oqk5LiO5oGi5aSN5YiG5pSvPC90ZXh0Pgo8cmVjdCB4PSIzNiIgeT0iMTEwIiB3aWR0aD0iNjUwIiBoZWlnaHQ9Ijg1IiByeD0iMTAiIGZpbGw9IiNlN2YyZWQiIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI1NiIgeT0iMTQyIiBjbGFzcz0iaGVhZGluZyI+6L+b5YWl5Lq65bel5pyN5YqhIOKGkiDmo4Dmn6XotYTmoLzkuI7lvZLlsZ48L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSIxNzEiIGNsYXNzPSJib2R5Ij7pnIDopoHkurrlt6XjgIHnirbmgIHlhYHorrjjgIHlvZPliY3ml6Dlj5fkv53miqTotJ/otKPkuro8L3RleHQ+CjxyZWN0IHg9Ijc2NiIgeT0iMTEwIiB3aWR0aD0iMjk4IiBoZWlnaHQ9Ijg1IiByeD0iMTAiIGZpbGw9IiNmNGY4ZjciIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI3ODYiIHk9IjE0MiIgY2xhc3M9ImhlYWRpbmciPui3s+i/h+iHquWKqOWIhumFjTwvdGV4dD4KPHRleHQgeD0iNzg2IiB5PSIxNzEiIGNsYXNzPSJib2R5Ij7kv53nlZnlvZLlsZ7vvJvpgJrnlKjop4TliJnku43ov5DooYw8L3RleHQ+CjxwYXRoIGQ9Ik02ODYgMTUyIEg3NjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5N2E3MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI2OTkiIHk9IjEzNCIgY2xhc3M9ImxhYmVsIj7kuI3nrKblkIg8L3RleHQ+CjxyZWN0IHg9IjM2IiB5PSIyMzUiIHdpZHRoPSI2NTAiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmNGY4ZjciIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI1NiIgeT0iMjY3IiBjbGFzcz0iaGVhZGluZyI+5YeG5aSH5Lia5Yqh5LqL5a6e5LiO5YiG6YWN6KaB5rGCPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iMjk2IiBjbGFzcz0iYm9keSI+55u45YWz5pys5Zyw5a2X5q61IC8g5qCH562+56iz5a6a5ZCO77yM6K+75Y+WIFRyaWdnZXIg5YiG6YWN6KaB5rGC44CCPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iMzIxIiBjbGFzcz0iYm9keSI+6aaW5Liq5pyJ5pWI5YiG6YWN5Yqo5L2c5Yaz5a6a55uu5qCH77yb5rKh5pyJ5YiG6YWN6KeE5YiZ5Lmf6IO957un57ut44CCPC90ZXh0Pgo8cGF0aCBkPSJNMzYwIDE5NSBWMjM1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzOTdhNzAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzYiIHk9IjM4NSIgd2lkdGg9IjY1MCIgaGVpZ2h0PSIxMTAiIHJ4PSIxMCIgZmlsbD0iI2U3ZjJlZCIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjU2IiB5PSI0MTciIGNsYXNzPSJoZWFkaW5nIj7pgInmi6npmJ/liJfkuI7lm6LpmJ88L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI0NDYiIGNsYXNzPSJib2R5Ij7mmL7lvI/nm67moIcg4oaSIOWQpuWImeadoeS7tummluS4quWMuemFjSDihpIg5ZCm5YiZ5rig6YGT5YWc5bqV44CCPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iNDcxIiBjbGFzcz0iYm9keSI+5LqM5pyf5ZCI5bm26Zif5YiX6buY6K6k5oqA6IO95LiO6YCC55SoIFRyaWdnZXIg5oqA6IO96KaB5rGC44CCPC90ZXh0Pgo8cGF0aCBkPSJNMzYwIDM0NSBWMzg1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzOTdhNzAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iNzY2IiB5PSIzODUiIHdpZHRoPSIyOTgiIGhlaWdodD0iMTEwIiByeD0iMTAiIGZpbGw9IiNmNGY4ZjciIHN0cm9rZT0iI2RjZTVlMiIvPgo8dGV4dCB4PSI3ODYiIHk9IjQxNyIgY2xhc3M9ImhlYWRpbmciPumFjee9ruW8guW4uDwvdGV4dD4KPHRleHQgeD0iNzg2IiB5PSI0NDYiIGNsYXNzPSJib2R5Ij7ml6DmlYjlvJXnlKjpnIDkv67lpI08L3RleHQ+Cjx0ZXh0IHg9Ijc4NiIgeT0iNDcxIiBjbGFzcz0iYm9keSI+5LiN5b2T5L2c5pyq5ZG95Lit5oiW6YCA5Zue5pen5YiG5Y2VPC90ZXh0Pgo8cGF0aCBkPSJNNjg2IDQ0MCBINzY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzOTdhNzAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzYiIHk9IjUzNSIgd2lkdGg9IjY1MCIgaGVpZ2h0PSIxMTAiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjhmNyIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjU2IiB5PSI1NjciIGNsYXNzPSJoZWFkaW5nIj7nrZvpgInlkIjmoLzlgJnpgInvvIzlho3pgInkuro8L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI1OTYiIGNsYXNzPSJib2R5Ij7lnKjnur/jgIHokKXkuJogLyDmjpLnj63jgIHmnYPpmZDjgIHlrrnph4/vvJvkuozmnJ/lop7liqDmioDog73ov4fmu6TjgII8L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI2MjEiIGNsYXNzPSJib2R5Ij7kvJjlhYjlrqLmnI3kuI3lkIjmoLwg4oaSIOWcqOWQjOmYn+WIl+WboumYn+S4remAieaLqeWFtuS7luWQiOagvOWuouacjeOAgjwvdGV4dD4KPHBhdGggZD0iTTM2MCA0OTUgVjUzNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzk3YTcwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9Ijc2NiIgeT0iNTM1IiB3aWR0aD0iMjk4IiBoZWlnaHQ9IjE5NSIgcng9IjEwIiBmaWxsPSIjZjRmOGY3IiBzdHJva2U9IiNkY2U1ZTIiLz4KPHRleHQgeD0iNzg2IiB5PSI1NjciIGNsYXNzPSJoZWFkaW5nIj7ml6DlkIjmoLzlrqLmnI0g4oaSIOa4oOmBk+aUv+etljwvdGV4dD4KPHRleHQgeD0iNzg2IiB5PSI1OTYiIGNsYXNzPSJib2R5Ij7lhYHorrjnrYnlvoXvvJrkv53nlZnpmJ/liJfkuI7orqHml7Y8L3RleHQ+Cjx0ZXh0IHg9Ijc4NiIgeT0iNjIxIiBjbGFzcz0iYm9keSI+6LWE5rqQ5Y+Y5YyW5ZCO6YeN6K+V5YCZ6YCJ562b6YCJPC90ZXh0Pgo8dGV4dCB4PSI3ODYiIHk9IjY0NiIgY2xhc3M9ImJvZHkiPuaAu+etieW+heaIquatouWFiOS6juaKgOiDveaUvuWuvTwvdGV4dD4KPHRleHQgeD0iNzg2IiB5PSI2NzEiIGNsYXNzPSJib2R5Ij5FbWFpbO+8mui9rOS4u+euoeW+heWkhOeQhjwvdGV4dD4KPHRleHQgeD0iNzg2IiB5PSI2OTYiIGNsYXNzPSJib2R5Ij5NZXNzYWdl77ya5oyJ5aWR57qm6YCA5Ye65o6S6ZifPC90ZXh0Pgo8cGF0aCBkPSJNNjg2IDU5MCBINzY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzOTdhNzAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTkxNSA3MzAgVjc1NCBINzEwIFY2MjQgSDY4NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzk3YTcwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9Ijc4MCIgeT0iNzc4IiBjbGFzcz0ibGFiZWwiPuacquWIsOaAu+aIquatouaXtumHjeivlTwvdGV4dD4KPHJlY3QgeD0iMzYiIHk9IjY4NSIgd2lkdGg9IjY1MCIgaGVpZ2h0PSIxMTAiIHJ4PSIxMCIgZmlsbD0iI2U3ZjJlZCIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjU2IiB5PSI3MTciIGNsYXNzPSJoZWFkaW5nIj7ljp/lrZDmj5DkuqTlvZLlsZ7jgIHmnI3liqHnirbmgIHkuI7lrrnph488L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI3NDYiIGNsYXNzPSJib2R5Ij7miJDlip/vvJrotJ/otKPkurrnoa7lrprjgIHorrDlvZXlj6/ov73muq/jgIHmma7pgJrmm7TmlrDkuI3miqLlm57jgII8L3RleHQ+Cjx0ZXh0IHg9IjU2IiB5PSI3NzEiIGNsYXNzPSJib2R5Ij7lpLHotKUgLyDmnKrnn6XvvJrmn6Xor6Lkuovlrp7lubbmgaLlpI3vvJvpgJrnn6XlpLHotKXlj6rooaXpgJrnn6XjgII8L3RleHQ+CjxwYXRoIGQ9Ik0zNjAgNjQ1IFY2ODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM5N2E3MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzNiIgeT0iODQ2IiBjbGFzcz0ibGFiZWwiPuetieW+heS4reeahOWinuW8uiAvIOS4jemHjeaWsOi/kOihjOaVtOWll+WIhumFjeinhOWIme+8jOS4jemHjee9ruacgOWIneetieW+heaXtumXtDwvdGV4dD4KPHJlY3QgeD0iMzYiIHk9Ijg2OSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMjUiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjhmNyIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjU2IiB5PSI5MDEiIGNsYXNzPSJoZWFkaW5nIj7kuozmnJ8gwrcg5Y+v6YCJ5oqA6IO95pS+5a69PC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iOTMwIiBjbGFzcz0iYm9keSI+5Y+q5pS+5a695Y+v6YCJ6KaB5rGCPC90ZXh0Pgo8dGV4dCB4PSI1NiIgeT0iOTU1IiBjbGFzcz0iYm9keSI+5b+F6ZyA5oqA6IO95aeL57uI5L+d55WZPC90ZXh0Pgo8cmVjdCB4PSIzOTAiIHk9Ijg2OSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMjUiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjhmNyIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9IjQxMCIgeT0iOTAxIiBjbGFzcz0iaGVhZGluZyI+5LiJ5pyfIMK3IOWkh+eUqOS4juaOpeWNleaBouWkjTwvdGV4dD4KPHRleHQgeD0iNDEwIiB5PSI5MzAiIGNsYXNzPSJib2R5Ij7mianlpKflm6LpmJ/lgJnpgInojIPlm7Q8L3RleHQ+Cjx0ZXh0IHg9IjQxMCIgeT0iOTU1IiBjbGFzcz0iYm9keSI+6YKA6K+36LaF5pe26YeK5pS+6aKE55WZ5YaN5bCd6K+VPC90ZXh0Pgo8cmVjdCB4PSI3NDQiIHk9Ijg2OSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMjUiIHJ4PSIxMCIgZmlsbD0iI2Y0ZjhmNyIgc3Ryb2tlPSIjZGNlNWUyIi8+Cjx0ZXh0IHg9Ijc2NCIgeT0iOTAxIiBjbGFzcz0iaGVhZGluZyI+5Zub5pyfIMK3IOWFiOWkhOeQhuWTquW8oOWNlTwvdGV4dD4KPHRleHQgeD0iNzY0IiB5PSI5MzAiIGNsYXNzPSJib2R5Ij7kvJjlhYjnuqcgLyBTTEEgLyDnrYnlvoXkv53pmpw8L3RleHQ+Cjx0ZXh0IHg9Ijc2NCIgeT0iOTU1IiBjbGFzcz0iYm9keSI+5LiN6K6p5LiN5Y+v5pyN5Yqh5bel5Y2V6Zi75aGe6Zif6aaWPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iMTAzNCIgY2xhc3M9ImJvZHkiPuaJgOacieaXtumXtOetlueVpemDvemcgOaMgeS5heiuoeaXtuS4juW5guetieaBouWkje+8m+acrOWbvuS4uuS6p+WTgeaPkOahiO+8jOS4jeaYr+eUn+S6p+aJp+ihjOivgeaYjuOAgjwvdGV4dD4KPC9zdmc+" alt="Tars 建议方案：队列路由分单流程"><button class="zoom-diagram" data-image="assets/assignment-flow.svg?v=d22ad356bf" data-caption="Tars 建议方案：队列路由分单流程">放大查看图示</button></figure></p>
+<p>图中“跳过自动分配”只跳过分配路径，不会整体停止 Trigger 的标签、通知等通用动作。显式目标队列或日历引用失效属于配置异常，不等于“没有规则命中”；必须修复，不能静默走普通匹配。选择队列不等于已经分配成功，只有实际写入负责人后才显示“已分配”。</p>
+<p>队列已经等待时，资源变化重试当前队列，不重新运行全部分单规则。普通字段变更首期不静默换队列，主管可显式重新评估。图中的排队超时是 Tars 建议政策，不是 Zendesk 的统一机制；一期、二期不引入“客服收到邀请后超时未接”的独立接单邀请状态机；三期按 Message 渠道协议增加。后者与排队等待、可选技能等待不同。</p>
+</div></section>
+<section class="section-card" id="s-4-2"><h3><span>4.2</span>从工单入口验证归属与恢复</h3><div class="prose"><p>分单记录 → 过滤“等待” → 打开工单 → 看到“售后队列，在线 2 人，均无剩余容量” → 选择合格客服接管或调整团队资源 → 看到分配成功 → 刷新后仍为同一归属。查看团队成员数据需具备相应权限。</p>
+<p>“未命中”“等待”“跳过”“失败”必须分开：未命中是条件不符；等待是已选定团队暂无接单条件；跳过是保护/排班等正常结果；失败是配置或系统未完成。</p>
+<p>第 4 章采用可播放、暂停、前后单步和重播的工单流转动画。工单卡沿“进入 → 归属保护 → 规则 → 队列 → 技能 → 候选 → 等待 → 结果”移动；每一站展示当时的输入、判断与去向。动画始终预演新机制草稿，与当前演示发布模式明确区分。</p>
+<p>默认工单为德语、复购、产品 A 退款咨询：两条规则同时满足，先按顺序选定专属服务队列；合并队列德语与规则硬件要求，候选分别受可选技能、必需技能、容量、在线状态、团队范围限制；等待 60 秒只放宽可选退款技能，分配给林薇。切为一期后，同一配置与工单可直接分配，直观说明二期差异。</p>
+<p>另提供规则冲突、排班外、已有归属、容量释放、Message 排队到期、Email 超时保留后恢复、无规则兜底、已分配但通知失败等共九个场景。可编辑工单标签、主题、渠道、负责人、规则时段与营业状态；优先级和 SLA 只作四期信息展示。动画时间是示意时间，非后台真实倒计时；刷新保留场景与位置并暂停，恢复/通知补发结果可重现。</p>
+</div></section>
+<section class="section-card" id="s-4-3"><h3><span>4.3</span>按渠道说明等待与退出</h3><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>条件</th>
+<th>Email</th>
+<th>Message / LiveChat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>营业外</td>
+<td>保留等待，营业开始后尝试</td>
+<td>不进入实时接待；使用现有渠道支持的非营业提示/退出行为</td>
+</tr>
+<tr>
+<td>营业内无人在线</td>
+<td>等待上线</td>
+<td>使用现有无人接待提示/退出行为</td>
+</tr>
+<tr>
+<td>有在线客服但容量满</td>
+<td>等待空位</td>
+<td>在队列配置的等待时限内排队</td>
+</tr>
+<tr>
+<td>等待超时</td>
+<td>进入“等待超时，需主管处理”，不自动关闭客户问题</td>
+<td>结束本次实时排队，按渠道契约回调/退出；不静默改成 Email 或另一渠道</td>
+</tr>
+<tr>
+<td>接口/资源异常</td>
+<td>显示失败原因、重试入口；保留待处理</td>
+<td>区分系统异常与无人接待，提供渠道已有的恢复/退出路径</td>
+</tr>
+</tbody></table></div>
+<p>这些是新机制建议，不把当前不同入口的差异当作已统一。Custom Livechat 的结束是否同时关闭 Ticket、前台提示与外部状态码映射，必须列入渠道验收；不在本产品整合中偷偷修改客户协议。Email 日工作量上限如果启用，必须纳入统一资格校验并显示原因；当前软上限不包装成精确日配额。</p>
+<p>首期自动分配和优先指派均受在线、营业、容量限制。手工分配 Email 给离线客服可作为主管显式操作，保留提醒与审计；Message 必须满足实时接待资格。首期不提供人工突破硬容量的通用开关。旧人工路径若存在不同语义，迁移时单独列出。</p>
+</div></section>
+<section class="section-card" id="s-4-4"><h3><span>4.4</span>五个时钟，五种不同作用</h3><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>时钟</th>
+<th>起点</th>
+<th>到期动作</th>
+<th>期次</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总排队期限</td>
+<td>本轮入队</td>
+<td>Email 主管处理；Message 按契约结束实时排队</td>
+<td>一期</td>
+</tr>
+<tr>
+<td>可选技能等待</td>
+<td>同一本轮入队时点</td>
+<td>只放宽可选技能；不重置总等待</td>
+<td>二期</td>
+</tr>
+<tr>
+<td>备用团队介入</td>
+<td>同一本轮入队时点</td>
+<td>扩展候选团队，不放宽技能</td>
+<td>三期</td>
+</tr>
+<tr>
+<td>客服接单邀请</td>
+<td>每次邀请创建</td>
+<td>释放本次预留、尝试其他合格客服；受总排队期限约束</td>
+<td>三期</td>
+</tr>
+<tr>
+<td>SLA 期限</td>
+<td>SLA 政策定义的业务事件/日历</td>
+<td>排序、违约标识与升级；不等于排队结束</td>
+<td>四期</td>
+</tr>
+</tbody></table></div>
+<p>这里是三类机制（排队/资格与资源扩展/服务目标）下的五个时钟。Trigger 由事件驱动，不能指望“时间过去”自动触发重分；到期由统一路由计时与恢复机制处理，并产生可追溯事件。</p>
+</div></section>
+<details class="detail-block" id="s-4-5"><summary><span>4.5</span>状态、人工介入与 AI 边界<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>当前状态</th>
+<th>事件</th>
+<th>目标行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>尚未分配</td>
+<td>需要人工/允许人工介入</td>
+<td>创建或复用本轮分单周期，进入规则评估</td>
+</tr>
+<tr>
+<td>等待中</td>
+<td>客服上线、容量释放、营业开始</td>
+<td>在当前队列按冻结政策重试；实时重查人员资格，不重复入队</td>
+</tr>
+<tr>
+<td>等待中</td>
+<td>普通字段/标签更新</td>
+<td>首期不静默换队列；提示可重新评估，由主管显式操作</td>
+</tr>
+<tr>
+<td>等待中</td>
+<td>主管选择另一队列</td>
+<td>更新队列与版本，保留本轮最初等待时间，取消旧等待资格</td>
+</tr>
+<tr>
+<td>已分配</td>
+<td>客户追问、标签变化、客服下线</td>
+<td>保留负责人；下线不自动抢走在办工单</td>
+</tr>
+<tr>
+<td>已分配</td>
+<td>主管转派客服</td>
+<td>成功后原子切换归属与容量；失败保留原负责人</td>
+</tr>
+<tr>
+<td>已分配</td>
+<td>主管交回队列</td>
+<td>明示会清空负责人；成功后开始新等待周期，重新计入队时间</td>
+</tr>
+<tr>
+<td>已结束</td>
+<td>正式重开/再次转人工</td>
+<td>创建新周期，旧周期回放无效；是否继续原客服采用显式“优先原客服”策略，首期默认重新路由</td>
+</tr>
+<tr>
+<td>任意未完成状态</td>
+<td>请求重复/重放</td>
+<td>返回已有结果或恢复未完成步骤，不再加容量、不重复外发通知</td>
+</tr>
+</tbody></table></div>
+<p>队列与规则配置版本对新周期生效；已有等待工单保留原队列/政策快照，失效引用转配置异常。成员停用、离组、连接、容量等实时资格始终重查；不能因为冻结了政策而把工单分给失效成员。</p>
+<p>AI 处理、人工审核、正式转人工是不同服务状态。分单规则只在状态允许人工承担工作时运行；设置负责人本身不等于已完成转人工。HITL 审核任务是否占用与实时人工会话相同容量，现有模型需复核后决定；未明确前不把所有 AI 工单投入人工队列。</p>
+</div></details>
+<details class="detail-block" id="s-4-6"><summary><span>4.6</span>三期、四期怎样扩展同一条链<small>展开细则</small></summary><div class="prose"><p><strong>三期：扩大团队范围与恢复未接单工作。</strong> 队列配置一个主团队池和备用团队池；本轮入队后达到溢出阈值，候选池从主团队扩为主 + 备用，去重客服并继续校验全部必需技能、尚未放宽的可选技能与容量。主团队恢复后不把已接受的工作抢回。不是按队列列表“转到下一队列”，也不覆盖原队列、技能和等待时钟。与技能放宽阈值可以不同；每次唤醒按当前时间一次性计算适用范围，若总排队已到期则先结束。</p>
+<p>Message 接单邀请作为可选策略：创建有到期时间的容量预留和邀请 ID，接受时原子确认归属；拒绝/超时则释放该邀请预留并重投其他合格客服，记录本轮尝试过的客服、尝试次数上限和无候选冷却。迟到接受、旧邀请回放不得生效。总排队上限覆盖所有邀请尝试；到期与接受竞争只有一个有效终态。Email 默认直接分配，不伪造接单邀请；Voice 后续单独适配既有通话/Reservation 状态机。</p>
+<p>受控自动转派只对管理员启用的“未接受邀请”或其他明确许可状态生效。在办工单下线后转派仍需单独策略、人工提示与审计；不能因为存在 SLA 或超时就默认抢单。三期上线门槛包含渠道是否支持可撤销邀请、幂等接受和客户侧状态同步。</p>
+<p><strong>四期：决定可服务工单中谁先分。</strong> 队列匹配顺序仍只决定归属，不兼任调度权重。调度在同租户、同路由渠道、同一候选客服能处理的等待工单间选择；管理员可选“优先级 + 等待时间”或“SLA 最早到期 + 等待时间”，同值按稳定 ID。SLA 模式下已违约工单也保留并优先处理，不自动关闭；无 SLA 的工单按普通等待规则处理。增加老化保护及无 SLA 保障份额，具体阈值在基线后评审，不能承诺无条件 SLA 达标。</p>
+<p>必须跳过当前客服不具备技能/权限的工单，避免一张无人能处理的队首工单堵住其他工作。配置变更对新周期生效；若要调整在队排序，应显式展示影响范围。运营看板拆分无容量、无必需技能、等待可选技能、待溢出、未接受邀请、技术失败和已违约，而非只显示“排队中”。</p>
+</div></details></details><footer class="chapter-next"><a href="#roadmap"><small>接下来 · 05</small><b>分期与验收 →</b></a></footer></article>
+<article class="chapter" id="roadmap" data-chapter="4"><header class="chapter-heading"><p class="eyebrow">05 / 分期与验收</p><h2>分四期实施，每期怎样验收</h2><div class="chapter-lead">先统一执行，再在同一条链上增强能力。</div></header><div class="visual-board roadmap-board"><nav class="phase-lane" aria-label="四期实施路线"><button data-phase="0" aria-pressed="true" style="--level:0"><span>一期</span><b>统一执行</b><small>一个分配结果</small><i aria-hidden="true">◎</i></button><button data-phase="1" aria-pressed="false" style="--level:1"><span>二期</span><b>技能匹配</b><small>找到能处理的人</small><i aria-hidden="true">◇</i></button><button data-phase="2" aria-pressed="false" style="--level:2"><span>三期</span><b>服务连续性</b><small>无人可接时有恢复</small><i aria-hidden="true">⇄</i></button><button data-phase="3" aria-pressed="false" style="--level:3"><span>四期</span><b>服务目标</b><small>先处理更该处理的单</small><i aria-hidden="true">↗</i></button></nav><div class="selection-note"><div><h3 data-phase-title>模式互斥、归属保护、统一等待与迁移</h3><p data-phase-note>验收：A01–A16 + 渠道 E2E / 多实例证据</p></div><a href="#s-5-1">完整范围与门槛 →</a></div><div class="visual-foot">按能力分期，逐期验收；尚未确定交付日期。</div></div><details class="detail-block chapter-reference" id="reference-roadmap"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>先统一执行与迁移，再加技能、服务连续性和服务目标调度。</strong> 每期都有可验收的闭环；不以新增菜单数量衡量交付，也不凭原型推断后端已完成。</p>
+</div><section class="section-card" id="s-5-1"><h3><span>5.1</span>四期范围、依赖与发布门槛</h3><div class="prose"><p>首期包含：统一入口、分单规则视图、队列与默认队列、统一写入与资格判断、已有归属保护、人工转派/交回队列、决策记录、只读模拟、租户级版本切换与旧规则迁移检查。</p>
+<p>一期不包含：跨租户团队、多团队溢出、技能能力匹配（语言字段仍可作队列条件）、AI 预测选人、SLA 驱动调度、权重轮询、Voice 通话状态机改造、完整 WFM 排班系统、无人值守批量改派在办工单。技能、溢出与 SLA 的期次见下表。没有正式交付日期；估时应在关键产品边界确认后进行。</p>
+<p><strong>按业务能力发布，不能把“做一个菜单”当成一期完成。</strong> 每期内部均经过：产品取舍确认 → 技术设计 → 实现与并发测试 → 渠道 E2E → 指定租户试点 → 指标观察与扩量。以下是建议拆分，未给人员、周数或上线日期；工程需在写入方审计后估算。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>期次 / 主责</th>
+<th>交付包</th>
+<th>不带入本期</th>
+<th>验收及进入下一期的条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一期：统一执行与迁移；产品 + Tars/HelpDesk + 渠道负责人</td>
+<td>分单中心、模式切换、Trigger 分配意图、单团队队列、统一归属/容量提交、等待/异常记录、模拟、迁移对比与可验证回退</td>
+<td>技能筛选、多团队、邀请制、SLA 调度</td>
+<td>A01–A16 通过；目标渠道 E2E 与多实例证据；试点非预期覆盖/重复容量为 0；不可仅凭入口上线宣告完成</td>
+</tr>
+<tr>
+<td>二期：技能路由；产品 + Tars/HelpDesk，CS 维护能力目录</td>
+<td>技能目录/客服关联；队列默认 + Trigger 追加；必需/可选合并；冻结要求、实时资格；持久技能时钟与放宽；候选解释、失配预警与受控回退</td>
+<td>技能等级/OR 表达式/自动能力评分、跨团队补人</td>
+<td>S01–S08 通过；硬技能违规为 0；到期重放/重启/撤销技能竞争验证通过；无技能队列回归一期</td>
+</tr>
+<tr>
+<td>三期：服务连续性；产品 + Tars/HelpDesk + 渠道负责人</td>
+<td>主备用团队与定时扩范围；Message 可选邀请/接受/拒绝/超时；容量预留与回收；受控自动转派与次数限制</td>
+<td>Voice 全面改造、在办工单默认自动抢单</td>
+<td>C01–C04 通过；跨团队技能仍受保护；并发接受/到期只一个终态；无悬挂预留和重复客户侧消息</td>
+</tr>
+<tr>
+<td>四期：服务目标与运营；产品 + Tars/HelpDesk + SLA/报表负责人</td>
+<td>优先级/SLA 调度、老化与无 SLA 保障、可服务工单选择、看板、历史回放与配置发布诊断</td>
+<td>AI 预测选人、无限策略插件或全部 WFM</td>
+<td>O01–O04 通过；有明确基线和采集口径；无技能队首阻塞；低优先级保障验收；准确率、等待和违约趋势经试点观察</td>
+</tr>
+</tbody></table></div>
+</div></section>
+<details class="detail-block" id="s-5-2"><summary><span>5.2</span>可拆分的开发工作包<small>展开细则</small></summary><div class="prose"><ul>
+<li><strong>一期 A：执行契约。</strong> 枚举所有负责人写入方、服务资格、周期与版本，统一提交和副作用边界。依赖：渠道负责人确认入队/退出契约。</li>
+<li><strong>一期 B：产品与迁移。</strong> 模式开关、关联配置、记录与模拟、旧规则差异确认。依赖 A 的可查询结果，不先做“假互斥”界面。</li>
+<li><strong>二期 A：技能主数据与配置。</strong> 稳定技能 ID、权限、客服关联、引用保护，队列与 Trigger 编辑和发布校验。</li>
+<li><strong>二期 B：技能执行与解释。</strong> 合并要求、候选过滤、优先客服约束、持久截止、定时恢复、原因记录；依赖一期提交模型与二期 A。</li>
+<li><strong>三期 A：团队溢出。</strong> 主备用池、去重、同一周期的时钟、跨团队资格检查和观测。</li>
+<li><strong>三期 B：接单邀请。</strong> 先确认渠道可撤销邀请与幂等接受能力，再落地预留/接受/拒绝/到期与回收；不具备契约的渠道保持直接分配。</li>
+<li><strong>四期 A：调度。</strong> 定义 SLA/优先级事实、跨队列同渠道候选排序、老化和保障，再做并发调度。</li>
+<li><strong>四期 B：运营。</strong> 决策维度与看板、历史回放、规则遮挡/无技能候选告警、发布差异分析。</li>
+</ul>
+<p>一期内部建议先 Email 试点，再纳入已支持人工队列的 Message；这是同一期的渠道灰度，不增加一套执行模式。二期可先对一个有明确语言/产品技能目录的团队开放，三期只在已确认邀请契约的 Message 渠道启用邀请制。试点对象由产品/CS 选择，不凭空指定客户。</p>
+</div></details>
+<details class="detail-block" id="s-5-3"><summary><span>5.3</span>一期需求与验收清单<small>展开细则</small></summary><div class="prose"><p>本节 P0/P1 表示需求优先级，不表示第几期；发布期次以第 5.1 节为准。原有 A01–A16 为一期验收，后续每期增加对应场景并回归前期保护边界。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>级别</th>
+<th>需求</th>
+<th>最低验收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P0</td>
+<td>一个入口与一致术语</td>
+<td>管理员从设置能完成配置、模拟、查看结果；旧入口有上下文跳转</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>一个分配提交边界</td>
+<td>所有首期自动指派入口及人工转派使用同一版本校验；不存在旁路覆盖</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>明确动作/队列顺序</td>
+<td>两条规则、两个队列同时命中时，结果与记录一致；排序可见</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>负责人保护与人工恢复</td>
+<td>旧事件不能抢回人工归属；转派失败保留原人；交回队列不会重复占容量</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>渠道资格与等待</td>
+<td>营业、在线、满载、日工作量、超时原因各自可见；资源恢复可继续</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>解释与只读模拟</td>
+<td>不产生真实指派、通知或外部调用；不能把预览命中当成已执行</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>兼容迁移和回退</td>
+<td>不等价项阻止无感切换；在途事件绑定旧/新版本；回退不重分已办单</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>多实例一致性</td>
+<td>重复消费、同单竞争、同坐席最后容量竞争、重启恢复都只有一个有效结果</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>更丰富的诊断</td>
+<td>等待分布、失败趋势、规则遮挡分析和改动前后比较</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>受控自动转派</td>
+<td>单独权限、明确触发原因、只作用于许可状态；不能复用普通分配默认开启</td>
+</tr>
+<tr>
+<td>二期必备</td>
+<td>技能目录、客服技能、要求来源、匹配与放宽</td>
+<td>必需技能不绕过；可选技能到期正确放宽；配置可追溯</td>
+</tr>
+<tr>
+<td>三期必备</td>
+<td>多团队溢出、接单超时恢复、受控转派</td>
+<td>扩范围不降硬约束；邀请/容量预留只有一个有效终态</td>
+</tr>
+<tr>
+<td>四期必备</td>
+<td>优先级/SLA 调度与运营诊断</td>
+<td>排序独立于匹配；避免技能队首阻塞与长期饥饿</td>
+</tr>
+<tr>
+<td>后续探索</td>
+<td>AI 预测、技能等级、权重分配、Voice 整合</td>
+<td>独立立项与验证，不作为四期完成条件</td>
+</tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Given / When</th>
+<th>Then</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A01</td>
+<td>普通售后邮件，无负责人，售后队列匹配且有人有容量</td>
+<td>分给售后团队合格坐席，记录规则未指定、队列匹配、选人原因</td>
+</tr>
+<tr>
+<td>A02</td>
+<td>VIP 邮件，优先客服在班在线有容量</td>
+<td>分给优先客服，记录目标队列；不执行后续低顺序分配动作</td>
+</tr>
+<tr>
+<td>A03</td>
+<td>VIP 客服离线但团队其他人可接</td>
+<td>同队列其他人接单；不跨队列漂移</td>
+</tr>
+<tr>
+<td>A04</td>
+<td>排班例外条件匹配但在排班外</td>
+<td>例外动作跳过，普通队列继续；不创建未来补派任务</td>
+</tr>
+<tr>
+<td>A05</td>
+<td>两规则/两队列同时命中</td>
+<td>先采纳首个有效动作；没有动作目标时才首个队列匹配</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Email 无人在线或非营业</td>
+<td>等待并可见原因；上线/开门后恢复，无重复入队</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Message 非营业/无人在线/满载</td>
+<td>分别走渠道退出/退出/限时等待；核对客户侧提示与外部状态</td>
+</tr>
+<tr>
+<td>A08</td>
+<td>等待期间修改无关标签、刷新或重复入站</td>
+<td>不抢走队列；等待时点不重置</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>人工分配与延迟 Trigger/Queue 回放并发</td>
+<td>人工最终提交版本受保护；旧自动结果被拒绝并有解释</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>转派客服失败</td>
+<td>原客服与容量保持；再次操作读取最新状态</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>团队/日历引用失效</td>
+<td>不静默去旧规则；显示配置异常并支持修复恢复</td>
+</tr>
+<tr>
+<td>A12</td>
+<td>DB 已提交但通知/ES 失败</td>
+<td>展示真实归属与投影处理中；只补副作用，不重复分配</td>
+</tr>
+<tr>
+<td>A13</td>
+<td>两实例争同单、两单争最后一个容量</td>
+<td>一份有效归属/一次容量占用；失败者重新评估或等待</td>
+</tr>
+<tr>
+<td>A14</td>
+<td>模拟、保存、加载失败、部分成功、刷新重入</td>
+<td>模拟零业务副作用，草稿/已保存版本可恢复，错误和重试明确</td>
+</tr>
+<tr>
+<td>A15</td>
+<td>旧/新模式切换、回退、旧事件迟到</td>
+<td>无双写；原活动周期可完成；新周期执行指定版本</td>
+</tr>
+<tr>
+<td>A16</td>
+<td>已解决工单正式重开/AI 转人工</td>
+<td>开新周期；旧分单记录保留，旧周期回放不影响当前归属</td>
+</tr>
+</tbody></table></div>
+</div></details>
+<details class="detail-block" id="s-5-4"><summary><span>5.4</span>二至四期验收清单<small>展开细则</small></summary><div class="prose"><div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>场景</th>
+<th>必须结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S01</td>
+<td>队列必需德语，Trigger 又追加可选德语和必需硬件</td>
+<td>德语按必需去重，与硬件 AND；记录全部来源</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>优先客服在线有容量，但缺必需技能；另一个成员满足</td>
+<td>选后者；没有合格成员则等待，不绕过技能</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>可选技能时限前后、重复到期、进程重启</td>
+<td>时限前不放宽，达到边界只放宽可选项；同周期计时不重置</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>必需技能缺失且超过可选技能时限</td>
+<td>仍不分配，显示缺失技能；不转旧分单</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>技能截止与总排队截止同时发生</td>
+<td>总排队结束政策优先，无迟到分配</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>技能改名/停用/成员撤销与提交竞争</td>
+<td>ID 稳定、活跃引用阻止停用；提交重查资格版本，已在办不抢单</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>无技能要求的工单与有技能工单同时存在</td>
+<td>前者行为与一期一致；后者不会被普通路径绕过</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>回退二期且存在技能依赖或活动周期</td>
+<td>阻断直接关闭过滤，保留执行器或暂停交人工；记录回退边界</td>
+</tr>
+<tr>
+<td>C01</td>
+<td>主团队满载，达到溢出阈值，备用有容量但缺必需技能</td>
+<td>不能分给备用该成员；范围扩展不削弱技能</td>
+</tr>
+<tr>
+<td>C02</td>
+<td>同客服属于主备用团队，两个实例同时选中</td>
+<td>候选去重，仅一次容量占用</td>
+</tr>
+<tr>
+<td>C03</td>
+<td>邀请到期与接受并发，旧接受回放</td>
+<td>只一个有效终态；预留只释放/转占用一次</td>
+</tr>
+<tr>
+<td>C04</td>
+<td>邀请多次拒绝/无人可接/总等待到期</td>
+<td>不无限快速重投；按次数/冷却/总截止恢复或退出</td>
+</tr>
+<tr>
+<td>O01</td>
+<td>高优先级工单需要不匹配技能，后面工单可服务</td>
+<td>当前客服能取后面的工单，不被不可服务队首阻塞</td>
+</tr>
+<tr>
+<td>O02</td>
+<td>修改队列匹配顺序</td>
+<td>不等价于改变资源抢占等级，已在办不改派</td>
+</tr>
+<tr>
+<td>O03</td>
+<td>SLA 已违约、无 SLA、普通低优先级长时间等待</td>
+<td>已违约不自动关闭；老化/保障策略按已评审阈值生效</td>
+</tr>
+<tr>
+<td>O04</td>
+<td>DB 归属成功、报表/通知投影延迟</td>
+<td>看板区分事实与延迟，不重复分配来修复报表</td>
+</tr>
+</tbody></table></div>
+</div></details>
+<details class="detail-block" id="s-5-5"><summary><span>5.5</span>工程约束与发布后观察<small>展开细则</small></summary><div class="prose"><p><strong>本轮用户走查补充原则：</strong> 可用性验收必须让没有参与设计的人，根据界面独立回答“在哪配、谁先判断、什么被跳过、为什么分给此人、无人可接怎么办”。页面能加载、动画能播放、每个按钮有响应都不能代替理解验收。配置→试单必须共享真实演示状态；每一步展示输入、判断证据与结果，禁止用互不连续的独立样例伪装完整流程。</p>
+<p>复用 Trigger 条件能力、Queue/Team/Calendar/Capacity、HSR 与持久命令/Outbox。新增或扩展决策记录保存来源、工单版本、配置版本、周期和原因；具体表结构在技术设计时决定。</p>
+<p>关键前置是<strong>完整盘点所有负责人写入方</strong>：Trigger、旧 Automation、Queue、人工/批量、OpenAPI、渠道建单/重开/转人工。必须统一提交校验，不能只改三个入口；首期之外的写入方必须有清晰兼容适配或不进入新模式。</p>
+<p>规则阶段要区分本地业务事实准备与分配意图求值；复用现有定义、做目标模式的执行阶段拆分，不能靠 <code>sleep</code> 等待两个异步消费者“碰巧顺序正确”。外部副作用走独立幂等执行；分配失败不能重放整条规则造成重复通知。</p>
+<p>以租户 + 工单 + 服务周期为归属并发单位，以租户 + 坐席 + 渠道为容量单位。提交同时复核版本、资格和容量；冲突重新评估，不静默最后写入覆盖。分布式锁竞争失败保留待处理并重试，不当作已完成；锁粒度、续租/超时、进程崩溃后恢复需在技术详设中明确。持久状态、条件更新和幂等键必须共同兜底，不能只靠 JVM 或 Redis 锁。</p>
+<p>队列唤醒与补偿扫描需要多实例 claim/去重；本轮跳过的记录保留可扫描状态。DB 主事实与 ES/通知分别核对；技术失败、结果未知、业务不可接单不能共用一个“失败”状态。</p>
+<p>负责人非预期变更次数、重复分配/重复容量占用、决策无终态数、最长等待时间、无匹配/默认队列占比、配置失败、重试积压、人工交回/接管率。按模式/版本/渠道分组；同一指标同时观察业务结果和技术投递情况。二期增加无必需技能候选率、可选技能放宽率、技能违规数（验收目标 0）及放宽前后等待/转派率；三期增加溢出率、邀请接受率与悬挂预留数（目标 0）；四期增加 P50/P95 等待、SLA 违约率和长尾等待。试点前采集基线，非零改善目标由样本与业务确认，不能预设收益。</p>
+</div></details></details><footer class="chapter-next"><a href="#decisions"><small>接下来 · 06</small><b>待确认决策 →</b></a></footer></article>
+<article class="chapter" id="decisions" data-chapter="5"><header class="chapter-heading"><p class="eyebrow">06 / 待确认决策</p><h2>评审需要确认哪些取舍</h2><div class="chapter-lead">先确认核心边界，再进入实现。</div></header><div class="decision-grid"><article><span class="visual-kicker">归属保护 · 待确认</span><div class="decision-icon" aria-hidden="true">▣</div><h3>已有负责人</h3><span class="decision-line" aria-hidden="true">↓</span><p>普通自动规则不覆盖</p></article><article><span class="visual-kicker">不可用时 · 待确认</span><div class="decision-icon" aria-hidden="true">⇄</div><h3>优先客服离线 / 满载</h3><span class="decision-line" aria-hidden="true">↓</span><p>交给同队列合格成员</p></article><article><span class="visual-kicker">迁移范围 · 待确认</span><div class="decision-icon" aria-hidden="true">◫</div><h3>Email + 支持的 Message</h3><span class="decision-line" aria-hidden="true">↓</span><p>显式确认后切换；Voice 保持现状</p></article><a href="#s-6-1" class="visual-foot">以上为推荐取舍；查看完整待确认清单 →</a></div><details class="detail-block chapter-reference" id="reference-decisions"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>方案完整不等于决策已冻结。</strong> 以下项目由产品、客户成功或工程共同确认；本次资料整合不改变它们的待评审状态，也不授权实施或上线。</p>
+</div><section class="section-card" id="s-6-1"><h3><span>6.1</span>决策清单与责任</h3><div class="prose"><p>这些是建议，不是用户已批准的决策。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>决策</th>
+<th>推荐</th>
+<th>负责人 / 是否阻塞实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已有负责人能否被普通自动规则改写</td>
+<td>默认保护，自动转派后置为独立受控能力</td>
+<td>产品 / 阻塞</td>
+</tr>
+<tr>
+<td>指定客服不可用怎么办</td>
+<td>转同队列其他合格客服，确保服务继续；暂不做无限等专属客服</td>
+<td>产品与客户成功 / 阻塞</td>
+</tr>
+<tr>
+<td>队列顺序是否同时决定抢占优先级</td>
+<td>首期只用于匹配；等待按时间 FIFO</td>
+<td>产品 / 阻塞</td>
+</tr>
+<tr>
+<td>首期覆盖哪些渠道</td>
+<td>Email + 已支持 HSR 的 Message，Voice 保持现状</td>
+<td>产品与工程 / 阻塞</td>
+</tr>
+<tr>
+<td>HITL 审核是否与实时会话共享容量</td>
+<td>先核实现有服务周期和容量事实，单独给出映射再决定</td>
+<td>产品与工程 / HITL 纳入前阻塞</td>
+</tr>
+<tr>
+<td>需要保留旧强制指派/离线自动分配吗</td>
+<td>在旧模式保留；不自动转换成新“优先指派”</td>
+<td>产品与客户成功 / 迁移前阻塞</td>
+</tr>
+<tr>
+<td>四期顺序与技能优先级</td>
+<td>一期统一安全边界，二期技能，三期服务连续性，四期目标运营；若客户技能需求紧迫，可并行做二期主数据，但不得绕过一期执行边界上线</td>
+<td>产品 / 排期前阻塞</td>
+</tr>
+<tr>
+<td>技能要求合并与超时时钟</td>
+<td>并集、必需优先、AND；入队起自然时间计时，一次放宽所有可选项</td>
+<td>产品 / 二期实现前阻塞</td>
+</tr>
+<tr>
+<td>初始技能目录与维护责任</td>
+<td>CS 与主管维护，二期管理员授权编辑，不自动从 AI 推断客服能力</td>
+<td>产品与 CS / 二期试点前阻塞</td>
+</tr>
+<tr>
+<td>备用团队与邀请支持渠道</td>
+<td>溢出只扩大范围；邀请仅对具备契约的 Message 渠道</td>
+<td>产品与渠道工程 / 三期实现前阻塞</td>
+</tr>
+<tr>
+<td>SLA 老化与无 SLA 保障阈值</td>
+<td>用实际量级和基线评审；保留低优先级可服务工单处理机会</td>
+<td>产品与数据 / 四期实现前阻塞</td>
+</tr>
+<tr>
+<td>试点租户、政策和量化基线</td>
+<td>选择能覆盖普通/例外/等待/接管场景的租户；不凭猜测指定客户</td>
+<td>产品与客户成功 / 试点前阻塞</td>
+</tr>
+</tbody></table></div>
+</div></section>
+<section class="section-card" id="s-6-2"><h3><span>6.2</span>进入实施的下一道门槛</h3><div class="prose"><p>先确认一期覆盖渠道、负责人保护、指定客服不可用时的处理、旧行为迁移和试点范围；随后审计所有负责人写入方与渠道契约，形成技术详设及任务拆分。</p>
+<p>二期还需确认技能合并与时钟、目录维护责任；三期确认邀请/接受协议；四期确认 SLA 与长期等待阈值。原客服优先、跨渠道总负载、AI 预测选人和技能等级维持待评估，不默认进入承诺范围。</p>
+</div></section></details><footer class="chapter-next"><a href="#evidence"><small>接下来 · 07</small><b>依据与边界 →</b></a></footer></article>
+<article class="chapter" id="evidence" data-chapter="6"><header class="chapter-heading"><p class="eyebrow">07 / 依据与边界</p><h2>依据、原型和验证边界</h2><div class="chapter-lead">图解是提案，原型是演示；生产能力另行验证。</div></header><div class="visual-board proof-board"><a href="#s-7-1" class="proof-step"><span class="proof-symbol" aria-hidden="true">⌘</span><div><span class="visual-tag">已核实范围</span><h3>代码依据</h3><b>固定基线核实</b><p>不是租户启用证明</p></div></a><a href="#s-7-2" class="proof-step"><span class="proof-symbol" aria-hidden="true">◇</span><div><span class="visual-tag">待评审</span><h3>方案与原型</h3><b>建议机制 + 虚构数据</b><p>不是后端实现证明</p></div></a><a href="#s-5-5" class="proof-step"><span class="proof-symbol" aria-hidden="true">○</span><div><span class="visual-tag">未实施</span><h3>实施与上线</h3><b>尚未进入</b><p>需渠道 / 并发 / 试点验收</p></div></a></div><details class="detail-block chapter-reference" id="reference-evidence"><summary>完整规则与依据 <small>按需展开 · 保留全部细节</small></summary><div class="chapter-lead reference-lead"><p><strong>代码证据、产品提案、离线原型和上线结果分别记录。</strong> 本方案可用于产品评审，不能作为当前生产能力说明或发布完成证明。</p>
+</div><details class="detail-block" id="s-7-1"><summary><span>7.1</span>代码与竞品依据<small>展开细则</small></summary><div class="prose"><blockquote>
+<p>代码基线：Tars <code>origin/master@5c2b578b07d19921b2c5ea995ffd40872deaf455</code>；HelpDesk <code>origin/master@fab4c87849363c524fc16706d0b66ceea3e02535</code>。为 2026-11-03 已拉取核对的分析基线；2026-11-04 新增技能与分期规划仍沿用该基线，不代表今日最新 master。V0.8 已完成生产只读配置核查，V0.9 保留结论（第 3.7 节）；未验证生产端到端运行行为。</p>
+</blockquote>
+<p>以下路径均相对于对应仓库，行号对应第 7.1 节的固定基线。代码证据只说明 master 行为，不能证明线上配置、部署或客户使用状态。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>编号</th>
+<th>仓库 / 文件:行号</th>
+<th>支持的结论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E1</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/entrance/message/automation/AutomationMessageConsumer.java:31–47</code></td>
+<td>TICKET_TO_AGENT 先走 Queue；HANDLED 返回，否则旧规则</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/automation/impl/AutomationBizServiceImpl.java:135–157</code></td>
+<td>首个匹配旧规则派发动作后返回</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/domain/automation/strategy/impl/AutomationActionAvgAssignStrategy.java:72–162</code></td>
+<td>已有负责人跳过；用户组、在线过滤、日工作量、Open 工单选人</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/trigger/TriggerActionAdapter.java:85–109,143–153</code></td>
+<td>按排班与普通指派动作</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/domain/ticket/basic/impl/TicketServiceImpl.java:304–349</code></td>
+<td>AI 状态校验；更新负责人、ES 和操作日志；无已有负责人保护</td>
+</tr>
+<tr>
+<td>E6</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/trigger/TriggerExecutionService.java:115–172</code></td>
+<td>Trigger 独立求值、多轮刷新事实与执行上限</td>
+</tr>
+<tr>
+<td>E7</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/routing/HumanRoutingService.java:336–368,438–468</code></td>
+<td>活动请求、开关、匹配、已有负责人、准入和入队</td>
+</tr>
+<tr>
+<td>E8</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/routing/QueueMatcher.java:47–67</code>；<code>infra/routing/store/RoutingQueueRepositoryImpl.java:31–47</code>（同 Java 包根）</td>
+<td>首个队列匹配，position/id 顺序</td>
+</tr>
+<tr>
+<td>E9</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/routing/AgentSelectionService.java:42–112</code></td>
+<td>团队有效成员、在线、余量与上次分配排序</td>
+</tr>
+<tr>
+<td>E10</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/routing/HumanServiceAdmissionPolicy.java:21–40</code></td>
+<td>V2 身份与全离线预检；渠道不能一概而论</td>
+</tr>
+<tr>
+<td>E11</td>
+<td>HelpDesk <code>src/pages/Settings/menuConfig.tsx:43–105</code>；<code>src/pages/Trigger/index.tsx:348–349,1305–1353</code></td>
+<td>分散入口、指派与按排班指派及无自动补派提示</td>
+</tr>
+<tr>
+<td>E12</td>
+<td>HelpDesk <code>src/pages/Settings/Queue/index.tsx:110–126</code></td>
+<td>前端队列顺序 priority 回退 position</td>
+</tr>
+<tr>
+<td>E13</td>
+<td>Tars <code>tars-service/src/main/java/com/shulex/solvea/tars/business/core/trigger/TriggerRuleBizService.java:101</code>；<code>TriggerAverageAssigner.java:33</code>（同目录）</td>
+<td>动作白名单；存在类但本次源码引用检索无调用，不认定功能开放</td>
+</tr>
+</tbody></table></div>
+<p>2026-11-04 技能定向核查：在上述固定基线的 <code>business/core/routing</code>、<code>domain/routing</code>、<code>business/core/trigger</code> 中检索 <code>skill/Skill/技能</code> 未发现匹配；<code>AgentSelectionService.java:42–112</code> 当前检查成员、在线和容量，未见技能过滤。本结论只覆盖这些路径和固定基线，不推断其他仓库、未合并分支或生产一定没有技能能力。</p>
+<p>工程导航参考：<code>docs/engineering/{README,business-overview,domain-map,business-closed-loops,verification-matrix}.md</code>。导航文档与源码存在粒度/更新时间差异时，本文现状结论以固定基线源码为依据。</p>
+</div></details>
+<details class="detail-block" id="s-7-2"><summary><span>7.2</span>高保真原型依据与交付边界<small>展开细则</small></summary><div class="prose"><p>V0.9 默认原型在同一页复用真实项目设置面板、白色内容区、规则表格与编辑抽屉的视觉结构，新增统一入口内连续配置与原因预演，数据均为虚构样例。旧的独立样例讲解不再作为默认验收入口。技能为二期预演，每个场景有标注的一期/二期初始值，并可切换同一工单对比；三、四期仅提供规则与验收设计，没有接通真实邀请、备用团队或 SLA 数据。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="方案对照表，可横向滚动"><table>
+<thead>
+<tr>
+<th>页面</th>
+<th>沿用真实项目</th>
+<th>完整方案交互目标（非均已在 V0.9 实现）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>设置外壳</td>
+<td>真实 Settings 导航、表格密度、边框与品牌色</td>
+<td>阅读页内直接呈现分单中心，适配正文宽度，不缩放 iframe</td>
+</tr>
+<tr>
+<td>分单中心</td>
+<td>Settings 标题/工具栏/表格与设计系统色值</td>
+<td>模式选择、关联规则、切换前检查、旧规则自动接管说明</td>
+</tr>
+<tr>
+<td>队列</td>
+<td>现有列表、团队/条件/等待字段、840px Modal</td>
+<td>默认队列校验、编辑、可访问排序、启停保护</td>
+</tr>
+<tr>
+<td>分单规则</td>
+<td>Trigger 规则来源、条件、动作与抽屉结构</td>
+<td>在统一入口关联编辑、启停、调序；试单同步变化</td>
+</tr>
+<tr>
+<td>旧自动分单</td>
+<td>Automation 独立“分单 / 合并关单”页面结构</td>
+<td>新模式下旧分单明确只读且不生效，其他功能不受影响</td>
+</tr>
+<tr>
+<td>工单详情</td>
+<td>工单列表/会话区/属性栏结构</td>
+<td>分单过程、转派、交回队列、失败保留原负责人</td>
+</tr>
+</tbody></table></div>
+<p>完整产品验收目标（V0.9 尚未覆盖全部）：设置 → 检查队列 → 查看关联 Trigger → 编辑并返回 → 模拟 → 查看切换影响 → 启用新模式 → 旧分单自动不生效 → 查看通用 Trigger 仍启用 → 查看工单分配记录 → 人工转派/交回 → 刷新重入。另覆盖配置缺失、加载失败、保存失败、部分成功、切换失败与回退；故障控制属于评审工具，不是正式产品功能。V0.9 已覆盖队列/关联规则/团队技能编辑、调序、九场景动画、配置异常阻止切换、草稿确认失效、演示发布与回退、保存/切换失败重试、通知部分成功补偿和刷新恢复。真实加载/保存接口、人工转派/交回、并发占用、实际迁移和渠道回调尚未接通，不用历史独立组件的测试替代。</p>
+<p>视觉来源：HelpDesk <code>origin/master@fab4c8784</code> 的上述组件；同时只读参考本地工作树 <code>ae5c2d2b</code>（相关样式未有本地未提交修改），其中 Trigger 与 RootShell 的分支差异仅作布局参考，不视为 master 已发布行为。设计色值来自已安装的 <code>@shulex/design</code> token：文本 <code>#0F1629/#5A6470</code>、背景 <code>#F3F4F6/#FFFFFF</code>、边框 <code>#EBEDF0/#DADDE1</code>、品牌蓝 <code>#1A5AE6</code>。本轮通过生产只读库核查配置与少量事件元数据；未读取工单消息正文。客户配置原文不进入 HTML。</p>
+</div></details>
+<section class="section-card" id="s-7-3"><h3><span>7.3</span>本次资料整合的验收标准</h3><div class="prose"><ul>
+<li>只有一个阅读入口、一套章序和一份正文来源，HTML 与 Markdown 通过摘要校验。</li>
+<li>正文、详细规则、原型和分期在同页各归其位；旧阅读链接兼容进入新章节。</li>
+<li>配置与试单共享草稿；刷新保留章节、已保存配置与所选场景；配置异常阻止启用，修复后可重试。</li>
+<li>保留一期 A01–A16、技能 S01–S08、服务连续性 C01–C04、运营 O01–O04 的验收口径。</li>
+<li>浏览器检查目录、章内展开、原型输入/错误恢复、刷新、移动端及公网入口。</li>
+<li>所有后端计时、并发、渠道协议、迁移和生产行为仍须在实施阶段验证。</li>
+</ul>
+<p>视觉阅读验收补充（V0.9）：新旧对照展示多入口的局部顺序、跨链路冲突与单入口的完整处理顺序。完整机制图必须从新旧模式互斥开始，明确一期运行链、二期技能插入点及三四期扩展。管理员交互按真实设置页面完成任务；配置导航与执行顺序分开表达。动画初始暂停，可播放或单步；移动必须对应真实演示状态变化，配合规则判断与候选原因，离屏/隐藏时暂停。改变顺序、工单与资源会实际改变演示结果；示意时间不冒充真实计时，减少动态效果偏好下关闭过渡。</p>
+</div></section></details><footer class="chapter-next"><a href="#decisions">回到待确认决策 →</a></footer></article></main><footer class="book-footer">Tars · 统一分单产品方案 · Markdown 与 HTML 同源生成 · 仅供内部产品评审</footer></div>
+<dialog id="image-dialog"><header><b id="image-caption"></b><button id="close-image">关闭图示</button></header><div><img id="image-large" alt=""></div></dialog><script type="application/json" id="visual-story-data">{"captions":["客户只进分单中心：先看规则顺序，再看承接队列，最后看分配结果。","先选新老模式，再看执行主线；一期、二期技能与后续增强明确分层。","先判断分单规则（关联 Trigger），再确定承接队列；在设置页中编辑、试单并迁移。","跟随一张属性完整的工单，看规则、技能、容量和时间如何改变去向。","先统一执行，再在同一条链上增强能力。","先确认核心边界，再进入实现。","图解是提案，原型是演示；生产能力另行验证。"],"phases":[["统一执行","一期","一个分配结果","模式互斥、归属保护、统一等待与迁移","A01–A16 + 渠道 E2E / 多实例证据"],["技能匹配","二期","找到能处理的人","必需与可选、候选解释、技能计时","S01–S08；不违反必需技能"],["服务连续性","三期","无人可接时有恢复","备用团队、可选邀请、受控转派","C01–C04；不重复归属与容量"],["服务目标","四期","先处理更该处理的单","优先级 / SLA、长期等待保障、运营诊断","O01–O04；可服务工单不被阻塞"]],"decisions":[["归属保护","已有负责人","普通自动规则不覆盖"],["不可用时","优先客服离线 / 满载","交给同队列合格成员"],["迁移范围","Email + 支持的 Message","显式确认后切换；Voice 保持现状"]],"proof":[["代码依据","固定基线核实","不是租户启用证明","s-7-1"],["方案与原型","建议机制 + 虚构数据","不是后端实现证明","s-7-2"],["实施与上线","尚未进入","需渠道 / 并发 / 试点验收","s-5-5"]],"demo":{"queues":[{"id":"service","name":"专属服务队列","team":"expert","match":"复购客户","required":["德语"],"optional":["退款"],"relax":60,"deadline":300,"enabled":true},{"id":"product","name":"产品服务队列","team":"expert","match":"主题包含产品 A","required":["硬件"],"optional":[],"relax":60,"deadline":300,"enabled":true},{"id":"default","name":"渠道兜底队列","team":"general","match":"Email / Message 未命中时","required":[],"optional":[],"relax":60,"deadline":300,"enabled":true}],"rules":[{"id":"r1","name":"复购客户优先专人","field":"repeat","value":"复购","scheduled":true,"queue":"service","preferred":"林薇","skills":["硬件"],"enabled":true},{"id":"r2","name":"产品 A 咨询优先专人","field":"product","value":"产品 A","scheduled":false,"queue":"product","preferred":"陈晨","skills":[],"enabled":true}],"agents":[{"name":"林薇","team":"expert","skills":["德语","硬件"],"online":true,"load":2,"capacity":5},{"name":"陈晨","team":"expert","skills":["英语","硬件","退款"],"online":true,"load":1,"capacity":5},{"name":"赵妍","team":"expert","skills":["德语","硬件","退款"],"online":true,"load":5,"capacity":5},{"name":"周宁","team":"expert","skills":["德语","硬件","退款"],"online":false,"load":0,"capacity":5},{"name":"许安","team":"general","skills":["英语"],"online":true,"load":1,"capacity":5}],"ticket":{"number":"10428","subject":"产品 A 摄像机无法连接，希望退款","brand":"星河数码","channel":"Email","language":"德语","priority":"高","type":"售后 / 退款","tags":["复购","保修内"],"event":"新建工单","owner":"","inHours":true,"businessOpen":true,"sla":"还剩 24 分钟","repeat":true,"product":true},"scenarios":[{"id":"skills","name":"技能等待与放宽","phase":2,"subtitle":"两条规则都命中；4 位成员各有条件限制。60 秒后只放宽可选技能。","patch":{}},{"id":"overlap","name":"一期：规则冲突","phase":1,"subtitle":"同一张复购 + 产品 A 工单，首个有效分配动作决定目标。","patch":{}},{"id":"schedule","name":"排班外继续判断","phase":2,"subtitle":"复购规则不在生效时段；继续产品规则，普通队列匹配不会抢回目标。","patch":{"inHours":false}},{"id":"protected","name":"已有人负责","phase":2,"subtitle":"优先保护已有负责人；标签、通知等通用 Trigger 仍可运行。","patch":{"owner":"许安","event":"客户再次回复"}},{"id":"capacity","name":"容量释放后恢复","phase":2,"subtitle":"先等技能放宽，再等容量释放；始终留在同一队列。","patch":{"busy":true,"releaseAt":90}},{"id":"message","name":"Message 排队到期","phase":2,"subtitle":"技能放宽仍满载，到达总时限后结束本次实时排队。","patch":{"channel":"Message","busy":true}},{"id":"email","name":"Email 超时待处理","phase":2,"subtitle":"同样满载，邮件到期只提醒主管，保留待处理。","patch":{"busy":true}},{"id":"normal","name":"无规则也能分单","phase":1,"subtitle":"普通咨询没有分配例外，进入渠道兜底队列。","patch":{"subject":"订单配送咨询","tags":[],"repeat":false,"product":false,"language":"英语","priority":"普通","type":"物流咨询"}},{"id":"notify","name":"分配成功、通知失败","phase":1,"subtitle":"负责人已确认；只补发通知，不重新选人或重复占用容量。","patch":{"notifyFailed":true}}]}}</script><script>/* Pure, bounded proposal model shared by animation, configuration preview and verification. */
+function routingErrors(c){const errors=[];if(!c.queues.find(q=>q.id==='default'&&q.enabled))errors.push('缺少已启用的渠道兜底队列');for(const r of c.rules.filter(r=>r.enabled)){const q=c.queues.find(q=>q.id===r.queue&&q.enabled);if(!q)errors.push(r.name+' 引用了停用队列');else if(r.preferred&&!c.agents.some(a=>a.name===r.preferred&&a.team===q.team))errors.push(r.name+' 的优先客服不在目标团队');}for(const q of c.queues){if(q.relax<0||q.deadline<1)errors.push(q.name+' 的时间配置无效');}return errors;}
+function routingDecision(c,t){
+ let rule=null;const rows=c.rules.map(r=>{let state,reason;if(rule){state='不再采纳';reason='前序分配动作已生效';}else if(!r.enabled){state='已停用';reason='不参与本次计算';}else if(!t[r.field]){state='未命中';reason=r.field==='repeat'?'没有复购标签':'主题不包含产品 A';}else if(r.scheduled&&!t.inHours){state='时段外';reason='条件命中，当前不在规则生效时段';}else{rule=r;state='生效';reason='条件'+(r.scheduled?'与时段':'')+'满足';}return {...r,state,reason};});
+ const q=rule?c.queues.find(q=>q.id===rule.queue):c.queues.find(q=>q.enabled&&((q.id==='service'&&t.repeat)||(q.id==='product'&&t.product)))||c.queues.find(q=>q.id==='default');
+ const required=[...new Set([...(q?.required||[]),...(rule?.skills||[])])],optional=(q?.optional||[]).filter(x=>!required.includes(x));return {rule,rows,q,required,optional};
+}
+function routingCandidates(c,t,d,phase,elapsed){return c.agents.map(a=>{
+ const load=t.busy&&!(t.releaseAt!=null&&elapsed>=t.releaseAt&&a.name==='林薇')?a.capacity:a.load;
+ const required=phase===2?d.required.filter(s=>!a.skills.includes(s)):[],optional=phase===2&&elapsed<d.q.relax?d.optional.filter(s=>!a.skills.includes(s)):[];
+ const issues=[...(a.team!==d.q.team?['不在目标团队']:[]),...(!t.businessOpen?['团队营业外']:[]),...(!a.online?['离线']:[]),...(load>=a.capacity?['容量已满']:[]),...(required.length?['缺必需：'+required.join('、')]:[]),...(optional.length?['缺可选：'+optional.join('、')]:[])];
+ return {...a,load,issues,eligible:!issues.length,preferred:d.rule?.preferred===a.name};
+});}
+function routingFrames(c,t,phase){
+ const frames=[];const add=(stage,title,note,extra={})=>frames.push({stage,title,note,elapsed:0,...extra});
+ add(0,'本次用新机制草稿试单','演示不修改真实工单；只有完成迁移才会接管选定渠道。');
+ if(t.owner){add(1,'保留 '+t.owner+' 负责','已有负责人，本次跳过自动分配；通用 Trigger 继续执行。',{owner:t.owner,status:'归属受保护',terminal:true});return frames;}
+ add(1,'尚无负责人，可以开始分单','已接手的工单不会因普通规则命中而被抢走。');
+ const errors=routingErrors(c);if(errors.length){add(2,'配置异常，暂停分单',errors.join('；'),{status:'配置异常',terminal:true});return frames;}
+ const d=routingDecision(c,t);d.rows.forEach((r,i)=>add(2,r.name+' · '+r.state,r.reason,{decision:d,ruleIndex:i,rows:d.rows.slice(0,i+1)}));
+ add(3,'进入 '+d.q.name,d.rule?'使用生效规则指定的目标；不再按普通队列条件改选。':d.q.id==='default'?'没有有效分配例外，普通队列也未命中，使用本渠道兜底。':'没有有效分配例外，按队列条件从上往下匹配。',{decision:d,queue:d.q.name});
+ add(4,phase===2?'合并技能要求':'一期：跳过技能筛选',phase===2?'必需 = 队列默认 + 规则追加；全部满足。可选可按等待时限放宽。':'一期仍检查团队、营业、在线与容量；二期才增加技能约束。',{decision:d,queue:d.q.name});
+ let elapsed=0,candidates=routingCandidates(c,t,d,phase,elapsed);
+ const winner=()=>candidates.filter(a=>a.eligible).sort((a,b)=>Number(b.preferred)-Number(a.preferred)||(b.capacity-b.load)-(a.capacity-a.load)||a.name.localeCompare(b.name))[0];
+ add(5,'逐个检查候选人','每位成员显示未入选原因；优先客服同样要满足所有接单条件。',{decision:d,queue:d.q.name,candidates});
+ if(t.channel==='Message'&&(!t.businessOpen||!candidates.some(a=>a.team===d.q.team&&a.online))){add(7,'当前无法进入实时接待','营业外或团队无人在线，按 Message 渠道政策提示并退出。',{decision:d,queue:d.q.name,candidates,status:'结束本次排队',terminal:true});return frames;}
+ if(!winner()){
+  add(6,'留在原队列等待','不尝试低顺序规则、不跳下一队列，也不调用旧自动分单。',{decision:d,queue:d.q.name,candidates,status:'等待中'});
+  const times=[...(phase===2&&d.optional.length?[d.q.relax]:[]),...(t.releaseAt!=null?[t.releaseAt]:[]),d.q.deadline].filter(x=>x>0&&x<=d.q.deadline).sort((a,b)=>a-b);
+  for(const time of [...new Set(times)]){
+   elapsed=time;
+   // The Message deadline is terminal and wins over resource changes at the same instant.
+   if(t.channel==='Message'&&elapsed>=d.q.deadline){add(7,'到达总等待上限','结束本次实时排队并提示客户；不关闭客户问题、不偷偷转成邮件。',{decision:d,queue:d.q.name,elapsed,candidates,status:'结束本次排队',terminal:true});return frames;}
+   candidates=routingCandidates(c,t,d,phase,elapsed);
+   add(6,(t.releaseAt===time?'容量已释放':time===d.q.relax&&phase===2?'可选技能已放宽':'Email 等待超时'),t.releaseAt===time?'林薇出现空位，仍在原队列重新检查资格。':time===d.q.relax&&phase===2?'只放宽可选技能；必需技能、团队、在线与容量继续保留。':'提醒主管一次，Email 保留待处理；资源恢复后继续尝试。',{decision:d,queue:d.q.name,candidates,elapsed,status:'等待中'});
+   if(winner())break;
+  }
+ }
+ const selected=winner();
+ if(selected){add(7,'分配给 '+selected.name,selected.preferred?'优先客服符合当前资格，提交一次归属与容量。':'优先客服不可用或未指定；在合格成员中按剩余容量选择。',{decision:d,queue:d.q.name,candidates,elapsed,owner:selected.name,status:'已分配',terminal:!t.notifyFailed});if(t.notifyFailed){add(7,'已分配，通知发送失败','负责人和容量已确认，只重试通知，不重新分单。',{decision:d,queue:d.q.name,candidates,elapsed,owner:selected.name,status:'通知待补发',terminal:true});if(t.notificationRecovered)add(7,'通知补发成功','沿用原负责人，只完成通知补偿；不重新占用容量。',{decision:d,queue:d.q.name,candidates,elapsed,owner:selected.name,status:'已分配 · 通知已恢复',terminal:true});}}
+ else {const last=frames[frames.length-1];last.terminal=true;last.status='超时待处理';
+  if(t.channel==='Email'&&t.recoverAfterDeadline){elapsed=d.q.deadline+30;candidates=routingCandidates(c,{...t,releaseAt:elapsed},d,phase,elapsed);const recovered=winner();add(7,recovered?'容量恢复，分配给 '+recovered.name:'资源变化后仍无合格成员','Email 在原队列重新检查；仍遵守优先客服和剩余容量选择，不重新选择规则。',{decision:d,queue:d.q.name,candidates,elapsed,owner:recovered?.name,status:recovered?'已分配':'超时待处理',terminal:true});}
+ }
+ return frames;
+}
+
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const visualStory=JSON.parse($('visual-story-data').textContent),demo=visualStory.demo;
+const chapters=['why','mechanism','configure','runtime','roadmap','decisions','evidence'],names=['为什么统一','完整机制','配置与迁移','运行与恢复','分期与验收','待确认决策','依据与边界'];
+const clone=x=>JSON.parse(JSON.stringify(x)),storageKey='tars-routing-review-v09';
+const fresh=()=>({rules:clone(demo.rules),queues:clone(demo.queues),agents:clone(demo.agents),tab:'mode',page:'center',scene:'skills',phase:2,frame:0,ticketPatch:{},channels:['Email'],mode:'legacy',published:null,accepted:null,migration:{dedicated:false,overlap:false}});
+let state=fresh(),storageError=false,playing=false,timer=null,speed=2200,failNext='',mapPhase=1;
+try{const saved=JSON.parse(localStorage.getItem(storageKey));if(saved&&saved.rules?.length===2&&saved.queues?.length===3&&saved.agents?.length===5&&demo.scenarios.some(s=>s.id===saved.scene))state={...state,...saved};}catch{storageError=true;}
+const fingerprint=()=>JSON.stringify({rules:state.rules,queues:state.queues,agents:state.agents,channels:state.channels});
+const currentScene=()=>demo.scenarios.find(s=>s.id===state.scene),ticket=()=>({...clone(demo.ticket),...clone(currentScene().patch),...state.ticketPatch});
+let frames=routingFrames(state,ticket(),state.phase);state.frame=Math.min(state.frame,frames.length-1);
+function saveState(){try{localStorage.setItem(storageKey,JSON.stringify(state));storageError=false;}catch{storageError=true;}if(storageError)$('hifi-message').textContent='本机存储不可用，修改仅本次有效；请保持页面打开。';}
+function announce(text){$('hifi-message').textContent=text;}
+function stopMovie(){playing=false;clearTimeout(timer);$('movie-play').textContent=state.frame===frames.length-1?'▶ 重播分单过程':'▶ 播放分单过程';}
+function recompute(){stopMovie();frames=routingFrames(state,ticket(),state.phase);state.frame=0;state.accepted=null;saveState();renderMovie();}
+function configChanged(){recompute();renderHifi();announce('草稿已保存。动画已更新，请重新确认试单结果；当前已发布版本不受草稿修改影响。');}
+function renderMap(){document.querySelectorAll('[data-map-phase]').forEach(b=>b.setAttribute('aria-pressed',Number(b.dataset.mapPhase)===mapPhase));$('mechanism-chain').innerHTML=[['保护已有负责人','有人负责 → 保留；只跳过自动分配'],['先判断分单规则（关联 Trigger）','按顺序判断；首个有效动作指定队列，无有效动作则按队列条件匹配'],['确定一个队列','显式指定优先；否则按条件匹配 → 渠道兜底'],[mapPhase===2?'合并技能要求 · 二期':'技能要求 · 二期扩展',mapPhase===2?'队列默认 + Trigger 追加 → 必需全部满足；可选可到期放宽':'一期跳过；二期在选人前明确必需与可选能力'],['统一检查候选资格','团队 / 权限 / 营业 / 在线 / 容量；二期再检查技能'],['统一选人并确认归属','有合格成员 → 分配；无人可接 → 按队列政策等待']].map(([a,b],i)=>`<div class="mechanism-node ${i===3?(mapPhase===2?'skill-on':'skill-off'):''}"><span>${i+1}</span><div><b>${a}</b><small>${b}</small></div></div>`).join('');}
+document.querySelectorAll('[data-map-phase]').forEach(b=>b.onclick=()=>{mapPhase=Number(b.dataset.mapPhase);renderMap();});
+const teamName=id=>id==='expert'?'国际产品团队':'综合服务团队';
+const badge=(s,t='')=>`<span class="hifi-badge ${t}">${esc(s)}</span>`;
+const primary=(text,attrs='')=>`<button class="primary" ${attrs}>${text}</button>`;
+function appTab(tab){state.page='center';state.tab=tab;saveState();renderHifi();}
+function renderHifi(){
+ document.querySelectorAll('[data-app-page]').forEach(b=>b.classList.toggle('chosen',state.page===b.dataset.appPage));
+ document.querySelectorAll('[data-hifi-tab]').forEach(b=>b.setAttribute('aria-pressed',state.page==='center'&&state.tab===b.dataset.hifiTab));
+ $('hifi-title').textContent=({center:'分单中心',trigger:'Trigger',legacy:'自动规则',team:'团队与容量',skills:'技能管理'})[state.page];
+ $('hifi-mode').innerHTML=badge(state.mode==='new'?'队列路由已启用':'当前：旧模式',state.mode==='new'?'green':'')+(state.published&&state.published!==fingerprint()?badge('有未发布草稿','amber'):'');
+ const page=state.page==='center'?state.tab:state.page;
+ let html='';
+ if(page==='mode')html=`<div class="hifi-section-head"><div><h4>分单方式</h4><p>按渠道切换。保存队列或规则不会立即改变现有分单。${state.published?' 当前已启用：'+JSON.parse(state.published).channels.join('、'):''}</p></div></div><div class="scope-picker"><b>草稿迁移范围</b>${['Email','Message'].map(c=>`<label><input type="checkbox" data-channel="${c}" ${state.channels.includes(c)?'checked':''}>${c}</label>`).join('')}<small>Voice 保持原机制</small></div><div class="mode-cards"><article class="${state.mode==='legacy'?'selected':''}"><h4>旧模式 ${state.mode==='legacy'?badge('使用中'):badge('已停用')}</h4><p>保留原有自动分单、Trigger 指派与 Queue 接管行为。</p><small>适合尚未完成迁移差异确认的渠道。</small></article><article class="${state.mode==='new'?'selected':''}"><h4>队列路由 ${badge('建议新模式','blue')}</h4><p>一个入口、一条执行顺序；统一选人、等待与分单记录。</p><small>技能为二期扩展，不是启用新模式的必要条件。</small></article></div><div class="hifi-info">Trigger 的标签、通知、Webhook 不因分单模式切换而停用。</div><div class="hifi-actions">${state.mode==='new'?'<button id="rollback-mode">恢复演示旧模式</button>':''}${primary(state.mode==='new'?'检查并发布新草稿':'检查迁移条件 →','data-open-migration')}</div>`;
+ if(page==='queues')html=`<div class="hifi-section-head"><div><h4>承接队列</h4><p>决定由哪个团队承接、如何选人和等待。先判断 Trigger 分单规则，再确定承接队列。</p></div></div><div class="hifi-table-scroll"><table class="hifi-table"><thead><tr><th>顺序 / 队列</th><th>匹配条件</th><th>承接团队</th><th>等待政策</th><th>操作</th></tr></thead><tbody>${state.queues.map((q,i)=>`<tr><td><b>${q.id==='default'?'兜底':i+1}　${esc(q.name)}</b>${badge(q.enabled?'启用':'停用',q.enabled?'green':'')}</td><td>${esc(q.match)}</td><td>${teamName(q.team)}</td><td>${q.deadline} 秒<br><small>按渠道处理</small></td><td><button data-edit-queue="${q.id}">编辑</button></td></tr>`).join('')}</tbody></table></div><div class="hifi-info">规则指定了队列 → 使用指定队列；没有有效分单动作 → 按上表条件依次匹配，最后兜底。队列确定团队后，再检查在线、容量与技能并选客服。</div>`;
+ if(page==='rules'||page==='trigger')html=`<div class="hifi-section-head"><div><h4>${page==='trigger'?'通用业务规则':'分单规则（关联 Trigger）'}</h4><p>${page==='trigger'?'通用动作独立管理；分配动作关联到分单中心，不复制规则。':'决定进入哪个队列。这里关联 Trigger 的分单动作，使用同一条规则。'}</p></div><button id="swap-rules">交换两条分单规则顺序</button></div>${page==='trigger'?'<div class="generic-rule"><b>业务提醒</b><span>客服回复包含升级信息 → 添加内部备注</span>'+badge('保持启用','green')+'</div>':''}<div class="hifi-table-scroll"><table class="hifi-table"><thead><tr><th>次序 / 规则</th><th>全部条件</th><th>分配动作</th><th>操作</th></tr></thead><tbody>${state.rules.map((r,i)=>`<tr><td><b>${i+1}　${esc(r.name)}</b><small>Trigger / 分单例外 / ${r.id.toUpperCase()}</small>${badge(r.enabled?'启用':'停用',r.enabled?'green':'')}</td><td>${r.field==='repeat'?'标签包含复购':'主题包含产品 A'}${r.scheduled?'<br>规则生效日历内':''}</td><td>${esc(state.queues.find(q=>q.id===r.queue)?.name||'队列缺失')}<small>优先 ${esc(r.preferred||'无')} · 不可接则团队承接</small></td><td><button data-edit-rule="${r.id}">编辑</button></td></tr>`).join('')}</tbody></table></div>${page==='trigger'?'<button data-open-center>在分单中心管理分配动作 →</button>':'<div class="hifi-info">先按顺序判断：首个有效分单动作指定队列；均无有效动作则按队列条件匹配，最后兜底。标签、通知等通用动作继续按各自条件执行。调序同步到原 Trigger；混合动作需检查影响。</div>'}`;
+ if(page==='skills')html=`<div class="hifi-section-head"><div><h4>技能路由 ${badge('二期预演','purple')}</h4><p>必需不能放宽；可选可到期放宽。优先客服也需要满足技能。</p></div></div><div class="skill-policy-grid">${state.queues.filter(q=>q.id!=='default').map(q=>`<article><b>${esc(q.name)}</b><div>必需 ${q.required.map(x=>badge(x,'purple')).join('')||'无'}</div><div>可选 ${q.optional.map(x=>badge(x)).join('')||'无'}</div><small>等待 ${q.relax} 秒放宽可选；总等待 ${q.deadline} 秒</small><button data-edit-queue="${q.id}">配置技能与等待</button></article>`).join('')}</div><div class="hifi-info">示例复购规则追加「硬件」，与队列默认「德语」合并；最终必须同时具备德语 + 硬件。</div>${agentsTable()}`;
+ if(page==='team')html=`<div class="hifi-section-head"><div><h4>接单资源</h4><p>与队列复用同一团队、在线状态、容量和技能。修改会更新动画。</p></div></div>${agentsTable()}`;
+ if(page==='legacy')html=`<div class="hifi-section-head"><div><h4>旧自动分单</h4><p>${state.mode==='new'?'迁移范围只读，分单动作已停止。':'当前保留旧行为；新草稿尚未接管。'}</p></div>${badge(state.mode==='new'?'已停用 / 只读':'原配置保留',state.mode==='new'?'amber':'')}</div><div class="generic-rule"><b>产品 A 平均分单</b><span>产品 A 邮件 → 产品团队</span>${badge(state.mode==='new'?'不执行':'旧模式配置')}</div><div class="generic-rule"><b>通知邮件分类</b><span>符合通知条件 → 标记为通知工单</span>${badge('继续启用','green')}</div><button data-open-center>前往统一分单中心 →</button>`;
+ if(page==='migration'){
+ const errors=routingErrors(state),trial=state.accepted===fingerprint(),ready=!errors.length&&state.channels.length&&state.migration.dedicated&&state.migration.overlap&&trial;
+ html=`<div class="hifi-section-head"><div><h4>迁移检查</h4><p>合成样例。${state.mode==='new'?'草稿检查未通过时，保持当前已发布版本。':'差异未处理，所选渠道整体保持旧模式。'}</p></div>${badge(ready?'可以确认切换':'存在待处理项',ready?'green':'amber')}</div><div class="migration-row"><div><b>配置完整性</b><small>${errors.length?errors.map(esc).join('；'):'队列、目标团队、优先客服和兜底校验通过'}</small></div>${badge(errors.length?'需修复':'通过',errors.length?'amber':'green')}<button data-fix-queues>查看队列</button></div><div class="migration-row"><div><b>固定专人 → 优先专人</b><small>新机制增加在线、容量及技能校验；专人不可接时允许团队代接。</small><label><input type="checkbox" data-migration="dedicated" ${state.migration.dedicated?'checked':''}>确认本示例接受团队代接</label></div></div><div class="migration-row"><div><b>多个按班指派动作 → 明确顺序</b><small>新机制不保留后续覆盖；按上方分单规则列表首个有效动作生效。</small><label><input type="checkbox" data-migration="overlap" ${state.migration.overlap?'checked':''}>确认本示例采用新顺序，并接受已有负责人保护</label></div><button data-fix-rules>查看规则</button></div><div class="migration-row"><div><b>预演结果确认</b><small>${trial?'已查看并确认当前草稿的演示结果':'修改配置后需要重新预演并确认结果'}</small></div><a href="#runtime" id="migration-trial">播放草稿试单 →</a></div><div class="hifi-info">只停用选定范围的旧分单与旧直接指派；标签、通知、备注、Webhook 保留。真实历史映射与在途请求核对仍是实施门槛。</div><div class="hifi-actions">${primary(state.mode==='new'?'确认发布新草稿':'确认切换为队列路由',`id="publish-mode" ${ready?'':'disabled'}`)}</div><details class="fault-tools"><summary>评审工具 · 异常恢复演示</summary><button id="fail-save">下次保存失败</button><button id="fail-switch">下次切换失败</button><span>仅影响此演示，不是产品配置项。</span></details>`;
+ }
+ $('hifi-content').innerHTML=html;
+ document.querySelectorAll('[data-channel]').forEach(x=>x.onchange=()=>{state.channels=x.checked?[...state.channels,x.dataset.channel]:state.channels.filter(c=>c!==x.dataset.channel);configChanged();});
+ document.querySelectorAll('[data-open-migration]').forEach(b=>b.onclick=()=>appTab('migration'));
+ document.querySelectorAll('[data-open-center]').forEach(b=>b.onclick=()=>appTab('mode'));
+ document.querySelectorAll('[data-edit-queue]').forEach(b=>b.onclick=()=>editQueue(b.dataset.editQueue));
+ document.querySelectorAll('[data-edit-rule]').forEach(b=>b.onclick=()=>editRule(b.dataset.editRule));
+ document.querySelectorAll('[data-edit-agent]').forEach(b=>b.onclick=()=>editAgent(b.dataset.editAgent));
+ if($('swap-rules'))$('swap-rules').onclick=()=>{state.rules.reverse();configChanged();};
+ document.querySelectorAll('[data-migration]').forEach(x=>x.onchange=()=>{state.migration[x.dataset.migration]=x.checked;saveState();renderHifi();});
+ document.querySelector('[data-fix-queues]')?.addEventListener('click',()=>appTab('queues'));
+ document.querySelector('[data-fix-rules]')?.addEventListener('click',()=>appTab('rules'));
+ $('publish-mode')?.addEventListener('click',confirmPublish);
+ $('rollback-mode')?.addEventListener('click',()=>openDialog('恢复演示旧模式',`<p>停止新机制演示接管，恢复所选渠道的旧模式显示。草稿保留。</p><p>真实回退必须核对在途请求、归属和容量。本原型不代表已经完成生产回退。</p>`,'确认恢复演示旧模式',()=>{state.mode='legacy';state.published=null;saveState();closeDialog();renderHifi();announce('已恢复演示旧模式，草稿仍可编辑。');}));
+ $('fail-save')?.addEventListener('click',()=>{failNext='save';announce('已设置：下一次保存失败。保存失败时保留输入，可直接重试。');});
+ $('fail-switch')?.addEventListener('click',()=>{failNext='switch';announce('已设置：下一次切换失败。失败时保留当前模式，可重试。');});
+}
+function agentsTable(){return `<div class="hifi-table-scroll"><table class="hifi-table"><thead><tr><th>客服 / 团队</th><th>状态 / 容量</th><th>技能</th><th>操作</th></tr></thead><tbody>${state.agents.map(a=>`<tr><td><b>${esc(a.name)}</b><small>${teamName(a.team)}</small></td><td>${badge(a.online?'在线':'离线',a.online?'green':'')}<small>${a.load} / ${a.capacity}</small></td><td>${a.skills.map(x=>badge(x)).join('')}</td><td><button data-edit-agent="${a.name}">编辑</button></td></tr>`).join('')}</tbody></table></div>`;}
+document.querySelectorAll('[data-hifi-tab]').forEach(b=>b.onclick=()=>appTab(b.dataset.hifiTab));document.querySelectorAll('[data-app-page]').forEach(b=>b.onclick=()=>{state.page=b.dataset.appPage;saveState();renderHifi();});
+$('hifi-expand').onclick=()=>{const open=$('demo-configure').classList.toggle('expanded');$('hifi-expand').textContent=open?'退出放大':'放大操作';document.body.classList.toggle('hifi-expanded',open);};
+function openDialog(title,body,action,onSave){stopMovie();const d=$('hifi-dialog');d.innerHTML=`<form id="hifi-form"><header><div><small>演示空间 / 设置</small><h3 id="hifi-dialog-title">${esc(title)}</h3></div><button type="button" data-dialog-close aria-label="关闭编辑">×</button></header><div class="dialog-fields">${body}<p id="dialog-error" role="alert"></p></div><footer><button type="button" data-dialog-close>取消</button>${primary(action,'type="submit"')}</footer></form>`;d.querySelectorAll('[data-dialog-close]').forEach(b=>b.onclick=closeDialog);d.querySelector('form').onsubmit=e=>{e.preventDefault();if(failNext==='save'){failNext='';$('dialog-error').textContent='模拟保存失败。输入已保留，请重试。';return;}onSave(e.currentTarget);};d.showModal();}
+function closeDialog(){$('hifi-dialog').close();}
+const skillChoices=(name,values)=>`<div class="skill-checks">${['德语','英语','硬件','退款'].map(x=>`<label><input type="checkbox" name="${name}" value="${x}" ${values.includes(x)?'checked':''}>${x}</label>`).join('')}</div>`;
+const checked=(form,name)=>[...form.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
+function editQueue(id){const q=state.queues.find(x=>x.id===id);openDialog('编辑队列',`<label>队列名称<input name="queueName" value="${esc(q.name)}" required maxlength="40"></label><div class="dialog-grid"><label>承接团队<select name="team"><option value="expert" ${q.team==='expert'?'selected':''}>国际产品团队</option><option value="general" ${q.team==='general'?'selected':''}>综合服务团队</option></select></label><label>总等待时限（秒）<input type="number" name="deadline" min="1" max="3600" required value="${q.deadline}"></label></div><div class="condition-chip">匹配条件：${esc(q.match)}${id==='default'?' · 最后兜底':''}</div><label><input type="checkbox" name="enabled" ${q.enabled?'checked':''}>启用队列</label><h4>技能要求 ${badge('二期','purple')}</h4><label>必需技能 · 始终保留</label>${skillChoices('required',q.required)}<label>可选技能 · 可等待后放宽</label>${skillChoices('optional',q.optional)}<label>可选技能放宽时间（秒）<input type="number" name="relax" min="0" max="3600" required value="${q.relax}"></label><p>同一技能同时出现在两处时，以必需为准。Message 总等待时限先到就退出；Email 超时提醒后保留待处理。</p>`,'保存队列',f=>{const next={name:f.elements.queueName.value.trim(),team:f.elements.team.value,enabled:f.elements.enabled.checked,deadline:Number(f.elements.deadline.value),relax:Number(f.elements.relax.value),required:checked(f,'required'),optional:checked(f,'optional')};if(!next.name){$('dialog-error').textContent='请输入队列名称。';return;}Object.assign(q,next);closeDialog();configChanged();});}
+function editRule(id){const r=state.rules.find(x=>x.id===id);openDialog('编辑关联 Trigger',`<div class="source-ref">同一条规则 ${id.toUpperCase()} · 不创建副本 · 调序同步到原 Trigger</div><label>规则名称<input name="ruleName" required maxlength="50" value="${esc(r.name)}"></label><label>全部条件<select name="field"><option value="repeat" ${r.field==='repeat'?'selected':''}>标签包含「复购」</option><option value="product" ${r.field==='product'?'selected':''}>主题包含「产品 A」</option></select></label><label><input type="checkbox" name="scheduled" ${r.scheduled?'checked':''}>仅在规则生效日历内参与分配</label><div class="dialog-grid"><label>目标队列<select name="queue">${state.queues.map(q=>`<option value="${q.id}" ${r.queue===q.id?'selected':''}>${esc(q.name)}</option>`).join('')}</select></label><label>优先客服<select name="preferred"><option value="">不指定，团队选人</option>${state.agents.map(a=>`<option ${r.preferred===a.name?'selected':''}>${a.name}</option>`).join('')}</select></label></div><h4>追加必需技能 ${badge('二期','purple')}</h4>${skillChoices('skills',r.skills)}<label><input type="checkbox" name="enabled" ${r.enabled?'checked':''}>启用规则</label><p>优先客服不满足条件时，仍由所选队列承接，不改用后面的分单规则。</p>`,'保存关联规则',f=>{const next={name:f.elements.ruleName.value.trim(),field:f.elements.field.value,scheduled:f.elements.scheduled.checked,queue:f.elements.queue.value,preferred:f.elements.preferred.value,skills:checked(f,'skills'),enabled:f.elements.enabled.checked};const q=state.queues.find(q=>q.id===next.queue);if(next.preferred&&!state.agents.some(a=>a.name===next.preferred&&a.team===q.team)){$('dialog-error').textContent='优先客服必须属于目标队列的团队。请选择相同团队的客服。';return;}if(!next.name){$('dialog-error').textContent='请输入规则名称。';return;}Object.assign(r,next);closeDialog();configChanged();});}
+function editAgent(name){const a=state.agents.find(x=>x.name===name);openDialog('编辑 '+name+' 的接单条件',`<div class="condition-chip">${teamName(a.team)}</div><div class="dialog-grid"><label>在线状态<select name="online"><option value="true" ${a.online?'selected':''}>在线</option><option value="false" ${!a.online?'selected':''}>离线</option></select></label><label>已占用容量（上限 ${a.capacity}）<input name="load" type="number" min="0" max="${a.capacity}" required value="${a.load}"></label></div><h4>客服技能 ${badge('二期','purple')}</h4>${skillChoices('skills',a.skills)}`,'保存接单条件',f=>{a.online=f.elements.online.value==='true';a.load=Number(f.elements.load.value);a.skills=checked(f,'skills');closeDialog();configChanged();});}
+function confirmPublish(){openDialog('确认切换与影响范围',`<div class="publish-summary"><b>生效渠道：${state.channels.join('、')}</b><span>停止：旧自动分单、旧直接指派写入</span><span>启用：新规则 → 队列 → 统一资格与选人</span><span>保留：标签、备注、通知、Webhook</span></div><p>仅提交本机演示版本，不修改生产。切换成功前保持当前模式；失败后可以重试。</p>`,'确认切换（演示）',()=>{if(failNext==='switch'){failNext='';$('dialog-error').textContent='模拟切换失败，当前模式保持不变。请重试。';return;}const previous={mode:state.mode,published:state.published};state.mode='new';state.published=fingerprint();saveState();if(storageError){Object.assign(state,previous);$('dialog-error').textContent='无法保存本机演示版本，未完成切换。';return;}closeDialog();renderHifi();announce('已切换演示新模式。所选渠道旧分单只读；通用 Trigger 继续启用。');});}
+// Animated decision evidence. The ticket moves only when the underlying stage changes.
+function renderMovie(){
+ const f=frames[state.frame],t=ticket(),d=f.decision;
+ document.querySelectorAll('[data-scene]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.scene===state.scene));$('movie-phase').value=state.phase;$('movie-subtitle').textContent=currentScene().subtitle;
+ $('movie-subject').textContent=t.subject;
+ $('movie-facts').innerHTML=[['渠道',t.channel],['品牌',t.brand],['语言',t.language],['问题',t.type],['标签',t.tags.join('、')||'无'],['负责人',t.owner||'未分配'],['事件',t.event],['规则时段',t.inHours?'时段内':'时段外'],['团队营业',t.businessOpen?'营业内':'营业外'],['优先级',t.priority+'（四期排序）'],['SLA',t.sla+'（四期排序）']].map(([a,b])=>`<div><dt>${a}</dt><dd>${esc(b)}</dd></div>`).join('');
+ $('movie-step').textContent=`${state.frame+1} / ${frames.length} · ${state.phase===1?'一期机制':'二期技能机制'}`;$('movie-title').textContent=f.title;$('movie-note').textContent=f.note;$('movie-time').textContent='队列等待 '+f.elapsed+' 秒';
+ const active=document.querySelector(`[data-station="${f.stage}"]`);document.querySelectorAll('[data-station]').forEach(b=>{b.dataset.active=Number(b.dataset.station)===f.stage;b.dataset.done=Number(b.dataset.station)<f.stage;const index=frames.findIndex(x=>x.stage===Number(b.dataset.station));b.disabled=index<0;b.setAttribute('aria-label',b.innerText+(index<0?'，本场景跳过':''));});
+ requestAnimationFrame(()=>{const r=active.getBoundingClientRect(),root=$('moving-ticket').parentElement.getBoundingClientRect();$('moving-ticket').style.transform=`translate(${r.left-root.left+r.width/2-42}px,0)`;});
+ let detail='';
+ if(f.stage<=1)detail=`<div class="intro-decision"><div>新机制草稿${badge(state.phase===2?'含二期技能':'一期','blue')}</div><span>→</span><div>${f.stage===0?'准备进入人工服务':t.owner?'保留 '+esc(t.owner):'允许自动分配'}</div></div><small>动画预演与线上模式分开：当前演示发布状态为${state.mode==='new'?'新模式':'旧模式'}，此处始终测试新机制草稿。</small>`;
+ if(f.stage===2)detail=f.rows?`<div class="animated-rules">${state.rules.map((r,i)=>{const evaluated=f.rows[i];return `<div class="animated-rule" data-status="${evaluated?.state||'待判断'}"><span>${i+1}</span><div><b>${esc(r.name)}</b><small>${r.field==='repeat'?'标签包含复购':'主题包含产品 A'}${r.scheduled?' ＋ 规则时段内':''}</small></div><strong>${evaluated?.state||'待判断'}</strong><p>${evaluated?esc(evaluated.reason):'等待前序规则判断'}</p></div>`;}).join('')}</div>`:'<a href="#configure">返回分单中心修复配置 →</a>';
+ if(f.stage===3)detail=`<div class="queue-route">${state.queues.map(q=>`<div class="${q.id===d.q.id?'selected':''}"><b>${esc(q.name)}</b><span>${teamName(q.team)}</span><small>${q.id===d.q.id?'✓ 本次承接':d.rule?'规则已有目标，不参与普通匹配':'未选中'}</small></div>`).join('')}</div>`;
+ if(f.stage===4)detail=state.phase===2?`<div class="skill-equation"><div><small>队列默认</small>${d.q.required.map(x=>badge(x,'purple')).join('')||'无'}</div><b>＋</b><div><small>规则追加</small>${(d.rule?.skills||[]).map(x=>badge(x,'purple')).join('')||'无'}</div><b>＝</b><div><small>全部必需</small>${d.required.map(x=>badge(x,'purple')).join('')||'无'}</div></div><div class="optional-skill">可选：${d.optional.join('、')||'无'}　·　等待 ${d.q.relax} 秒可放宽　·　必需技能始终保留</div>`:'<div class="phase-skip">一期仍检查在线与容量。将右上角切换为“二期”，可比较同一张工单为何需要等待技能。</div>';
+ if(f.candidates)detail=`<div class="candidate-deck">${f.candidates.map(a=>`<article class="agent-tile" data-eligible="${a.eligible}" data-picked="${f.owner===a.name}"><header><span>${a.name[0]}</span><div><b>${a.name}</b><small>${a.online?'在线':'离线'} · ${teamName(a.team)}</small></div>${a.preferred?badge('优先','blue'):''}</header><div class="capacity-meter"><i style="width:${a.load/a.capacity*100}%"></i></div><small>容量 ${a.load} / ${a.capacity}</small><div class="agent-skills">${a.skills.map(x=>badge(x)).join('')||'无技能'}</div><p>${f.owner===a.name?'✓ 已选中':a.eligible?'✓ 符合条件':a.issues.map(esc).join('；')}</p></article>`).join('')}</div>`+(f.stage===6?`<div class="wait-clock"><span>0s</span><div><i style="width:${Math.min(100,f.elapsed/d.q.deadline*100)}%"></i></div><b>${f.elapsed}s / ${d.q.deadline}s</b><small>当前队列：${esc(d.q.name)} · ${state.phase===2&&f.elapsed>=d.q.relax?'可选已放宽，必需保留':'约束保持'}</small></div>`:'');
+ $('movie-detail').innerHTML=detail;
+ $('movie-outcome').innerHTML=f.terminal?`<div><small>本场景结果 · 虚构演示</small><b>${esc(f.status)}${f.owner?' → '+esc(f.owner):''}</b><span>${f.queue?esc(f.queue)+' · ':''}${f.elapsed} 秒等待</span></div>${f.status==='通知待补发'?'<button id="retry-notification">仅重试通知</button>':''}${f.status==='超时待处理'?'<button id="recover-email">模拟容量恢复</button>':''}${f.status!=='配置异常'?primary('确认此演示结果并返回迁移检查','id="accept-trial"'):'<a href="#configure">修复配置 →</a>'}`:`<span>当前去向：<b>${esc(f.queue||'尚未确定队列')}</b></span><span>负责人：<b>${esc(f.owner||'未分配')}</b></span>`;
+ $('accept-trial')?.addEventListener('click',()=>{stopMovie();state.accepted=fingerprint();state.page='center';state.tab='migration';saveState();renderHifi();location.hash='configure';});
+ $('retry-notification')?.addEventListener('click',()=>{stopMovie();state.ticketPatch.notificationRecovered=true;frames=routingFrames(state,ticket(),state.phase);state.frame=frames.length-1;renderMovie();});
+ $('recover-email')?.addEventListener('click',()=>{stopMovie();state.ticketPatch.recoverAfterDeadline=true;frames=routingFrames(state,ticket(),state.phase);state.frame=frames.length-1;renderMovie();});
+ $('movie-prev').disabled=state.frame===0;$('movie-next').disabled=state.frame===frames.length-1;
+ if(!playing)$('movie-play').textContent=state.frame===frames.length-1?'▶ 重播分单过程':'▶ 播放分单过程';saveState();
+}
+function moveFrame(index){stopMovie();state.frame=Math.max(0,Math.min(frames.length-1,index));renderMovie();}
+function tick(){timer=setTimeout(()=>{if(!playing)return;if(state.frame<frames.length-1){state.frame++;renderMovie();}if(state.frame===frames.length-1)stopMovie();else tick();},speed);}
+$('movie-play').onclick=()=>{if(playing){stopMovie();return;}if(state.frame===frames.length-1)state.frame=0;playing=true;$('movie-play').textContent='Ⅱ 暂停';renderMovie();tick();};$('movie-prev').onclick=()=>moveFrame(state.frame-1);$('movie-next').onclick=()=>moveFrame(state.frame+1);$('movie-reset').onclick=()=>{frames=routingFrames(state,ticket(),state.phase);moveFrame(0);};$('movie-speed').onchange=e=>{speed=Number(e.target.value);if(playing){clearTimeout(timer);tick();}};
+$('movie-phase').onchange=e=>{state.phase=Number(e.target.value);recompute();};document.querySelectorAll('[data-scene]').forEach(b=>b.onclick=()=>{state.scene=b.dataset.scene;state.phase=currentScene().phase;state.ticketPatch={};recompute();});
+document.querySelectorAll('[data-station]').forEach(b=>b.onclick=()=>moveFrame(frames.findIndex(f=>f.stage===Number(b.dataset.station))));
+$('edit-ticket').onclick=()=>{const t=ticket();openDialog('调整示例工单',`<div class="dialog-grid"><label>渠道<select name="channel"><option ${t.channel==='Email'?'selected':''}>Email</option><option ${t.channel==='Message'?'selected':''}>Message</option></select></label><label>负责人<select name="owner"><option value="">未分配</option>${state.agents.map(a=>`<option ${t.owner===a.name?'selected':''}>${a.name}</option>`).join('')}</select></label></div><label><input type="checkbox" name="repeat" ${t.repeat?'checked':''}>包含复购标签</label><label><input type="checkbox" name="product" ${t.product?'checked':''}>主题包含产品 A</label><label><input type="checkbox" name="inHours" ${t.inHours?'checked':''}>当前处于规则生效时段</label><label><input type="checkbox" name="businessOpen" ${t.businessOpen?'checked':''}>团队当前在营业时间内</label><p>语言、品牌、优先级等信息随场景展示；只有已配置条件或技能要求会参与本轮判断，优先级 / SLA 排序为四期。</p>`,'更新工单并重播',f=>{state.ticketPatch={...state.ticketPatch,channel:f.elements.channel.value,owner:f.elements.owner.value,repeat:f.elements.repeat.checked,product:f.elements.product.checked,inHours:f.elements.inHours.checked,businessOpen:f.elements.businessOpen.checked,tags:f.elements.repeat.checked?['复购','保修内']:['保修内'],subject:f.elements.product.checked?'产品 A 摄像机无法连接，希望退款':'订单服务咨询'};closeDialog();recompute();});};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMovie();});new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stopMovie();}).observe($('demo-runtime'));addEventListener('resize',()=>{const playingBefore=playing;renderMovie();if(!playingBefore)stopMovie();});
+
+// Navigation remains within the same narrative; legacy prototype deep links return to the current flow.
+const oldChapters={1:'mechanism',2:'why',3:'s-2-6',4:'s-5-1',5:'mechanism',6:'runtime',7:'configure',8:'s-3-4',9:'s-5-3',10:'roadmap',11:'decisions',12:'evidence'};
+function navigateHash(){const raw=decodeURIComponent(location.hash.slice(1)||'start');let target=raw;if(raw.startsWith('demo-configure/')||['draft','availability','queues','rules','mode'].includes(raw))target='demo-configure';else if(raw.startsWith('demo-runtime/')||['simulator','ownership'].includes(raw))target='demo-runtime';else if(/^chapter-\d+$/.test(raw))target=oldChapters[raw.slice(8)]||'start';else target=({overview:'start',relationships:'mechanism',flow:'runtime','routing-flow':'runtime',gaps:'why','usage-scenarios':'s-2-5',scenarios:'s-2-5',spec:'why','full-spec':'why',sources:'evidence',skills:'s-3-3'})[raw]||raw;const el=$(target);if(!el)return;for(let p=el;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;requestAnimationFrame(()=>el.scrollIntoView({block:'start',behavior:'instant'}));}
+function updateChapter(){let i=-1;chapters.forEach((id,j)=>{if($(id).getBoundingClientRect().top<=(innerWidth<=720?60:110))i=j});$('current-chapter').textContent=i<0?'阅读起点':`${String(i+1).padStart(2,'0')} · ${names[i]}`;document.querySelectorAll('[data-chapter-link]').forEach(a=>{const active=Number(a.dataset.chapterLink)===i;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});$('previous-chapter').href=i<=0?'#start':'#'+chapters[i-1];$('next-chapter').href=i<6?'#'+chapters[i+1]:'#decisions';$('previous-chapter').textContent=i<=0?'回到开篇':'← 上一章';$('next-chapter').textContent=i<0?'开始阅读 →':i<6?'下一章 →':'回到决策清单';}
+let scheduled=false;addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(()=>{updateChapter();scheduled=false})}},{passive:true});addEventListener('resize',updateChapter);addEventListener('hashchange',navigateHash);
+$('expand-all').onclick=e=>{const open=e.currentTarget.getAttribute('aria-pressed')!=='true';document.querySelectorAll('.detail-block').forEach(d=>d.open=open);e.currentTarget.setAttribute('aria-pressed',open);e.currentTarget.textContent=open?'收起全部细则':'展开全部细则';};
+document.querySelectorAll('.zoom-diagram').forEach(b=>b.onclick=()=>{$('image-caption').textContent=b.dataset.caption;$('image-large').src=b.dataset.image;$('image-large').alt=b.dataset.caption;$('image-dialog').showModal();});$('close-image').onclick=()=>$('image-dialog').close();
+document.querySelector('.skip').onclick=e=>{e.preventDefault();$('main').focus();};
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a&&a.hash===location.hash){e.preventDefault();navigateHash();}});
+document.querySelectorAll('[data-phase]').forEach(b=>b.onclick=()=>{const p=visualStory.phases[Number(b.dataset.phase)];document.querySelectorAll('[data-phase]').forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelector('[data-phase-title]').textContent=p[3];document.querySelector('[data-phase-note]').textContent='验收：'+p[4];});
+addEventListener('beforeprint',()=>document.querySelectorAll('.detail-block').forEach(d=>{d.dataset.wasOpen=d.open;d.open=true;}));addEventListener('afterprint',()=>document.querySelectorAll('.detail-block').forEach(d=>{d.open=d.dataset.wasOpen==='true';}));
+renderHifi();renderMovie();renderMap();navigateHash();updateChapter();document.documentElement.dataset.visualReady="true";
+</script></body></html>
